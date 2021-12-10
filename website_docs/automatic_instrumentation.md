@@ -26,7 +26,7 @@ One option is to pass configuration properties via the `D` flag. In this example
 
 ```
 java -javaagent:path/to/opentelemetry-javaagent.jar \
-     -Dotel.resource.attributes=service.name=your-service-name \
+     -Dotel.service.name=your-service-name \
      -Dotel.traces.exporter=zipkin \
      -jar myapp.jar
 ```
@@ -60,7 +60,7 @@ To see the full range of configuration options, see [Agent Configuration](https:
 
 ## Supported libraries, frameworks, application services, and JVMs
 
-Many popular have supported automatic instrumentation. See [Supported libraries, frameworks, application services, and JVMs](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/docs/supported-libraries.md) for the full list.
+Many popular X have supported automatic instrumentation. See [Supported libraries, frameworks, application services, and JVMs](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/docs/supported-libraries.md) for the full list.
 
 ## Troubleshooting
 
