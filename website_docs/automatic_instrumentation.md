@@ -3,7 +3,7 @@ Title: "Automatic Instrumentation"
 Weight: 3
 ---
 
-Automatic instrumentation with Java uses a Java agent JAR that can be attached to any Java 8+ application. It dynamically injects bytecode to capture telemetry from many popular libraries and frameworks. It is the preferred way to capture telemetry data at the "edges" of an app or service, such as inbound requests, outbound HTTP calls, database calls, and so on. To instrument application code in your app or service, use [Manual Instrumentation](manual_instrumentation.md)
+Automatic instrumentation with Java uses a Java agent JAR that can be attached to any Java 8+ application. It dynamically injects bytecode to capture telemetry from many popular libraries and frameworks. It can be used to capture telemetry data at the "edges" of an app or service, such as inbound requests, outbound HTTP calls, database calls, and so on. To instrument application code in your app or service, use [Manual Instrumentation](manual_instrumentation.md)
 
 ## Setup
 
@@ -60,7 +60,7 @@ To see the full range of configuration options, see [Agent Configuration](https:
 
 ## Supported libraries, frameworks, application services, and JVMs
 
-Many popular components have supported automatic instrumentation. See [Supported libraries, frameworks, application services, and JVMs](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/docs/supported-libraries.md) for the full list.
+Many popular components support automatic instrumentation. See [Supported libraries, frameworks, application services, and JVMs](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/docs/supported-libraries.md) for the full list.
 
 ## Troubleshooting
 
@@ -68,4 +68,4 @@ You can pass the `-Dotel.javaagent.debug=true` parameter to the agent to see deb
 
 ## Next steps
 
-After you have automatic instrumentation configured for your app or service, it is worthwhile to add [Manual Instrumentation](manual_instrumentation.md) to collect richer telemetry data.
+After you have automatic instrumentation configured for your app or service, you may want to add [Manual Instrumentation](manual_instrumentation.md) to collect custom telemetry data.
