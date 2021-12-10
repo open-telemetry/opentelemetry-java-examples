@@ -60,7 +60,7 @@ To see the full range of configuration options, see [Agent Configuration](https:
 
 ## Supported libraries, frameworks, application services, and JVMs
 
-Many popular X have supported automatic instrumentation. See [Supported libraries, frameworks, application services, and JVMs](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/docs/supported-libraries.md) for the full list.
+Many popular components have supported automatic instrumentation. See [Supported libraries, frameworks, application services, and JVMs](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/docs/supported-libraries.md) for the full list.
 
 ## Troubleshooting
 
