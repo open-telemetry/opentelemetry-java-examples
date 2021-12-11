@@ -149,6 +149,20 @@ To link spans from remote processes, it is sufficient to set the
 Span childRemoteParent = tracer.spanBuilder("Child").setParent(remoteContext).startSpan();
 ```
 
+### Get the current span
+
+Sometimes it's helpful to do something with the current/active span at a particular point in program execution.
+
+```java
+Span span = Span.current()
+```
+
+And if you want the current span for a particular `Context` object:
+
+```java
+Span span = Span.fromContext(context)
+```
+
 ### Span Attributes
 In OpenTelemetry spans can be created freely and it's up to the implementor to annotate them with
 attributes specific to the represented operation. Attributes provide additional context on a span
