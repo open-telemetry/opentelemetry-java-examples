@@ -10,6 +10,7 @@ Weight: 3
 - [Tracing](#tracing)
   * [Create basic Span](#create-a-basic-span)
   * [Create nested Spans](#create-nested-spans)
+  * [Get the current span](#get-the-current-span)
   * [Span Attributes](#span-attributes)
   * [Create Spans with events](#create-spans-with-events)
   * [Create Spans with links](#create-spans-with-links)
@@ -147,6 +148,20 @@ To link spans from remote processes, it is sufficient to set the
 
 ```java
 Span childRemoteParent = tracer.spanBuilder("Child").setParent(remoteContext).startSpan();
+```
+
+### Get the current span
+
+Sometimes it's helpful to do something with the current/active span at a particular point in program execution.
+
+```java
+Span span = Span.current()
+```
+
+And if you want the current span for a particular `Context` object:
+
+```java
+Span span = Span.fromContext(context)
 ```
 
 ### Span Attributes
