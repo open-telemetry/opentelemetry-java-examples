@@ -10,6 +10,7 @@ Weight: 3
 - [Tracing](#tracing)
   * [Create basic Span](#create-a-basic-span)
   * [Create nested Spans](#create-nested-spans)
+  * [Get the current span](#get-the-current-span)
   * [Span Attributes](#span-attributes)
   * [Create Spans with events](#create-spans-with-events)
   * [Create Spans with links](#create-spans-with-links)
