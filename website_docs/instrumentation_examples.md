@@ -1,5 +1,6 @@
 ---
 title: Instrumentation Examples
+linkTitle: Examples
 weight: 4
 ---
 
