@@ -1,9 +1,9 @@
 ---
-Title: "Automatic Instrumentation"
+Title: Automatic Instrumentation
 Weight: 3
 ---
 
-Automatic instrumentation with Java uses a Java agent JAR that can be attached to any Java 8+ application. It dynamically injects bytecode to capture telemetry from many popular libraries and frameworks. It can be used to capture telemetry data at the "edges" of an app or service, such as inbound requests, outbound HTTP calls, database calls, and so on. To instrument application code in your app or service, use [Manual Instrumentation](manual_instrumentation.md)
+Automatic instrumentation with Java uses a Java agent JAR that can be attached to any Java 8+ application. It dynamically injects bytecode to capture telemetry from many popular libraries and frameworks. It can be used to capture telemetry data at the "edges" of an app or service, such as inbound requests, outbound HTTP calls, database calls, and so on. To instrument application code in your app or service, use [Manual Instrumentation](../manual_instrumentation)
 
 ## Setup
 
@@ -68,4 +68,4 @@ You can pass the `-Dotel.javaagent.debug=true` parameter to the agent to see deb
 
 ## Next steps
 
-After you have automatic instrumentation configured for your app or service, you may want to add [Manual Instrumentation](manual_instrumentation.md) to collect custom telemetry data.
+After you have automatic instrumentation configured for your app or service, you may want to add [Manual Instrumentation](../manual_instrumentation) to collect custom telemetry data.
