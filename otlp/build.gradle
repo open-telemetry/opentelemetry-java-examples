@@ -12,7 +12,6 @@ dependencies {
 
     //pull in the autoconfigure extension so we parse the `otel.resource.attributes` system property used in the example.
     implementation("io.opentelemetry:opentelemetry-sdk-extension-autoconfigure")
-    implementation("io.opentelemetry:opentelemetry-api-metrics")
     implementation("io.opentelemetry:opentelemetry-sdk-metrics")
     implementation("io.opentelemetry:opentelemetry-exporter-otlp-metrics")
 

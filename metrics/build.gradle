@@ -7,7 +7,4 @@ ext.moduleName = "io.opentelemetry.examples.metrics"
 
 dependencies {
     implementation("io.opentelemetry:opentelemetry-api")
-
-    //alpha modules
-    implementation("io.opentelemetry:opentelemetry-api-metrics")
 }

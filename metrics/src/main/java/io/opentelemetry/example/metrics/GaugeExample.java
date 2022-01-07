@@ -1,7 +1,7 @@
 package io.opentelemetry.example.metrics;
 
+import io.opentelemetry.api.GlobalOpenTelemetry;
 import io.opentelemetry.api.common.Attributes;
-import io.opentelemetry.api.metrics.GlobalMeterProvider;
 import io.opentelemetry.api.metrics.Meter;
 
 /**
@@ -12,13 +12,13 @@ import io.opentelemetry.api.metrics.Meter;
 public final class GaugeExample {
 
   public static void main(String[] args) {
-    Meter sampleMeter = GlobalMeterProvider.get().get("io.opentelemetry.example.metrics");
+    Meter sampleMeter = GlobalOpenTelemetry.getMeter("io.opentelemetry.example.metrics");
 
     sampleMeter
         .gaugeBuilder("jvm.memory.total")
         .setDescription("Reports JVM memory usage.")
         .setUnit("byte")
         .buildWithCallback(
-            result -> result.observe(Runtime.getRuntime().totalMemory(), Attributes.empty()));
+            result -> result.record(Runtime.getRuntime().totalMemory(), Attributes.empty()));
   }
 }

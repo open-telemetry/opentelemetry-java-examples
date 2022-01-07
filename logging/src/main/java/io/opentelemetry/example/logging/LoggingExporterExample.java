@@ -1,7 +1,7 @@
 package io.opentelemetry.example.logging;
 
+import io.opentelemetry.api.GlobalOpenTelemetry;
 import io.opentelemetry.api.OpenTelemetry;
-import io.opentelemetry.api.metrics.GlobalMeterProvider;
 import io.opentelemetry.api.metrics.LongCounter;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.Tracer;
@@ -19,7 +19,7 @@ public final class LoggingExporterExample {
   public LoggingExporterExample(OpenTelemetry openTelemetry) {
     tracer = openTelemetry.getTracer(INSTRUMENTATION_NAME);
     counter =
-        GlobalMeterProvider.get().get(INSTRUMENTATION_NAME).counterBuilder("work_done").build();
+        GlobalOpenTelemetry.getMeter(INSTRUMENTATION_NAME).counterBuilder("work_done").build();
   }
 
   public void myWonderfulUseCase() {

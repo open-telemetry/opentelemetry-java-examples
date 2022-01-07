@@ -6,8 +6,6 @@ import io.opentelemetry.api.GlobalOpenTelemetry;
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.common.AttributeKey;
 import io.opentelemetry.api.common.Attributes;
-import io.opentelemetry.api.metrics.BoundLongCounter;
-import io.opentelemetry.api.metrics.GlobalMeterProvider;
 import io.opentelemetry.api.metrics.LongCounter;
 import io.opentelemetry.api.metrics.Meter;
 import io.opentelemetry.api.trace.Span;
@@ -18,16 +16,15 @@ import io.opentelemetry.context.Scope;
 import java.io.File;
 import javax.swing.filechooser.FileSystemView;
 
-/**
- * Example of using {@link LongCounter} and {@link BoundLongCounter} to count searched directories.
- */
+/** Example of using {@link LongCounter} to count searched directories. */
 public final class LongCounterExample {
+
   private static final OpenTelemetry openTelemetry = GlobalOpenTelemetry.get();
   private static final Tracer tracer =
       openTelemetry.getTracer("io.opentelemetry.example.metrics", "0.13.1");
 
   private static final Meter sampleMeter =
-      GlobalMeterProvider.get().get("io.opentelemetry.example.metrics");
+      GlobalOpenTelemetry.getMeter("io.opentelemetry.example.metrics");
   private static final LongCounter directoryCounter =
       sampleMeter
           .counterBuilder("directories_search_count")
@@ -37,15 +34,15 @@ public final class LongCounterExample {
   private static final File homeDirectory = FileSystemView.getFileSystemView().getHomeDirectory();
 
   private static final AttributeKey<String> ROOT_DIRECTORY_KEY = stringKey("root directory");
-  // we can use BoundCounters to not specify labels each time
-  private static final BoundLongCounter homeDirectoryCounter =
-      directoryCounter.bind(Attributes.of(ROOT_DIRECTORY_KEY, homeDirectory.getName()));
+  // statically allocate the attributes, since they are known at init time.
+  private static final Attributes HOME_DIRECTORY_ATTRIBUTES =
+      Attributes.of(ROOT_DIRECTORY_KEY, homeDirectory.getName());
 
   public static void main(String[] args) {
     Span span = tracer.spanBuilder("workflow").setSpanKind(SpanKind.INTERNAL).startSpan();
     LongCounterExample example = new LongCounterExample();
     try (Scope scope = span.makeCurrent()) {
-      homeDirectoryCounter.add(1); // count root directory
+      directoryCounter.add(1, HOME_DIRECTORY_ATTRIBUTES); // count root directory
       example.findFile("file_to_find.txt", homeDirectory);
     } catch (Exception e) {
       span.setStatus(StatusCode.ERROR, "Error while finding file");
@@ -60,9 +57,7 @@ public final class LongCounterExample {
     if (files != null) {
       for (File file : files) {
         if (file.isDirectory()) {
-          // we don't have to specify the value for the "root directory" label again
-          // since this is a BoundLongCounter with pre-set labels
-          homeDirectoryCounter.add(1);
+          directoryCounter.add(1, HOME_DIRECTORY_ATTRIBUTES);
           findFile(name, file);
         } else if (name.equalsIgnoreCase(file.getName())) {
           System.out.println(file.getParentFile());

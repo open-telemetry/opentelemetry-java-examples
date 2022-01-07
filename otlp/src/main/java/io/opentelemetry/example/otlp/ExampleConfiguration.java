@@ -66,9 +66,7 @@ public final class ExampleConfiguration {
             .newMetricReaderFactory();
 
     SdkMeterProvider sdkMeterProvider =
-        SdkMeterProvider.builder()
-            .registerMetricReader(periodicReaderFactory)
-            .buildAndRegisterGlobal();
+        SdkMeterProvider.builder().registerMetricReader(periodicReaderFactory).build();
 
     Runtime.getRuntime().addShutdownHook(new Thread(sdkMeterProvider::shutdown));
     return sdkMeterProvider;

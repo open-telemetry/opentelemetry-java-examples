@@ -3,18 +3,18 @@ package io.opentelemetry.example.autoconfigure;
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.Tracer;
-import io.opentelemetry.sdk.autoconfigure.OpenTelemetrySdkAutoConfiguration;
+import io.opentelemetry.sdk.autoconfigure.AutoConfiguredOpenTelemetrySdk;
 
 /**
- * An example of using {@link io.opentelemetry.sdk.autoconfigure.OpenTelemetrySdkAutoConfiguration}
- * and logging exporter: {@link io.opentelemetry.exporter.logging.LoggingSpanExporter}.
+ * An example of using {@link io.opentelemetry.sdk.autoconfigure.AutoConfiguredOpenTelemetrySdk} and
+ * logging exporter: {@link io.opentelemetry.exporter.logging.LoggingSpanExporter}.
  */
 public final class AutoConfigExample {
   private static final String INSTRUMENTATION_NAME = AutoConfigExample.class.getName();
 
   public static void main(String[] args) throws InterruptedException {
     // Let the SDK configure itself using environment variables and system properties
-    OpenTelemetry openTelemetry = OpenTelemetrySdkAutoConfiguration.initialize();
+    OpenTelemetry openTelemetry = AutoConfiguredOpenTelemetrySdk.initialize().getOpenTelemetrySdk();
 
     AutoConfigExample example = new AutoConfigExample(openTelemetry);
     // Do some real work that'll emit telemetry
