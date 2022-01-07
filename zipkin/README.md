@@ -18,7 +18,7 @@ to instrument a simple application using Zipkin as trace exporter.
 ```shell script
 docker run --rm -it --name zipkin \
   -p 9411:9411 \
-  openzipkin/zipkin:2.21
+  openzipkin/zipkin:latest
 ```
 
 ## 3 - Start the Application

@@ -34,14 +34,13 @@ class ConfigureTraceExample {
         OpenTelemetrySdk.builder()
             .setTracerProvider(
                 SdkTracerProvider.builder()
-                    .addSpanProcessor(SimpleSpanProcessor.create(new LoggingSpanExporter()))
+                    .addSpanProcessor(SimpleSpanProcessor.create(LoggingSpanExporter.create()))
                     .build())
             .build();
-
     printSpanLimits(openTelemetrySdk);
-    Tracer tracer = openTelemetrySdk.getTracer("ConfigureTraceExample");
 
-    // OpenTelemetry has a maximum of 32 Attributes by default for Spans, Links, and Events.
+    // OpenTelemetry has a maximum of 128 Attributes by default for Spans, Links, and Events.
+    Tracer tracer = openTelemetrySdk.getTracer("ConfigureTraceExample");
     Span multiAttrSpan = tracer.spanBuilder("Example Span Attributes").startSpan();
     multiAttrSpan.setAttribute("Attribute 1", "first attribute value");
     multiAttrSpan.setAttribute("Attribute 2", "second attribute value");
@@ -55,14 +54,14 @@ class ConfigureTraceExample {
         OpenTelemetrySdk.builder()
             .setTracerProvider(
                 SdkTracerProvider.builder()
-                    .addSpanProcessor(SimpleSpanProcessor.create(new LoggingSpanExporter()))
+                    .addSpanProcessor(SimpleSpanProcessor.create(LoggingSpanExporter.create()))
                     .setSpanLimits(newConf)
                     .build())
             .build();
-
     printSpanLimits(openTelemetrySdk);
 
     // If more attributes than allowed by the configuration are set, they are dropped.
+    tracer = openTelemetrySdk.getTracer("ConfigureTraceExample");
     Span singleAttrSpan = tracer.spanBuilder("Example Span Attributes").startSpan();
     singleAttrSpan.setAttribute("Attribute 1", "first attribute value");
     singleAttrSpan.setAttribute("Attribute 2", "second attribute value");
@@ -79,11 +78,10 @@ class ConfigureTraceExample {
         OpenTelemetrySdk.builder()
             .setTracerProvider(
                 SdkTracerProvider.builder()
-                    .addSpanProcessor(SimpleSpanProcessor.create(new LoggingSpanExporter()))
+                    .addSpanProcessor(SimpleSpanProcessor.create(LoggingSpanExporter.create()))
                     .setSampler(Sampler.alwaysOff())
                     .build())
             .build();
-
     printSpanLimits(openTelemetrySdk);
 
     tracer = openTelemetrySdk.getTracer("ConfigureTraceExample");
@@ -95,7 +93,7 @@ class ConfigureTraceExample {
         OpenTelemetrySdk.builder()
             .setTracerProvider(
                 SdkTracerProvider.builder()
-                    .addSpanProcessor(SimpleSpanProcessor.create(new LoggingSpanExporter()))
+                    .addSpanProcessor(SimpleSpanProcessor.create(LoggingSpanExporter.create()))
                     .setSampler(Sampler.alwaysOn())
                     .build())
             .build();
@@ -112,14 +110,13 @@ class ConfigureTraceExample {
         OpenTelemetrySdk.builder()
             .setTracerProvider(
                 SdkTracerProvider.builder()
-                    .addSpanProcessor(SimpleSpanProcessor.create(new LoggingSpanExporter()))
+                    .addSpanProcessor(SimpleSpanProcessor.create(LoggingSpanExporter.create()))
                     .setSampler(traceIdRatioBased)
                     .build())
             .build();
     printSpanLimits(openTelemetrySdk);
 
     tracer = openTelemetrySdk.getTracer("ConfigureTraceExample");
-
     for (int i = 0; i < 10; i++) {
       tracer
           .spanBuilder(String.format("Span %d might be forwarded to all processors", i))
@@ -154,7 +151,7 @@ class ConfigureTraceExample {
         OpenTelemetrySdk.builder()
             .setTracerProvider(
                 SdkTracerProvider.builder()
-                    .addSpanProcessor(SimpleSpanProcessor.create(new LoggingSpanExporter()))
+                    .addSpanProcessor(SimpleSpanProcessor.create(LoggingSpanExporter.create()))
                     .setSampler(new MySampler())
                     .build())
             .build();

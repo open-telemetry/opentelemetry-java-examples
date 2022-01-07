@@ -41,7 +41,11 @@ public final class ExampleConfiguration {
     SdkTracerProvider tracerProvider =
         SdkTracerProvider.builder()
             .addSpanProcessor(spanProcessor)
-            .setResource(AutoConfiguredOpenTelemetrySdk.initialize().getResource())
+            .setResource(
+                AutoConfiguredOpenTelemetrySdk.builder()
+                    .setResultAsGlobal(false)
+                    .build()
+                    .getResource())
             .build();
     OpenTelemetrySdk openTelemetrySdk =
         OpenTelemetrySdk.builder().setTracerProvider(tracerProvider).buildAndRegisterGlobal();

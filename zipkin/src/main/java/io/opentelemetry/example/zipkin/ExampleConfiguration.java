@@ -19,17 +19,14 @@ import io.opentelemetry.semconv.resource.attributes.ResourceAttributes;
  * the OpenTelemetry APIs.
  */
 public final class ExampleConfiguration {
-  // Zipkin API Endpoints for uploading spans
-  private static final String ENDPOINT_V2_SPANS = "/api/v2/spans";
 
   // Name of the service
   private static final String SERVICE_NAME = "myExampleService";
 
   /** Adds a SimpleSpanProcessor initialized with ZipkinSpanExporter to the TracerSdkProvider */
   static OpenTelemetry initializeOpenTelemetry(String ip, int port) {
-    String httpUrl = String.format("http://%s:%s", ip, port);
-    ZipkinSpanExporter zipkinExporter =
-        ZipkinSpanExporter.builder().setEndpoint(httpUrl + ENDPOINT_V2_SPANS).build();
+    String endpoint = String.format("http://%s:%s/api/v2/spans", ip, port);
+    ZipkinSpanExporter zipkinExporter = ZipkinSpanExporter.builder().setEndpoint(endpoint).build();
 
     Resource serviceNameResource =
         Resource.create(Attributes.of(ResourceAttributes.SERVICE_NAME, SERVICE_NAME));

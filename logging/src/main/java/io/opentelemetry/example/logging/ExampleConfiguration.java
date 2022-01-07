@@ -29,7 +29,7 @@ public final class ExampleConfiguration {
     // Create an instance of PeriodicMetricReaderFactory and configure it
     // to export via the logging exporter
     MetricReaderFactory periodicReaderFactory =
-        PeriodicMetricReader.builder(new LoggingMetricExporter())
+        PeriodicMetricReader.builder(LoggingMetricExporter.create())
             .setInterval(Duration.ofMillis(METRIC_EXPORT_INTERVAL_MS))
             .newMetricReaderFactory();
 
@@ -41,8 +41,11 @@ public final class ExampleConfiguration {
     // the logging exporter.
     SdkTracerProvider tracerProvider =
         SdkTracerProvider.builder()
-            .addSpanProcessor(SimpleSpanProcessor.create(new LoggingSpanExporter()))
+            .addSpanProcessor(SimpleSpanProcessor.create(LoggingSpanExporter.create()))
             .build();
-    return OpenTelemetrySdk.builder().setTracerProvider(tracerProvider).buildAndRegisterGlobal();
+    return OpenTelemetrySdk.builder()
+        .setMeterProvider(meterProvider)
+        .setTracerProvider(tracerProvider)
+        .buildAndRegisterGlobal();
   }
 }
