@@ -24,7 +24,7 @@ public final class PrometheusExample {
         .gaugeBuilder("incoming.messages")
         .setDescription("No of incoming messages awaiting processing")
         .setUnit("message")
-        .buildWithCallback(result -> result.observe(incomingMessageCount, Attributes.empty()));
+        .buildWithCallback(result -> result.record(incomingMessageCount, Attributes.empty()));
   }
 
   void simulate() {

@@ -35,9 +35,7 @@ public final class ExampleConfiguration {
 
     // This will be used to create instruments
     SdkMeterProvider meterProvider =
-        SdkMeterProvider.builder()
-            .registerMetricReader(periodicReaderFactory)
-            .buildAndRegisterGlobal();
+        SdkMeterProvider.builder().registerMetricReader(periodicReaderFactory).build();
 
     // Tracer provider configured to export spans with SimpleSpanProcessor using
     // the logging exporter.

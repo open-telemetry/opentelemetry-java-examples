@@ -25,9 +25,7 @@ public final class ExampleConfiguration {
     MetricReaderFactory prometheusReaderFactory = PrometheusCollector.create();
 
     SdkMeterProvider meterProvider =
-        SdkMeterProvider.builder()
-            .registerMetricReader(prometheusReaderFactory)
-            .buildAndRegisterGlobal();
+        SdkMeterProvider.builder().registerMetricReader(prometheusReaderFactory).build();
 
     server = new HTTPServer(prometheusPort);
     return meterProvider;

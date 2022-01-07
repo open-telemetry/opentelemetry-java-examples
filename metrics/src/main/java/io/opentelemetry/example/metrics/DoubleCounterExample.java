@@ -7,7 +7,6 @@ import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.common.AttributeKey;
 import io.opentelemetry.api.common.Attributes;
 import io.opentelemetry.api.metrics.DoubleCounter;
-import io.opentelemetry.api.metrics.GlobalMeterProvider;
 import io.opentelemetry.api.metrics.Meter;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.SpanKind;
@@ -29,7 +28,7 @@ public final class DoubleCounterExample {
   private static final Tracer tracer =
       openTelemetry.getTracer("io.opentelemetry.example.metrics", "0.13.1");
   private static final Meter sampleMeter =
-      GlobalMeterProvider.get().get("io.opentelemetry.example.metrics");
+      GlobalOpenTelemetry.getMeter("io.opentelemetry.example.metrics");
   private static final File directoryToCountIn =
       FileSystemView.getFileSystemView().getHomeDirectory();
   private static final DoubleCounter diskSpaceCounter =
