@@ -20,7 +20,7 @@ running on your local machine.
   - Note: this example requires having docker installed to run the example.
 - [Setting up the Zipkin exporter](zipkin)
   - This module contains a fully-functional example of configuring the OpenTelemetry SDK to use a
-    Jaeger exporter, and send some spans to a zipkin backend using the OpenTelemetry API.
+    Zipkin exporter, and send some spans to a zipkin backend using the OpenTelemetry API.
   - Note: this example requires having docker installed to run the example.
 - [Configuring the Logging Exporters](logging)
   - This module contains a fully-functional example of configuring the OpenTelemetry SDK to use a 

@@ -3,7 +3,6 @@ package io.opentelemetry.example.metrics;
 import static io.opentelemetry.api.common.AttributeKey.stringKey;
 
 import io.opentelemetry.api.GlobalOpenTelemetry;
-import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.common.AttributeKey;
 import io.opentelemetry.api.common.Attributes;
 import io.opentelemetry.api.metrics.DoubleCounter;
@@ -24,9 +23,8 @@ import javax.swing.filechooser.FileSystemView;
  */
 public final class DoubleCounterExample {
 
-  private static final OpenTelemetry openTelemetry = GlobalOpenTelemetry.get();
   private static final Tracer tracer =
-      openTelemetry.getTracer("io.opentelemetry.example.metrics", "0.13.1");
+      GlobalOpenTelemetry.getTracer("io.opentelemetry.example.metrics");
   private static final Meter sampleMeter =
       GlobalOpenTelemetry.getMeter("io.opentelemetry.example.metrics");
   private static final File directoryToCountIn =

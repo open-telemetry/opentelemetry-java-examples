@@ -3,7 +3,6 @@ package io.opentelemetry.example.metrics;
 import static io.opentelemetry.api.common.AttributeKey.stringKey;
 
 import io.opentelemetry.api.GlobalOpenTelemetry;
-import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.common.AttributeKey;
 import io.opentelemetry.api.common.Attributes;
 import io.opentelemetry.api.metrics.LongCounter;
@@ -19,9 +18,8 @@ import javax.swing.filechooser.FileSystemView;
 /** Example of using {@link LongCounter} to count searched directories. */
 public final class LongCounterExample {
 
-  private static final OpenTelemetry openTelemetry = GlobalOpenTelemetry.get();
   private static final Tracer tracer =
-      openTelemetry.getTracer("io.opentelemetry.example.metrics", "0.13.1");
+      GlobalOpenTelemetry.getTracer("io.opentelemetry.example.metrics", "0.13.1");
 
   private static final Meter sampleMeter =
       GlobalOpenTelemetry.getMeter("io.opentelemetry.example.metrics");
