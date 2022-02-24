@@ -6,14 +6,12 @@
 package io.opentelemetry.example.prometheus;
 
 import io.opentelemetry.api.metrics.MeterProvider;
-import io.opentelemetry.exporter.prometheus.PrometheusCollector;
+import io.opentelemetry.exporter.prometheus.PrometheusHttpServer;
 import io.opentelemetry.sdk.metrics.SdkMeterProvider;
 import io.opentelemetry.sdk.metrics.export.MetricReaderFactory;
-import io.prometheus.client.exporter.HTTPServer;
 import java.io.IOException;
 
 public final class ExampleConfiguration {
-  private static HTTPServer server;
 
   /**
    * Initializes the Meter SDK and configures the prometheus collector with all default settings.
@@ -22,16 +20,9 @@ public final class ExampleConfiguration {
    * @return A MeterProvider for use in instrumentation.
    */
   static MeterProvider initializeOpenTelemetry(int prometheusPort) throws IOException {
-    MetricReaderFactory prometheusReaderFactory = PrometheusCollector.create();
+    MetricReaderFactory prometheusReaderFactory =
+        PrometheusHttpServer.builder().setPort(prometheusPort).newMetricReaderFactory();
 
-    SdkMeterProvider meterProvider =
-        SdkMeterProvider.builder().registerMetricReader(prometheusReaderFactory).build();
-
-    server = new HTTPServer(prometheusPort);
-    return meterProvider;
-  }
-
-  static void shutdownPrometheusEndpoint() {
-    server.stop();
+    return SdkMeterProvider.builder().registerMetricReader(prometheusReaderFactory).build();
   }
 }
