@@ -1,16 +1,16 @@
 package io.opentelemetry.example.prometheus;
 
+import com.sun.net.httpserver.HttpServer;
 import io.opentelemetry.api.common.Attributes;
 import io.opentelemetry.api.metrics.Meter;
 import io.opentelemetry.api.metrics.MeterProvider;
-import io.opentelemetry.exporter.prometheus.PrometheusCollector;
-import io.prometheus.client.exporter.HTTPServer;
+import io.opentelemetry.exporter.prometheus.PrometheusHttpServer;
 import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Example of using the {@link PrometheusCollector} to convert OTel metrics to Prometheus format and
- * expose these to a Prometheus instance via a {@link HTTPServer} exporter.
+ * Example of using the {@link PrometheusHttpServer} to convert OTel metrics to Prometheus format
+ * and expose these to a Prometheus instance via a {@link HttpServer} exporter.
  *
  * <p>A Gauge is used to periodically measure how many incoming messages are awaiting processing.
  * The Gauge callback gets executed every collection interval.
@@ -57,8 +57,5 @@ public final class PrometheusExample {
     prometheusExample.simulate();
 
     System.out.println("Exiting");
-
-    // clean up the prometheus endpoint
-    ExampleConfiguration.shutdownPrometheusEndpoint();
   }
 }
