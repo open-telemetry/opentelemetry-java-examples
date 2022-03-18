@@ -29,5 +29,5 @@ java -cp ./build/libs/opentelemetry-examples-grpc-0.1.0-SNAPSHOT-all.jar io.open
 
 ## 4 - Start the streamed Client
 ```shell script
-java -cp ./build/libs/opentelemetry-examples-grpc-all-0.1.0-SNAPSHOT.jar io.opentelemetry.example.grpc.HelloWorldClientStream
+java -cp ./build/libs/opentelemetry-examples-grpc-0.1.0-SNAPSHOT-all.jar io.opentelemetry.example.grpc.HelloWorldClientStream
 ```

@@ -26,7 +26,6 @@ docker run --network="host" --rm -it \
     --name prometheus \
     -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml \
     prom/prometheus 
-
 ```
 
 ## 3 - Start the Application
