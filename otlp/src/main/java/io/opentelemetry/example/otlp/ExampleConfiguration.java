@@ -12,7 +12,7 @@ import io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporter;
 import io.opentelemetry.sdk.OpenTelemetrySdk;
 import io.opentelemetry.sdk.autoconfigure.AutoConfiguredOpenTelemetrySdk;
 import io.opentelemetry.sdk.metrics.SdkMeterProvider;
-import io.opentelemetry.sdk.metrics.export.MetricReaderFactory;
+import io.opentelemetry.sdk.metrics.export.MetricReader;
 import io.opentelemetry.sdk.metrics.export.PeriodicMetricReader;
 import io.opentelemetry.sdk.trace.SdkTracerProvider;
 import io.opentelemetry.sdk.trace.export.BatchSpanProcessor;
@@ -64,13 +64,11 @@ public final class ExampleConfiguration {
     // set up the metric exporter and wire it into the SDK and a timed periodic reader.
     OtlpGrpcMetricExporter metricExporter = OtlpGrpcMetricExporter.getDefault();
 
-    MetricReaderFactory periodicReaderFactory =
-        PeriodicMetricReader.builder(metricExporter)
-            .setInterval(Duration.ofMillis(1000))
-            .newMetricReaderFactory();
+    MetricReader periodicReader =
+        PeriodicMetricReader.builder(metricExporter).setInterval(Duration.ofMillis(1000)).build();
 
     SdkMeterProvider sdkMeterProvider =
-        SdkMeterProvider.builder().registerMetricReader(periodicReaderFactory).build();
+        SdkMeterProvider.builder().registerMetricReader(periodicReader).build();
 
     Runtime.getRuntime().addShutdownHook(new Thread(sdkMeterProvider::shutdown));
     return sdkMeterProvider;
