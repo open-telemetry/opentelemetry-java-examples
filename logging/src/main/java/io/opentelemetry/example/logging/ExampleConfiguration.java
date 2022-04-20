@@ -5,7 +5,7 @@ import io.opentelemetry.exporter.logging.LoggingMetricExporter;
 import io.opentelemetry.exporter.logging.LoggingSpanExporter;
 import io.opentelemetry.sdk.OpenTelemetrySdk;
 import io.opentelemetry.sdk.metrics.SdkMeterProvider;
-import io.opentelemetry.sdk.metrics.export.MetricReaderFactory;
+import io.opentelemetry.sdk.metrics.export.MetricReader;
 import io.opentelemetry.sdk.metrics.export.PeriodicMetricReader;
 import io.opentelemetry.sdk.trace.SdkTracerProvider;
 import io.opentelemetry.sdk.trace.export.SimpleSpanProcessor;
@@ -26,16 +26,16 @@ public final class ExampleConfiguration {
    * @return A ready-to-use {@link OpenTelemetry} instance.
    */
   public static OpenTelemetry initOpenTelemetry() {
-    // Create an instance of PeriodicMetricReaderFactory and configure it
+    // Create an instance of PeriodicMetricReader and configure it
     // to export via the logging exporter
-    MetricReaderFactory periodicReaderFactory =
+    MetricReader periodicReader =
         PeriodicMetricReader.builder(LoggingMetricExporter.create())
             .setInterval(Duration.ofMillis(METRIC_EXPORT_INTERVAL_MS))
-            .newMetricReaderFactory();
+            .build();
 
     // This will be used to create instruments
     SdkMeterProvider meterProvider =
-        SdkMeterProvider.builder().registerMetricReader(periodicReaderFactory).build();
+        SdkMeterProvider.builder().registerMetricReader(periodicReader).build();
 
     // Tracer provider configured to export spans with SimpleSpanProcessor using
     // the logging exporter.

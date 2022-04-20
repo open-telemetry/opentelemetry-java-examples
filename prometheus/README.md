@@ -17,7 +17,7 @@ These are collected by a Prometheus instance which is configured to pull these m
 ```
 ## 2 - Run Prometheus
 
-Start Prometheus instance with a configuration that sets up a HTTP collection job for  ```127.0.0.1:19090```
+Start Prometheus instance with a configuration that sets up an HTTP collection job for  ```127.0.0.1:19090```
 
 See [prometheus.yml](prometheus.yml)
 
