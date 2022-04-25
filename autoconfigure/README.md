@@ -20,7 +20,7 @@ Then start the example application with the logging exporter configured:
 
 ```shell
 java -Dotel.traces.exporter=logging \
-     -Dotel.METRICS.exporter=logging \
+     -Dotel.metrics.exporter=logging \
      -cp build/libs/opentelemetry-examples-autoconfigure-0.1.0-SNAPSHOT-all.jar \
      io.opentelemetry.example.autoconfigure.AutoConfigExample
 ```
