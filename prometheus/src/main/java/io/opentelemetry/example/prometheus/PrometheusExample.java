@@ -3,7 +3,6 @@ package io.opentelemetry.example.prometheus;
 import io.opentelemetry.api.common.Attributes;
 import io.opentelemetry.api.metrics.Meter;
 import io.opentelemetry.api.metrics.MeterProvider;
-import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -38,7 +37,7 @@ public final class PrometheusExample {
     }
   }
 
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args) {
     int prometheusPort = 0;
     try {
       prometheusPort = Integer.parseInt(args[0]);

@@ -7,7 +7,5 @@ ext.moduleName = "io.opentelemetry.examples.logging"
 
 dependencies {
     implementation("io.opentelemetry:opentelemetry-api")
-
-    //alpha modules
     implementation("io.opentelemetry:opentelemetry-exporter-logging")
 }

@@ -9,7 +9,6 @@ import io.opentelemetry.api.metrics.MeterProvider;
 import io.opentelemetry.exporter.prometheus.PrometheusHttpServer;
 import io.opentelemetry.sdk.metrics.SdkMeterProvider;
 import io.opentelemetry.sdk.metrics.export.MetricReader;
-import java.io.IOException;
 
 public final class ExampleConfiguration {
 
@@ -19,7 +18,7 @@ public final class ExampleConfiguration {
    * @param prometheusPort the port to open up for scraping.
    * @return A MeterProvider for use in instrumentation.
    */
-  static MeterProvider initializeOpenTelemetry(int prometheusPort) throws IOException {
+  static MeterProvider initializeOpenTelemetry(int prometheusPort) {
     MetricReader prometheusReader = PrometheusHttpServer.builder().setPort(prometheusPort).build();
 
     return SdkMeterProvider.builder().registerMetricReader(prometheusReader).build();
