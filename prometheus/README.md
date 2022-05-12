@@ -1,40 +1,40 @@
 # Prometheus Example
 
-This example demonstrates how to use the OpenTelemetry SDK 
-to instrument a simple application using Prometheus as the metric exporter and expose the metrics via HTTP. 
+This example demonstrates how to use the OpenTelemetry SDK to instrument a
+simple application using Prometheus as the metric exporter and expose the
+metrics via HTTP.
 
-These are collected by a Prometheus instance which is configured to pull these metrics via HTTP. 
+These are collected by a Prometheus instance which is configured to pull these
+metrics via HTTP.
 
 # How to run
 
 ## Prerequisites
+
 * Java 1.7
 * Docker 19.03
+* Docker compose
 
-## 1 - Compile 
+## 1 - Compile
+
 ```shell script
 ../gradlew shadowJar
 ```
-## 2 - Run Prometheus
 
-Start Prometheus instance with a configuration that sets up an HTTP collection job for  ```127.0.0.1:19090```
+## 2 - Run
 
-See [prometheus.yml](prometheus.yml)
+Start the application and prometheus via docker compose
 
-```shell script
-docker run --network="host" --rm -it \
-    --name prometheus \
-    -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml \
-    prom/prometheus 
+```shell
+docker-compose up
 ```
 
-## 3 - Start the Application
-```shell script
-java -cp build/libs/opentelemetry-examples-prometheus-0.1.0-SNAPSHOT-all.jar io.opentelemetry.example.prometheus.PrometheusExample 19090
-```
-## 4 - Open the Prometheus UI
+## 3 - View metrics
 
-Navigate to:
+To view metrics in prometheus, navigate to:
 
 http://localhost:9090/graph?g0.range_input=15m&g0.expr=incoming_messages&g0.tab=0
 
+To view application metrics in prometheus format, navigate to:
+
+http://localhost:19090/metrics

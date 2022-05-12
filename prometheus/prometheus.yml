@@ -27,4 +27,4 @@ scrape_configs:
   scheme: http
   static_configs:
   - targets:
-    - 127.0.0.1:19090
+    - app:19090
