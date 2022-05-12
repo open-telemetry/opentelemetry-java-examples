@@ -29,10 +29,9 @@ public class Application {
   // Configure OpenTelemetryMeterRegistry bean, overriding default autoconfigured MeterRegistry bean
   @Bean
   public MeterRegistry meterRegistry(OpenTelemetry openTelemetry) {
-    return OpenTelemetryMeterRegistry
-            .builder(openTelemetry)
-            // Simulate behavior of micrometer's PrometheusMeterRegistry
-            .setPrometheusMode(true)
-            .build();
+    return OpenTelemetryMeterRegistry.builder(openTelemetry)
+        // Simulate behavior of micrometer's PrometheusMeterRegistry
+        .setPrometheusMode(true)
+        .build();
   }
 }
