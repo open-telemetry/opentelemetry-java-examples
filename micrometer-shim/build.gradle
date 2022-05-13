@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.5.12'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+description = 'OpenTelemetry Example for Micrometer Shim'
+ext.moduleName = "io.opentelemetry.examples.micrometer-shim"
+
+bootRun {
+    mainClass.set 'io.opentelemetry.example.micrometer.Application'
+}
+
+dependencies {
+    implementation("io.opentelemetry:opentelemetry-api")
+    implementation("io.opentelemetry:opentelemetry-sdk")
+
+    //alpha modules
+    implementation("io.opentelemetry:opentelemetry-micrometer1-shim")
+    implementation("io.opentelemetry:opentelemetry-exporter-prometheus")
+
+    //spring modules
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+}
