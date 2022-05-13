@@ -6,6 +6,10 @@ of them assume you have docker running on your local machine.
 
 ## Example modules:
 
+- [Using the OpenTelemetry Java Agent](autoconfigure)
+    - This module demonstrates using the OpenTelemetry Java Agent with a simple
+      spring boot application. Traces, metrics, and logs are exported to a
+      collector via OTLP.
 - [Using the SDK AutoConfiguration module](autoconfigure)
     - This module contains a fully-functional example of using the autoconfigure
       SDK extension module to configure the SDK using only environment
@@ -38,6 +42,7 @@ of them assume you have docker running on your local machine.
     - This module contains an example of a typical micrometer setup (spring boot
       with spring boot actuator) configured to bridge metrics to OpenTelemetry
       with the micrometer shim.
+    - Note: the micrometer shim is still experimental at this time.
 - [Setting up the Prometheus exporter](prometheus)
     - The module shows how to configure the OpenTelemetry SDK to expose an
       endpoint that can be scraped by Prometheus.
