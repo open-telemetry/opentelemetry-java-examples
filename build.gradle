@@ -6,6 +6,7 @@ plugins {
 ext {
   openTelemetryVersion = "1.14.0"
   openTelemetryAlphaVersion = "1.14.0-alpha"
+  openTelemetryInstrumentationVersion = "1.13.0"
 
   grpcVersion = '1.34.1'
   protobufVersion = '3.11.4'

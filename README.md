@@ -29,6 +29,10 @@ of them assume you have docker running on your local machine.
       OpenTelemetry SDK to use a Jaeger exporter, and send some spans to it
       using the OpenTelemetry API.
     - Note: this example requires having docker installed to run the example.
+- [Using the OpenTelemetry Java Agent](javaagent)
+    - This module demonstrates using the OpenTelemetry Java Agent with a simple
+      spring boot application. Traces, metrics, and logs are exported to a
+      collector via OTLP.
 - [Configuring the Logging Exporters](logging)
     - This module contains a fully-functional example of configuring the
       OpenTelemetry SDK to use a logging exporter.
@@ -38,6 +42,7 @@ of them assume you have docker running on your local machine.
     - This module contains an example of a typical micrometer setup (spring boot
       with spring boot actuator) configured to bridge metrics to OpenTelemetry
       with the micrometer shim.
+    - Note: the micrometer shim is still experimental at this time.
 - [Setting up the Prometheus exporter](prometheus)
     - The module shows how to configure the OpenTelemetry SDK to expose an
       endpoint that can be scraped by Prometheus.

@@ -7,7 +7,8 @@ pluginManagement {
 }
 
 rootProject.name = "opentelemetry-java-examples"
-include ":opentelemetry-examples-autoconfigure",
+include ":opentelemetry-examples-javaagent",
+        ":opentelemetry-examples-autoconfigure",
         ":opentelemetry-examples-grpc",
         ":opentelemetry-examples-http",
         ":opentelemetry-examples-jaeger",
