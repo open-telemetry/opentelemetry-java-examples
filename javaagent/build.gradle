@@ -6,10 +6,10 @@ plugins {
 }
 
 description = 'OpenTelemetry Example for Java Agent'
-ext.moduleName = "io.opentelemetry.examples.agent"
+ext.moduleName = "io.opentelemetry.examples.javagent"
 
 bootRun {
-    mainClass.set 'io.opentelemetry.example.agent.Application'
+    mainClass.set 'io.opentelemetry.example.javagent.Application'
 }
 
 bootJar {

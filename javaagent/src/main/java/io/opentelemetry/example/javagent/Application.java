@@ -1,4 +1,4 @@
-package io.opentelemetry.example.micrometer;
+package io.opentelemetry.example.javagent;
 
 import io.opentelemetry.api.GlobalOpenTelemetry;
 import io.opentelemetry.api.OpenTelemetry;

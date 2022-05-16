@@ -1,4 +1,4 @@
-FROM adoptopenjdk:11-jre-hotspot
+FROM eclipse-temurin:11-jre
 
 ADD build/libs/opentelemetry-examples-prometheus-*-SNAPSHOT-all.jar /app.jar
 

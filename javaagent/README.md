@@ -8,8 +8,9 @@ It consists of a spring boot application with:
 - A gradle task for downloading the OpenTelemetry Java Agent.
 - A simple web API available at `GET http://localhost:8080/ping`. When called,
   auto instrumentation from the OpenTelemetry Java Agent records spans and
-  metrics. Additionally, there is manual trace, metric, and logging
-  instrumentation.
+  metrics. Additionally, there is manual trace and metric instrumentation, as
+  well as application logging performed in the context of traces using the log4j
+  API.
 - A docker compose setup configured to run the application and export to
   the [collector](https://opentelemetry.io/docs/collector/) via OTLP.
 - The collector is configured with

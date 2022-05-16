@@ -6,10 +6,6 @@ of them assume you have docker running on your local machine.
 
 ## Example modules:
 
-- [Using the OpenTelemetry Java Agent](autoconfigure)
-    - This module demonstrates using the OpenTelemetry Java Agent with a simple
-      spring boot application. Traces, metrics, and logs are exported to a
-      collector via OTLP.
 - [Using the SDK AutoConfiguration module](autoconfigure)
     - This module contains a fully-functional example of using the autoconfigure
       SDK extension module to configure the SDK using only environment
@@ -33,6 +29,10 @@ of them assume you have docker running on your local machine.
       OpenTelemetry SDK to use a Jaeger exporter, and send some spans to it
       using the OpenTelemetry API.
     - Note: this example requires having docker installed to run the example.
+- [Using the OpenTelemetry Java Agent](javaagent)
+    - This module demonstrates using the OpenTelemetry Java Agent with a simple
+      spring boot application. Traces, metrics, and logs are exported to a
+      collector via OTLP.
 - [Configuring the Logging Exporters](logging)
     - This module contains a fully-functional example of configuring the
       OpenTelemetry SDK to use a logging exporter.
