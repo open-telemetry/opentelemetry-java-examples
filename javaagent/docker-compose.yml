@@ -18,3 +18,5 @@ services:
     command: ["--config=/otel-config.yaml"]
     expose:
       - "4317"
+    ports:
+      - "4317:4317"

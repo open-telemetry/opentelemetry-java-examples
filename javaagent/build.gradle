@@ -27,5 +27,5 @@ dependencies {
 task downloadAgent(type: Download) {
     src "https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v${openTelemetryInstrumentationVersion}/opentelemetry-javaagent.jar"
     dest project.buildDir.toString() + "/otel/opentelemetry-javaagent.jar"
-    overwrite false
+    overwrite true
 }
