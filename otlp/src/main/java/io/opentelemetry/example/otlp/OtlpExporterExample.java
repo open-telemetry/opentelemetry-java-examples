@@ -9,7 +9,6 @@ import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.metrics.LongCounter;
 import io.opentelemetry.api.metrics.LongHistogram;
 import io.opentelemetry.api.metrics.Meter;
-import io.opentelemetry.api.metrics.MeterProvider;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.Tracer;
 import io.opentelemetry.context.Scope;
@@ -24,21 +23,13 @@ import io.opentelemetry.context.Scope;
 public final class OtlpExporterExample {
 
   public static void main(String[] args) throws InterruptedException {
-    // this will make sure that a proper service.name attribute is set on all the spans/metrics.
-    // note: this is not something you should generally do in code, but should be provided on the
-    // command-line. This is here to make the example more self-contained.
-    System.setProperty("otel.resource.attributes", "service.name=OtlpExporterExample");
-
     // it is important to initialize your SDK as early as possible in your application's lifecycle
     OpenTelemetry openTelemetry = ExampleConfiguration.initOpenTelemetry();
-    // note: currently metrics is alpha and the configuration story is still unfolding. This will
-    // definitely change in the future.
-    MeterProvider meterProvider = ExampleConfiguration.initOpenTelemetryMetrics();
 
     Tracer tracer = openTelemetry.getTracer("io.opentelemetry.example");
-    Meter meter = meterProvider.get("io.opentelemetry.example");
+    Meter meter = openTelemetry.getMeter("io.opentelemetry.example");
     LongCounter counter = meter.counterBuilder("example_counter").build();
-    LongHistogram recorder = meter.histogramBuilder("super_timer").ofLongs().setUnit("ms").build();
+    LongHistogram histogram = meter.histogramBuilder("super_timer").ofLongs().setUnit("ms").build();
 
     for (int i = 0; i < 100; i++) {
       long startTime = System.currentTimeMillis();
@@ -49,7 +40,7 @@ public final class OtlpExporterExample {
         exampleSpan.setAttribute("exampleNumber", i);
         Thread.sleep(100);
       } finally {
-        recorder.record(System.currentTimeMillis() - startTime);
+        histogram.record(System.currentTimeMillis() - startTime);
         exampleSpan.end();
       }
     }
