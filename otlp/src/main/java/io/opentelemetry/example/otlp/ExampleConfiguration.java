@@ -5,15 +5,15 @@
 
 package io.opentelemetry.example.otlp;
 
+import static io.opentelemetry.semconv.resource.attributes.ResourceAttributes.SERVICE_NAME;
+
 import io.opentelemetry.api.OpenTelemetry;
-import io.opentelemetry.api.metrics.MeterProvider;
 import io.opentelemetry.exporter.otlp.metrics.OtlpGrpcMetricExporter;
 import io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporter;
 import io.opentelemetry.sdk.OpenTelemetrySdk;
-import io.opentelemetry.sdk.autoconfigure.AutoConfiguredOpenTelemetrySdk;
 import io.opentelemetry.sdk.metrics.SdkMeterProvider;
-import io.opentelemetry.sdk.metrics.export.MetricReader;
 import io.opentelemetry.sdk.metrics.export.PeriodicMetricReader;
+import io.opentelemetry.sdk.resources.Resource;
 import io.opentelemetry.sdk.trace.SdkTracerProvider;
 import io.opentelemetry.sdk.trace.export.BatchSpanProcessor;
 import java.time.Duration;
@@ -26,51 +26,44 @@ import java.util.concurrent.TimeUnit;
 public final class ExampleConfiguration {
 
   /**
-   * Adds a BatchSpanProcessor initialized with OtlpGrpcSpanExporter to the TracerSdkProvider.
+   * Initialize OpenTelemetry.
    *
    * @return a ready-to-use {@link OpenTelemetry} instance.
    */
   static OpenTelemetry initOpenTelemetry() {
-    OtlpGrpcSpanExporter spanExporter =
-        OtlpGrpcSpanExporter.builder().setTimeout(2, TimeUnit.SECONDS).build();
-    BatchSpanProcessor spanProcessor =
-        BatchSpanProcessor.builder(spanExporter)
-            .setScheduleDelay(100, TimeUnit.MILLISECONDS)
-            .build();
+    // Include required service.name resource attribute on all spans and metrics
+    Resource resource =
+        Resource.getDefault()
+            .merge(Resource.builder().put(SERVICE_NAME, "OtlpExporterExample").build());
 
-    SdkTracerProvider tracerProvider =
-        SdkTracerProvider.builder()
-            .addSpanProcessor(spanProcessor)
-            .setResource(
-                AutoConfiguredOpenTelemetrySdk.builder()
-                    .setResultAsGlobal(false)
-                    .build()
-                    .getResource())
-            .build();
     OpenTelemetrySdk openTelemetrySdk =
-        OpenTelemetrySdk.builder().setTracerProvider(tracerProvider).buildAndRegisterGlobal();
+        OpenTelemetrySdk.builder()
+            .setTracerProvider(
+                SdkTracerProvider.builder()
+                    .setResource(resource)
+                    .addSpanProcessor(
+                        BatchSpanProcessor.builder(
+                                OtlpGrpcSpanExporter.builder()
+                                    .setTimeout(2, TimeUnit.SECONDS)
+                                    .build())
+                            .setScheduleDelay(100, TimeUnit.MILLISECONDS)
+                            .build())
+                    .build())
+            .setMeterProvider(
+                SdkMeterProvider.builder()
+                    .setResource(resource)
+                    .registerMetricReader(
+                        PeriodicMetricReader.builder(OtlpGrpcMetricExporter.getDefault())
+                            .setInterval(Duration.ofMillis(1000))
+                            .build())
+                    .build())
+            .buildAndRegisterGlobal();
 
-    Runtime.getRuntime().addShutdownHook(new Thread(tracerProvider::shutdown));
+    Runtime.getRuntime()
+        .addShutdownHook(new Thread(openTelemetrySdk.getSdkTracerProvider()::shutdown));
+    Runtime.getRuntime()
+        .addShutdownHook(new Thread(openTelemetrySdk.getSdkMeterProvider()::shutdown));
 
     return openTelemetrySdk;
-  }
-
-  /**
-   * Initializes a Metrics SDK with a OtlpGrpcMetricExporter and an IntervalMetricReader.
-   *
-   * @return a ready-to-use {@link MeterProvider} instance
-   */
-  static MeterProvider initOpenTelemetryMetrics() {
-    // set up the metric exporter and wire it into the SDK and a timed periodic reader.
-    OtlpGrpcMetricExporter metricExporter = OtlpGrpcMetricExporter.getDefault();
-
-    MetricReader periodicReader =
-        PeriodicMetricReader.builder(metricExporter).setInterval(Duration.ofMillis(1000)).build();
-
-    SdkMeterProvider sdkMeterProvider =
-        SdkMeterProvider.builder().registerMetricReader(periodicReader).build();
-
-    Runtime.getRuntime().addShutdownHook(new Thread(sdkMeterProvider::shutdown));
-    return sdkMeterProvider;
   }
 }

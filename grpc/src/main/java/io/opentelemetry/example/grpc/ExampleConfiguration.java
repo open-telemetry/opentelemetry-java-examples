@@ -18,7 +18,7 @@ class ExampleConfiguration {
   static OpenTelemetry initOpenTelemetry() {
 
     // Set to process the spans with the LoggingSpanExporter
-    LoggingSpanExporter exporter = new LoggingSpanExporter();
+    LoggingSpanExporter exporter = LoggingSpanExporter.create();
     SdkTracerProvider sdkTracerProvider =
         SdkTracerProvider.builder().addSpanProcessor(SimpleSpanProcessor.create(exporter)).build();
 

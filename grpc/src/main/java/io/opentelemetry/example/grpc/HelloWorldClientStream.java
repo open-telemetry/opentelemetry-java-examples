@@ -47,7 +47,7 @@ public final class HelloWorldClientStream {
   private final GreeterGrpc.GreeterStub asyncStub;
 
   // Export spans as log entries
-  private static final LoggingSpanExporter exporter = new LoggingSpanExporter();
+  private static final LoggingSpanExporter exporter = LoggingSpanExporter.create();
   // OTel API
   private static final OpenTelemetry openTelemetry = initOpenTelemetry(exporter);
 
