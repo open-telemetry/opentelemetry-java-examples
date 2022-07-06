@@ -1,5 +1,6 @@
 package io.opentelemetry.example.micrometer;
 
+import io.micrometer.core.aop.TimedAspect;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.exporter.prometheus.PrometheusHttpServer;
@@ -24,6 +25,12 @@ public class Application {
         .setMeterProvider(
             SdkMeterProvider.builder().registerMetricReader(PrometheusHttpServer.create()).build())
         .build();
+  }
+
+  // Enable @Timed annotation
+  @Bean
+  public TimedAspect timedAspect(MeterRegistry registry) {
+    return new TimedAspect(registry);
   }
 
   // Configure OpenTelemetryMeterRegistry bean, overriding default autoconfigured MeterRegistry bean

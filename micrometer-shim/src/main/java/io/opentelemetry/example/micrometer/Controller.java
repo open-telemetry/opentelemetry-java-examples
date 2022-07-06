@@ -1,21 +1,17 @@
 package io.opentelemetry.example.micrometer;
 
-import io.micrometer.core.annotation.Timed;
-import java.util.Random;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class Controller {
 
+  @Autowired private Service service;
+
   @GetMapping("/ping")
   public String ping() throws InterruptedException {
-    doWork();
+    service.doWork();
     return "pong";
-  }
-
-  @Timed("dowork.time")
-  private void doWork() throws InterruptedException {
-    Thread.sleep(new Random().nextInt(1000));
   }
 }
