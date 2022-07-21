@@ -8,8 +8,8 @@ ext {
   openTelemetryAlphaVersion = "1.16.0-alpha"
   openTelemetryInstrumentationVersion = "1.16.0"
 
-  grpcVersion = '1.46.0'
-  protobufVersion = '3.21.1'
+  grpcVersion = '1.47.0'
+  protobufVersion = '3.21.2'
   protocVersion = protobufVersion
 }
 
