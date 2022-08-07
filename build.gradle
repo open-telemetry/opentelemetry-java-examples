@@ -4,16 +4,16 @@ plugins {
 }
 
 ext {
-  openTelemetryVersion = "1.16.0"
-  openTelemetryAlphaVersion = "1.16.0-alpha"
-  openTelemetryInstrumentationVersion = "1.16.0"
+  // these lines are managed by .github/scripts/update-sdk-version.sh
+  otelVersion = "1.16.0"
+  otelAlphaVersion = "1.16.0-alpha"
 
   grpcVersion = '1.47.0'
   protobufVersion = '3.21.2'
   protocVersion = protobufVersion
 }
 
-println("Building against OpenTelemetry version: $openTelemetryVersion")
+println("Building against OpenTelemetry version: $otelVersion")
 
 subprojects {
     apply plugin: 'eclipse'
@@ -35,8 +35,8 @@ subprojects {
     }
 
     dependencies {
-        implementation platform("io.opentelemetry:opentelemetry-bom:${openTelemetryVersion}")
-        implementation platform("io.opentelemetry:opentelemetry-bom-alpha:${openTelemetryAlphaVersion}")
+        implementation platform("io.opentelemetry:opentelemetry-bom:${otelVersion}")
+        implementation platform("io.opentelemetry:opentelemetry-bom-alpha:${otelAlphaVersion}")
         implementation platform("io.grpc:grpc-bom:${grpcVersion}")
     }
 
