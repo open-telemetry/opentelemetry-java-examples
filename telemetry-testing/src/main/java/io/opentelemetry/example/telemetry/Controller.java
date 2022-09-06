@@ -35,7 +35,6 @@ public class Controller {
   @GetMapping("/ping")
   public String ping() throws InterruptedException {
     int sleepTime = random.nextInt(200);
-    System.out.println("record");
     doWorkHistogram.record(sleepTime, Attributes.of(AttributeKey.stringKey("method"), "ping"));
     doWork(sleepTime);
     return "pong";

@@ -20,6 +20,7 @@ import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
@@ -85,7 +86,7 @@ class ApplicationTest {
     }
 
     /**
-     * Extract spans from http requests received by a trace collector.
+     * Extract spans from http requests received by a telemetry collector.
      *
      * @param requests Request received by an http server trace collector
      * @return spans extracted from the request body
@@ -93,41 +94,41 @@ class ApplicationTest {
     private List<Span> extractSpansFromRequests(HttpRequest[] requests) {
         return Arrays.stream(requests)
                 .map(HttpRequest::getBody)
-                .map(Body::getRawBytes)
-                .map(body -> {
-                    try {
-                        return ExportTraceServiceRequest.parseFrom(body);
-                    } catch (InvalidProtocolBufferException e) {
-                        return null;
-                    }
-                })
-                .filter(Objects::nonNull)
+                .flatMap(body -> getExportTraceServiceRequest(body).stream())
                 .flatMap(r -> r.getResourceSpansList().stream())
                 .flatMap(r -> r.getInstrumentationLibrarySpansList().stream())
                 .flatMap(r -> r.getSpansList().stream())
                 .collect(Collectors.toList());
     }
 
+    private Optional<ExportTraceServiceRequest> getExportTraceServiceRequest(Body body) {
+        try {
+            return Optional.ofNullable(ExportTraceServiceRequest.parseFrom(body.getRawBytes()));
+        } catch (InvalidProtocolBufferException e) {
+            return Optional.empty();
+        }
+    }
+
     /**
-     * Extract metrics from http requests received by a trace collector.
+     * Extract metrics from http requests received by a telemetry collector.
      *
-     * @param requests Request received by an http server trace collector
-     * @return spans extracted from the request body
+     * @param requests Request received by an http server telemetry collector
+     * @return metrics extracted from the request body
      */
     private List<Metric> extractMetricsFromRequests(HttpRequest[] requests) {
         return Arrays.stream(requests).map(HttpRequest::getBody)
-                .map(Body::getRawBytes)
-                .map(body -> {
-                    try {
-                        return ExportMetricsServiceRequest.parseFrom(body);
-                    } catch (InvalidProtocolBufferException e) {
-                        return null;
-                    }
-                })
-                .filter(Objects::nonNull)
+                .flatMap(body -> getExportMetricsServiceRequest(body).stream())
                 .flatMap(r -> r.getResourceMetricsList().stream())
                 .flatMap(r -> r.getInstrumentationLibraryMetricsList().stream())
                 .flatMap(r -> r.getMetricsList().stream())
                 .collect(Collectors.toList());
+    }
+
+    private Optional<ExportMetricsServiceRequest> getExportMetricsServiceRequest(Body body) {
+        try {
+            return Optional.ofNullable(ExportMetricsServiceRequest.parseFrom(body.getRawBytes()));
+        } catch (InvalidProtocolBufferException e) {
+            return Optional.empty();
+        }
     }
 }
