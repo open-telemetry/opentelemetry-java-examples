@@ -46,10 +46,10 @@ class ApplicationTest {
     @Autowired
     TestRestTemplate template;
 
-    // Port of endpoint to export the traces. 4318 is the default port when protocol is http/protobuf.
+    // Port of endpoint to export the telemetry data. 4318 is the default port when protocol is http/protobuf.
     // https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md#otlp-exporter-span-metric-and-log-exporters
     static final int EXPORTER_ENDPOINT_PORT = 4318;
-    // Server running to collect traces. The opentelemetry java agent is configured to export traces with the
+    // Server running to collect traces. The opentelemetry java agent is configured to export telemetry with the
     // http/protobuf protocol.
     static ClientAndServer collectorServer;
 
