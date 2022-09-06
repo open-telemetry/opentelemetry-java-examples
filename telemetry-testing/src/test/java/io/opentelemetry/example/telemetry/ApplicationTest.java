@@ -31,6 +31,11 @@ import static org.mockserver.model.HttpResponse.response;
 import static org.mockserver.stop.Stop.stopQuietly;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.*;
 
+/**
+ * The role of this class is to test the opentelemetry traces. It only works if the opentelemetry java agent is
+ * attached. The java agent trace exporter is configured to use the otlp exporter with http/protobuf protocol with the
+ * otel.exporter.otlp.protocol jvm argument.
+ */
 @SpringBootTest(classes = { Application.class},
         webEnvironment = RANDOM_PORT)
 class ApplicationTest {
