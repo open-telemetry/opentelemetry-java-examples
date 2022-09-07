@@ -34,6 +34,11 @@ subprojects {
         }
     }
 
+    compileJava {
+        sourceCompatibility = "1.8"
+        targetCompatibility = "1.8"
+    }
+
     dependencies {
         implementation platform("io.opentelemetry:opentelemetry-bom:${otelVersion}")
         implementation platform("io.opentelemetry:opentelemetry-bom-alpha:${otelAlphaVersion}")

@@ -38,7 +38,7 @@ public final class HelloWorldServer {
 
   // Extract the Distributed Context from the gRPC metadata
   private static final TextMapGetter<Metadata> getter =
-      new TextMapGetter<>() {
+      new TextMapGetter<Metadata>() {
         @Override
         public Iterable<String> keys(Metadata carrier) {
           return carrier.keys();
@@ -111,7 +111,7 @@ public final class HelloWorldServer {
     @Override
     public StreamObserver<HelloRequest> sayHelloStream(
         final StreamObserver<HelloReply> responseObserver) {
-      return new StreamObserver<>() {
+      return new StreamObserver<HelloRequest>() {
         @Override
         public void onNext(HelloRequest value) {
           responseObserver.onNext(
