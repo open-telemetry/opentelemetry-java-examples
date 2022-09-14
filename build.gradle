@@ -5,8 +5,8 @@ plugins {
 
 ext {
   // these lines are managed by .github/scripts/update-sdk-version.sh
-  otelVersion = "1.17.0"
-  otelAlphaVersion = "1.17.0-alpha"
+  otelVersion = "1.18.0"
+  otelAlphaVersion = "1.18.0-alpha"
 
   grpcVersion = '1.47.0'
   protobufVersion = '3.21.2'
