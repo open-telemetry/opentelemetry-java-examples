@@ -56,6 +56,7 @@ class ApplicationTest {
     @BeforeAll
     public static void setUp() {
         collectorServer = startClientAndServer(EXPORTER_ENDPOINT_PORT);
+        collectorServer.when(request()).respond(response().withStatusCode(200));
     }
 
     @AfterAll
@@ -65,7 +66,6 @@ class ApplicationTest {
 
     @Test
     public void testTelemetry() {
-        collectorServer.when(request()).respond(response().withStatusCode(200));
 
         template.getForEntity(URI.create("http://localhost:" + port + "/ping"), String.class);
 

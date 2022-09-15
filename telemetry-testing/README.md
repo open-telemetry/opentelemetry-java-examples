@@ -17,10 +17,27 @@ Counter meter `apiCounter` increments the metric on each API call.
 
 ## Run
 
-Go to test folder and execute the test from ApplicationTest class. 
+Go to test folder and execute the test from ApplicationTest class.
 
 ApplicationTest contains 1 test `testTelemetry()` which verifies that:
 - the traces `Controller.doWork` and `Controller.ping` were sent to the collector
 - metric `apiCounter` was sent to the collector
 
 when the API was called.
+
+### Test set up
+
+Gradle build script contains a task to download the OpenTelemetry Java Agent jar, which is added to the jvm arguments in the `test` task.
+
+Additionally, the OpenTelemetry is configured with properties:
+ - otel.exporter.otlp.protocol=http/protobuf - set up the telemetry protocol, default is grpc
+ - otel.metric.export.interval=5000 - set up the interval, between the start of two export attempts, default is 60s
+More information about the configuration can be found in this [OpenTelemetry doc](https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md#otlp-exporter-span-metric-and-log-exporters).
+ 
+The MockServer library is used to mock the collector web server. It's configured with port `4317`, because for 
+`http/protobuf` protocol, the otel exporter endpoint is by default set to `http://localhost:4317`.
+
+The collector mock server is configured with expectation to reply with http code 200 on every request.
+
+To verify that the telemetry was sent to the collector we retrieve the requests from the mock server and assert the traces and metrics names. 
+
