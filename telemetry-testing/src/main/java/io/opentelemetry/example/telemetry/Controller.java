@@ -3,6 +3,7 @@ package io.opentelemetry.example.telemetry;
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.common.AttributeKey;
 import io.opentelemetry.api.common.Attributes;
+import io.opentelemetry.api.metrics.LongCounter;
 import io.opentelemetry.api.metrics.LongHistogram;
 import io.opentelemetry.api.metrics.Meter;
 import io.opentelemetry.api.trace.Tracer;
@@ -23,19 +24,19 @@ public class Controller {
   private final Random random = new Random();
   private final Tracer tracer;
   private final Meter meter;
-  private final LongHistogram doWorkHistogram;
+  private final LongCounter counter;
 
   @Autowired
   Controller(OpenTelemetry openTelemetry) {
     tracer = openTelemetry.getTracer(Application.class.getName());
     meter = openTelemetry.getMeter(Application.class.getName());
-    doWorkHistogram = meter.histogramBuilder("do-work").ofLongs().build();
+    counter = meter.counterBuilder("apiCounter").build();
   }
 
   @GetMapping("/ping")
   public String ping() throws InterruptedException {
     int sleepTime = random.nextInt(200);
-    doWorkHistogram.record(sleepTime, Attributes.of(AttributeKey.stringKey("method"), "ping"));
+    counter.add(1);
     doWork(sleepTime);
     return "pong";
   }

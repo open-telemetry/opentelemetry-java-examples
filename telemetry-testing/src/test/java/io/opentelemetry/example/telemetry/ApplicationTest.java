@@ -19,7 +19,6 @@ import org.springframework.boot.web.server.LocalServerPort;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -33,7 +32,7 @@ import static org.mockserver.stop.Stop.stopQuietly;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.*;
 
 /**
- * The role of this class is to test the opentelemetry traces. It only works if the opentelemetry java agent is
+ * The role of this class is to test the telemetry. It only works if the opentelemetry java agent is
  * attached. The java agent trace exporter is configured to use the otlp exporter with http/protobuf protocol with the
  * otel.exporter.otlp.protocol jvm argument.
  */
@@ -65,7 +64,7 @@ class ApplicationTest {
     }
 
     @Test
-    public void testTraces() {
+    public void testTelemetry() {
         collectorServer.when(request()).respond(response().withStatusCode(200));
 
         template.getForEntity(URI.create("http://localhost:" + port + "/ping"), String.class);
@@ -80,7 +79,7 @@ class ApplicationTest {
 
                     // verify metrics
                     var metrics = extractMetricsFromRequests(requests);
-                    assertThat(metrics).extracting(Metric::getName).contains("do-work");
+                    assertThat(metrics).extracting(Metric::getName).contains("apiCounter");
                 }
         );
     }
@@ -88,7 +87,7 @@ class ApplicationTest {
     /**
      * Extract spans from http requests received by a telemetry collector.
      *
-     * @param requests Request received by an http server trace collector
+     * @param requests Request received by a http server trace collector
      * @return spans extracted from the request body
      */
     private List<Span> extractSpansFromRequests(HttpRequest[] requests) {
