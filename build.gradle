@@ -4,9 +4,10 @@ plugins {
 }
 
 ext {
-  // these lines are managed by .github/scripts/update-sdk-version.sh
-  otelVersion = "1.19.0"
-  otelAlphaVersion = "1.19.0-alpha"
+  // this line is managed by .github/scripts/update-sdk-version.sh
+  otelSdkVersion = "1.19.0"
+  // this line is managed by .github/scripts/update-instrumentation-version.sh
+  otelInstrumentationVersion = "1.19.2"
 
   grpcVersion = '1.47.0'
   protobufVersion = '3.21.2'
@@ -40,10 +41,10 @@ subprojects {
     }
 
     dependencies {
-        implementation platform("io.opentelemetry:opentelemetry-bom:${otelVersion}")
-        implementation platform("io.opentelemetry:opentelemetry-bom-alpha:${otelAlphaVersion}")
-        implementation platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:${otelVersion}")
-        implementation platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:${otelAlphaVersion}")
+        implementation platform("io.opentelemetry:opentelemetry-bom:${otelSdkVersion}")
+        implementation platform("io.opentelemetry:opentelemetry-bom-alpha:${otelSdkVersion}-alpha")
+        implementation platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:${otelInstrumentationVersion}")
+        implementation platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:${otelInstrumentationVersion}-alpha")
         implementation platform("io.grpc:grpc-bom:${grpcVersion}")
     }
 
