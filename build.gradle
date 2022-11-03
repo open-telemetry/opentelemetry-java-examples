@@ -7,7 +7,7 @@ ext {
   // this line is managed by .github/scripts/update-sdk-version.sh
   otelSdkVersion = "1.19.0"
   // this line is managed by .github/scripts/update-instrumentation-version.sh
-  otelInstrumentationVersion = "1.19.2"
+  otelInstrumentationVersion = "1.19.0"
 
   grpcVersion = '1.47.0'
   protobufVersion = '3.21.2'
