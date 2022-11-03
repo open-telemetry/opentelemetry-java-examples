@@ -14,7 +14,8 @@ ext {
   protocVersion = protobufVersion
 }
 
-println("Building against OpenTelemetry version: $otelVersion")
+println("Building against OpenTelemetry SDK version: $otelSdkVersion")
+println("Building against OpenTelemetry Instrumentation version: $otelInstrumentationVersion")
 
 subprojects {
     apply plugin: 'eclipse'
