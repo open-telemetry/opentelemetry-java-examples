@@ -3,18 +3,6 @@ plugins {
     id "com.github.johnrengelman.shadow" apply false
 }
 
-ext {
-  // these lines are managed by .github/scripts/update-sdk-version.sh
-  otelVersion = "1.19.0"
-  otelAlphaVersion = "1.19.0-alpha"
-
-  grpcVersion = '1.50.2'
-  protobufVersion = '3.21.2'
-  protocVersion = protobufVersion
-}
-
-println("Building against OpenTelemetry version: $otelVersion")
-
 subprojects {
     apply plugin: 'eclipse'
     apply plugin: 'java'
@@ -40,11 +28,9 @@ subprojects {
     }
 
     dependencies {
-        implementation platform("io.opentelemetry:opentelemetry-bom:${otelVersion}")
-        implementation platform("io.opentelemetry:opentelemetry-bom-alpha:${otelAlphaVersion}")
-        implementation platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:${otelVersion}")
-        implementation platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:${otelAlphaVersion}")
-        implementation platform("io.grpc:grpc-bom:${grpcVersion}")
+        implementation platform("io.opentelemetry:opentelemetry-bom-alpha:1.19.0-alpha")
+        implementation platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:1.19.0-alpha")
+        implementation platform("io.grpc:grpc-bom:1.50.2")
     }
 
     spotless {
