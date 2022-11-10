@@ -38,7 +38,7 @@ of them assume you have docker running on your local machine.
       OpenTelemetry SDK to use a logging exporter.
 - [Using the OpenTelemetry metrics API](metrics)
     - This module contains examples of using the OpenTelemetry metrics APIs.
-- [Using OpenTelemetry Micrometer shim](metrics)
+- [Using OpenTelemetry Micrometer shim](micrometer-shim)
     - This module contains an example of a typical micrometer setup (spring boot
       with spring boot actuator) configured to bridge metrics to OpenTelemetry
       with the micrometer shim.
