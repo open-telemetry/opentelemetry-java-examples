@@ -1,7 +1,7 @@
 # Jaeger Example
 
 This is a simple example that demonstrates how to use the OpenTelemetry SDK 
-to instrument a simple application using Jaeger as trace exporter. 
+to instrument a simple application and export to a Jaeger backend.
 
 # How to run
 
@@ -19,15 +19,16 @@ to instrument a simple application using Jaeger as trace exporter.
 
 ```shell script
 docker run --rm -it --name jaeger\
+  -e COLLECTOR_OTLP_ENABLED=true \
+  -p 4317:4317 \
   -p 16686:16686 \
-  -p 14250:14250 \
-  jaegertracing/all-in-one:1.16
+  jaegertracing/all-in-one:1.39
 ```
 
 
 ## 3 - Start the Application
 ```shell script
-java -cp build/libs/opentelemetry-examples-jaeger-0.1.0-SNAPSHOT-all.jar io.opentelemetry.example.jaeger.JaegerExample http://localhost:14250
+java -cp build/libs/opentelemetry-examples-jaeger-0.1.0-SNAPSHOT-all.jar io.opentelemetry.example.jaeger.JaegerExample http://localhost:4317
 ```
 ## 4 - Open the Jaeger UI
 
