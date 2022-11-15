@@ -6,7 +6,9 @@ pluginManagement {
     }
 }
 
-rootProject.name = "opentelemetry-java-examples"
+// #Digmatized
+rootProject.name = "otel-java-examples-with-digma"
+
 include ":opentelemetry-examples-javaagent",
         ":opentelemetry-examples-autoconfigure",
         ":opentelemetry-examples-grpc",
