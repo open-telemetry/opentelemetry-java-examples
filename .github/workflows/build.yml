@@ -43,6 +43,10 @@ jobs:
 
       - run: java -cp sdk-usage/build/libs/opentelemetry-examples-sdk-usage-0.1.0-SNAPSHOT-all.jar io.opentelemetry.sdk.example.ConfigureSpanProcessorExample
 
+  # this is not a required check to avoid blocking pull requests if external links break
+  markdown-link-check:
+    uses: ./.github/workflows/reusable-markdown-link-check.yml
+
   required-status-check:
     needs:
       - gradle-wrapper-validation
