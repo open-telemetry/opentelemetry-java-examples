@@ -34,4 +34,4 @@ java -cp build/libs/opentelemetry-examples-jaeger-0.1.0-SNAPSHOT-all.jar io.open
 
 Navigate to http://localhost:16686
 
-[jaeger]:[https://www.jaegertracing.io/docs/1.16/getting-started/
+[jaeger]: https://www.jaegertracing.io/docs/1.16/getting-started/
