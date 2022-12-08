@@ -16,7 +16,7 @@ dependencies {
     implementation("io.opentelemetry:opentelemetry-sdk")
 
     //alpha modules
-    implementation("io.opentelemetry:opentelemetry-micrometer1-shim")
+    implementation("io.opentelemetry.instrumentation:opentelemetry-micrometer-1.5")
     implementation("io.opentelemetry:opentelemetry-exporter-prometheus")
 
     //spring modules

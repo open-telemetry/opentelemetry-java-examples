@@ -1,7 +1,7 @@
 # Micrometer Shim Example
 
 This example demonstrates a typical use case
-of [micrometer1-shim](https://github.com/open-telemetry/opentelemetry-java/tree/main/micrometer1-shim).
+of [micrometer shim](https://github.com/open-telemetry/opentelemetry-java-instrumentation/tree/main/instrumentation/micrometer/micrometer-1.5/library).
 
 It consists of a spring boot application with:
 

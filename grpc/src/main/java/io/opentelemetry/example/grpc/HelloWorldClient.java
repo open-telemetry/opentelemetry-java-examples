@@ -103,7 +103,7 @@ public final class HelloWorldClient {
     @Override
     public <ReqT, RespT> ClientCall<ReqT, RespT> interceptCall(
         MethodDescriptor<ReqT, RespT> methodDescriptor, CallOptions callOptions, Channel channel) {
-      return new ForwardingClientCall.SimpleForwardingClientCall<>(
+      return new ForwardingClientCall.SimpleForwardingClientCall<ReqT, RespT>(
           channel.newCall(methodDescriptor, callOptions)) {
         @Override
         public void start(Listener<RespT> responseListener, Metadata headers) {

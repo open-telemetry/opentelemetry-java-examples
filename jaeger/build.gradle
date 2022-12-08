@@ -2,13 +2,13 @@ plugins {
     id 'java'
 }
 
-description = 'OpenTelemetry Examples for Jaeger Exporter'
+description = 'OpenTelemetry Examples for Jaeger Backend'
 ext.moduleName = "io.opentelemetry.examples.jaeger"
 
 dependencies {
     implementation("io.opentelemetry:opentelemetry-api")
     implementation("io.opentelemetry:opentelemetry-sdk")
-    implementation("io.opentelemetry:opentelemetry-exporter-jaeger")
+    implementation("io.opentelemetry:opentelemetry-exporter-otlp")
 
     //alpha module
     implementation "io.opentelemetry:opentelemetry-semconv"

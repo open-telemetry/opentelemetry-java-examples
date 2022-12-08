@@ -5,7 +5,9 @@ import io.opentelemetry.api.common.AttributeKey;
 import io.opentelemetry.api.common.Attributes;
 import io.opentelemetry.api.metrics.LongHistogram;
 import io.opentelemetry.api.metrics.Meter;
+import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.Tracer;
+import io.opentelemetry.context.Scope;
 import java.util.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,8 +41,8 @@ public class Controller {
   }
 
   private void doWork(int sleepTime) throws InterruptedException {
-    var span = tracer.spanBuilder("doWork").startSpan();
-    try (var scope = span.makeCurrent()) {
+    Span span = tracer.spanBuilder("doWork").startSpan();
+    try (Scope ignored = span.makeCurrent()) {
       Thread.sleep(sleepTime);
       LOGGER.info("A sample log message!");
     } finally {
