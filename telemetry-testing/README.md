@@ -34,8 +34,8 @@ Additionally, the OpenTelemetry is configured with properties:
  - otel.metric.export.interval=5000 - set up the interval, between the start of two export attempts, default is 60s
 More information about the configuration can be found in this [OpenTelemetry doc](https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md#otlp-exporter-span-metric-and-log-exporters).
  
-The MockServer library is used to mock the collector web server. It's configured with port `4317`, because for 
-`http/protobuf` protocol, the otel exporter endpoint is by default set to `http://localhost:4317`.
+The MockServer library is used to mock the collector web server. It's configured with port `4318`, because for 
+`http/protobuf` protocol, the otel exporter endpoint is by default set to `http://localhost:4318`.
 
 The collector mock server is configured with expectation to reply with http code 200 on every request.
 
