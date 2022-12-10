@@ -2,7 +2,6 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '2.5.12'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'de.undercouch.download' version '4.1.1'
 }
 
 description = 'OpenTelemetry Example for Telemetry Testing'
