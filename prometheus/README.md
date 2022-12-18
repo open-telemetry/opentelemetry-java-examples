@@ -38,3 +38,13 @@ http://localhost:9090/graph?g0.range_input=15m&g0.expr=incoming_messages&g0.tab=
 To view application metrics in prometheus format, navigate to:
 
 http://localhost:19090/metrics
+
+**Troubleshooting: open /etc/prometheus/prometheus.yml: permission denied**
+
+If you see this error and localhost:9090 is not showing prometheus backend, then run: 
+
+```
+sudo chgrp -R nogroup ./prometheus.yml
+```
+
+This happens because according to the prometheus [Dockerfile](https://github.com/prometheus/prometheus/blob/main/Dockerfile), the _USER_ is set to _nobody_, which is why the `prometheus.yml` file is not accessible.
