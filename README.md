@@ -1,5 +1,7 @@
 # Java OpenTelemetry Examples
 
+(PR for testing EasyCLA.)
+
 This module contains a set of fully-functional, working examples of using the
 OpenTelemetry Java APIs and SDK that should all be able to be run locally. Some
 of them assume you have docker running on your local machine.
