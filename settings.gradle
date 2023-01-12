@@ -18,7 +18,8 @@ include ":opentelemetry-examples-javaagent",
         ":opentelemetry-examples-otlp",
         ":opentelemetry-examples-sdk-usage",
         ":opentelemetry-examples-zipkin",
-        ":opentelemetry-examples-logging"
+        ":opentelemetry-examples-logging",
+        ":opentelemetry-examples-telemetry-testing"
 
 rootProject.children.each {
     it.projectDir = "$rootDir/" + it.name
