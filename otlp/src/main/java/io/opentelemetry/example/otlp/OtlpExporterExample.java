@@ -36,7 +36,7 @@ public final class OtlpExporterExample {
       Span exampleSpan = tracer.spanBuilder("exampleSpan").startSpan();
       try (Scope scope = exampleSpan.makeCurrent()) {
         counter.add(1);
-        exampleSpan.setAttribute("good", "true");
+        exampleSpan.setAttribute("good", true);
         exampleSpan.setAttribute("exampleNumber", i);
         Thread.sleep(100);
       } finally {

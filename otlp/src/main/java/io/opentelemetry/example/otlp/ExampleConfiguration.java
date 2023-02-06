@@ -59,10 +59,7 @@ public final class ExampleConfiguration {
                     .build())
             .buildAndRegisterGlobal();
 
-    Runtime.getRuntime()
-        .addShutdownHook(new Thread(openTelemetrySdk.getSdkTracerProvider()::shutdown));
-    Runtime.getRuntime()
-        .addShutdownHook(new Thread(openTelemetrySdk.getSdkMeterProvider()::shutdown));
+    Runtime.getRuntime().addShutdownHook(new Thread(openTelemetrySdk::close));
 
     return openTelemetrySdk;
   }
