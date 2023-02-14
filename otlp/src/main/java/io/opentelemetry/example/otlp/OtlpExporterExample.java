@@ -6,11 +6,13 @@
 package io.opentelemetry.example.otlp;
 
 import io.opentelemetry.api.OpenTelemetry;
+import io.opentelemetry.api.common.Attributes;
 import io.opentelemetry.api.metrics.LongCounter;
 import io.opentelemetry.api.metrics.LongHistogram;
 import io.opentelemetry.api.metrics.Meter;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.Tracer;
+import io.opentelemetry.context.Context;
 import io.opentelemetry.context.Scope;
 
 /**
@@ -34,13 +36,15 @@ public final class OtlpExporterExample {
     for (int i = 0; i < 100; i++) {
       long startTime = System.currentTimeMillis();
       Span exampleSpan = tracer.spanBuilder("exampleSpan").startSpan();
-      try (Scope scope = exampleSpan.makeCurrent()) {
+      Context exampleContext = Context.current().with(exampleSpan);
+      try (Scope scope = exampleContext.makeCurrent()) {
         counter.add(1);
         exampleSpan.setAttribute("good", "true");
         exampleSpan.setAttribute("exampleNumber", i);
         Thread.sleep(100);
       } finally {
-        histogram.record(System.currentTimeMillis() - startTime);
+        histogram.record(
+            System.currentTimeMillis() - startTime, Attributes.empty(), exampleContext);
         exampleSpan.end();
       }
     }
