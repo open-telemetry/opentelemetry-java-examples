@@ -35,6 +35,10 @@ To view metrics in prometheus, navigate to:
 
 http://localhost:9090/graph?g0.range_input=15m&g0.expr=incoming_messages&g0.tab=0
 
-To view application metrics in prometheus format, navigate to:
+To fetch application metrics in prometheus format, run:
 
-http://localhost:19090/metrics
+curl localhost:19090/metrics
+
+To fetch application metrics in OpenMetrics format, which includes exemplars, run:
+
+curl -H 'Accept: application/openmetrics-text; version=1.0.0; charset=utf-8' localhost:19090/metrics

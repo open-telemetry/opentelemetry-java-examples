@@ -39,7 +39,7 @@ public final class OtlpExporterExample {
       Context exampleContext = Context.current().with(exampleSpan);
       try (Scope scope = exampleContext.makeCurrent()) {
         counter.add(1);
-        exampleSpan.setAttribute("good", "true");
+        exampleSpan.setAttribute("good", true);
         exampleSpan.setAttribute("exampleNumber", i);
         Thread.sleep(100);
       } finally {
