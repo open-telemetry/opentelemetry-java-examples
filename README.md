@@ -33,6 +33,9 @@ of them assume you have docker running on your local machine.
     - This module demonstrates using the OpenTelemetry Java Agent with a simple
       spring boot application. Traces, metrics, and logs are exported to a
       collector via OTLP.
+- [Configuring Log Appenders](log-appender)
+    - This module demonstrates how to configure the Log4j and Logback appenders to
+      bridge logs into the OpenTelemetry Log SDK.
 - [Configuring the Logging Exporters](logging)
     - This module contains a fully-functional example of configuring the
       OpenTelemetry SDK to use a logging exporter.
@@ -43,18 +46,21 @@ of them assume you have docker running on your local machine.
       with spring boot actuator) configured to bridge metrics to OpenTelemetry
       with the micrometer shim.
     - Note: the micrometer shim is still experimental at this time.
-- [Setting up the Prometheus exporter](prometheus)
-    - The module shows how to configure the OpenTelemetry SDK to expose an
-      endpoint that can be scraped by Prometheus.
-    - Note: the prometheus metric reader is still experimental at this time.
 - [Setting up OTLP exporters](otlp)
     - OTLP is the OpenTelemetry Protocol. This module will demonstrate how to
       configure the OTLP exporters, and send data to the OpenTelemetry collector
       using them.
     - Note: this example requires having docker installed to run the example.
+- [Setting up the Prometheus exporter](prometheus)
+    - The module shows how to configure the OpenTelemetry SDK to expose an
+      endpoint that can be scraped by Prometheus.
+    - Note: the prometheus metric reader is still experimental at this time.
 - [Manually Configuring the SDK](sdk-usage)
     - This module shows some concrete examples of manually configuring the Java
       OpenTelemetry SDK for Tracing.
+- [Telemetry Testing](sdk-usage)
+    - This module demonstrates how to test OpenTelemetry instrumentation with a
+      MockServer.
 - [Setting up the Zipkin exporter](zipkin)
     - This module contains a fully-functional example of configuring the
       OpenTelemetry SDK to use a Zipkin exporter, and send some spans to a

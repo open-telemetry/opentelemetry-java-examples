@@ -7,21 +7,17 @@ pluginManagement {
 }
 
 rootProject.name = "opentelemetry-java-examples"
-include ":opentelemetry-examples-javaagent",
-        ":opentelemetry-examples-autoconfigure",
-        ":opentelemetry-examples-grpc",
-        ":opentelemetry-examples-http",
-        ":opentelemetry-examples-jaeger",
-        ":opentelemetry-examples-metrics",
-        ":opentelemetry-examples-micrometer-shim",
-        ":opentelemetry-examples-prometheus",
-        ":opentelemetry-examples-otlp",
-        ":opentelemetry-examples-sdk-usage",
-        ":opentelemetry-examples-zipkin",
-        ":opentelemetry-examples-logging",
-        ":opentelemetry-examples-telemetry-testing"
-
-rootProject.children.each {
-    it.projectDir = "$rootDir/" + it.name
-       .replace("opentelemetry-examples-", "") as File
-}
+include ":autoconfigure",
+        ":grpc",
+        ":http",
+        ":jaeger",
+        ":javaagent",
+        ":log-appender",
+        ":logging",
+        ":metrics",
+        ":micrometer-shim",
+        ":otlp",
+        ":prometheus",
+        ":sdk-usage",
+        ":telemetry-testing",
+        ":zipkin"
