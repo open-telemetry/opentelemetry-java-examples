@@ -65,7 +65,7 @@ public class Application {
 
     // Log using OpenTelemetry Log Bridge API
     // WARNING: This illustrates how to write appenders which bridge logs from
-    // existing frameworks into the OpenTelemetry Log Brdige API. These APIs
+    // existing frameworks into the OpenTelemetry Log Bridge API. These APIs
     // SHOULD NOT be used by end users in place of existing log APIs (i.e. Log4j, Slf4, JUL).
     io.opentelemetry.api.logs.Logger customAppenderLogger =
         GlobalLoggerProvider.get().get("custom-log-appender");
