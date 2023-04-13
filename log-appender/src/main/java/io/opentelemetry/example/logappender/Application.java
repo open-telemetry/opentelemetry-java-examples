@@ -16,6 +16,7 @@ import io.opentelemetry.sdk.trace.samplers.Sampler;
 import io.opentelemetry.semconv.resource.attributes.ResourceAttributes;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.ThreadContext;
@@ -46,6 +47,9 @@ public class Application {
     mapMessage.put("message", "A log4j structured message");
     maybeRunWithSpan(() -> log4jLogger.info(new MapMessage<>(mapMessage)), false);
     ThreadContext.clearAll();
+    maybeRunWithSpan(
+        () -> log4jLogger.info("A log4j log message with an exception", new Exception("error!")),
+        false);
 
     // Log using slf4j API w/ logback backend
     maybeRunWithSpan(() -> slf4jLogger.info("A slf4j log message without a span"), false);
@@ -58,10 +62,18 @@ public class Application {
                 .addKeyValue("key", "value")
                 .log(),
         false);
+    maybeRunWithSpan(
+        () -> slf4jLogger.info("A slf4j log message with an exception", new Exception("error!")),
+        false);
 
     // Log using JUL API, bridged to slf4j, w/ logback backend
     maybeRunWithSpan(() -> julLogger.info("A JUL log message without a span"), false);
     maybeRunWithSpan(() -> julLogger.info("A JUL log message with a span"), true);
+    maybeRunWithSpan(
+        () ->
+            julLogger.log(
+                Level.INFO, "A JUL log message with an exception", new Exception("error!")),
+        false);
 
     // Log using OpenTelemetry Log Bridge API
     // WARNING: This illustrates how to write appenders which bridge logs from
