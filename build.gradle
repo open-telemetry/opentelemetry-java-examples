@@ -30,7 +30,7 @@ subprojects {
     dependencies {
         implementation platform("io.opentelemetry:opentelemetry-bom-alpha:1.26.0-alpha")
         implementation platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:1.25.1-alpha")
-        implementation platform("io.grpc:grpc-bom:1.54.1")
+        implementation platform("io.grpc:grpc-bom:1.55.1")
     }
 
     spotless {
