@@ -12,12 +12,6 @@ of them assume you have docker running on your local machine.
       variables (or system properties).
     - Note: the `opentelemetry-sdk-extension-autoconfigure` module is still
       experimental at this time.
-- [Manual instrumentation of gRPC](grpc)
-    - This module provides an example of writing manual instrumentation for
-      gRPC, both client and server.
-    - Note more production-ready instrumentation for gRPC is provided as a part
-      of the [OpenTelemetry Java Instrumentation](https://github.com/open-telemetry/opentelemetry-java-instrumentation)
-      project.
 - [Manual instrumentation of HTTP](http)
     - This module provides an example of writing manual instrumentation for
       HTTP, both client and server.
