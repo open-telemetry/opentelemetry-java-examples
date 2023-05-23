@@ -8,6 +8,8 @@ registries:
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
+    labels: # overriding the default which is to add both "dependencies" and "github_actions"
+      - "dependencies"
     schedule:
       interval: "daily"
 
@@ -15,5 +17,7 @@ updates:
     directory: "/"
     registries:
       - gradle-plugin-portal
+    labels: # overriding the default which is to add both "dependencies" and "java"
+      - "dependencies"
     schedule:
       interval: "daily"
