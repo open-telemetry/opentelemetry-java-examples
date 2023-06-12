@@ -2,7 +2,6 @@ package io.opentelemetry.example.logappender;
 
 import io.opentelemetry.api.GlobalOpenTelemetry;
 import io.opentelemetry.api.common.AttributeKey;
-import io.opentelemetry.api.logs.GlobalLoggerProvider;
 import io.opentelemetry.api.logs.Severity;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.context.Scope;
@@ -80,7 +79,7 @@ public class Application {
     // existing frameworks into the OpenTelemetry Log Bridge API. These APIs
     // SHOULD NOT be used by end users in place of existing log APIs (i.e. Log4j, Slf4, JUL).
     io.opentelemetry.api.logs.Logger customAppenderLogger =
-        GlobalLoggerProvider.get().get("custom-log-appender");
+            GlobalOpenTelemetry.get().getLogsBridge().get("custom-log-appender");
     maybeRunWithSpan(
         () ->
             customAppenderLogger
@@ -118,9 +117,8 @@ public class Application {
                                     .build())
                             .build())
                     .build())
-            .build();
+                .build();
     GlobalOpenTelemetry.set(sdk);
-    GlobalLoggerProvider.set(sdk.getSdkLoggerProvider());
 
     // Add hook to close SDK, which flushes logs
     Runtime.getRuntime().addShutdownHook(new Thread(sdk::close));
