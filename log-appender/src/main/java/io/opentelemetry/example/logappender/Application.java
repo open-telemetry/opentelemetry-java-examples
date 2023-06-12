@@ -79,7 +79,7 @@ public class Application {
     // existing frameworks into the OpenTelemetry Log Bridge API. These APIs
     // SHOULD NOT be used by end users in place of existing log APIs (i.e. Log4j, Slf4, JUL).
     io.opentelemetry.api.logs.Logger customAppenderLogger =
-            GlobalOpenTelemetry.get().getLogsBridge().get("custom-log-appender");
+        GlobalOpenTelemetry.get().getLogsBridge().get("custom-log-appender");
     maybeRunWithSpan(
         () ->
             customAppenderLogger
@@ -117,7 +117,7 @@ public class Application {
                                     .build())
                             .build())
                     .build())
-                .build();
+            .build();
     GlobalOpenTelemetry.set(sdk);
 
     // Add hook to close SDK, which flushes logs
