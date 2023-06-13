@@ -15,7 +15,7 @@ It consists of a Spring Boot application with:
 
 ## Prerequisites
 
-*GraalVM for Java  17
+*GraalVM for Java 17
 * Docker compose
 
 # How to run
