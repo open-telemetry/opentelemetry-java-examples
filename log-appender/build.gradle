@@ -22,7 +22,6 @@ dependencies {
 
     // OpenTelemetry core
     implementation("io.opentelemetry:opentelemetry-sdk")
-    implementation("io.opentelemetry:opentelemetry-sdk-logs")
     implementation("io.opentelemetry:opentelemetry-exporter-otlp")
     implementation("io.opentelemetry:opentelemetry-semconv")
 
