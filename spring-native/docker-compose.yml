@@ -1,0 +1,22 @@
+version: '3'
+services:
+  app:
+    image: otel-native-graalvm
+    environment:
+      OTEL_SERVICE_NAME: "graal-native-example-app"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://collector:4317"
+      # Logs are disabled by default
+      OTEL_LOGS_EXPORTER: "otlp"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - collector
+  collector:
+    image: otel/opentelemetry-collector-contrib:0.77.0
+    volumes:
+      - ./collector-spring-native-config.yaml:/collector-spring-native-config.yaml
+    command: ["--config=/collector-spring-native-config.yaml"]
+    expose:
+      - "4317"
+    ports:
+      - "4317:4317"

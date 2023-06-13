@@ -27,6 +27,9 @@ of them assume you have docker running on your local machine.
     - This module demonstrates using the OpenTelemetry Java Agent with a simple
       spring boot application. Traces, metrics, and logs are exported to a
       collector via OTLP.
+- [Spring native image telemetry with OpenTelemetry Spring Starter](spring-native)
+    - This module demonstrates using the OpenTelemetry Spring Boot starter with a
+      Graal VM native image. Traces and metrics are exported to a collector via OTLP.
 - [Configuring Log Appenders](log-appender)
     - This module demonstrates how to configure the Log4j and Logback appenders to
       bridge logs into the OpenTelemetry Log SDK.
