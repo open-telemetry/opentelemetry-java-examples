@@ -14,8 +14,8 @@ services:
   collector:
     image: otel/opentelemetry-collector-contrib:0.77.0
     volumes:
-      - ./otel-config.yaml:/otel-config.yaml
-    command: ["--config=/otel-config.yaml"]
+      - ./collector-spring-native-config.yaml:/collector-spring-native-config.yaml
+    command: ["--config=/collector-spring-native-config.yaml"]
     expose:
       - "4317"
     ports:
