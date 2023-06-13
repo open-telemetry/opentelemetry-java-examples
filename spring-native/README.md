@@ -22,7 +22,7 @@ It consists of a Spring Boot application with:
 
 Build the GraalVM native image
 ```shell
-cd sring-native
+cd spring-native
 ../gradlew bootBuildImage --imageName=otel-native-graalvm
 ```
 
