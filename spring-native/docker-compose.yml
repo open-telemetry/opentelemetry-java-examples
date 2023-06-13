@@ -1,7 +1,6 @@
 version: '3'
 services:
   app:
-   #build: ./
     image: otel-native-graalvm
     environment:
       OTEL_SERVICE_NAME: "graal-native-example-app"
