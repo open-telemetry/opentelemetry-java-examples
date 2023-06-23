@@ -55,7 +55,7 @@ of them assume you have docker running on your local machine.
 - [Manually Configuring the SDK](sdk-usage)
     - This module shows some concrete examples of manually configuring the Java
       OpenTelemetry SDK for Tracing.
-- [Telemetry Testing](sdk-usage)
+- [Telemetry Testing](telemetry-testing)
     - This module demonstrates how to test OpenTelemetry instrumentation with a
       MockServer.
 - [Setting up the Zipkin exporter](zipkin)
