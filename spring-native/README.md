@@ -1,4 +1,4 @@
-# OpenTelemetry Java Agent Example
+# OpenTelemetry Spring Native Example
 
 This example demonstrates usage of the [OpenTelemetry Spring starter](https://github.com/open-telemetry/opentelemetry-java-instrumentation/tree/main/instrumentation/spring/starters/spring-boot-starter) with a Spring Boot application and a GraalVM native image.
 
