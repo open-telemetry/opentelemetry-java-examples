@@ -63,3 +63,11 @@ of them assume you have docker running on your local machine.
       OpenTelemetry SDK to use a Zipkin exporter, and send some spans to a
       zipkin backend using the OpenTelemetry API.
     - Note: this example requires having docker installed to run the example.
+
+## Approvers and Maintainers
+
+Superset of approvers and maintainers from the
+[opentelemetry-java](https://github.com/open-telemetry/opentelemetry-java#contributing)
+and
+[opentelemetry-java-instrumentation](https://github.com/open-telemetry/opentelemetry-java-instrumentation#contributing)
+repositories.
