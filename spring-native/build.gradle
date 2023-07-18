@@ -14,7 +14,7 @@ ext.moduleName = "io.opentelemetry.examples.native"
 
 dependencyManagement {
     imports {
-        mavenBom 'io.opentelemetry:opentelemetry-bom:1.26.0'
+        mavenBom 'io.opentelemetry:opentelemetry-bom:1.28.0'
         mavenBom 'io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:1.26.0-alpha'
     }
 }
