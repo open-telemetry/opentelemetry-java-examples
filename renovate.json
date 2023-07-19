@@ -2,5 +2,20 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base"
+  ],
+  "packageRules": [
+    {
+      "matchPackagePrefixes": ["ch.qos.logback:"],
+      "groupName": "logback packages"
+    },
+    {
+      "matchPackageNames": ["org.springframework.boot"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "matchPackageNames": ["eclipse-temurin"],
+      "enabled": false
+    }
   ]
 }
