@@ -9,11 +9,14 @@
       "groupName": "logback packages"
     },
     {
+      // intentionally using Spring Boot 2 in some examples
       "matchPackageNames": ["org.springframework.boot"],
       "matchUpdateTypes": ["major"],
       "enabled": false
     },
     {
+      // intentionally using Java 11 in some examples
+      // not using matchUpdateTypes "major", because renovate wants to bump "11-jre" to "11.0.19_7-jre"
       "matchPackageNames": ["eclipse-temurin"],
       "enabled": false
     }
