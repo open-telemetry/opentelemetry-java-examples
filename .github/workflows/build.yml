@@ -40,6 +40,9 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: clean check shadowJar
+          cache-read-only: ${{ github.event_name == 'pull_request' }}
+        env:
+          GRADLE_ENTERPRISE_ACCESS_KEY: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
 
       - run: java -cp sdk-usage/build/libs/opentelemetry-examples-sdk-usage-0.1.0-SNAPSHOT-all.jar io.opentelemetry.sdk.example.ConfigureSpanProcessorExample
 

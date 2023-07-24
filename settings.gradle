@@ -2,7 +2,48 @@ pluginManagement {
     plugins {
         id "com.diffplug.spotless" version "6.20.0"
         id "com.github.johnrengelman.shadow" version "8.1.1"
-        id 'com.google.protobuf' version '0.9.4'
+        id "com.google.protobuf" version "0.9.4"
+        id "com.gradle.enterprise" version "3.14"
+    }
+}
+
+plugins {
+    id("com.gradle.enterprise")
+}
+
+def gradleEnterpriseServer = "https://ge.opentelemetry.io"
+def isCI = System.getenv("CI") != null
+def geAccessKey = System.getenv("GRADLE_ENTERPRISE_ACCESS_KEY") ?: ""
+
+// if GE access key is not given and we are in CI, then we publish to scans.gradle.com
+def useScansGradleCom = isCI && geAccessKey.isEmpty()
+
+if (useScansGradleCom) {
+    gradleEnterprise {
+        buildScan {
+            termsOfServiceUrl = "https://gradle.com/terms-of-service"
+            termsOfServiceAgree = "yes"
+            uploadInBackground = !isCI
+            publishAlways()
+
+            capture {
+                taskInputFiles = true
+            }
+        }
+    }
+} else {
+    gradleEnterprise {
+        server = gradleEnterpriseServer
+        buildScan {
+            uploadInBackground = !isCI
+
+            publishIfAuthenticated()
+            publishAlways()
+
+            capture {
+                taskInputFiles = true
+            }
+        }
     }
 }
 
