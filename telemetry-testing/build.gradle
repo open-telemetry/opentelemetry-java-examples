@@ -31,9 +31,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-    testImplementation("org.junit.platform:junit-platform-runner:1.10.0")
-    testImplementation('org.junit.jupiter:junit-jupiter-api:5.10.0')
-    testImplementation('org.junit.jupiter:junit-jupiter-engine:5.10.0')
+    testImplementation(enforcedPlatform("org.junit:junit-bom:5.10.0"))
+    testImplementation('org.junit.jupiter:junit-jupiter-api')
+    testImplementation('org.junit.jupiter:junit-jupiter-engine')
     testImplementation("org.mock-server:mockserver-netty:5.15.0:shaded")
     testImplementation("org.awaitility:awaitility:4.2.0")
     testImplementation("io.opentelemetry.proto:opentelemetry-proto:0.14.0-alpha")
