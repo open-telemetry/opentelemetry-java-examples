@@ -1,8 +1,9 @@
 package io.opentelemetry.example.metrics;
 
-import io.opentelemetry.api.GlobalOpenTelemetry;
+import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.common.Attributes;
 import io.opentelemetry.api.metrics.Meter;
+import io.opentelemetry.sdk.autoconfigure.AutoConfiguredOpenTelemetrySdk;
 
 /**
  * Example of using a Long Gauge to measure execution time of method. The gauge callback will get
@@ -12,7 +13,8 @@ import io.opentelemetry.api.metrics.Meter;
 public final class GaugeExample {
 
   public static void main(String[] args) {
-    Meter sampleMeter = GlobalOpenTelemetry.getMeter("io.opentelemetry.example.metrics");
+    OpenTelemetry sdk = AutoConfiguredOpenTelemetrySdk.initialize().getOpenTelemetrySdk();
+    Meter sampleMeter = sdk.getMeter("io.opentelemetry.example.metrics");
 
     sampleMeter
         .gaugeBuilder("jvm.memory.total")
