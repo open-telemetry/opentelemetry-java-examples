@@ -1,0 +1,15 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.9.0'
+}
+
+description = 'OpenTelemetry Example for Kotlin extensions'
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation("io.opentelemetry:opentelemetry-extension-kotlin")
+}

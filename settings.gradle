@@ -61,7 +61,8 @@ include ":opentelemetry-examples-autoconfigure",
         ":opentelemetry-examples-sdk-usage",
         ":opentelemetry-examples-telemetry-testing",
         ":opentelemetry-examples-zipkin",
-        ":opentelemetry-examples-spring-native"
+        ":opentelemetry-examples-spring-native",
+        ":kotlin-extension"
 
 rootProject.children.each {
     it.projectDir = "$rootDir/" + it.name
