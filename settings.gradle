@@ -63,8 +63,8 @@ include ":opentelemetry-examples-autoconfigure",
         ":opentelemetry-examples-prometheus",
         ":opentelemetry-examples-sdk-usage",
         ":opentelemetry-examples-telemetry-testing",
-        ":opentelemetry-examples-zipkin",
-        ":opentelemetry-examples-spring-native",
+        ":opentelemetry-examples-zipkin"
+//        ":opentelemetry-examples-spring-native",
         ":opentelemetry-examples-kotlin-extension"
 
 rootProject.children.each {
