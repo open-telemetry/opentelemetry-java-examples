@@ -1,5 +1,7 @@
 package io.opentelemetry.example.kotlinextension
 
+import io.opentelemetry.api.common.AttributeKey
+import io.opentelemetry.api.trace.Span
 import io.opentelemetry.api.trace.Tracer
 import io.opentelemetry.context.Context
 import io.opentelemetry.extension.kotlin.asContextElement
@@ -20,12 +22,14 @@ class CoroutineContextExample {
     private val inMemoryExporter: InMemorySpanExporter = InMemorySpanExporter.create()
     private val tracer by lazy { createTracer() }
 
+    companion object {
+        private val ATTR_THREAD_ID = AttributeKey.longKey("thread.id")
+    }
+
     suspend fun run() {
-        val rootSpan = tracer.spanBuilder("Root span").startSpan()
+        val rootSpan = createSpanWithThreadNameAttr("Root span")
 
         rootSpan.makeCurrent().use {
-            println("Root span trace ID: ${rootSpan.spanContext.traceId}")
-
             // Create the coroutine scope to launch it later.
             val scope = CoroutineScope(Dispatchers.IO)
 
@@ -50,19 +54,24 @@ class CoroutineContextExample {
 
         // Verifying that all the spans created inside the coroutine are children of the root span.
         val finishedSpanItems = inMemoryExporter.finishedSpanItems
-        println("First child's trace id: ${finishedSpanItems[1].traceId}") // The same as the root span's.
-        println("Second child's trace id: ${finishedSpanItems[2].traceId}") // The same as the root span's.
+        val rootSpanData = finishedSpanItems[0]
+        val firstChildSpanData = finishedSpanItems[1]
+        val secondChildSpanData = finishedSpanItems[2]
+
+        println("Root span's trace id: ${rootSpanData.traceId} and thread.id: ${rootSpanData.attributes.get(ATTR_THREAD_ID)}")
+        println("First child's trace id: ${firstChildSpanData.traceId} and thread.id: ${firstChildSpanData.attributes.get(ATTR_THREAD_ID)}") // The same as the root span's.
+        println("Second child's trace id: ${secondChildSpanData.traceId} and thread.id: ${secondChildSpanData.attributes.get(ATTR_THREAD_ID)}") // The same as the root span's.
     }
 
     private suspend fun createChildrenSpans() {
         // Creating a span within the same coroutine context that the coroutine was created with.
-        val firstChildSpan = tracer.spanBuilder("First child").startSpan()
+        val firstChildSpan = createSpanWithThreadNameAttr("First child")
         firstChildSpan.end()
 
         // Switching coroutine's thread to show that the Span context is preserved even after changing the context of
         // the running coroutine.
         withContext(Dispatchers.Default) {
-            val secondChild = tracer.spanBuilder("Second child").startSpan()
+            val secondChild = createSpanWithThreadNameAttr("Second child")
             secondChild.end()
         }
     }
@@ -72,5 +81,11 @@ class CoroutineContextExample {
                 .addSpanProcessor(SimpleSpanProcessor.create(inMemoryExporter))
                 .build()
                 .get("TestInstrumentation")
+    }
+
+    private fun createSpanWithThreadNameAttr(name: String): Span {
+        val spanBuilder = tracer.spanBuilder(name)
+                .setAttribute(ATTR_THREAD_ID, Thread.currentThread().id)
+        return spanBuilder.startSpan()
     }
 }
