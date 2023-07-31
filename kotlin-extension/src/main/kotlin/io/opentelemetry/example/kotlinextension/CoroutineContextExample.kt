@@ -27,7 +27,7 @@ class CoroutineContextExample {
     }
 
     suspend fun run() {
-        val rootSpan = createSpanWithThreadNameAttr("Root span")
+        val rootSpan = createSpanWithThreadIdAttr("Root span")
 
         rootSpan.makeCurrent().use {
             // Create the coroutine scope to launch it later.
@@ -65,13 +65,13 @@ class CoroutineContextExample {
 
     private suspend fun createChildrenSpans() {
         // Creating a span within the same coroutine context that the coroutine was created with.
-        val firstChildSpan = createSpanWithThreadNameAttr("First child")
+        val firstChildSpan = createSpanWithThreadIdAttr("First child")
         firstChildSpan.end()
 
         // Switching coroutine's thread to show that the Span context is preserved even after changing the context of
         // the running coroutine.
         withContext(Dispatchers.Default) {
-            val secondChild = createSpanWithThreadNameAttr("Second child")
+            val secondChild = createSpanWithThreadIdAttr("Second child")
             secondChild.end()
         }
     }
@@ -83,7 +83,7 @@ class CoroutineContextExample {
                 .get("TestInstrumentation")
     }
 
-    private fun createSpanWithThreadNameAttr(name: String): Span {
+    private fun createSpanWithThreadIdAttr(name: String): Span {
         val spanBuilder = tracer.spanBuilder(name)
                 .setAttribute(ATTR_THREAD_ID, Thread.currentThread().id)
         return spanBuilder.startSpan()
