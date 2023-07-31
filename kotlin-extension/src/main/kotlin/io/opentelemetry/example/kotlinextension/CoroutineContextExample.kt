@@ -10,7 +10,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.concurrent.CountDownLatch
 
 /**
  * This example aims to show how to embed a Span context within a Kotlin coroutine so that any new span created inside the
@@ -21,40 +20,38 @@ class CoroutineContextExample {
     private val inMemoryExporter: InMemorySpanExporter = InMemorySpanExporter.create()
     private val tracer by lazy { createTracer() }
 
-    fun run(countDownLatch: CountDownLatch) {
+    suspend fun run() {
         val rootSpan = tracer.spanBuilder("Root span").startSpan()
 
-        val rootScope = rootSpan.makeCurrent()
-        println("Root span trace ID: ${rootSpan.spanContext.traceId}")
+        rootSpan.makeCurrent().use {
+            println("Root span trace ID: ${rootSpan.spanContext.traceId}")
 
-        // Create the coroutine scope to launch it later.
-        val scope = CoroutineScope(Dispatchers.IO)
+            // Create the coroutine scope to launch it later.
+            val scope = CoroutineScope(Dispatchers.IO)
 
-        // Launching a coroutine with the Span context embedded in its [the coroutine's] context. The `asContextElement` is a Kotlin
-        // extension function that ensures that the Span context will be preserved across the life of the coroutine
-        // regardless of any "thread change" (coroutine context change) that might happen inside the coroutine.
-        // We could also look at the line below as if we'd call `span.makeCurrent` but for a Kotlin coroutine. So after
-        // launching the coroutine this way (with the embedded Span context) any new span created inside the coroutine
-        // must automatically get our root span as its parent.
+            // Launching a coroutine with the Span context embedded in its [the coroutine's] context. The `asContextElement` is a Kotlin
+            // extension function that ensures that the Span context will be preserved across the life of the coroutine
+            // regardless of any "thread change" (coroutine context change) that might happen inside the coroutine.
+            // We could also look at the line below as if we'd call `span.makeCurrent` but for a Kotlin coroutine. So after
+            // launching the coroutine this way (with the embedded Span context) any new span created inside the coroutine
+            // must automatically get our root span as its parent.
 
-        // Bonus: If we wanted to launch a coroutine in a separate thread (not IO, which is the one set in the scope) while
-        // keeping the Span context too, we could do so like this:
-        // scope.launch(Dispatchers.Main + Context.current().asContextElement())
-        scope.launch(Context.current().asContextElement()) {
-            // Creating spans that must have the rootSpan as their parent since its context is attached to the
-            // coroutine context.
-            createChildrenSpans()
+            // Bonus: If we wanted to launch a coroutine in a separate thread (not IO, which is the one set in the scope) while
+            // keeping the Span context too, we could do so like this:
+            // scope.launch(Dispatchers.Main + Context.current().asContextElement())
+            scope.launch(Context.current().asContextElement()) {
+                // Creating spans that must have the rootSpan as their parent since its context is attached to the
+                // coroutine context.
+                createChildrenSpans()
+            }.join()
 
-            rootScope.close()
             rootSpan.end()
-
-            val finishedSpanItems = inMemoryExporter.finishedSpanItems
-            println("First child's trace id: ${finishedSpanItems[1].traceId}") // The same as the root span's.
-            println("Second child's trace id: ${finishedSpanItems[2].traceId}") // The same as the root span's.
-
-            // Release the main thread.
-            countDownLatch.countDown()
         }
+
+        // Verifying that all the spans created inside the coroutine are children of the root span.
+        val finishedSpanItems = inMemoryExporter.finishedSpanItems
+        println("First child's trace id: ${finishedSpanItems[1].traceId}") // The same as the root span's.
+        println("Second child's trace id: ${finishedSpanItems[2].traceId}") // The same as the root span's.
     }
 
     private suspend fun createChildrenSpans() {

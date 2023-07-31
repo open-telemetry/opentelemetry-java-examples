@@ -1,15 +1,13 @@
 package io.opentelemetry.example.kotlinextension
 
-import java.util.concurrent.CountDownLatch
+import kotlinx.coroutines.runBlocking
 
 object Application {
 
     @JvmStatic
     fun main(vararg args: String) {
-        val countDownLatch = CountDownLatch(1)
-
-        CoroutineContextExample().run(countDownLatch)
-
-        countDownLatch.await()
+        runBlocking {
+            CoroutineContextExample().run()
+        }
     }
 }
