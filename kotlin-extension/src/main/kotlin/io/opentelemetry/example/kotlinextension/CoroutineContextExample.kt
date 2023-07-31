@@ -40,7 +40,7 @@ class CoroutineContextExample {
             // launching the coroutine this way (with the embedded Span context) any new span created inside the coroutine
             // must automatically get our root span as its parent.
 
-            // Bonus: If we wanted to launch a coroutine in a separate thread (not IO, which is the one set in the scope) while
+            // Bonus: If we wanted to launch a coroutine in a different thread (not IO, which is the one set in the scope) while
             // keeping the Span context too, we could do so like this:
             // scope.launch(Dispatchers.Main + Context.current().asContextElement())
             scope.launch(Context.current().asContextElement()) {
@@ -84,8 +84,7 @@ class CoroutineContextExample {
     }
 
     private fun createSpanWithThreadIdAttr(name: String): Span {
-        val spanBuilder = tracer.spanBuilder(name)
-                .setAttribute(ATTR_THREAD_ID, Thread.currentThread().id)
-        return spanBuilder.startSpan()
+        return tracer.spanBuilder(name)
+                .setAttribute(ATTR_THREAD_ID, Thread.currentThread().id).startSpan()
     }
 }
