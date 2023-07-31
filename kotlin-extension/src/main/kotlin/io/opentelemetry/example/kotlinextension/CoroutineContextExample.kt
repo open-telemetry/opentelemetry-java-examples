@@ -48,9 +48,9 @@ class CoroutineContextExample {
                 // coroutine context.
                 createChildrenSpans()
             }.join()
-
-            rootSpan.end()
         }
+
+        rootSpan.end()
 
         // Verifying that all the spans created inside the coroutine are children of the root span.
         val finishedSpanItems = inMemoryExporter.finishedSpanItems
