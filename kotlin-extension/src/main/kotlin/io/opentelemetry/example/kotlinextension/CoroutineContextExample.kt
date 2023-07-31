@@ -59,8 +59,8 @@ class CoroutineContextExample {
         val secondChildSpanData = finishedSpanItems[2]
 
         println("Root span's trace id: ${rootSpanData.traceId} and thread.id: ${rootSpanData.attributes.get(ATTR_THREAD_ID)}")
-        println("First child's trace id: ${firstChildSpanData.traceId} and thread.id: ${firstChildSpanData.attributes.get(ATTR_THREAD_ID)}") // The same as the root span's.
-        println("Second child's trace id: ${secondChildSpanData.traceId} and thread.id: ${secondChildSpanData.attributes.get(ATTR_THREAD_ID)}") // The same as the root span's.
+        println("First child's trace id: ${firstChildSpanData.traceId} and thread.id: ${firstChildSpanData.attributes.get(ATTR_THREAD_ID)}") // The trace id should be the same as the root span's.
+        println("Second child's trace id: ${secondChildSpanData.traceId} and thread.id: ${secondChildSpanData.attributes.get(ATTR_THREAD_ID)}") // The trace id should be the same as the root span's.
     }
 
     private suspend fun createChildrenSpans() {
