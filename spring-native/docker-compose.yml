@@ -3,9 +3,16 @@ services:
   app:
     image: otel-native-graalvm
     environment:
-      OTEL_SERVICE_NAME: "graal-native-example-app"
-      OTEL_EXPORTER_OTLP_ENDPOINT: "http://collector:4317"
-      # Logs are disabled by default
+      OTEL_EXPORTER_OTLP_ENDPOINT: "https://otlp.nr-data.net:4317"
+      OTEL_EXPORTER_OTLP_HEADERS: "api-key=newrelic-api-key"
+      OTEL_SERVICE_NAME: "newrelic-service-name"
+      OTEL_EXPERIMENTAL_EXPORTER_OTLP_RETRY_ENABLED: true
+      OTEL_METRIC_EXPORT_INTERVAL: 5000
+      OTEL_RESOURCE_ATTRIBUTES: "service.instance.id=1235"
+      OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE: DELTA
+      OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION: "BASE2_EXPONENTIAL_BUCKET_HISTOGRAM"
+      OTEL_EXPORTER_OTLP_COMPRESSION: gzip
+      OTEL_EXPERIMENTAL_RESOURCE_DISABLED_KEYS: "process.command_line,process.command_args"
       OTEL_LOGS_EXPORTER: "otlp"
     ports:
       - "8080:8080"
