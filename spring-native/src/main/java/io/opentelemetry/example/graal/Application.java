@@ -11,13 +11,13 @@ import org.springframework.context.annotation.ImportRuntimeHints;
 @ImportRuntimeHints({CustomHints.class})
 public class Application {
 
-    @Bean
-    public OpenTelemetry openTelemetry() {
-        OpenTelemetry openTelemetry = AutoConfiguredOpenTelemetrySdk.initialize().getOpenTelemetrySdk();
-        return openTelemetry;
-    }
+  @Bean
+  public OpenTelemetry openTelemetry() {
+    OpenTelemetry openTelemetry = AutoConfiguredOpenTelemetrySdk.initialize().getOpenTelemetrySdk();
+    return openTelemetry;
+  }
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(Application.class, args);
+  }
 }

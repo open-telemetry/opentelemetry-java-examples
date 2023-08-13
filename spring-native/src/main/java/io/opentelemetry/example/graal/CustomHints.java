@@ -10,12 +10,24 @@ import org.springframework.aot.hint.TypeReference;
 
 public class CustomHints implements RuntimeHintsRegistrar {
 
-    @Override
-    public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
+  @Override
+  public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
 
-        hints.reflection().registerType(TypeReference.of("io.opentelemetry.instrumentation.spring.autoconfigure.aspects.InstrumentationWithSpanAspect"), MemberCategory.INVOKE_PUBLIC_METHODS, MemberCategory.INVOKE_DECLARED_METHODS);
-        hints.reflection().registerType(OtlpGrpcMetricExporterBuilder.class, MemberCategory.DECLARED_FIELDS);
-        hints.reflection().registerType(OtlpGrpcSpanExporterBuilder.class, MemberCategory.DECLARED_FIELDS);
-        hints.reflection().registerType(OtlpGrpcLogRecordExporterBuilder.class, MemberCategory.DECLARED_FIELDS);
-    }
+    hints
+        .reflection()
+        .registerType(
+            TypeReference.of(
+                "io.opentelemetry.instrumentation.spring.autoconfigure.aspects.InstrumentationWithSpanAspect"),
+            MemberCategory.INVOKE_PUBLIC_METHODS,
+            MemberCategory.INVOKE_DECLARED_METHODS);
+    hints
+        .reflection()
+        .registerType(OtlpGrpcMetricExporterBuilder.class, MemberCategory.DECLARED_FIELDS);
+    hints
+        .reflection()
+        .registerType(OtlpGrpcSpanExporterBuilder.class, MemberCategory.DECLARED_FIELDS);
+    hints
+        .reflection()
+        .registerType(OtlpGrpcLogRecordExporterBuilder.class, MemberCategory.DECLARED_FIELDS);
+  }
 }
