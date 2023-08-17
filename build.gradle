@@ -16,10 +16,6 @@ subprojects {
 
     repositories {
         mavenCentral()
-        maven {
-            // Add snapshot repository
-            url "https://oss.sonatype.org/content/repositories/snapshots"
-        }
     }
 
     compileJava {
