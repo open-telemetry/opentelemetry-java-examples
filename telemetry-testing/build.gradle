@@ -26,7 +26,7 @@ bootJar {
 
 dependencies {
     implementation("io.opentelemetry:opentelemetry-api")
-    implementation('io.opentelemetry.instrumentation:opentelemetry-instrumentation-annotations:1.28.0')
+    implementation('io.opentelemetry.instrumentation:opentelemetry-instrumentation-annotations:1.29.0')
     //spring modules
     implementation("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
