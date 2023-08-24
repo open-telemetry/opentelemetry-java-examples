@@ -20,6 +20,9 @@ dependencyManagement {
 }
 
 dependencies {
+
+    implementation("io.opentelemetry:opentelemetry-sdk-extension-autoconfigure:1.28.0")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
+    implementation("io.opentelemetry:opentelemetry-exporter-otlp-logs")
 }
