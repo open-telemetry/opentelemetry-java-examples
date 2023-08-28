@@ -16,6 +16,7 @@ subprojects {
 
     repositories {
         mavenCentral()
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     }
 
     compileJava {
@@ -24,7 +25,7 @@ subprojects {
     }
 
     dependencies {
-        implementation platform("io.opentelemetry:opentelemetry-bom-alpha:1.28.0-alpha")
+        implementation platform("io.opentelemetry:opentelemetry-bom-alpha:1.30.0-alpha-SNAPSHOT")
         implementation platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:1.28.0-alpha")
     }
 
