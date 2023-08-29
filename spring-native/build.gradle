@@ -5,21 +5,13 @@ plugins {
     id 'org.graalvm.buildtools.native' version '0.9.25'
 }
 
-compileJava {
-    sourceCompatibility = "17"
-    targetCompatibility = "17"
-}
 description = 'OpenTelemetry Example for Spring native images'
 ext.moduleName = "io.opentelemetry.examples.native"
 
-dependencyManagement {
-    imports {
-        mavenBom 'io.opentelemetry:opentelemetry-bom:1.29.0'
-        mavenBom 'io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:1.26.0-alpha'
-    }
-}
-
 dependencies {
+    // using the bom ensures that all of your opentelemetry dependency versions are aligned
+    implementation platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:1.26.0-alpha")
+
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
 }

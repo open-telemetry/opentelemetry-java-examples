@@ -5,6 +5,12 @@ plugins {
 description = 'OpenTelemetry Example for OTLP Exporters'
 ext.moduleName = "io.opentelemetry.examples.otlp"
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
+}
+
 dependencies {
     implementation("io.opentelemetry:opentelemetry-api")
     implementation("io.opentelemetry:opentelemetry-sdk")

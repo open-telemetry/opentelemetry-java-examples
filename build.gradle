@@ -4,11 +4,8 @@ plugins {
 }
 
 subprojects {
-    apply plugin: 'eclipse'
-    apply plugin: 'java'
-    apply plugin: 'java-library'
-    apply plugin: 'idea'
     apply plugin: 'com.diffplug.spotless'
+    apply plugin: 'java-library'
     apply plugin: 'com.github.johnrengelman.shadow'
 
     group = "io.opentelemetry"
@@ -18,12 +15,8 @@ subprojects {
         mavenCentral()
     }
 
-    compileJava {
-        sourceCompatibility = "1.8"
-        targetCompatibility = "1.8"
-    }
-
     dependencies {
+        // using the bom ensures that all of your opentelemetry dependency versions are aligned
         implementation platform("io.opentelemetry:opentelemetry-bom-alpha:1.28.0-alpha")
         implementation platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:1.28.0-alpha")
     }

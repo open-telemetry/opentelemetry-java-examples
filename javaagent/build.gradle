@@ -7,6 +7,12 @@ plugins {
 description = 'OpenTelemetry Example for Java Agent'
 ext.moduleName = "io.opentelemetry.examples.javagent"
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
+}
+
 configurations {
     // create a separate configuration for the agent since it should not be a normal dependency
     agent
