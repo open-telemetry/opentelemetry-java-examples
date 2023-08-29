@@ -9,7 +9,7 @@ ext.moduleName = "io.opentelemetry.examples.telemetry-testing"
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
+        languageVersion.set(JavaLanguageVersion.of(11))
     }
 }
 
