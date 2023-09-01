@@ -74,16 +74,16 @@ class ApplicationTest {
         .atMost(30, SECONDS)
         .untilAsserted(
             () -> {
-              HttpRequest[] requests = collectorServer.retrieveRecordedRequests(request());
+              var requests = collectorServer.retrieveRecordedRequests(request());
 
               // verify traces
-              List<Span> spans = extractSpansFromRequests(requests);
+              var spans = extractSpansFromRequests(requests);
               assertThat(spans)
                   .extracting(Span::getName)
                   .contains("Controller.doWork", "Controller.ping");
 
               // verify metrics
-              List<Metric> metrics = extractMetricsFromRequests(requests);
+              var metrics = extractMetricsFromRequests(requests);
               assertThat(metrics).extracting(Metric::getName).contains("apiCounter");
             });
   }

@@ -8,10 +8,14 @@ plugins {
 description = 'OpenTelemetry Example for Spring native images'
 ext.moduleName = "io.opentelemetry.examples.native"
 
-dependencies {
-    // using the bom ensures that all of your opentelemetry dependency versions are aligned
-    implementation platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:1.26.0-alpha")
+dependencyManagement {
+    imports {
+        mavenBom 'io.opentelemetry:opentelemetry-bom:1.29.0'
+        mavenBom 'io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:1.26.0-alpha'
+    }
+}
 
+dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
 }
