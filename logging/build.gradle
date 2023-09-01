@@ -5,6 +5,12 @@ plugins {
 description = "OpenTelemetry Examples for logging exporters"
 ext.moduleName = "io.opentelemetry.examples.logging"
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
+}
+
 dependencies {
     implementation("io.opentelemetry:opentelemetry-api")
     implementation("io.opentelemetry:opentelemetry-exporter-logging")

@@ -5,6 +5,12 @@ plugins {
 description = 'OpenTelemetry Examples for SDK Usage'
 ext.moduleName = "io.opentelemetry.examples.sdk.usage"
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
+}
+
 dependencies {
     implementation "io.opentelemetry:opentelemetry-sdk"
     implementation "io.opentelemetry:opentelemetry-exporter-logging"

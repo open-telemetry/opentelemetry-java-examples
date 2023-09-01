@@ -6,6 +6,12 @@ plugins {
 description = 'OpenTelemetry Log Appender Example'
 ext.moduleName = "io.opentelemetry.examples.log-appender"
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
+}
+
 dependencies {
     // Slf4J / logback
     implementation("org.slf4j:slf4j-api:2.0.7")

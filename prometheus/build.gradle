@@ -5,6 +5,12 @@ plugins {
 description = 'OpenTelemetry Example for Prometheus Exporter'
 ext.moduleName = "io.opentelemetry.examples.prometheus"
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
+}
+
 dependencies {
     implementation("io.opentelemetry:opentelemetry-api")
     implementation("io.opentelemetry:opentelemetry-sdk")

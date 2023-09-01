@@ -5,6 +5,12 @@ plugins {
 description = 'OpenTelemetry Examples for metrics'
 ext.moduleName = "io.opentelemetry.examples.metrics"
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
 dependencies {
     implementation("io.opentelemetry:opentelemetry-api")
 }
