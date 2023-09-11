@@ -7,6 +7,12 @@ plugins {
 description = 'OpenTelemetry Example for Telemetry Testing'
 ext.moduleName = "io.opentelemetry.examples.telemetry-testing"
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
+}
+
 bootRun {
     mainClass.set 'io.opentelemetry.example.javagent.Application'
 }

@@ -4,11 +4,8 @@ plugins {
 }
 
 subprojects {
-    apply plugin: 'eclipse'
-    apply plugin: 'java'
-    apply plugin: 'java-library'
-    apply plugin: 'idea'
     apply plugin: 'com.diffplug.spotless'
+    apply plugin: 'java-library'
     apply plugin: 'com.github.johnrengelman.shadow'
 
     group = "io.opentelemetry"
@@ -19,13 +16,9 @@ subprojects {
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     }
 
-    compileJava {
-        sourceCompatibility = "1.8"
-        targetCompatibility = "1.8"
-    }
-
     dependencies {
-        implementation platform("io.opentelemetry:opentelemetry-bom-alpha:1.30.0-alpha-SNAPSHOT")
+        // using the bom ensures that all of your opentelemetry dependency versions are aligned
+        implementation platform("io.opentelemetry:opentelemetry-bom-alpha:1.30.0-alpha")
         implementation platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:1.28.0-alpha")
     }
 

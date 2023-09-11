@@ -5,6 +5,12 @@ plugins {
 description = "OpenTelemetry Examples for SDK autoconfiguration"
 ext.moduleName = "io.opentelemetry.examples.autoconfigure"
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
+}
+
 dependencies {
     implementation("io.opentelemetry:opentelemetry-api")
     implementation("io.opentelemetry:opentelemetry-exporter-logging")

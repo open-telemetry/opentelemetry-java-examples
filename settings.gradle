@@ -1,14 +1,16 @@
 pluginManagement {
     plugins {
-        id "com.diffplug.spotless" version "6.20.0"
+        id "com.diffplug.spotless" version "6.21.0"
         id "com.github.johnrengelman.shadow" version "8.1.1"
         id "com.google.protobuf" version "0.9.4"
         id "com.gradle.enterprise" version "3.14.1"
+        id "org.gradle.toolchains.foojay-resolver-convention" version "0.7.0"
     }
 }
 
 plugins {
     id("com.gradle.enterprise")
+    id("org.gradle.toolchains.foojay-resolver-convention")
 }
 
 def gradleEnterpriseServer = "https://ge.opentelemetry.io"
