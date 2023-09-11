@@ -3,7 +3,7 @@ file_format: "0.1"
 
 resource:
   attributes:
-    service.name: !!str "file-configuration-example"
+    service.name:  "file-configuration-example"
 
 tracer_provider:
   processors:

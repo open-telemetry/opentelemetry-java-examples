@@ -21,13 +21,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Example code for setting up the SDK using file based configuration
- *
- * <p>If you wish to use this code, you'll need to run a copy of the collector locally, on the
- * default port. There is a docker-compose configuration for doing this in the docker subdirectory
- * of this module.
- */
+/** Example code for setting up the SDK using file based configuration */
 public final class Application {
 
   public static void main(String[] args) throws InterruptedException, IOException {
