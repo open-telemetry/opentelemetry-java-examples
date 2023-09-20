@@ -57,12 +57,16 @@ public class HistogramExample {
   /**
    * This example is just like the above, except that instead of using the default bucket
    * boundaries, we pass a list of custom bucket boundaries.
+   *
+   * <p>Please note that the Advisory parameters API is not yet stable and are subject to change.
+   * You may check with <a
+   * href="https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/api.md#instrument-advisory-parameters">the
+   * specification</a> for the latest status of the api.
    */
   void exampleWithCustomBuckets(Meter meter) {
     DoubleHistogramBuilder originalBuilder = meter.histogramBuilder("people.ages");
     ExtendedLongHistogramBuilder builder = (ExtendedLongHistogramBuilder) originalBuilder.ofLongs();
-    List<Double> bucketBoundaries =
-        Arrays.asList(0.0, 5.0, 12.0, 18.0, 24.0, 40.0, 50.0, 80.0, 115.0);
+    List<Long> bucketBoundaries = Arrays.asList(0L, 5L, 12L, 18L, 24L, 40L, 50L, 80L, 115L);
     LongHistogram histogram =
         builder
             .setAdvice(advice -> advice.setExplicitBucketBoundaries(bucketBoundaries))
