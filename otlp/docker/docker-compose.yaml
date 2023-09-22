@@ -1,14 +1,6 @@
 version: "2"
 services:
 
-  # Jaeger
-  jaeger-all-in-one:
-    image: jaegertracing/all-in-one:latest
-    ports:
-      - "16686:16686"
-      - "14268"
-      - "14250:14250"
-
   # Zipkin
   zipkin-all-in-one:
     image: openzipkin/zipkin:latest
@@ -29,7 +21,6 @@ services:
       - "55679:55679" # zpages extension
       - "4317:4317"   # otlp receiver
     depends_on:
-      - jaeger-all-in-one
       - zipkin-all-in-one
 
   prometheus:
