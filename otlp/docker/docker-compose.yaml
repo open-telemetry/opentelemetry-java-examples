@@ -8,6 +8,8 @@ services:
       - "16686:16686"
       - "14268"
       - "14250:14250"
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
 
   # Zipkin
   zipkin-all-in-one:
