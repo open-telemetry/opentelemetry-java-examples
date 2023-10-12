@@ -45,7 +45,7 @@ dependencies {
     testImplementation("io.opentelemetry.proto:opentelemetry-proto:0.14.0-alpha")
     testImplementation("org.assertj:assertj-core:3.24.2")
 
-    agent("io.opentelemetry.javaagent:opentelemetry-javaagent:1.30.0")
+    agent("io.opentelemetry.javaagent:opentelemetry-javaagent:1.31.0")
 }
 
 test {
