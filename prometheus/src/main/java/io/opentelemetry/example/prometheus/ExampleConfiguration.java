@@ -5,7 +5,7 @@
 
 package io.opentelemetry.example.prometheus;
 
-import static io.opentelemetry.semconv.resource.attributes.ResourceAttributes.SERVICE_NAME;
+import static io.opentelemetry.semconv.ResourceAttributes.SERVICE_NAME;
 
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.exporter.logging.LoggingSpanExporter;

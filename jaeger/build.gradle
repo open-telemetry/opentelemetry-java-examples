@@ -17,5 +17,5 @@ dependencies {
     implementation("io.opentelemetry:opentelemetry-exporter-otlp")
 
     //alpha module
-    implementation "io.opentelemetry:opentelemetry-semconv"
+    implementation "io.opentelemetry.semconv:opentelemetry-semconv"
 }

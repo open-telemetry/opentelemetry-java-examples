@@ -29,7 +29,7 @@ dependencies {
     // OpenTelemetry core
     implementation("io.opentelemetry:opentelemetry-sdk")
     implementation("io.opentelemetry:opentelemetry-exporter-otlp")
-    implementation("io.opentelemetry:opentelemetry-semconv")
+    implementation "io.opentelemetry.semconv:opentelemetry-semconv"
 
     // OpenTelemetry log4j / logback appenders
     implementation 'io.opentelemetry.instrumentation:opentelemetry-log4j-appender-2.17'
