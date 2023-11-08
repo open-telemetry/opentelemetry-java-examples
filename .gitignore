@@ -33,3 +33,6 @@ bin
 
 # Vim
 .swp
+
+# Polyglot runtime manager (asdf rust clone)
+.rtx.toml
