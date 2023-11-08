@@ -1,10 +1,10 @@
 pluginManagement {
     plugins {
-        id "com.diffplug.spotless" version "6.22.0"
-        id "com.github.johnrengelman.shadow" version "8.1.1"
-        id "com.google.protobuf" version "0.9.4"
-        id "com.gradle.enterprise" version "3.15.1"
-        id "org.gradle.toolchains.foojay-resolver-convention" version "0.7.0"
+        id("com.diffplug.spotless") version "6.22.0"
+        id("com.github.johnrengelman.shadow") version "8.1.1"
+        id("com.google.protobuf") version "0.9.4"
+        id("com.gradle.enterprise") version "3.15.1"
+        id("org.gradle.toolchains.foojay-resolver-convention") version "0.7.0"
     }
 }
 
@@ -13,44 +13,46 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention")
 }
 
-def gradleEnterpriseServer = "https://ge.opentelemetry.io"
-def isCI = System.getenv("CI") != null
-def geAccessKey = System.getenv("GRADLE_ENTERPRISE_ACCESS_KEY") ?: ""
+val gradleEnterpriseServer = "https://ge.opentelemetry.io"
+val isCI = System.getenv("CI") != null
+val geAccessKey = System.getenv("GRADLE_ENTERPRISE_ACCESS_KEY") ?: ""
 
-// if GE access key is not given and we are in CI, then we publish to scans.gradle.com
-def useScansGradleCom = isCI && geAccessKey.isEmpty()
+// if the GE access key is not given, and we are in CI, then we publish to scans.gradle.com
+val useScansGradleCom = isCI && geAccessKey.isEmpty()
 
 if (useScansGradleCom) {
     gradleEnterprise {
         buildScan {
             termsOfServiceUrl = "https://gradle.com/terms-of-service"
             termsOfServiceAgree = "yes"
-            uploadInBackground = !isCI
+            isUploadInBackground = !isCI
+
             publishAlways()
 
             capture {
-                taskInputFiles = true
+                isTaskInputFiles = true
             }
         }
     }
 } else {
     gradleEnterprise {
         server = gradleEnterpriseServer
-        buildScan {
-            uploadInBackground = !isCI
 
-            publishIfAuthenticated()
-            publishAlways()
+        buildScan {
+            isUploadInBackground = !isCI
+
+            publishAlwaysIf(geAccessKey.isNotEmpty())
 
             capture {
-                taskInputFiles = true
+                isTaskInputFiles = true
             }
         }
     }
 }
 
 rootProject.name = "opentelemetry-java-examples"
-include ":opentelemetry-examples-autoconfigure",
+include(
+        ":opentelemetry-examples-autoconfigure",
         ":opentelemetry-examples-file-configuration",
         ":opentelemetry-examples-http",
         ":opentelemetry-examples-jaeger",
@@ -66,8 +68,11 @@ include ":opentelemetry-examples-autoconfigure",
         ":opentelemetry-examples-zipkin",
         ":opentelemetry-examples-spring-native",
         ":opentelemetry-examples-kotlin-extension"
+)
 
-rootProject.children.each {
-    it.projectDir = "$rootDir/" + it.name
-            .replace("opentelemetry-examples-", "") as File
+rootProject.children.forEach {
+    it.projectDir = file(
+            "$rootDir/${it.name}"
+                    .replace("opentelemetry-examples-", "")
+    )
 }
