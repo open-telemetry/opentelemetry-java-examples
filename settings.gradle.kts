@@ -20,59 +20,49 @@ val geAccessKey = System.getenv("GRADLE_ENTERPRISE_ACCESS_KEY") ?: ""
 // if the GE access key is not given, and we are in CI, then we publish to scans.gradle.com
 val useScansGradleCom = isCI && geAccessKey.isEmpty()
 
-if (useScansGradleCom) {
-    gradleEnterprise {
-        buildScan {
+gradleEnterprise {
+    if (!useScansGradleCom) {
+        server = gradleEnterpriseServer
+    }
+    buildScan {
+        isUploadInBackground = !isCI
+
+        if (useScansGradleCom) {
             termsOfServiceUrl = "https://gradle.com/terms-of-service"
             termsOfServiceAgree = "yes"
-            isUploadInBackground = !isCI
-
             publishAlways()
-
-            capture {
-                isTaskInputFiles = true
-            }
-        }
-    }
-} else {
-    gradleEnterprise {
-        server = gradleEnterpriseServer
-
-        buildScan {
-            isUploadInBackground = !isCI
-
+        } else {
             publishAlwaysIf(geAccessKey.isNotEmpty())
+        }
 
-            capture {
-                isTaskInputFiles = true
-            }
+        capture {
+            isTaskInputFiles = true
         }
     }
 }
 
 rootProject.name = "opentelemetry-java-examples"
 include(
-        ":opentelemetry-examples-autoconfigure",
-        ":opentelemetry-examples-file-configuration",
-        ":opentelemetry-examples-http",
-        ":opentelemetry-examples-jaeger",
-        ":opentelemetry-examples-javaagent",
-        ":opentelemetry-examples-log-appender",
-        ":opentelemetry-examples-logging",
-        ":opentelemetry-examples-metrics",
-        ":opentelemetry-examples-micrometer-shim",
-        ":opentelemetry-examples-otlp",
-        ":opentelemetry-examples-prometheus",
-        ":opentelemetry-examples-sdk-usage",
-        ":opentelemetry-examples-telemetry-testing",
-        ":opentelemetry-examples-zipkin",
-        ":opentelemetry-examples-spring-native",
-        ":opentelemetry-examples-kotlin-extension"
+    ":opentelemetry-examples-autoconfigure",
+    ":opentelemetry-examples-file-configuration",
+    ":opentelemetry-examples-http",
+    ":opentelemetry-examples-jaeger",
+    ":opentelemetry-examples-javaagent",
+    ":opentelemetry-examples-log-appender",
+    ":opentelemetry-examples-logging",
+    ":opentelemetry-examples-metrics",
+    ":opentelemetry-examples-micrometer-shim",
+    ":opentelemetry-examples-otlp",
+    ":opentelemetry-examples-prometheus",
+    ":opentelemetry-examples-sdk-usage",
+    ":opentelemetry-examples-telemetry-testing",
+    ":opentelemetry-examples-zipkin",
+    ":opentelemetry-examples-spring-native",
+    ":opentelemetry-examples-kotlin-extension"
 )
 
 rootProject.children.forEach {
     it.projectDir = file(
-            "$rootDir/${it.name}"
-                    .replace("opentelemetry-examples-", "")
+        "$rootDir/${it.name}".replace("opentelemetry-examples-", "")
     )
 }
