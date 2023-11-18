@@ -1,9 +1,9 @@
 plugins {
-    id 'java'
+    id("java")
 }
 
-description = 'OpenTelemetry Examples for Zipkin Exporter'
-ext.moduleName = "io.opentelemetry.examples.zipkin"
+description = "OpenTelemetry Examples for Zipkin Exporter"
+val moduleName by extra { "io.opentelemetry.examples.zipkin" }
 
 java {
     toolchain {
@@ -17,5 +17,5 @@ dependencies {
     implementation("io.opentelemetry:opentelemetry-exporter-zipkin")
 
     //alpha module
-    implementation "io.opentelemetry.semconv:opentelemetry-semconv"
+    implementation("io.opentelemetry.semconv:opentelemetry-semconv")
 }

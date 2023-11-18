@@ -16,7 +16,7 @@ Details about the example:
   * SLF4J API [configured with Logback](./src/main/resources/logback.xml) to
     print logs to the console and
     the [OpenTelemetry Logback Appender](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/instrumentation/logback/logback-appender-1.0/library/README.md).
-  * [JUL to SLF4J](./build.gradle), which bridges JUL logs to the SLF4J API, and
+  * [JUL to SLF4J](./build.gradle.kts), which bridges JUL logs to the SLF4J API, and
     ultimately to Logback.
 * Demonstrates how trace context is propagated to logs when recorded within a
   span.

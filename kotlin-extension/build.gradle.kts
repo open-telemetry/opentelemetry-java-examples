@@ -1,8 +1,8 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.9.20'
+    id ("org.jetbrains.kotlin.jvm") version "1.9.20"
 }
 
-description = 'OpenTelemetry Example for Kotlin extensions'
+description = "OpenTelemetry Example for Kotlin extensions"
 
 kotlin {
     compilerOptions {

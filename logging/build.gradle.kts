@@ -1,9 +1,9 @@
 plugins {
-    id 'java'
+    id("java")
 }
 
-description = "OpenTelemetry Examples for SDK autoconfiguration"
-ext.moduleName = "io.opentelemetry.examples.autoconfigure"
+description = "OpenTelemetry Examples for logging exporters"
+val moduleName by extra { "io.opentelemetry.examples.logging" }
 
 java {
     toolchain {
@@ -14,5 +14,4 @@ java {
 dependencies {
     implementation("io.opentelemetry:opentelemetry-api")
     implementation("io.opentelemetry:opentelemetry-exporter-logging")
-    implementation("io.opentelemetry:opentelemetry-sdk-extension-autoconfigure")
 }

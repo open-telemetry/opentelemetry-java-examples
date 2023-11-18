@@ -1,11 +1,13 @@
+import org.springframework.boot.gradle.tasks.run.BootRun
+
 plugins {
-    id 'java'
-    id 'org.springframework.boot' version '2.7.17'
-    id 'io.spring.dependency-management' version '1.1.4'
+    id("java")
+    id("org.springframework.boot") version "2.7.17"
+    id("io.spring.dependency-management") version "1.1.4"
 }
 
-description = 'OpenTelemetry Example for Micrometer Shim'
-ext.moduleName = "io.opentelemetry.examples.micrometer-shim"
+description = "OpenTelemetry Example for Micrometer Shim"
+val moduleName by extra { "io.opentelemetry.examples.micrometer-shim" }
 
 java {
     toolchain {
@@ -13,8 +15,8 @@ java {
     }
 }
 
-bootRun {
-    mainClass.set 'io.opentelemetry.example.micrometer.Application'
+val bootRun = tasks.named<BootRun>("bootRun") {
+    mainClass = "io.opentelemetry.example.micrometer.Application"
 }
 
 dependencies {

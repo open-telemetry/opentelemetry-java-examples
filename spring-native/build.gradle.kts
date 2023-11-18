@@ -1,0 +1,21 @@
+plugins {
+    id("java")
+    id("org.springframework.boot") version "3.1.5"
+    id("io.spring.dependency-management") version "1.1.4"
+    id("org.graalvm.buildtools.native") version "0.9.28"
+}
+
+description = "OpenTelemetry Example for Spring native images"
+val moduleName by extra { "io.opentelemetry.examples.native" }
+
+dependencyManagement {
+    imports {
+        mavenBom("io.opentelemetry:opentelemetry-bom:1.31.0")
+        mavenBom("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:1.31.0-alpha")
+    }
+}
+
+dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
+}

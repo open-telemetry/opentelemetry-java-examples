@@ -1,10 +1,10 @@
 plugins {
-    id 'java'
-    id 'application'
+    id("java")
+    id("application")
 }
 
-description = 'OpenTelemetry Example for File Configuration'
-ext.moduleName = "io.opentelemetry.examples.fileconfig"
+description = "OpenTelemetry Example for File Configuration"
+val moduleName by extra { "io.opentelemetry.examples.fileconfig" }
 
 dependencies {
     implementation("io.opentelemetry:opentelemetry-api")
@@ -14,5 +14,5 @@ dependencies {
 }
 
 application {
-    mainClass = 'io.opentelemetry.examples.fileconfig.Application'
+    mainClass = "io.opentelemetry.examples.fileconfig.Application"
 }
