@@ -1,9 +1,9 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     id("java")
     id("org.springframework.boot") version "2.7.17"
-    id("io.spring.dependency-management") version "1.1.4"
 }
 
 description = "OpenTelemetry Example for Java Agent"
@@ -18,6 +18,7 @@ java {
 val agent = configurations.create("agent")
 
 dependencies {
+    implementation(platform(SpringBootPlugin.BOM_COORDINATES))
     implementation("io.opentelemetry:opentelemetry-api")
 
     //spring modules

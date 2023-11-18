@@ -1,9 +1,9 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
     id("java")
     id("org.springframework.boot") version "2.7.17"
-    id("io.spring.dependency-management") version "1.1.4"
 }
 
 description = "OpenTelemetry Example for Micrometer Shim"
@@ -20,6 +20,7 @@ val bootRun = tasks.named<BootRun>("bootRun") {
 }
 
 dependencies {
+    implementation(platform(SpringBootPlugin.BOM_COORDINATES))
     implementation("io.opentelemetry:opentelemetry-api")
     implementation("io.opentelemetry:opentelemetry-sdk")
 
