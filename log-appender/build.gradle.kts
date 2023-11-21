@@ -1,10 +1,10 @@
 plugins {
-    id 'java'
-    id 'application'
+    id("java")
+    id("application")
 }
 
-description = 'OpenTelemetry Log Appender Example'
-ext.moduleName = "io.opentelemetry.examples.log-appender"
+description = "OpenTelemetry Log Appender Example"
+val moduleName by extra { "io.opentelemetry.examples.log-appender" }
 
 java {
     toolchain {
@@ -29,13 +29,13 @@ dependencies {
     // OpenTelemetry core
     implementation("io.opentelemetry:opentelemetry-sdk")
     implementation("io.opentelemetry:opentelemetry-exporter-otlp")
-    implementation "io.opentelemetry.semconv:opentelemetry-semconv"
+    implementation("io.opentelemetry.semconv:opentelemetry-semconv")
 
     // OpenTelemetry log4j / logback appenders
-    implementation 'io.opentelemetry.instrumentation:opentelemetry-log4j-appender-2.17'
-    implementation 'io.opentelemetry.instrumentation:opentelemetry-logback-appender-1.0'
+    implementation("io.opentelemetry.instrumentation:opentelemetry-log4j-appender-2.17")
+    implementation("io.opentelemetry.instrumentation:opentelemetry-logback-appender-1.0")
 }
 
 application {
-    mainClass = 'io.opentelemetry.example.logappender.Application'
+    mainClass = "io.opentelemetry.example.logappender.Application"
 }

@@ -1,9 +1,9 @@
 plugins {
-    id 'java'
+    id("java")
 }
 
-description = 'OpenTelemetry Examples for metrics'
-ext.moduleName = "io.opentelemetry.examples.metrics"
+description = "OpenTelemetry Examples for metrics"
+val moduleName by extra { "io.opentelemetry.examples.metrics" }
 
 java {
     toolchain {

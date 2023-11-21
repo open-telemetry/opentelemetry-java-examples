@@ -1,9 +1,9 @@
 plugins {
-    id 'java'
+    id("java")
 }
 
-description = 'OpenTelemetry Example for Prometheus Exporter'
-ext.moduleName = "io.opentelemetry.examples.prometheus"
+description = "OpenTelemetry Example for Prometheus Exporter"
+val moduleName by extra { "io.opentelemetry.examples.prometheus" }
 
 java {
     toolchain {
@@ -15,7 +15,7 @@ dependencies {
     implementation("io.opentelemetry:opentelemetry-api")
     implementation("io.opentelemetry:opentelemetry-sdk")
     implementation("io.opentelemetry:opentelemetry-exporter-logging")
-    implementation "io.opentelemetry.semconv:opentelemetry-semconv"
+    implementation("io.opentelemetry.semconv:opentelemetry-semconv")
 
     //alpha modules
     implementation("io.opentelemetry:opentelemetry-exporter-prometheus")
