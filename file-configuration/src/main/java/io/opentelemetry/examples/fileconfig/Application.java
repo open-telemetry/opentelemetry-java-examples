@@ -5,55 +5,46 @@
 
 package io.opentelemetry.examples.fileconfig;
 
-import io.opentelemetry.api.common.Attributes;
-import io.opentelemetry.api.metrics.LongCounter;
-import io.opentelemetry.api.metrics.LongHistogram;
-import io.opentelemetry.api.metrics.Meter;
-import io.opentelemetry.api.trace.Span;
-import io.opentelemetry.api.trace.Tracer;
-import io.opentelemetry.context.Context;
-import io.opentelemetry.context.Scope;
+import io.opentelemetry.api.OpenTelemetry;
+import io.opentelemetry.instrumentation.spring.webmvc.v5_3.SpringWebMvcTelemetry;
 import io.opentelemetry.sdk.OpenTelemetrySdk;
 import io.opentelemetry.sdk.extension.incubator.fileconfig.ConfigurationFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.concurrent.TimeUnit;
+import javax.servlet.Filter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 /** Example code for setting up the SDK using file based configuration */
-public final class Application {
+@SpringBootApplication
+public class Application {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
+
+  private static OpenTelemetrySdk openTelemetrySdk;
 
   public static void main(String[] args) throws InterruptedException, IOException {
     // it is important to initialize your SDK as early as possible in your application's lifecycle
     InputStream is = Files.newInputStream(Paths.get(System.getenv("OTEL_CONFIG_FILE")));
-    OpenTelemetrySdk openTelemetrySdk = ConfigurationFactory.parseAndInterpret(is);
+    openTelemetrySdk = ConfigurationFactory.parseAndInterpret(is);
 
-    Tracer tracer = openTelemetrySdk.getTracer("io.opentelemetry.example");
-    Meter meter = openTelemetrySdk.getMeter("io.opentelemetry.example");
-    LongCounter counter = meter.counterBuilder("example_counter").build();
-    // Filter out histogram with view defined in otel-sdk-config.yaml
-    LongHistogram histogram = meter.histogramBuilder("super_timer").ofLongs().setUnit("ms").build();
+    LOGGER.info("SDK config: " + openTelemetrySdk.toString());
 
-    for (int i = 0; i < 100; i++) {
-      long startTime = System.currentTimeMillis();
-      Span exampleSpan = tracer.spanBuilder("exampleSpan").startSpan();
-      Context exampleContext = Context.current().with(exampleSpan);
-      try (Scope scope = exampleContext.makeCurrent()) {
-        counter.add(1);
-        exampleSpan.setAttribute("good", true);
-        exampleSpan.setAttribute("exampleNumber", i);
-        Thread.sleep(100);
-      } finally {
-        histogram.record(
-            System.currentTimeMillis() - startTime, Attributes.empty(), exampleContext);
-        exampleSpan.end();
-      }
-    }
+    SpringApplication.run(Application.class, args);
+  }
 
-    // shutdown to ensure data is flusehdd
-    openTelemetrySdk.shutdown().join(10, TimeUnit.SECONDS);
+  @Bean
+  public OpenTelemetry openTelemetry() {
+    return openTelemetrySdk;
+  }
 
-    System.out.println("Bye");
+  @Bean
+  public Filter webMvcTracingFilter(OpenTelemetry openTelemetry) {
+    return SpringWebMvcTelemetry.create(openTelemetry).createServletFilter();
   }
 }

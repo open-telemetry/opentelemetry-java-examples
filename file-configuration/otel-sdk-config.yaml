@@ -10,17 +10,16 @@ tracer_provider:
     - batch:
         exporter:
           console: {}
-
-meter_provider:
-  readers:
-    - periodic:
-        exporter:
-          console: {}
-  views:
-    - selector:
-        instrument_type: histogram
-      stream:
-        aggregation:
-          drop: {}
+  sampler:
+    parent_based:
+      root:
+        rule_based_routing_sampler:
+          fallback: always_on
+          span_kind: SERVER
+          drop_rules:
+            - attribute: http.target
+              pattern: "/actuator.*"
+            - attribute: http.target
+              pattern: "/foo"
 
 propagators: [tracecontext, baggage]
