@@ -20,11 +20,7 @@ We have included the [OpenTelemetry Spring starter](https://opentelemetry.io/doc
  implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
 ```
 
-To instrument logs, we have added the OpenTelemetry Logback appender in the [logback.xml](src/main/resources/logback.xml) file with the following dependency:
-
-```kotlin
- implementation("io.opentelemetry.instrumentation:opentelemetry-logback-appender-1.0")
-```
+To instrument logs, we have added the OpenTelemetry Logback appender in the [logback.xml](src/main/resources/logback.xml) file.
 
 
 ## Prerequisites
