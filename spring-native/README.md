@@ -20,8 +20,11 @@ We have included the [OpenTelemetry Spring starter](https://opentelemetry.io/doc
  implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
 ```
 
-To instrument logs, we have added the OpenTelemetry Logback appender in the [logback.xml](src/main/resources/logback.xml) file.
+To instrument logs, we have added the OpenTelemetry Logback appender in the [logback.xml](src/main/resources/logback.xml) or logback-spring.xml file.
 
+To instrument the database, we have updated the [application.properties](src/main/resources/application.properties) by adding the `jdbc:otel:` prefix to the data source URL and setting the driver class name to `io.opentelemetry.instrumentation.jdbc.OpenTelemetryDriver`.
+
+You will find more details in the [documentation](https://opentelemetry.io/docs/instrumentation/java/automatic/spring-boot/) of the OpenTelemetry Spring starter.
 
 ## Prerequisites
 
@@ -121,4 +124,27 @@ spring-native-collector-1  | Timestamp: 2023-11-24 11:49:49.955 +0000 UTC
 spring-native-collector-1  | SeverityText: INFO
 spring-native-collector-1  | SeverityNumber: Info(9)
 spring-native-collector-1  | Body: Str(Started Application in 0.119 seconds (process running for 0.122))
+```
+
+You see below the span created by the database instrumentation:
+
+```
+spring-native-collector-1  | ScopeSpans #0
+spring-native-collector-1  | ScopeSpans SchemaURL:
+spring-native-collector-1  | InstrumentationScope io.opentelemetry.jdbc
+spring-native-collector-1  | Span #0
+spring-native-collector-1  |     Trace ID       : 0727c2fe8ea3d7c76ae56c58eeddc894
+spring-native-collector-1  |     Parent ID      :
+spring-native-collector-1  |     ID             : 918a7df29e0ab097
+spring-native-collector-1  |     Name           : db
+spring-native-collector-1  |     Kind           : Client
+spring-native-collector-1  |     Start time     : 2023-11-24 16:02:21.883235 +0000 UTC
+spring-native-collector-1  |     End time       : 2023-11-24 16:02:21.8834037 +0000 UTC
+spring-native-collector-1  |     Status code    : Unset
+spring-native-collector-1  |     Status message :
+spring-native-collector-1  | Attributes:
+spring-native-collector-1  |      -> db.name: Str(db)
+spring-native-collector-1  |      -> db.connection_string: Str(h2:mem:)
+spring-native-collector-1  |      -> db.statement: Str(create table test_table (id bigint not null, primary key (id)))
+spring-native-collector-1  |      -> db.system: Str(h2)
 ```
