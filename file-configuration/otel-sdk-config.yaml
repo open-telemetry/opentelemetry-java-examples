@@ -9,18 +9,18 @@ tracer_provider:
   processors:
     - batch:
         exporter:
-          console: {}
+          console:
 
 meter_provider:
   readers:
     - periodic:
         exporter:
-          console: {}
+          console:
   views:
     - selector:
         instrument_type: histogram
       stream:
         aggregation:
-          drop: {}
+          drop:
 
 propagators: [tracecontext, baggage]
