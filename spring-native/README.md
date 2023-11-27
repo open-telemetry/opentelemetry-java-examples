@@ -1,6 +1,6 @@
 # OpenTelemetry Spring Native Example
 
-This example demonstrates usage of the [OpenTelemetry Spring starter](https://opentelemetry.io/docs/instrumentation/java/automatic/spring-boot/) with a Spring Boot application running on a GraalVM native image.
+This example demonstrates usage of the [OpenTelemetry Spring starter](https://opentelemetry.io/docs/instrumentation/java/automatic/spring-boot/) with a Spring Boot application running in a GraalVM native image.
 
 The example uses the following elements:
 
