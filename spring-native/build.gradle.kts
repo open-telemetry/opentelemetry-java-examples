@@ -11,8 +11,10 @@ val moduleName by extra { "io.opentelemetry.examples.native" }
 
 dependencies {
     implementation(platform(SpringBootPlugin.BOM_COORDINATES))
-    implementation(platform("io.opentelemetry:opentelemetry-bom:1.31.0"))
+    implementation(platform("io.opentelemetry:opentelemetry-bom:1.32.0"))
     implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:1.32.0-alpha"))
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+    implementation("com.h2database:h2")
     implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
 }
