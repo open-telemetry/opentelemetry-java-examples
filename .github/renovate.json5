@@ -16,6 +16,10 @@
       "ignoreUnstable": false
     },
     {
+      "matchPackagePrefixes": ["io.opentelemetry"],
+      "groupName": "opentelemetry packages"
+    },
+    {
       "matchPackagePrefixes": ["ch.qos.logback:"],
       "groupName": "logback packages"
     },

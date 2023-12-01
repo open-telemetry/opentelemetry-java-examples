@@ -3,7 +3,7 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     id("java")
-    id("org.springframework.boot") version "2.7.17"
+    id("org.springframework.boot") version "2.7.18"
 }
 
 description = "OpenTelemetry Example for Java Agent"
