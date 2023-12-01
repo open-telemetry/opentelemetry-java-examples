@@ -15,7 +15,7 @@ java {
 dependencies {
     // Slf4J / logback
     implementation("org.slf4j:slf4j-api:2.0.9")
-    implementation("ch.qos.logback:logback-core:1.4.13")
+    implementation("ch.qos.logback:logback-core:1.4.14")
     implementation("ch.qos.logback:logback-classic:1.4.14")
 
     // JUL to SLF4J bridge
