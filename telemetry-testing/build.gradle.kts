@@ -1,10 +1,10 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
     id("java")
     id("org.springframework.boot") version "2.7.18"
-    id("io.spring.dependency-management") version "1.1.4"
 }
 
 description = "OpenTelemetry Example for Telemetry Testing"
@@ -27,6 +27,7 @@ val bootJar = tasks.named<BootJar>("bootJar") {
 }
 
 dependencies {
+    implementation(platform(SpringBootPlugin.BOM_COORDINATES))
     implementation("io.opentelemetry:opentelemetry-api")
     implementation("io.opentelemetry.instrumentation:opentelemetry-instrumentation-annotations:1.32.0")
     //spring modules
