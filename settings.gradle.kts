@@ -3,7 +3,7 @@ pluginManagement {
         id("com.diffplug.spotless") version "6.23.3"
         id("com.github.johnrengelman.shadow") version "8.1.1"
         id("com.google.protobuf") version "0.9.4"
-        id("com.gradle.enterprise") version "3.15.1"
+        id("com.gradle.enterprise") version "3.16"
         id("org.gradle.toolchains.foojay-resolver-convention") version "0.7.0"
     }
 }
