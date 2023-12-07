@@ -1,6 +1,7 @@
 package io.opentelemetry.example.logappender;
 
 import io.opentelemetry.api.GlobalOpenTelemetry;
+import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.common.AttributeKey;
 import io.opentelemetry.api.logs.Severity;
 import io.opentelemetry.api.trace.Span;
@@ -32,7 +33,13 @@ public class Application {
 
   public static void main(String[] args) {
     // Initialize OpenTelemetry as early as possible
-    initializeOpenTelemetry();
+    OpenTelemetry openTelemetry = initializeOpenTelemetry();
+    // Install OpenTelemetry in log4j appender
+    io.opentelemetry.instrumentation.log4j.appender.v2_17.OpenTelemetryAppender.install(
+        openTelemetry);
+    // Install OpenTelemetry in logback appender
+    io.opentelemetry.instrumentation.logback.appender.v1_0.OpenTelemetryAppender.install(
+        openTelemetry);
 
     // Route JUL logs to slf4j
     SLF4JBridgeHandler.removeHandlersForRootLogger();
@@ -79,7 +86,7 @@ public class Application {
     // existing frameworks into the OpenTelemetry Log Bridge API. These APIs
     // SHOULD NOT be used by end users in place of existing log APIs (i.e. Log4j, Slf4, JUL).
     io.opentelemetry.api.logs.Logger customAppenderLogger =
-        GlobalOpenTelemetry.get().getLogsBridge().get("custom-log-appender");
+        openTelemetry.getLogsBridge().get("custom-log-appender");
     maybeRunWithSpan(
         () ->
             customAppenderLogger
@@ -100,7 +107,7 @@ public class Application {
         true);
   }
 
-  private static void initializeOpenTelemetry() {
+  private static OpenTelemetry initializeOpenTelemetry() {
     OpenTelemetrySdk sdk =
         OpenTelemetrySdk.builder()
             .setTracerProvider(SdkTracerProvider.builder().setSampler(Sampler.alwaysOn()).build())
@@ -118,10 +125,11 @@ public class Application {
                             .build())
                     .build())
             .build();
-    GlobalOpenTelemetry.set(sdk);
 
     // Add hook to close SDK, which flushes logs
     Runtime.getRuntime().addShutdownHook(new Thread(sdk::close));
+
+    return sdk;
   }
 
   private static void maybeRunWithSpan(Runnable runnable, boolean withSpan) {
