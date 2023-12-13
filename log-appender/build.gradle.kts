@@ -8,7 +8,8 @@ val moduleName by extra { "io.opentelemetry.examples.log-appender" }
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
+        // logback 1.4.x+ requires java 11
+        languageVersion.set(JavaLanguageVersion.of(11))
     }
 }
 
