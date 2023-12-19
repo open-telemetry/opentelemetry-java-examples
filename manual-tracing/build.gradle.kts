@@ -2,7 +2,7 @@ plugins {
     id("java")
 }
 
-description = "OpenTelemetry Examples for HTTP"
+description = "OpenTelemetry Examples for Manual Tracing"
 val moduleName by extra { "io.opentelemetry.examples.http" }
 
 java {

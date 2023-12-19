@@ -18,6 +18,11 @@ of them assume you have docker running on your local machine.
     - Note more production-ready instrumentation for HTTP is provided as a part
       of the [OpenTelemetry Java Instrumentation](https://github.com/open-telemetry/opentelemetry-java-instrumentation)
       project.
+- [Manual span creation and baggage propagation](manual-tracing)
+    - This module provides an example of manually creating spans using the
+      OpenTelemetry API with the ExtendedTracer.
+    - Additionally, it demonstrates how to use the OpenTelemetry API to
+      propagate baggage items.
 - [Configuring the Jaeger Exporter](jaeger)
     - This module contains a fully-functional example of configuring the
       OpenTelemetry SDK to use a Jaeger exporter, and send some spans to it

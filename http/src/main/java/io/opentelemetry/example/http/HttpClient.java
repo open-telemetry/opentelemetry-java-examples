@@ -10,10 +10,8 @@ import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.SpanKind;
 import io.opentelemetry.api.trace.StatusCode;
 import io.opentelemetry.api.trace.Tracer;
-import io.opentelemetry.context.Context;
 import io.opentelemetry.context.Scope;
-import io.opentelemetry.context.propagation.TextMapPropagator;
-import io.opentelemetry.context.propagation.TextMapSetter;
+import io.opentelemetry.extension.incubator.propagation.ExtendedContextPropagators;
 import io.opentelemetry.semconv.SemanticAttributes;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,7 +20,6 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.nio.charset.Charset;
 
 public final class HttpClient {
@@ -33,12 +30,6 @@ public final class HttpClient {
 
   private static final Tracer tracer =
       openTelemetry.getTracer("io.opentelemetry.example.http.HttpClient");
-  private static final TextMapPropagator textMapPropagator =
-      openTelemetry.getPropagators().getTextMapPropagator();
-
-  // Export traces to log
-  // Inject the span context into the request
-  private static final TextMapSetter<HttpURLConnection> setter = URLConnection::setRequestProperty;
 
   private void makeRequest() throws IOException, URISyntaxException {
     int port = 8080;
@@ -52,7 +43,7 @@ public final class HttpClient {
     // See: https://github.com/open-telemetry/opentelemetry-specification/issues/270
     Span span = tracer.spanBuilder("/").setSpanKind(SpanKind.CLIENT).startSpan();
     try (Scope scope = span.makeCurrent()) {
-      span.setAttribute(SemanticAttributes.HTTP_METHOD, "GET");
+      span.setAttribute(SemanticAttributes.HTTP_REQUEST_METHOD, "GET");
       span.setAttribute("component", "http");
       /*
        Only one of the following is required
@@ -73,10 +64,11 @@ public final class HttpClient {
                   uri.getFragment())
               .toURL();
 
-      span.setAttribute(SemanticAttributes.HTTP_URL, url.toString());
+      span.setAttribute(SemanticAttributes.URL_FULL, url.toString());
 
       // Inject the request with the current Context/Span.
-      textMapPropagator.inject(Context.current(), con, setter);
+      ExtendedContextPropagators.getTextMapPropagationContext(openTelemetry.getPropagators())
+          .forEach(con::setRequestProperty);
 
       try {
         // Process the request
