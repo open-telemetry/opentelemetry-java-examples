@@ -58,7 +58,8 @@ include(
     ":opentelemetry-examples-telemetry-testing",
     ":opentelemetry-examples-zipkin",
     ":opentelemetry-examples-spring-native",
-    ":opentelemetry-examples-kotlin-extension"
+    ":opentelemetry-examples-kotlin-extension",
+    ":opentelemetry-examples-grpc"
 )
 
 rootProject.children.forEach {
