@@ -40,40 +40,6 @@ dependencies {
     implementation("org.apache.tomcat:annotations-api:6.0.53")
 }
 
-//protobuf {
-//    protoc {
-//        artifact = "com.google.protobuf:protoc:${protobufVersion}"
-//    }
-//    plugins {
-//        id("grpc") {
-//            artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
-//        }
-//    }
-//    generateProtoTasks {
-//        ofSourceSet("main").forEach {
-//            it.plugins {
-//                // Apply the "grpc" plugin whose spec is defined above, without
-//                // options. Note the braces cannot be omitted, otherwise the
-//                // plugin will not be added. This is because of the implicit way
-//                // NamedDomainObjectContainer binds the methods.
-//                id("grpc") { }
-//            }
-//        }
-//    }
-//}
-//
-//sourceSets {
-//    main {
-//        proto {
-//            srcDir '../submodules/durabletask-protobuf/protos'
-//        }
-//        java {
-//            srcDirs 'build/generated/source/proto/main/grpc'
-//            srcDirs 'build/generated/source/proto/main/java'
-//        }
-//    }
-//}
-
 protobuf {
     protoc {
         // The artifact spec for the Protobuf Compiler
@@ -91,4 +57,8 @@ protobuf {
             }
         }
     }
+}
+
+tasks.shadowJar {
+    mergeServiceFiles()
 }
