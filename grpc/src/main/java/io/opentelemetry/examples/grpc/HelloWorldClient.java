@@ -14,9 +14,6 @@ import io.opentelemetry.instrumentation.grpc.v1_6.GrpcTelemetry;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.kc.GreeterGrpc;
-import org.kc.HelloReply;
-import org.kc.HelloRequest;
 
 /** A simple client that requests a greeting from the {@link HelloWorldServer}. */
 public class HelloWorldClient {

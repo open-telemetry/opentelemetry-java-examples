@@ -17,9 +17,6 @@ import io.opentelemetry.instrumentation.grpc.v1_6.GrpcTelemetry;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
-import org.kc.GreeterGrpc;
-import org.kc.HelloReply;
-import org.kc.HelloRequest;
 
 /** Server that manages startup/shutdown of a {@code Greeter} server. */
 public class HelloWorldServer {
