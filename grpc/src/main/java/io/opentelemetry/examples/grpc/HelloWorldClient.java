@@ -19,10 +19,10 @@ import java.util.logging.Logger;
 public class HelloWorldClient {
 
   private static final Logger logger = Logger.getLogger(HelloWorldClient.class.getName());
-  private final ManagedChannel channel;
-  private final GreeterGrpc.GreeterBlockingStub blockingStub;
   private static final OpenTelemetry openTelemetry =
       ExampleConfiguration.initializeOpenTelemetry("localhost", 9411);
+  private final ManagedChannel channel;
+  private final GreeterGrpc.GreeterBlockingStub blockingStub;
 
   // OTel Tracing API
   private final Tracer tracer =
