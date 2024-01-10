@@ -23,7 +23,7 @@ public class HelloWorldServer {
   private static final Logger logger = Logger.getLogger(HelloWorldServer.class.getName());
   private static final OpenTelemetry openTelemetry =
       ExampleConfiguration.initializeOpenTelemetry("localhost", 9411);
-  private Server server;`
+  private Server server;
 
   private void start() throws IOException {
     /* The port on which the server should run */
