@@ -20,10 +20,10 @@ var protobufVersion = "3.25.1"
 var protocVersion = protobufVersion
 
 dependencies {
-    runtimeOnly ("io.grpc:grpc-netty-shaded:1.59.1")
-    implementation ("io.grpc:grpc-protobuf:1.59.1")
-    implementation ("io.grpc:grpc-services:1.59.1")
-    implementation ("io.grpc:grpc-stub:1.59.1")
+    runtimeOnly ("io.grpc:grpc-netty-shaded:${grpcVersion}")
+    implementation ("io.grpc:grpc-protobuf:${grpcVersion}")
+    implementation ("io.grpc:grpc-services:${grpcVersion}")
+    implementation ("io.grpc:grpc-stub:${grpcVersion}")
     implementation ("com.google.protobuf:protobuf-java-util:3.24.0")
     implementation ("io.opentelemetry.instrumentation:opentelemetry-grpc-1.6:1.32.0-alpha")
     implementation ("com.google.guava:guava:32.0.1-jre")
@@ -35,9 +35,6 @@ dependencies {
 
     //alpha modules
     implementation("io.opentelemetry.semconv:opentelemetry-semconv")
-
-    implementation("com.google.j2objc:j2objc-annotations:2.8")
-    implementation("org.apache.tomcat:annotations-api:6.0.53")
 }
 
 protobuf {
