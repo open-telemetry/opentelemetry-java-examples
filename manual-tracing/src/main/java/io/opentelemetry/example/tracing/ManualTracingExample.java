@@ -24,8 +24,7 @@ public final class ManualTracingExample {
   }
 
   private String calculateLlvm() {
-    String type = "smarter";
-    Span.current().setAttribute("type", type);
+      Span.current().setAttribute("type", "smarter");
     //noinspection DataFlowIssue
     Span.current().setAttribute("foo", Baggage.current().getEntryValue("foo"));
     return "OK";
