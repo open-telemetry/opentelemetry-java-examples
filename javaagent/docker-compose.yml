@@ -14,8 +14,8 @@ services:
   collector:
     image: otel/opentelemetry-collector-contrib:0.92.0
     volumes:
-      - ./otel-config.yaml:/otel-config.yaml
-    command: ["--config=/otel-config.yaml"]
+      - ./collector-config.yaml:/collector-config.yaml
+    command: ["--config=/collector-config.yaml"]
     expose:
       - "4317"
     ports:
