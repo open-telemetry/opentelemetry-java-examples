@@ -80,7 +80,7 @@ class ApplicationTest {
               var spans = extractSpansFromRequests(requests);
               assertThat(spans)
                   .extracting(Span::getName)
-                  .contains("Controller.doWork", "Controller.ping");
+                  .contains("Controller.doWork", "GET", "GET /ping");
 
               // verify metrics
               var metrics = extractMetricsFromRequests(requests);
