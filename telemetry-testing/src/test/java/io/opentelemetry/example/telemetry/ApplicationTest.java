@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.mockserver.configuration.Configuration;
 import org.mockserver.integration.ClientAndServer;
 import org.mockserver.model.Body;
 import org.mockserver.model.HttpRequest;
@@ -55,7 +56,9 @@ class ApplicationTest {
 
   @BeforeAll
   public static void setUp() {
-    collectorServer = startClientAndServer(EXPORTER_ENDPOINT_PORT);
+    Configuration config = Configuration.configuration();
+    config.localBoundIP("127.0.0.1");
+    collectorServer = startClientAndServer(config, EXPORTER_ENDPOINT_PORT);
     collectorServer.when(request()).respond(response().withStatusCode(200));
   }
 
@@ -67,7 +70,7 @@ class ApplicationTest {
   @Test
   public void testTelemetry() {
 
-    template.getForEntity(URI.create("http://localhost:" + port + "/ping"), String.class);
+    template.getForEntity(URI.create("http://127.0.0.1:" + port + "/ping"), String.class);
 
     // Assert
     await()

@@ -53,6 +53,7 @@ tasks.test {
     // otel.metric.export.interval - the interval, in milliseconds, between the start of two export attempts
     // More information: https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md
     jvmArgs = listOf("-Xmx1G", "-javaagent:${agent.singleFile}",
+        "-Dotel.exporter.otlp.endpoint=http://127.0.0.1:4318",
         "-Dotel.exporter.otlp.protocol=http/protobuf",
         "-Dotel.metric.export.interval=5000")
 }
