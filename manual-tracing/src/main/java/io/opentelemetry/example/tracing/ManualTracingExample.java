@@ -30,7 +30,7 @@ public final class ManualTracingExample {
     return "OK";
   }
 
-  public void setBaggage() {
+  public void setBaggageAndRun() {
     try {
       Baggage.current().toBuilder()
           .put("foo", "bar")
@@ -54,6 +54,6 @@ public final class ManualTracingExample {
       example.myWonderfulUseCase();
     }
 
-    example.setBaggage();
+    example.setBaggageAndRun();
   }
 }
