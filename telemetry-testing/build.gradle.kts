@@ -40,7 +40,7 @@ dependencies {
     testImplementation("org.mock-server:mockserver-netty:5.15.0:shaded")
     testImplementation("org.awaitility:awaitility:4.2.0")
     testImplementation("io.opentelemetry.proto:opentelemetry-proto:0.14.0-alpha")
-    testImplementation("org.assertj:assertj-core:3.25.1")
+    testImplementation("org.assertj:assertj-core:3.25.2")
 
     agent("io.opentelemetry.javaagent:opentelemetry-javaagent:1.32.0")
 }
