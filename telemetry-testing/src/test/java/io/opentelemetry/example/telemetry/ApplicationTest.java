@@ -56,9 +56,7 @@ class ApplicationTest {
 
   @BeforeAll
   public static void setUp() {
-    Configuration config = Configuration.configuration();
-    config.localBoundIP("127.0.0.1");
-    collectorServer = startClientAndServer(config, EXPORTER_ENDPOINT_PORT);
+    collectorServer = startClientAndServer(EXPORTER_ENDPOINT_PORT);
     collectorServer.when(request()).respond(response().withStatusCode(200));
   }
 
