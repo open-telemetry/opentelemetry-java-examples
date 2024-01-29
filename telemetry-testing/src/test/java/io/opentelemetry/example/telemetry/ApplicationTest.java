@@ -67,7 +67,7 @@ class ApplicationTest {
   @Test
   public void testTelemetry() {
 
-    template.getForEntity(URI.create("http://127.0.0.1:" + port + "/ping"), String.class);
+    template.getForEntity(URI.create("http://localhost:" + port + "/ping"), String.class);
 
     // Assert
     await()

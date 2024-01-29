@@ -52,7 +52,5 @@ tasks.test {
     // otel.exporter.otlp.protocol - the transport protocol to use on OTLP trace, metric, and log requests
     // otel.metric.export.interval - the interval, in milliseconds, between the start of two export attempts
     // More information: https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md
-    jvmArgs = listOf("-Xmx2G", "-javaagent:${agent.singleFile}",
-        "-Dotel.exporter.otlp.endpoint=http://127.0.0.1:4318",
-        "-Dotel.metric.export.interval=5000")
+    jvmArgs = listOf("-Dmockserver.logLevel=warn", "-javaagent:${agent.singleFile}", "-Dotel.metric.export.interval=15000")
 }
