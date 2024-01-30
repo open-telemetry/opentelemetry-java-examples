@@ -39,7 +39,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-engine")
     testImplementation("org.mock-server:mockserver-netty:5.15.0:shaded")
     testImplementation("org.awaitility:awaitility:4.2.0")
-    testImplementation("io.opentelemetry.proto:opentelemetry-proto:0.20.0-alpha")
+    testImplementation("io.opentelemetry.proto:opentelemetry-proto:1.1.0-alpha")
     testImplementation("org.assertj:assertj-core:3.25.2")
 
     agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.0.0")
