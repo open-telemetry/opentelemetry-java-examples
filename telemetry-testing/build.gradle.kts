@@ -29,7 +29,7 @@ val bootJar = tasks.named<BootJar>("bootJar") {
 dependencies {
     implementation(platform(SpringBootPlugin.BOM_COORDINATES))
     implementation("io.opentelemetry:opentelemetry-api")
-    implementation("io.opentelemetry.instrumentation:opentelemetry-instrumentation-annotations:1.32.0")
+    implementation("io.opentelemetry.instrumentation:opentelemetry-instrumentation-annotations:2.0.0")
     //spring modules
     implementation("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -42,7 +42,7 @@ dependencies {
     testImplementation("io.opentelemetry.proto:opentelemetry-proto:0.20.0-alpha")
     testImplementation("org.assertj:assertj-core:3.25.2")
 
-    agent("io.opentelemetry.javaagent:opentelemetry-javaagent:1.32.0")
+    agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.0.0")
 }
 
 tasks.test {
@@ -52,5 +52,7 @@ tasks.test {
     // otel.exporter.otlp.protocol - the transport protocol to use on OTLP trace, metric, and log requests
     // otel.metric.export.interval - the interval, in milliseconds, between the start of two export attempts
     // More information: https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md
-    jvmArgs = listOf("-javaagent:${agent.singleFile}", "-Dotel.exporter.otlp.protocol=http/protobuf", "-Dotel.metric.export.interval=5000")
+    //
+    // mockserver.logLevel=off is needed to avoid circular exporting of log records
+    jvmArgs = listOf("-javaagent:${agent.singleFile}", "-Dotel.metric.export.interval=5000", "-Dmockserver.logLevel=off")
 }
