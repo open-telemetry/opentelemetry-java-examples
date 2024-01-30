@@ -39,7 +39,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-engine")
     testImplementation("org.mock-server:mockserver-netty:5.15.0:shaded")
     testImplementation("org.awaitility:awaitility:4.2.0")
-    testImplementation("io.opentelemetry.proto:opentelemetry-proto:0.14.0-alpha")
+    testImplementation("io.opentelemetry.proto:opentelemetry-proto:1.1.0-alpha")
     testImplementation("org.assertj:assertj-core:3.25.1")
 
     agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.0.0")
@@ -52,5 +52,5 @@ tasks.test {
     // otel.exporter.otlp.protocol - the transport protocol to use on OTLP trace, metric, and log requests
     // otel.metric.export.interval - the interval, in milliseconds, between the start of two export attempts
     // More information: https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md
-    jvmArgs = listOf("-javaagent:${agent.singleFile}", "-Dotel.metric.export.interval=5000", "-Dmockserver.logLevel=warn")
+    jvmArgs = listOf("-javaagent:${agent.singleFile}", "-Dotel.metric.export.interval=5000")
 }
