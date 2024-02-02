@@ -13,42 +13,23 @@ import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.common.Attributes;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.SpanKind;
-import io.opentelemetry.api.trace.Tracer;
-import io.opentelemetry.context.Context;
-import io.opentelemetry.context.Scope;
-import io.opentelemetry.context.propagation.TextMapGetter;
-import io.opentelemetry.context.propagation.TextMapPropagator;
+import io.opentelemetry.extension.incubator.trace.ExtendedTracer;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public final class HttpServer {
   // It's important to initialize your OpenTelemetry SDK as early in your application's lifecycle as
   // possible.
   private static final OpenTelemetry openTelemetry = ExampleConfiguration.initOpenTelemetry();
-  private static final Tracer tracer =
-      openTelemetry.getTracer("io.opentelemetry.example.http.HttpServer");
+  private static final ExtendedTracer tracer =
+      ExtendedTracer.create(openTelemetry.getTracer("io.opentelemetry.example.http.HttpServer"));
 
   private static final int port = 8080;
   private final com.sun.net.httpserver.HttpServer server;
-
-  // Extract the context from http headers
-  private static final TextMapGetter<HttpExchange> getter =
-      new TextMapGetter<HttpExchange>() {
-        @Override
-        public Iterable<String> keys(HttpExchange carrier) {
-          return carrier.getRequestHeaders().keySet();
-        }
-
-        @Override
-        public String get(HttpExchange carrier, String key) {
-          if (carrier.getRequestHeaders().containsKey(key)) {
-            return carrier.getRequestHeaders().get(key).get(0);
-          }
-          return "";
-        }
-      };
 
   private HttpServer() throws IOException {
     this(port);
@@ -64,37 +45,34 @@ public final class HttpServer {
 
   private static class HelloHandler implements HttpHandler {
 
-    public static final TextMapPropagator TEXT_MAP_PROPAGATOR =
-        openTelemetry.getPropagators().getTextMapPropagator();
-
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-      // Extract the context from the HTTP request
-      Context context = TEXT_MAP_PROPAGATOR.extract(Context.current(), exchange, getter);
-
-      Span span =
-          tracer.spanBuilder("GET /").setParent(context).setSpanKind(SpanKind.SERVER).startSpan();
-
-      try (Scope scope = span.makeCurrent()) {
-        // Set the Semantic Convention
-        span.setAttribute("component", "http");
-        span.setAttribute("http.method", "GET");
-        /*
-         One of the following is required:
-         - http.scheme, http.host, http.target
-         - http.scheme, http.server_name, net.host.port, http.target
-         - http.scheme, net.host.name, net.host.port, http.target
-         - http.url
-        */
-        span.setAttribute("http.scheme", "http");
-        span.setAttribute("http.host", "localhost:" + HttpServer.port);
-        span.setAttribute("http.target", "/");
-        // Process the request
-        answer(exchange, span);
-      } finally {
-        // Close the span
-        span.end();
-      }
+      tracer
+          .spanBuilder("GET /")
+          .setParentFrom(
+              openTelemetry.getPropagators(),
+              exchange.getRequestHeaders().entrySet().stream()
+                  .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().get(0))))
+          .setSpanKind(SpanKind.SERVER)
+          .startAndRun(
+              () -> {
+                // Set the Semantic Convention
+                Span span = Span.current();
+                span.setAttribute("component", "http");
+                span.setAttribute("http.method", "GET");
+                /*
+                 One of the following is required:
+                 - http.scheme, http.host, http.target
+                 - http.scheme, http.server_name, net.host.port, http.target
+                 - http.scheme, net.host.name, net.host.port, http.target
+                 - http.url
+                */
+                span.setAttribute("http.scheme", "http");
+                span.setAttribute("http.host", "localhost:" + HttpServer.port);
+                span.setAttribute("http.target", "/");
+                // Process the request
+                answer(exchange, span);
+              });
     }
 
     private void answer(HttpExchange exchange, Span span) throws IOException {

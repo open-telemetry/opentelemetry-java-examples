@@ -50,6 +50,7 @@ include(
     ":opentelemetry-examples-javaagent",
     ":opentelemetry-examples-log-appender",
     ":opentelemetry-examples-logging",
+    ":opentelemetry-examples-manual-tracing",
     ":opentelemetry-examples-metrics",
     ":opentelemetry-examples-micrometer-shim",
     ":opentelemetry-examples-otlp",
