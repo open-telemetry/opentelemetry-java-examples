@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: gradle/wrapper-validation-action@v1.1.0
+      - uses: gradle/wrapper-validation-action@v2.1.1
 
   build:
     runs-on: ${{ matrix.os }}
@@ -37,7 +37,7 @@ jobs:
           java-version: 17
 
       - name: Build
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v3
         with:
           arguments: clean check shadowJar
           cache-read-only: ${{ github.event_name == 'pull_request' }}

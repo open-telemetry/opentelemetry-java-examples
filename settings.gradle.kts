@@ -1,9 +1,9 @@
 pluginManagement {
     plugins {
-        id("com.diffplug.spotless") version "6.24.0"
+        id("com.diffplug.spotless") version "6.25.0"
         id("com.github.johnrengelman.shadow") version "8.1.1"
         id("com.google.protobuf") version "0.9.4"
-        id("com.gradle.enterprise") version "3.16.1"
+        id("com.gradle.enterprise") version "3.16.2"
         id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
     }
 }
@@ -50,6 +50,7 @@ include(
     ":opentelemetry-examples-javaagent",
     ":opentelemetry-examples-log-appender",
     ":opentelemetry-examples-logging",
+    ":opentelemetry-examples-manual-tracing",
     ":opentelemetry-examples-metrics",
     ":opentelemetry-examples-micrometer-shim",
     ":opentelemetry-examples-otlp",
