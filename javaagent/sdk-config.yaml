@@ -1,0 +1,38 @@
+file_format: "0.1"
+
+resource:
+  attributes:
+    service.name: agent-example-app
+
+logger_provider:
+  processors:
+    - batch:
+        exporter:
+          otlp:
+            endpoint: http://collector:4318
+            protocol: http/protobuf
+
+tracer_provider:
+  processors:
+    - batch:
+        exporter:
+          otlp:
+            endpoint: http://collector:4318
+            protocol: http/protobuf
+
+meter_provider:
+  readers:
+    - periodic:
+        exporter:
+          otlp:
+            endpoint: http://collector:4318
+            protocol: http/protobuf
+  # Example of how to use view to drop a metric which isn't needed.
+  # This configuration is not available with the environment variable configuration scheme.
+  # NOTE: most users will want jvm.memory.limit metric and should remove this view.
+  views:
+    - selector:
+        instrument_name: jvm.memory.limit
+      stream:
+        aggregation:
+          drop:
