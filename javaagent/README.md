@@ -49,10 +49,10 @@ Watch for spans, metrics, and logs in the collector log output
 
 By default, this example uses the [environment variable configuration schema](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md) to configure the SDK. However, it also includes [sdk-config.yaml](./sdk-config.yaml) which demonstrates how the file configuration scheme can be used instead. `sdk-config.yaml` demonstrates view configuration to disable a metric, something which is not available in the environment variable configuration scheme.
 
-To use file configuration instead of the environment variable scheme, add the following before stargin the application and collector:
+To use file configuration instead of the environment variable scheme, add the following before starting the application and collector:
 
 ```shell
-OTEL_CONFIG_FILE=/sdk-config.yaml
+export OTEL_CONFIG_FILE=/sdk-config.yaml
 ```
 
 Note that toggling file configuration causes the environment variable configuration scheme to be ignored completely. However, there is support for environment variable substitution within configuration files.
