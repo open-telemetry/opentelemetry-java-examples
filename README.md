@@ -72,7 +72,8 @@ of them assume you have docker running on your local machine.
 ## Approvers and Maintainers
 
 Superset of approvers and maintainers from the
-[opentelemetry-java](https://github.com/open-telemetry/opentelemetry-java#contributing)
+[opentelemetry-java](https://github.com/open-telemetry/opentelemetry-java#contributing),
+[opentelemetry-java-instrumentation](https://github.com/open-telemetry/opentelemetry-java-instrumentation#contributing),
 and
-[opentelemetry-java-instrumentation](https://github.com/open-telemetry/opentelemetry-java-instrumentation#contributing)
+[opentelemetry-java-contrib](https://github.com/open-telemetry/opentelemetry-java-contrib#contributing)
 repositories.
