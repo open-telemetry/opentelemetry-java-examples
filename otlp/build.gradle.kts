@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("application")
 }
 
 description = "OpenTelemetry Example for OTLP Exporters"
@@ -9,6 +10,10 @@ java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(8))
     }
+}
+
+application {
+    mainClass = "io.opentelemetry.example.otlp.OtlpExporterExample"
 }
 
 dependencies {
