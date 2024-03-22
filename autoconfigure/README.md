@@ -21,6 +21,7 @@ Then start the example application with the logging exporter configured:
 ```shell
 java -Dotel.traces.exporter=logging \
      -Dotel.metrics.exporter=logging \
+     -Dotel.logs.exporter=logging \
      -cp build/libs/opentelemetry-examples-autoconfigure-0.1.0-SNAPSHOT-all.jar \
      io.opentelemetry.example.autoconfigure.AutoConfigExample
 ```
@@ -30,6 +31,7 @@ Alternatively, instead of system properties you can use environment variables:
 ```shell
 export OTEL_TRACES_EXPORTER=logging
 export OTEL_METRICS_EXPORTER=logging
+export OTEL_LOGS_EXPORTER=logging
 
 java -cp build/libs/opentelemetry-examples-autoconfigure-0.1.0-SNAPSHOT-all.jar \
      io.opentelemetry.example.autoconfigure.AutoConfigExample
