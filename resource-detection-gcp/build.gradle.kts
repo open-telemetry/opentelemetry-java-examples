@@ -1,10 +1,20 @@
 plugins {
     id("java")
     id("application")
+    id("com.google.cloud.tools.jib")
 }
 
 description = "OpenTelemetry Example for Google Cloud Resource Detection"
 val moduleName by extra { "io.opentelemetry.resource.gcp" }
+
+val autoconfConfig = listOf(
+    "-Dotel.traces.exporter=none",
+    "-Dotel.metrics.exporter=none",
+    "-Dotel.logs.exporter=none",
+    "-Dotel.java.global-autoconfigure.enabled=true",
+    "-Dotel.service.name=opentelemetry-examples-resource-gcp",
+)
+
 
 java {
     toolchain {
@@ -14,13 +24,16 @@ java {
 
 application {
     mainClass = "io.opentelemetry.resource.gcp.GCPResourceExample"
+    applicationDefaultJvmArgs = autoconfConfig
 }
 
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+    implementation("io.opentelemetry:opentelemetry-api")
+    implementation("io.opentelemetry:opentelemetry-sdk-extension-autoconfigure")
+    implementation("io.opentelemetry.contrib:opentelemetry-gcp-resources:1.34.0-alpha")
 }
 
-tasks.test {
-    useJUnitPlatform()
+jib {
+    from.image = "gcr.io/distroless/java-debian10:11"
+    containerizingMode = "packaged"
 }

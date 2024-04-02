@@ -1,0 +1,40 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  # Unique key of the Job instance
+  name: hello-resource-java
+spec:
+  template:
+    metadata:
+      name: hello-resource-java
+      labels:
+        service: hello-resource-java
+    spec:
+      containers:
+        - name: hello-resource-java
+          image: gcr.io/%GOOGLE_CLOUD_PROJECT%/hello-resource-java:latest
+          env:
+            - name: OTEL_TRACES_EXPORTER
+              value: none
+            - name: OTEL_METRICS_EXPORTER
+              value: none
+            - name: OTEL_LOGS_EXPORTER
+              value: none
+            - name: OTEL_SERVICE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['service']
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: CONTAINER_NAME
+              value: hello-resource-java
+      # Do not restart containers after they exit
+      restartPolicy: Never
+  # of retries before marking as failed.
+  backoffLimit: 4

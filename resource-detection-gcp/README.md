@@ -40,10 +40,10 @@ export GOOGLE_CLOUD_PROJECT="my-awesome-gcp-project-id"
 
 To spin it up on your own GKE cluster, run the following:
 ```shell
-./gradlew :examples-resource:jib --image="gcr.io/$GOOGLE_CLOUD_PROJECT/hello-resource-java"
+./gradlew :opentelemetry-examples-resource-detection-gcp:jib --image="gcr.io/$GOOGLE_CLOUD_PROJECT/hello-resource-java"
 
 sed s/%GOOGLE_CLOUD_PROJECT%/$GOOGLE_CLOUD_PROJECT/g \
- examples/resource/job.yaml | kubectl apply -f -
+ resource-detection-gcp/k8s/job.yaml | kubectl apply -f -
 ```
 
 This will run the application as a GKE workload. You can view it from the `Workloads` tab under the `Resource Management` section on GKE console.
@@ -59,7 +59,7 @@ You can run the application locally as well:
 
 From the root of the repository,
 ```shell
-cd examples/resource && gradle run
+cd resource-detection-gcp && gradle run
 ```
 
 The detected resource attributes would depend on the environment in which the application is run.
