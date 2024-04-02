@@ -5,7 +5,7 @@ plugins {
 }
 
 description = "OpenTelemetry Example for Google Cloud Resource Detection"
-val moduleName by extra { "io.opentelemetry.resource.gcp" }
+val moduleName by extra { "io.opentelemetry.examples.resource-detection.gcp" }
 
 val autoconfConfig = listOf(
     "-Dotel.traces.exporter=none",
@@ -14,7 +14,6 @@ val autoconfConfig = listOf(
     "-Dotel.java.global-autoconfigure.enabled=true",
     "-Dotel.service.name=opentelemetry-examples-resource-gcp",
 )
-
 
 java {
     toolchain {
