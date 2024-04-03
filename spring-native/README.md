@@ -11,6 +11,7 @@ The example uses the following elements:
   the [OTLP receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
   and exporting to the standard output with
   the [logging exporter](https://github.com/open-telemetry/opentelemetry-collector/tree/main/exporter/loggingexporter).
+- A spring configuration to suppress spans for the `/actuator` endpoint
 
 # Description of the instrumentation set-up
 
