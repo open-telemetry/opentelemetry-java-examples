@@ -1,12 +1,10 @@
-version: '3'
+version: '3.8'
 services:
   app:
     image: otel-native-graalvm
     environment:
       OTEL_SERVICE_NAME: "graal-native-example-app"
-      OTEL_EXPORTER_OTLP_ENDPOINT: "http://collector:4317"
-      # Logs are disabled by default
-      OTEL_LOGS_EXPORTER: "otlp"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://collector:4318"
     ports:
       - "8080:8080"
     depends_on:

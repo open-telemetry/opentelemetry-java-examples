@@ -13,8 +13,12 @@ dependencies {
     implementation(platform(SpringBootPlugin.BOM_COORDINATES))
     implementation(platform("io.opentelemetry:opentelemetry-bom:1.36.0"))
     implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:2.2.0-alpha"))
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
     implementation("com.h2database:h2")
     implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
+
+    // for otelCustomizer in Application.java
+    implementation("io.opentelemetry.contrib:opentelemetry-samplers:1.33.0-alpha")
 }
