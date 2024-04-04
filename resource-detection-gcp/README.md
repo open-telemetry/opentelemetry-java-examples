@@ -1,9 +1,11 @@
-# Resource detection Example
+# Resource Detection Example - GCP
 
 > [!NOTE]
 > Running this example does not generate any telemetry. This example merely demonstrates resource attributes detetcted by the GCP Resource Detector.
 
 An example application that shows what resource attributes will be detected by the [GCP Resource Detector](https://github.com/open-telemetry/opentelemetry-java-contrib/tree/main/gcp-resources) and how the [Autoconfigure Resource Provider SPI](https://github.com/open-telemetry/opentelemetry-java/tree/main/sdk-extensions/autoconfigure#resource-provider-spi) automatically *attaches* the detected resource attributes to the generated telemetry.
+
+*For users looking to use the GCP Resource Detector with OpenTelemetry Java Agent for automatic instrumentation, refer to the instructions [here](https://opentelemetry.io/docs/languages/java/automatic/configuration/#enable-resource-providers-that-are-disabled-by-default).*
 
 ### Prerequisites
 
