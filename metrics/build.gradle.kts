@@ -16,5 +16,5 @@ dependencies {
 
     implementation("io.opentelemetry:opentelemetry-sdk-extension-autoconfigure")
     runtimeOnly("io.opentelemetry:opentelemetry-exporter-otlp")
-    implementation("io.opentelemetry:opentelemetry-extension-incubator")
+    implementation("io.opentelemetry:opentelemetry-api-incubator")
 }

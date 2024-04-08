@@ -2,9 +2,9 @@ package io.opentelemetry.example.tracing;
 
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.baggage.Baggage;
+import io.opentelemetry.api.incubator.trace.ExtendedTracer;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.context.Context;
-import io.opentelemetry.extension.incubator.trace.ExtendedTracer;
 
 /**
  * An example of using {@link io.opentelemetry.exporter.logging.LoggingSpanExporter} and {@link
