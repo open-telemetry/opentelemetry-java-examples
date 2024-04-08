@@ -13,7 +13,7 @@ import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.common.Attributes;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.SpanKind;
-import io.opentelemetry.extension.incubator.trace.ExtendedTracer;
+import io.opentelemetry.api.incubator.trace.ExtendedTracer;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;

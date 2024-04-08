@@ -19,5 +19,5 @@ dependencies {
     //alpha modules
     implementation("io.opentelemetry.semconv:opentelemetry-semconv")
     implementation("io.opentelemetry:opentelemetry-sdk-extension-autoconfigure")
-    implementation("io.opentelemetry:opentelemetry-extension-incubator")
+    implementation("io.opentelemetry:opentelemetry-api-incubator")
 }

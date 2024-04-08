@@ -11,7 +11,7 @@ import io.opentelemetry.api.trace.SpanKind;
 import io.opentelemetry.api.trace.StatusCode;
 import io.opentelemetry.api.trace.Tracer;
 import io.opentelemetry.context.Scope;
-import io.opentelemetry.extension.incubator.propagation.ExtendedContextPropagators;
+import io.opentelemetry.api.incubator.propagation.ExtendedContextPropagators;
 import io.opentelemetry.semconv.SemanticAttributes;
 import java.io.BufferedReader;
 import java.io.IOException;
