@@ -1,7 +1,9 @@
 package io.opentelemetry.example.graal;
 
+import io.opentelemetry.api.GlobalOpenTelemetry;
 import io.opentelemetry.api.trace.SpanKind;
 import io.opentelemetry.contrib.sampler.RuleBasedRoutingSampler;
+import io.opentelemetry.instrumentation.spring.autoconfigure.OpenTelemetryInjector;
 import io.opentelemetry.sdk.autoconfigure.spi.AutoConfigurationCustomizerProvider;
 import io.opentelemetry.semconv.SemanticAttributes;
 import org.springframework.boot.SpringApplication;
@@ -23,5 +25,11 @@ public class Application {
                 RuleBasedRoutingSampler.builder(SpanKind.SERVER, fallback)
                     .drop(SemanticAttributes.URL_PATH, "^/actuator")
                     .build());
+  }
+
+  @Bean
+  OpenTelemetryInjector registerGlobalOpenTelemetry() {
+    // not recommended, since you can just auto-wire OpenTelemetry where you need it
+    return GlobalOpenTelemetry::set;
   }
 }
