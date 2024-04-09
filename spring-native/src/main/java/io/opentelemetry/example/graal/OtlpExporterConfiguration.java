@@ -14,7 +14,6 @@ import io.opentelemetry.sdk.trace.export.SpanExporter;
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.Supplier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -69,11 +68,11 @@ public class OtlpExporterConfiguration {
           builder::setClientTls,
           builder::setRetryPolicy);
 
-      return builder.setMeterProvider(meterProviderRef::get).setHeaders(headerSupplier()).build();
+      return builder.setMeterProvider(meterProviderRef::get).setHeaders(this::headers).build();
     }
 
-    private Supplier<Map<String, String>> headerSupplier() {
-      return () -> Collections.singletonMap("Authorization", "Bearer " + refreshToken());
+    private Map<String, String> headers() {
+      return Collections.singletonMap("Authorization", "Bearer " + refreshToken());
     }
 
     private String refreshToken() {
