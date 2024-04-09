@@ -1,8 +1,5 @@
 # Resource Detection Example - GCP
 
-> [!NOTE]
-> Running this example does not generate any telemetry. This example merely demonstrates resource attributes detetcted by the GCP Resource Detector.
-
 An example application that shows what resource attributes will be detected by the [GCP Resource Detector](https://github.com/open-telemetry/opentelemetry-java-contrib/tree/main/gcp-resources) and how the [Autoconfigure Resource Provider SPI](https://github.com/open-telemetry/opentelemetry-java/tree/main/sdk-extensions/autoconfigure#resource-provider-spi) automatically *attaches* the detected resource attributes to the generated telemetry.
 
 *For users looking to use the GCP Resource Detector with OpenTelemetry Java Agent for automatic instrumentation, refer to the instructions [here](https://opentelemetry.io/docs/languages/java/automatic/configuration/#enable-resource-providers-that-are-disabled-by-default).*
@@ -65,3 +62,12 @@ cd resource-detection-gcp && gradle run
 ```
 
 The detected resource attributes would depend on the environment in which the application is run.
+
+## Viewing the result
+
+The example produces a single span and uses [logging OTLP JSON exporter](https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md#logging-otlp-json-exporter) to export the produced span.
+After running the example successfully, you should see the emitted span in JSON form via JUL. It should look something like:
+
+```
+INFO: {"resource":{"attributes": ... }}
+```

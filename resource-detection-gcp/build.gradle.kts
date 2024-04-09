@@ -8,7 +8,7 @@ description = "OpenTelemetry Example for Google Cloud Resource Detection"
 val moduleName by extra { "io.opentelemetry.examples.resource-detection.gcp" }
 
 val autoconfConfig = listOf(
-    "-Dotel.traces.exporter=none",
+    "-Dotel.traces.exporter=logging-otlp",
     "-Dotel.metrics.exporter=none",
     "-Dotel.logs.exporter=none",
     "-Dotel.java.global-autoconfigure.enabled=true",
@@ -29,10 +29,12 @@ application {
 dependencies {
     implementation("io.opentelemetry:opentelemetry-api")
     implementation("io.opentelemetry:opentelemetry-sdk-extension-autoconfigure")
+    implementation("io.opentelemetry:opentelemetry-exporter-logging-otlp")
     implementation("io.opentelemetry.contrib:opentelemetry-gcp-resources:1.34.0-alpha")
 }
 
 jib {
     from.image = "gcr.io/distroless/java-debian10:11"
     containerizingMode = "packaged"
+    container.jvmFlags = autoconfConfig
 }
