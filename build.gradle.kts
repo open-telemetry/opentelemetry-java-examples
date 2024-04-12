@@ -19,7 +19,7 @@ subprojects {
     dependencies {
         // using the bom ensures that all of your opentelemetry dependency versions are aligned
         implementation(platform("io.opentelemetry:opentelemetry-bom-alpha:1.37.0-alpha"))
-        implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:2.2.0-alpha"))
+        implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:2.3.0-alpha"))
     }
 
     spotless {
