@@ -3,11 +3,12 @@ package io.opentelemetry.example.azure.resource.detector;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.context.Scope;
 import io.opentelemetry.contrib.azure.resource.AzureAppServiceResourceProvider;
+import io.opentelemetry.contrib.azure.resource.AzureContainersResourceProvider;
+import io.opentelemetry.contrib.azure.resource.AzureEnvVarPlatform;
+import io.opentelemetry.contrib.azure.resource.AzureFunctionsResourceProvider;
 import io.opentelemetry.sdk.OpenTelemetrySdk;
 import io.opentelemetry.sdk.autoconfigure.AutoConfiguredOpenTelemetrySdk;
-import io.opentelemetry.sdk.autoconfigure.ResourceConfiguration;
 import io.opentelemetry.sdk.common.CompletableResultCode;
-import io.opentelemetry.sdk.resources.Resource;
 import java.util.concurrent.TimeUnit;
 
 public class AzureResourceDetectorExample {
@@ -19,16 +20,23 @@ public class AzureResourceDetectorExample {
     OpenTelemetrySdk openTelemetrySdk =
         AutoConfiguredOpenTelemetrySdk.initialize().getOpenTelemetrySdk();
 
-    // Shows the resource attributes detected from the environment variables
-    // and system properties.
-    System.out.println("Detecting resource: Environment");
-    Resource autoResource = ResourceConfiguration.createEnvironmentResource();
-    System.out.println(autoResource.getAttributes() + "\n");
-
-    // Shows the resource attributes detected by the Azure App Service Resource Provider
-    System.out.println("Detecting resource: hardcoded");
-    AzureAppServiceResourceProvider resourceProvider = new AzureAppServiceResourceProvider();
-    System.out.println(resourceProvider.getAttributes() + "\n");
+    AzureEnvVarPlatform detect = AzureEnvVarPlatform.detect(System.getenv());
+    if (detect == AzureEnvVarPlatform.APP_SERVICE) {
+      // Shows the resource attributes detected by the Azure App Service Resource Provider
+      System.out.println("Detecting Azure App Service resource");
+      AzureAppServiceResourceProvider resourceProvider = new AzureAppServiceResourceProvider();
+      System.out.println(resourceProvider.getAttributes() + "\n");
+    } else if (detect == AzureEnvVarPlatform.FUNCTIONS) {
+      // Shows the resource attributes detected by the Azure Function Resource Provider
+      System.out.println("Detecting Azure Function resource");
+      AzureFunctionsResourceProvider resourceProvider = new AzureFunctionsResourceProvider();
+      System.out.println(resourceProvider.getAttributes() + "\n");
+    } else if (detect == AzureEnvVarPlatform.CONTAINER_APP) {
+      // Shows the resource attributes detected by the Azure Container Insights Resource Provider
+      System.out.println("Detecting Azure Container App resource");
+      AzureContainersResourceProvider resourceProvider = new AzureContainersResourceProvider();
+      System.out.println(resourceProvider.getAttributes() + "\n");
+    }
 
     // Shows the attributes attached to the Resource that was set for TracerProvider
     // via the autoconfiguration SPI.
@@ -36,7 +44,7 @@ public class AzureResourceDetectorExample {
     Span span =
         openTelemetrySdk
             .getTracer(INSTRUMENTATION_SCOPE_NAME)
-            .spanBuilder("azure-resource-providers-detector")
+            .spanBuilder("azure-resource-detector")
             .startSpan();
     try (Scope ignored = span.makeCurrent()) {
       // Simulate work: this could be simulating a network request or an expensive disk operation
