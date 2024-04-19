@@ -12,6 +12,8 @@ The example uses the following elements:
   and exporting to the standard output with
   the [logging exporter](https://github.com/open-telemetry/opentelemetry-collector/tree/main/exporter/loggingexporter).
 - A spring configuration to suppress spans for the `/actuator` endpoint
+- A spring configuration to set OTLP headers dynamically 
+  (not needed for the example - it shows how to configure exporters programmatically)
 
 # Description of the instrumentation set-up
 
