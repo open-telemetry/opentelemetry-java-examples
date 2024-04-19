@@ -25,6 +25,10 @@
       "groupName": "logback packages"
     },
     {
+      "matchPackagePrefixes": ["com.google.protobuf"],
+      "groupName": "protobuf packages"
+    },
+    {
       // intentionally using Spring Boot 2 in some examples
       "matchPackageNames": ["org.springframework.boot"],
       "matchUpdateTypes": ["major"],
