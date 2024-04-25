@@ -3,7 +3,11 @@ plugins {
     id("com.github.johnrengelman.shadow") apply false
     id("java-library")
 }
-
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
 subprojects {
     apply(plugin = "com.diffplug.spotless")
     apply(plugin = "java-library")
