@@ -7,7 +7,7 @@ val moduleName by extra { "io.opentelemetry.examples.prometheus" }
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
+        languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
 
