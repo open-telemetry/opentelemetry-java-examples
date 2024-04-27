@@ -16,6 +16,10 @@ import io.opentelemetry.sdk.metrics.export.PeriodicMetricReader;
 import java.time.Duration;
 import java.util.Random;
 
+/**
+ * Configures two histograms to use the base2ExponentialBucketHistogram aggregation, one that uses
+ * default configurations, and another that sets a custom maxScale.
+ */
 public class ExponentialHistogramExample {
   private final OpenTelemetry otel;
 
@@ -72,10 +76,12 @@ public class ExponentialHistogramExample {
 
     Random rand = new Random();
     Attributes attrs = Attributes.of(stringKey("job"), "update_database");
+    long metricPoint;
 
     while (true) {
-      histogram.record(rand.nextLong(1000), attrs);
-      customScaleHistogram.record(rand.nextLong(10), attrs);
+      metricPoint = rand.nextLong(1000);
+      histogram.record(metricPoint, attrs);
+      customScaleHistogram.record(metricPoint, attrs);
       Thread.sleep(1000);
     }
   }
