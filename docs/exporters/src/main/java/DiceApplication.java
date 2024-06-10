@@ -30,30 +30,41 @@ public class DiceApplication {
 
   @Bean
   public OpenTelemetry openTelemetry() {
-    Resource resource = Resource.getDefault().toBuilder().put(ServiceAttributes.SERVICE_NAME, "dice-server").put(ServiceAttributes.SERVICE_VERSION, "0.1.0").build();
+    Resource resource =
+        Resource.getDefault().toBuilder()
+            .put(ServiceAttributes.SERVICE_NAME, "dice-server")
+            .put(ServiceAttributes.SERVICE_VERSION, "0.1.0")
+            .build();
 
-    SdkTracerProvider sdkTracerProvider = SdkTracerProvider.builder()
-            .addSpanProcessor(BatchSpanProcessor.builder(OtlpGrpcSpanExporter.builder().build()).build())
+    SdkTracerProvider sdkTracerProvider =
+        SdkTracerProvider.builder()
+            .addSpanProcessor(
+                BatchSpanProcessor.builder(OtlpGrpcSpanExporter.builder().build()).build())
             .setResource(resource)
             .build();
 
-    SdkMeterProvider sdkMeterProvider = SdkMeterProvider.builder()
-            .registerMetricReader(PeriodicMetricReader.builder(OtlpGrpcMetricExporter.builder().build()).build())
+    SdkMeterProvider sdkMeterProvider =
+        SdkMeterProvider.builder()
+            .registerMetricReader(
+                PeriodicMetricReader.builder(OtlpGrpcMetricExporter.builder().build()).build())
             .setResource(resource)
             .build();
 
-    SdkLoggerProvider sdkLoggerProvider = SdkLoggerProvider.builder()
+    SdkLoggerProvider sdkLoggerProvider =
+        SdkLoggerProvider.builder()
             .addLogRecordProcessor(
-                    BatchLogRecordProcessor.builder(OtlpGrpcLogRecordExporter.builder().build()).build())
+                BatchLogRecordProcessor.builder(OtlpGrpcLogRecordExporter.builder().build())
+                    .build())
             .setResource(resource)
             .build();
 
-    OpenTelemetry openTelemetry = OpenTelemetrySdk.builder()
-        .setTracerProvider(sdkTracerProvider)
-        .setMeterProvider(sdkMeterProvider)
-        .setLoggerProvider(sdkLoggerProvider)
-        .setPropagators(ContextPropagators.create(W3CTraceContextPropagator.getInstance()))
-        .buildAndRegisterGlobal();
+    OpenTelemetry openTelemetry =
+        OpenTelemetrySdk.builder()
+            .setTracerProvider(sdkTracerProvider)
+            .setMeterProvider(sdkMeterProvider)
+            .setLoggerProvider(sdkLoggerProvider)
+            .setPropagators(ContextPropagators.create(W3CTraceContextPropagator.getInstance()))
+            .buildAndRegisterGlobal();
 
     return openTelemetry;
   }

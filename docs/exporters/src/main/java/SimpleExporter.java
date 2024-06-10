@@ -1,23 +1,23 @@
 import io.opentelemetry.sdk.logs.SdkLoggerProvider;
-import io.opentelemetry.sdk.logs.export.BatchLogRecordProcessor;
 import io.opentelemetry.sdk.logs.export.LogRecordExporter;
+import io.opentelemetry.sdk.logs.export.SimpleLogRecordProcessor;
 import io.opentelemetry.sdk.resources.Resource;
 import io.opentelemetry.sdk.trace.SdkTracerProvider;
-import io.opentelemetry.sdk.trace.export.BatchSpanProcessor;
+import io.opentelemetry.sdk.trace.export.SimpleSpanProcessor;
 import io.opentelemetry.sdk.trace.export.SpanExporter;
 
-public class BatchExporter {
+public class SimpleExporter {
   public static void create(
       Resource resource, SpanExporter spanExporter, LogRecordExporter logExporter) {
     SdkTracerProvider sdkTracerProvider =
         SdkTracerProvider.builder()
-            .addSpanProcessor(BatchSpanProcessor.builder(spanExporter).build())
+            .addSpanProcessor(SimpleSpanProcessor.builder(spanExporter).build())
             .setResource(resource)
             .build();
 
     SdkLoggerProvider sdkLoggerProvider =
         SdkLoggerProvider.builder()
-            .addLogRecordProcessor(BatchLogRecordProcessor.builder(logExporter).build())
+            .addLogRecordProcessor(SimpleLogRecordProcessor.create(logExporter))
             .setResource(resource)
             .build();
   }
