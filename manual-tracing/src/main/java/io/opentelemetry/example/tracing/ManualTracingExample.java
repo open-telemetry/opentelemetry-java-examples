@@ -2,8 +2,9 @@ package io.opentelemetry.example.tracing;
 
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.baggage.Baggage;
-import io.opentelemetry.api.incubator.trace.ExtendedTracer;
+import io.opentelemetry.api.incubator.trace.ExtendedSpanBuilder;
 import io.opentelemetry.api.trace.Span;
+import io.opentelemetry.api.trace.Tracer;
 import io.opentelemetry.context.Context;
 
 /**
@@ -13,14 +14,14 @@ import io.opentelemetry.context.Context;
 public final class ManualTracingExample {
   private static final String INSTRUMENTATION_NAME = ManualTracingExample.class.getName();
 
-  private final ExtendedTracer tracer;
+  private final Tracer tracer;
 
   public ManualTracingExample(OpenTelemetry openTelemetry) {
-    tracer = ExtendedTracer.create(openTelemetry.getTracer(INSTRUMENTATION_NAME));
+    tracer = openTelemetry.getTracer(INSTRUMENTATION_NAME);
   }
 
   public void myWonderfulUseCase() {
-    tracer.spanBuilder("calculate LLVM").startAndCall(this::calculateLlvm);
+    ((ExtendedSpanBuilder) tracer.spanBuilder("calculate LLVM")).startAndCall(this::calculateLlvm);
   }
 
   private String calculateLlvm() {
@@ -36,7 +37,10 @@ public final class ManualTracingExample {
           .put("foo", "bar")
           .build()
           .storeInContext(Context.current())
-          .wrap(() -> tracer.spanBuilder("span with baggage").startAndCall(this::calculateLlvm))
+          .wrap(
+              () ->
+                  ((ExtendedSpanBuilder) tracer.spanBuilder("span with baggage"))
+                      .startAndCall(this::calculateLlvm))
           .call();
     } catch (Exception e) {
       throw new RuntimeException(e);

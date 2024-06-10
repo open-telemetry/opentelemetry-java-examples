@@ -11,9 +11,10 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.common.Attributes;
-import io.opentelemetry.api.incubator.trace.ExtendedTracer;
+import io.opentelemetry.api.incubator.trace.ExtendedSpanBuilder;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.SpanKind;
+import io.opentelemetry.api.trace.Tracer;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
@@ -25,8 +26,8 @@ public final class HttpServer {
   // It's important to initialize your OpenTelemetry SDK as early in your application's lifecycle as
   // possible.
   private static final OpenTelemetry openTelemetry = ExampleConfiguration.initOpenTelemetry();
-  private static final ExtendedTracer tracer =
-      ExtendedTracer.create(openTelemetry.getTracer("io.opentelemetry.example.http.HttpServer"));
+  private static final Tracer tracer =
+      openTelemetry.getTracer("io.opentelemetry.example.http.HttpServer");
 
   private static final int port = 8080;
   private final com.sun.net.httpserver.HttpServer server;
@@ -47,13 +48,15 @@ public final class HttpServer {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-      tracer
-          .spanBuilder("GET /")
-          .setParentFrom(
-              openTelemetry.getPropagators(),
-              exchange.getRequestHeaders().entrySet().stream()
-                  .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().get(0))))
-          .setSpanKind(SpanKind.SERVER)
+      // TODO (trask) clean up chaining after
+      // https://github.com/open-telemetry/opentelemetry-java/pull/6514
+      ((ExtendedSpanBuilder)
+              ((ExtendedSpanBuilder) tracer.spanBuilder("GET /"))
+                  .setParentFrom(
+                      openTelemetry.getPropagators(),
+                      exchange.getRequestHeaders().entrySet().stream()
+                          .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().get(0))))
+                  .setSpanKind(SpanKind.SERVER))
           .startAndRun(
               () -> {
                 // Set the Semantic Convention

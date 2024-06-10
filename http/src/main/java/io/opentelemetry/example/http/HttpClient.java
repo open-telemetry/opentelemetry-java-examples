@@ -12,7 +12,8 @@ import io.opentelemetry.api.trace.SpanKind;
 import io.opentelemetry.api.trace.StatusCode;
 import io.opentelemetry.api.trace.Tracer;
 import io.opentelemetry.context.Scope;
-import io.opentelemetry.semconv.SemanticAttributes;
+import io.opentelemetry.semconv.HttpAttributes;
+import io.opentelemetry.semconv.UrlAttributes;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -43,7 +44,7 @@ public final class HttpClient {
     // See: https://github.com/open-telemetry/opentelemetry-specification/issues/270
     Span span = tracer.spanBuilder("/").setSpanKind(SpanKind.CLIENT).startSpan();
     try (Scope scope = span.makeCurrent()) {
-      span.setAttribute(SemanticAttributes.HTTP_REQUEST_METHOD, "GET");
+      span.setAttribute(HttpAttributes.HTTP_REQUEST_METHOD, "GET");
       span.setAttribute("component", "http");
       /*
        Only one of the following is required
@@ -64,7 +65,7 @@ public final class HttpClient {
                   uri.getFragment())
               .toURL();
 
-      span.setAttribute(SemanticAttributes.URL_FULL, url.toString());
+      span.setAttribute(UrlAttributes.URL_FULL, url.toString());
 
       // Inject the request with the current Context/Span.
       ExtendedContextPropagators.getTextMapPropagationContext(openTelemetry.getPropagators())
