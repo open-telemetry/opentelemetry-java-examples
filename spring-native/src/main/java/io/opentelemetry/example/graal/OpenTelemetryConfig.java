@@ -7,7 +7,7 @@ import io.opentelemetry.sdk.autoconfigure.spi.AutoConfigurationCustomizerProvide
 import io.opentelemetry.sdk.autoconfigure.spi.ConfigProperties;
 import io.opentelemetry.sdk.trace.export.SpanExporter;
 import io.opentelemetry.sdk.trace.samplers.Sampler;
-import io.opentelemetry.semconv.SemanticAttributes;
+import io.opentelemetry.semconv.UrlAttributes;
 import java.util.Collections;
 import java.util.Map;
 import org.springframework.context.annotation.Bean;
@@ -26,7 +26,7 @@ public class OpenTelemetryConfig {
   /** suppress spans for actuator endpoints */
   private RuleBasedRoutingSampler configureSampler(Sampler fallback, ConfigProperties config) {
     return RuleBasedRoutingSampler.builder(SpanKind.SERVER, fallback)
-        .drop(SemanticAttributes.URL_PATH, "^/actuator")
+        .drop(UrlAttributes.URL_PATH, "^/actuator")
         .build();
   }
 

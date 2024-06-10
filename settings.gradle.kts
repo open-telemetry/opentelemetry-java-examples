@@ -65,6 +65,7 @@ include(
     ":opentelemetry-examples-resource-detection-gcp",
     ":docs:getting-started",
     ":docs:exporters",
+    ":docs:spring-starter",
 )
 
 rootProject.children.forEach {
