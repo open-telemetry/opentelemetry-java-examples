@@ -62,11 +62,16 @@ include(
     ":opentelemetry-examples-spring-native",
     ":opentelemetry-examples-kotlin-extension",
     ":opentelemetry-examples-grpc",
-    ":opentelemetry-examples-resource-detection-gcp"
+    ":opentelemetry-examples-resource-detection-gcp",
+    ":doc-snippets:getting-started",
+    ":doc-snippets:exporters",
+    ":doc-snippets:spring-starter",
 )
 
 rootProject.children.forEach {
-    it.projectDir = file(
-        "$rootDir/${it.name}".replace("opentelemetry-examples-", "")
-    )
+    if (it.name != "doc-snippets") {
+        it.projectDir = file(
+          "$rootDir/${it.name}".replace("opentelemetry-examples-", "")
+        )
+    }
 }
