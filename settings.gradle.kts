@@ -45,6 +45,7 @@ gradleEnterprise {
 rootProject.name = "opentelemetry-java-examples"
 include(
     ":opentelemetry-examples-autoconfigure",
+    ":opentelemetry-examples-azure-resource-detector",
     ":opentelemetry-examples-file-configuration",
     ":opentelemetry-examples-http",
     ":opentelemetry-examples-jaeger",
