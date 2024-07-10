@@ -17,3 +17,7 @@ dependencies {
     implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
     implementation("io.opentelemetry.contrib:opentelemetry-samplers:1.33.0-alpha")
 }
+
+springBoot {
+    mainClass = "otel.Application"
+}
