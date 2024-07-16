@@ -17,17 +17,11 @@ The example uses the following elements:
 
 # Description of the instrumentation set-up
 
-We have included the [OpenTelemetry Spring starter](https://opentelemetry.io/docs/instrumentation/java/automatic/spring-boot/) to instrument the HTTP calls and send the OpenTelemetry data via OTLP:
+We have included the [OpenTelemetry Spring starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/) to instrument the HTTP calls, the logs, the SQL queries, and send the OpenTelemetry data via OTLP:
 
 ```kotlin
  implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
 ```
-
-To instrument logs, we have added the OpenTelemetry Logback appender in the [logback.xml](src/main/resources/logback.xml) or logback-spring.xml file.
-
-To instrument the database, we have updated the [application.properties](src/main/resources/application.properties) by adding the `jdbc:otel:` prefix to the data source URL and setting the driver class name to `io.opentelemetry.instrumentation.jdbc.OpenTelemetryDriver`.
-
-You will find more details in the [documentation](https://opentelemetry.io/docs/instrumentation/java/automatic/spring-boot/) of the OpenTelemetry Spring starter.
 
 ## Prerequisites
 
