@@ -37,7 +37,7 @@ jobs:
           java-version: 17
 
       - name: Build
-        uses: gradle/actions/setup-gradle@v3
+        uses: gradle/actions/setup-gradle@v4
         with:
           arguments: clean check shadowJar
           cache-read-only: ${{ github.event_name == 'pull_request' }}
