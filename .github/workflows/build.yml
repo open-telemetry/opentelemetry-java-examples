@@ -36,11 +36,12 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Build
+      - name: Set up gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          arguments: clean check shadowJar
           cache-read-only: ${{ github.event_name == 'pull_request' }}
+      - name: Build
+        run: ./gradlew clean check shadowJar
         env:
           GRADLE_ENTERPRISE_ACCESS_KEY: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
 
