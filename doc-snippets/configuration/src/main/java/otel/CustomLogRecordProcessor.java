@@ -11,7 +11,7 @@ public class CustomLogRecordProcessor implements LogRecordProcessor {
   @Override
   public void onEmit(Context context, ReadWriteLogRecord logRecord) {
     // Callback invoked when log record is emitted.
-    // Enrich the record a custom attribute.
+    // Enrich the record with a custom attribute.
     logRecord.setAttribute(AttributeKey.stringKey("my.custom.attribute"), "hello world");
   }
 

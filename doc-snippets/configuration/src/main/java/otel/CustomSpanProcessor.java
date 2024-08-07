@@ -11,7 +11,7 @@ public class CustomSpanProcessor implements SpanProcessor {
   @Override
   public void onStart(Context parentContext, ReadWriteSpan span) {
     // Callback invoked when span is started.
-    // Enrich the record a custom attribute.
+    // Enrich the record with a custom attribute.
     span.setAttribute("my.custom.attribute", "hello world");
   }
 
