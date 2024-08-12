@@ -63,6 +63,7 @@ include(
     ":opentelemetry-examples-kotlin-extension",
     ":opentelemetry-examples-grpc",
     ":opentelemetry-examples-resource-detection-gcp",
+    ":doc-snippets:configuration",
     ":doc-snippets:getting-started",
     ":doc-snippets:exporters",
     ":doc-snippets:spring-starter",
