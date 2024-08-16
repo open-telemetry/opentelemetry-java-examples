@@ -24,7 +24,7 @@ dependencies {
     //spring modules
     implementation("org.springframework.boot:spring-boot-starter-web")
 
-    agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.6.0")
+    agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.7.0")
 }
 
 val copyAgent = tasks.register<Copy>("copyAgent") {
