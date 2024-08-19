@@ -19,9 +19,9 @@ First build this example application:
 Then start the example application with the logging exporter configured:
 
 ```shell
-java -Dotel.traces.exporter=logging \
-     -Dotel.metrics.exporter=logging \
-     -Dotel.logs.exporter=logging \
+java -Dotel.traces.exporter=console \
+     -Dotel.metrics.exporter=console \
+     -Dotel.logs.exporter=console \
      -cp build/libs/opentelemetry-examples-autoconfigure-0.1.0-SNAPSHOT-all.jar \
      io.opentelemetry.example.autoconfigure.AutoConfigExample
 ```
@@ -29,9 +29,9 @@ java -Dotel.traces.exporter=logging \
 Alternatively, instead of system properties you can use environment variables:
 
 ```shell
-export OTEL_TRACES_EXPORTER=logging
-export OTEL_METRICS_EXPORTER=logging
-export OTEL_LOGS_EXPORTER=logging
+export OTEL_TRACES_EXPORTER=console
+export OTEL_METRICS_EXPORTER=console
+export OTEL_LOGS_EXPORTER=console
 
 java -cp build/libs/opentelemetry-examples-autoconfigure-0.1.0-SNAPSHOT-all.jar \
      io.opentelemetry.example.autoconfigure.AutoConfigExample
