@@ -2,6 +2,7 @@ receivers:
   otlp:
     protocols:
       grpc:
+        endpoint: collector:4317
 exporters:
   logging:
     verbosity: detailed
