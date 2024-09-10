@@ -16,7 +16,7 @@ java {
 }
 
 var grpcVersion = "1.66.0" // CURRENT_GRPC_VERSION
-var protobufVersion = "4.27.3"
+var protobufVersion = "4.28.0"
 var protocVersion = protobufVersion
 
 dependencies {
@@ -24,7 +24,7 @@ dependencies {
     implementation ("io.grpc:grpc-protobuf:${grpcVersion}")
     implementation ("io.grpc:grpc-services:${grpcVersion}")
     implementation ("io.grpc:grpc-stub:${grpcVersion}")
-    implementation ("com.google.protobuf:protobuf-java-util:4.27.3")
+    implementation ("com.google.protobuf:protobuf-java-util:4.28.0")
     implementation ("io.opentelemetry.instrumentation:opentelemetry-grpc-1.6:1.32.0-alpha")
     implementation ("com.google.guava:guava:33.3.0-jre")
 
