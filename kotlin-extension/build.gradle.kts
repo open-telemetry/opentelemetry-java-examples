@@ -19,5 +19,5 @@ java {
 dependencies {
     implementation("io.opentelemetry:opentelemetry-extension-kotlin")
     implementation("io.opentelemetry:opentelemetry-sdk-testing")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
 }
