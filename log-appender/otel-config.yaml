@@ -4,10 +4,10 @@ receivers:
       grpc:
         endpoint: collector:4317
 exporters:
-  logging:
+  debug:
     verbosity: detailed
 service:
   pipelines:
     logs:
       receivers: [otlp]
-      exporters: [logging]
+      exporters: [debug]
