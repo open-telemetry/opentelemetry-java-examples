@@ -39,12 +39,67 @@ meter_provider:
         aggregation:
           drop:
 
+# Configure otel java agent instrumentation. A standard translation process applied to convert the flat system properties / env var configuration scheme from https://opentelemetry.io/docs/zero-code/java/agent/ to the structured scheme used by declarative configuration:
+#
+# - Only properties starting with "otel.instrumentation." are resolved
+# - Strip the "otel.instrumentation." prefix.
+# - Split the remaining property string on "." character to break into segments
+# - Starting at .instrumentation.java, follow N-1 segments to resolve the leaf node to read the property from
+# - Read segment N from the resolved leaf node
+#
+# For example, the property "otel.instrumentation.common.default-enabled" is resolved by reading: .instrumentation.java.common.default-enabled
+#
+# Some system properties / env vars cannot be configured via declarative configuration, normally because they are resolved in the application lifecycle before declarative configuration is available. The set of unsupported properties includes:
+# - otel.javaagent.enabled
+# - otel.javaagent.configuration-file
+# - otel.javaagent.extensions
+# - otel.javaagent.logging
+# - otel.resource.providers.[provider].enabled
+# TODO: add automation to keep this in sync with system property / env var documentation: https://opentelemetry.io/docs/zero-code/java/agent/
 instrumentation:
   java:
     common:
       default-enabled: true
+      db-statement-sanitizer:
+        enabled: true
+      enduser:
+        id:
+          enabled: false
+        role:
+          enabled: false
+        scope:
+          enabled: false
+      peer-service-mapping: {}
+      experimental:
+        controller-telemetry:
+          enabled: true
+        span-suppression-strategy: semconv
+    http:
+      client:
+        capture-request-headers: []
+        capture-response-headers: []
+        emit-experimental-telemetry: false
+      server:
+        capture-request-headers: []
+        capture-response-headers: []
+        emit-experimental-telemetry: false
+      known-methods:
+        - CONNECT
+        - DELETE
+        - GET
+        - HEAD
+        - OPTIONS
+        - PATCH
+        - POST
+        - PUT
+        - TRACE
+    messaging:
+      experimental:
+        receive-telemetry:
+          enabled: false
     methods:
       enabled: true
+      include: ""
     external-annotations:
       enabled: true
     akka-actor:
@@ -175,6 +230,8 @@ instrumentation:
       enabled: false
     servlet:
       enabled: true
+      experimental:
+        capture-request-parameters: []
     executors:
       enabled: true
     java-util-logging:
@@ -231,6 +288,7 @@ instrumentation:
       enabled: true
     opentelemetry-instrumentation-annotations:
       enabled: true
+      exclude-methods: ""
     opentelemetry-api:
       enabled: true
     oracle-ucp:
@@ -291,6 +349,12 @@ instrumentation:
       enabled: true
     spring-scheduling:
       enabled: true
+    spring-security:
+      enduser:
+        role:
+          granted-authority-prefix: ROLE_
+        scope:
+          granted-authority-prefix: SCOPE_
     spring-web:
       enabled: true
     spring-webflux:
