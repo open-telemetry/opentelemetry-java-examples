@@ -17,7 +17,7 @@ services:
     depends_on:
       - collector
   collector:
-    image: otel/opentelemetry-collector-contrib:0.109.0
+    image: otel/opentelemetry-collector-contrib:0.110.0
     volumes:
       - ./collector-config.yaml:/collector-config.yaml
     command: ["--config=/collector-config.yaml"]
