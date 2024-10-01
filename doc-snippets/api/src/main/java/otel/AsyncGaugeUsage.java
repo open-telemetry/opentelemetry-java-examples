@@ -24,8 +24,8 @@ public class AsyncGaugeUsage {
             .setUnit("K")
             // optionally change the type to long
             // .ofLongs()
-            // the callback is invoked a MetricReader reads metrics
             .buildWithCallback(
+                // the callback is invoked a MetricReader reads metrics
                 observableMeasurement -> {
                   double currentWidgetCount = processingLineTemp.get();
 

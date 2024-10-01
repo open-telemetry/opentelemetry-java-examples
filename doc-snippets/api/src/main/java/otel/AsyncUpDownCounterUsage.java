@@ -24,8 +24,8 @@ public class AsyncUpDownCounterUsage {
             .setUnit("{widget}")
             // optionally change the type to double
             // .ofDoubles()
-            // the callback is invoked a MetricReader reads metrics
             .buildWithCallback(
+                // the callback is invoked a MetricReader reads metrics
                 observableMeasurement -> {
                   long currentWidgetCount = queueLength.get();
 
