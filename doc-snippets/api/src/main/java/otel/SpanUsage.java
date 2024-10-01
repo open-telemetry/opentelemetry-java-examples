@@ -52,7 +52,7 @@ public class SpanUsage {
 
     // Check if span is recording before computing additional data
     if (span.isRecording()) {
-      // Update the span name with information not avilable when starting
+      // Update the span name with information not available when starting
       span.updateName("new span name");
 
       // Add additional attributes not available when starting
