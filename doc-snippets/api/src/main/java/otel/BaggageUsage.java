@@ -28,7 +28,7 @@ public class BaggageUsage {
             .put("shopId", "abc123")
             .put("shopName", "opentelemetry-demo", BaggageEntryMetadata.create("metadata"))
             .build();
-    // ...or start from empty
+    // ...or uncomment to start from empty
     // newBaggage = Baggage.empty().toBuilder().put("shopId", "abc123").build();
     // output => new baggage: {shopId=abc123(), shopName=opentelemetry-demo(metadata)}
     System.out.println("new baggage: " + asString(newBaggage));

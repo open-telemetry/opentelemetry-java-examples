@@ -22,7 +22,7 @@ public class AsyncUpDownCounterUsage {
             .upDownCounterBuilder("fully.qualified.updowncounter")
             .setDescription("Current length of widget processing queue")
             .setUnit("{widget}")
-            // optionally change the type to double
+            // Uncomment to optionally change the type to double
             // .ofDoubles()
             .buildWithCallback(
                 // the callback is invoked a MetricReader reads metrics

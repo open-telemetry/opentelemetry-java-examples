@@ -20,9 +20,9 @@ public class HistogramUsage {
             .histogramBuilder("fully.qualified.histogram")
             .setDescription("Length of time to process a widget")
             .setUnit("s")
-            // optionally provide advice on useful default explicit bucket boundaries
+            // Uncomment to optionally provide advice on useful default explicit bucket boundaries
             // .setExplicitBucketBoundariesAdvice(Arrays.asList(1.0, 2.0, 3.0))
-            // optionally change the type to long
+            // Uncomment to optionally change the type to long
             // .ofLongs()
             .build();
 

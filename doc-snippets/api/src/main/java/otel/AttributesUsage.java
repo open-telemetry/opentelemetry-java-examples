@@ -36,7 +36,7 @@ public class AttributesUsage {
             .put(SHOP_NAME, "opentelemetry-demo")
             .put(CUSTOMER_ID, 123)
             .put(CUSTOMER_NAME, "Jack")
-            // optionally initialize attribute keys on the fly
+            // Optionally initialize attribute keys on the fly
             .put(AttributeKey.stringKey("com.acme.string-key"), "value")
             .put(AttributeKey.booleanKey("com.acme.bool-key"), true)
             .put(AttributeKey.longKey("com.acme.long-key"), 1L)
@@ -45,7 +45,7 @@ public class AttributesUsage {
             .put(AttributeKey.booleanArrayKey("come.acme.bool-array-key"), true, false)
             .put(AttributeKey.longArrayKey("come.acme.long-array-key"), 1L, 2L)
             .put(AttributeKey.doubleArrayKey("come.acme.double-array-key"), 1.1, 2.2)
-            // optionally omit initializing AttributeKey
+            // Optionally omit initializing AttributeKey
             .put("com.acme.string-key", "value")
             .put("com.acme.bool-key", true)
             .put("come.acme.long-key", 1L)

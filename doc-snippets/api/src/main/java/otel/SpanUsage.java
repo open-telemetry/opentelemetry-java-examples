@@ -36,16 +36,17 @@ public class SpanUsage {
                 AttributeKey.longArrayKey("come.acme.long-array-key"), Arrays.asList(1L, 2L))
             .setAttribute(
                 AttributeKey.doubleArrayKey("come.acme.double-array-key"), Arrays.asList(1.1, 2.2))
-            // optionally omit initializing AttributeKey
+            // Optionally omit initializing AttributeKey
             .setAttribute("com.acme.string-key", "value")
             .setAttribute("com.acme.bool-key", true)
             .setAttribute("come.acme.long-key", 1L)
             .setAttribute("come.acme.double-key", 1.1)
             .setAllAttributes(WIDGET_RED_CIRCLE)
-            // Optionally explicitly set the parent span context. If omitted, the span's parent will
+            // Uncomment to optionally explicitly set the parent span context. If omitted, the
+            // span's parent will
             // be set using Context.current()
             // .setParent(parentContext)
-            // Optionally add links
+            // Uncomment to optionally add links
             // .addLink(linkContext, linkAttributes)
             // Start the span
             .startSpan();

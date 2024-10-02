@@ -54,7 +54,8 @@ public class LogRecordUsage {
         .setAttribute(
             AttributeKey.doubleArrayKey("come.acme.double-array-key"), Arrays.asList(1.1, 2.2))
         .setAllAttributes(WIDGET_RED_CIRCLE)
-        // Optionally explicitly set the context used to correlate with spans. If omitted,
+        // Uncomment to optionally explicitly set the context used to correlate with spans. If
+        // omitted,
         // Context.current() is used.
         // .setContext(context)
         // Emit the log record

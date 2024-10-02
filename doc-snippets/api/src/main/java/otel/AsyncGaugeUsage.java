@@ -22,7 +22,7 @@ public class AsyncGaugeUsage {
             .gaugeBuilder("fully.qualified.gauge")
             .setDescription("The current temperature of the widget processing line")
             .setUnit("K")
-            // optionally change the type to long
+            // Uncomment to optionally change the type to long
             // .ofLongs()
             .buildWithCallback(
                 // the callback is invoked a MetricReader reads metrics

@@ -23,7 +23,7 @@ public class AsyncCounterUsage {
             .counterBuilder("fully.qualified.counter")
             .setDescription("A count of produced widgets")
             .setUnit("{widget}")
-            // optionally change the type to double
+            // Uncomment to optionally change the type to double
             // .ofDoubles()
             .buildWithCallback(
                 // the callback is invoked a MetricReader reads metrics

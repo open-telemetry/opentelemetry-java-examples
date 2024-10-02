@@ -7,7 +7,7 @@ import io.opentelemetry.semconv.incubating.HttpIncubatingAttributes;
 
 public class SemanticAttributesUsage {
   public static void semanticAttributesUsage() {
-    // Semantic attributes are organized by top level domain and whether they are stable or
+    // Semantic attributes are organized by top-level domain and whether they are stable or
     // incubating.
     // For example:
     // - stable attributes starting with http.* are in the HttpAttributes class.
