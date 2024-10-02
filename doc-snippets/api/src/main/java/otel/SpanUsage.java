@@ -43,10 +43,9 @@ public class SpanUsage {
             .setAttribute("come.acme.double-key", 1.1)
             .setAllAttributes(WIDGET_RED_CIRCLE)
             // Uncomment to optionally explicitly set the parent span context. If omitted, the
-            // span's parent will
-            // be set using Context.current()
+            // span's parent will be set using Context.current().
             // .setParent(parentContext)
-            // Uncomment to optionally add links
+            // Uncomment to optionally add links.
             // .addLink(linkContext, linkAttributes)
             // Start the span
             .startSpan();
