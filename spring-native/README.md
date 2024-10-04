@@ -10,7 +10,7 @@ The example uses the following elements:
 - A collector configured with
   the [OTLP receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
   and exporting to the standard output with
-  the [logging exporter](https://github.com/open-telemetry/opentelemetry-collector/tree/main/exporter/loggingexporter).
+  the [logging exporter](https://github.com/open-telemetry/opentelemetry-collector/tree/main/exporter/debugexporter).
 - A spring configuration to suppress spans for the `/actuator` endpoint
 - A spring configuration to set OTLP headers dynamically 
   (not needed for the example - it shows how to configure exporters programmatically)
