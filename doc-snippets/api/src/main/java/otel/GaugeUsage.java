@@ -14,7 +14,7 @@ public class GaugeUsage {
   private static final Attributes WIDGET_RED_CIRCLE = Util.WIDGET_RED_CIRCLE;
 
   public static void gaugeUsage(Meter meter) {
-    // Construct a gauge to record measurements as they occur when cannot be spatially
+    // Construct a gauge to record measurements as they occur, which cannot be spatially
     // re-aggregated.
     DoubleGauge gauge =
         meter

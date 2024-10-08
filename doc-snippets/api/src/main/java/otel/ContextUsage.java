@@ -49,10 +49,10 @@ public class ContextUsage {
     ExecutorService executorService = Executors.newSingleThreadExecutor();
     ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
 
-    // Context instances can be explicitly passed around application code, but its more convenient
+    // Context instances can be explicitly passed around application code, but it's more convenient
     // to use implicit context, calling Context.makeCurrent() and accessing via Context.current().
     // Context provides a number of utilities for implicit context propagation. These utilities wrap
-    // utility classes like Scheduler, and ExecutorService, ScheduledExecutorService, Runnable,
+    // utility classes like Scheduler, ExecutorService, ScheduledExecutorService, Runnable,
     // Callable, Consumer, Supplier, Function, etc and modify their behavior to call
     // Context.makeCurrent() before running.
     context.wrap(ContextUsage::callable).call();
