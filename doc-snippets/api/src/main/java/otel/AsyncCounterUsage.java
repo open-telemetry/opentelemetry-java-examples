@@ -26,7 +26,7 @@ public class AsyncCounterUsage {
             // Uncomment to optionally change the type to double
             // .ofDoubles()
             .buildWithCallback(
-                // the callback is invoked a MetricReader reads metrics
+                // the callback is invoked when a MetricReader reads metrics
                 observableMeasurement -> {
                   long currentWidgetCount = widgetCount.get();
 
