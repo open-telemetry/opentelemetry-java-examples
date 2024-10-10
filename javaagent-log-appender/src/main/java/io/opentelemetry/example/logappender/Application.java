@@ -1,19 +1,10 @@
 package io.opentelemetry.example.logappender;
 
 import io.opentelemetry.api.GlobalOpenTelemetry;
-import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.common.AttributeKey;
 import io.opentelemetry.api.logs.Severity;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.context.Scope;
-import io.opentelemetry.exporter.otlp.logs.OtlpGrpcLogRecordExporter;
-import io.opentelemetry.sdk.OpenTelemetrySdk;
-import io.opentelemetry.sdk.logs.SdkLoggerProvider;
-import io.opentelemetry.sdk.logs.export.BatchLogRecordProcessor;
-import io.opentelemetry.sdk.resources.Resource;
-import io.opentelemetry.sdk.trace.SdkTracerProvider;
-import io.opentelemetry.sdk.trace.samplers.Sampler;
-import io.opentelemetry.semconv.ResourceAttributes;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -32,15 +23,6 @@ public class Application {
   private static final java.util.logging.Logger julLogger = Logger.getLogger("jul-logger");
 
   public static void main(String[] args) {
-    // Initialize OpenTelemetry as early as possible
-    OpenTelemetry openTelemetry = initializeOpenTelemetry();
-    // Install OpenTelemetry in log4j appender
-    io.opentelemetry.instrumentation.log4j.appender.v2_17.OpenTelemetryAppender.install(
-        openTelemetry);
-    // Install OpenTelemetry in logback appender
-    io.opentelemetry.instrumentation.logback.appender.v1_0.OpenTelemetryAppender.install(
-        openTelemetry);
-
     // Route JUL logs to slf4j
     SLF4JBridgeHandler.removeHandlersForRootLogger();
     SLF4JBridgeHandler.install();
@@ -86,7 +68,7 @@ public class Application {
     // existing frameworks into the OpenTelemetry Log Bridge API. These APIs
     // SHOULD NOT be used by end users in place of existing log APIs (i.e. Log4j, Slf4, JUL).
     io.opentelemetry.api.logs.Logger customAppenderLogger =
-        openTelemetry.getLogsBridge().get("custom-log-appender");
+        GlobalOpenTelemetry.get().getLogsBridge().get("custom-log-appender");
     maybeRunWithSpan(
         () ->
             customAppenderLogger
@@ -105,31 +87,6 @@ public class Application {
                 .setAttribute(AttributeKey.stringKey("key"), "value")
                 .emit(),
         true);
-  }
-
-  private static OpenTelemetry initializeOpenTelemetry() {
-    OpenTelemetrySdk sdk =
-        OpenTelemetrySdk.builder()
-            .setTracerProvider(SdkTracerProvider.builder().setSampler(Sampler.alwaysOn()).build())
-            .setLoggerProvider(
-                SdkLoggerProvider.builder()
-                    .setResource(
-                        Resource.getDefault().toBuilder()
-                            .put(ResourceAttributes.SERVICE_NAME, "log4j-example")
-                            .build())
-                    .addLogRecordProcessor(
-                        BatchLogRecordProcessor.builder(
-                                OtlpGrpcLogRecordExporter.builder()
-                                    .setEndpoint("http://localhost:4317")
-                                    .build())
-                            .build())
-                    .build())
-            .build();
-
-    // Add hook to close SDK, which flushes logs
-    Runtime.getRuntime().addShutdownHook(new Thread(sdk::close));
-
-    return sdk;
   }
 
   private static void maybeRunWithSpan(Runnable runnable, boolean withSpan) {
