@@ -37,6 +37,13 @@ docker-compose up
 In a separate shell, run the application
 
 ```shell
+export \
+OTEL_SERVICE_NAME=log4j-example \
+OTEL_EXPORTER_OTLP_PROTOCOL=grpc \
+OTEL_METRICS_EXPORTER=none \
+OTEL_TRACES_EXPORTER=none \
+OTEL_LOGS_EXPORTER=otlp
+
 ../gradlew run
 ```
 
