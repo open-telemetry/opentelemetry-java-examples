@@ -33,11 +33,7 @@ dependencies {
     implementation("io.opentelemetry:opentelemetry-api")
     implementation("io.opentelemetry.semconv:opentelemetry-semconv")
 
-    // OpenTelemetry log4j / logback appenders
-    implementation("io.opentelemetry.instrumentation:opentelemetry-log4j-appender-2.17")
-    implementation("io.opentelemetry.instrumentation:opentelemetry-logback-appender-1.0")
-
-    // OpenTelemetry JavaAgent
+    // OpenTelemetry JavaAgent, this brings its own standalone log4j / logback appenders
     agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.8.0")
 }
 
@@ -49,5 +45,15 @@ application {
 tasks.named<JavaExec>("run") {
     doFirst {
         jvmArgs("-javaagent:${agent.singleFile}")
+        // log4j-appender properties
+        jvmArgs(
+            "-Dotel.instrumentation.log4j-appender.experimental.capture-map-message-attributes=true",
+            "-Dotel.instrumentation.log4j-appender.experimental-log-attributes=true"
+        )
+        // logback-appender properties
+        jvmArgs(
+            "-Dotel.instrumentation.logback-appender.experimental-log-attributes=true",
+            "-Dotel.instrumentation.logback-appender.experimental.capture-key-value-pair-attributes=true"
+        )
     }
 }

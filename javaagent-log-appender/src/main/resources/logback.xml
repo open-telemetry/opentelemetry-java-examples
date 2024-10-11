@@ -7,13 +7,7 @@
             </pattern>
         </encoder>
     </appender>
-    <appender name="OpenTelemetry"
-              class="io.opentelemetry.instrumentation.logback.appender.v1_0.OpenTelemetryAppender">
-        <captureExperimentalAttributes>true</captureExperimentalAttributes>
-        <captureKeyValuePairAttributes>true</captureKeyValuePairAttributes>
-    </appender>
     <root level="INFO">
         <appender-ref ref="console"/>
-        <appender-ref ref="OpenTelemetry"/>
     </root>
 </configuration>
