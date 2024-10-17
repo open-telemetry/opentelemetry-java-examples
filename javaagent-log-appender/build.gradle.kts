@@ -33,7 +33,7 @@ dependencies {
     implementation("io.opentelemetry:opentelemetry-api")
     implementation("io.opentelemetry.semconv:opentelemetry-semconv")
 
-    // OpenTelemetry JavaAgent, this brings its own standalone log4j / logback appenders
+    // OpenTelemetry Java Agent, this brings its own standalone log4j / logback appenders
     agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.8.0")
 }
 

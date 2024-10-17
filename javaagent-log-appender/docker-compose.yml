@@ -7,3 +7,4 @@ services:
     command: ["--config=/otel-config.yaml"]
     ports:
       - "4317:4317"
+      - "4318:4318"

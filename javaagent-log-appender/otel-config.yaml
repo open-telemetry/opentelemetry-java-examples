@@ -3,18 +3,20 @@ receivers:
     protocols:
       grpc:
         endpoint: collector:4317
+      http:
+        endpoint: "0.0.0.0:4318"
 exporters:
   debug:
     verbosity: detailed
   nop:
 service:
   pipelines:
-    logs:
+    metrics:
       receivers: [otlp]
       exporters: [debug]
     traces:
       receivers: [otlp]
       exporters: [debug]
-    metrics:
+    logs:
       receivers: [otlp]
-      exporters: [nop]
+      exporters: [debug]

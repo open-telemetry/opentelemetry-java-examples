@@ -39,7 +39,6 @@ In a separate shell, run the application
 ```shell
 export \
 OTEL_SERVICE_NAME=log4j-example \
-OTEL_EXPORTER_OTLP_PROTOCOL=grpc \
 OTEL_METRICS_EXPORTER=none \
 OTEL_TRACES_EXPORTER=none \
 OTEL_LOGS_EXPORTER=otlp
@@ -48,3 +47,8 @@ OTEL_LOGS_EXPORTER=otlp
 ```
 
 Watch the collector logs to see exported log records
+
+NOTE: The OpenTelemetry Java Agent uses `http/protobuf` by default, optionally switch to use `grpc` protocol
+```shell
+export OTEL_EXPORTER_OTLP_PROTOCOL=grpc
+```
