@@ -13,7 +13,7 @@
 # NOTE: With the exception of env var substitution syntax, SDKs ignore environment variables
 # when interpreting config files. For example, if "disabled: ${OTEL_SDK_DISABLED:-false}"
 # is replaced with "disabled: false", then setting the env var OTEL_SDK_DISABLED will have
-# no effect. See https://opentelemetry.io/docs/specs/otel/configuration/file-configuration/
+# no effect. See https://opentelemetry.io/docs/specs/otel/configuration/data-model/#file-based-configuration-model
 # for more information. The following spec defined env vars are NOT referenced and are thus
 # ignored:
 #
@@ -143,6 +143,22 @@ tracer_provider:
       local_parent_not_sampled:
         # Configure sampler to be always_off.
         always_off: {}
+      # Uncomment to configure the rule_based_routing sampler from https://github.com/open-telemetry/opentelemetry-java-contrib/tree/main/samplers
+      # to drop spans to spring actuator endpoints.
+      # Configure the parent_based sampler's root sampler to be rule_based_routing sampler.
+      # root:
+      #  rule_based_routing:
+      #    # Fallback to the always_on sampler if the criteria is not met.
+      #    fallback_sampler:
+      #      always_on:
+      #    # Only apply to SERVER spans.
+      #    span_kind: SERVER
+      #    rules:
+      #      # Drop spans where url.path matches the regex /actuator.* (i.e. spring boot actuator endpoints).
+      #      - action: DROP
+      #        attribute: url.path
+      #        pattern: /actuator.*
+
 
 # Configure meter provider.
 meter_provider:
@@ -256,8 +272,11 @@ instrumentation:
   java:
     common:
       default-enabled: ${OTEL_INSTRUMENTATION_COMMON_DEFAULT_ENABLED:-true}
+    # Configuration logback-appender instrumentation. Properties adapted from:
+    # https://github.com/open-telemetry/opentelemetry-java-instrumentation/tree/main/instrumentation/java-util-logging/javaagent
     java-util-logging:
       enabled: ${OTEL_INSTRUMENTATION_JAVA_UTIL_LOGGING_ENABLED:-true}
+      experimental-log-attributes: ${OTEL_INSTRUMENTATION_LOGBACK_APPENDER_EXPERIMENTAL_LOG_ATTRIBUTES:-false}
     # Configuration logback-appender instrumentation. Properties adapted from:
     # https://github.com/open-telemetry/opentelemetry-java-instrumentation/tree/main/instrumentation/logback/logback-appender-1.0/javaagent
     logback-appender:
