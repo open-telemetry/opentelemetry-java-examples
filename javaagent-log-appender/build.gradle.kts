@@ -41,7 +41,6 @@ application {
     mainClass = "io.opentelemetry.example.logappender.Application"
 }
 
-
 tasks.named<JavaExec>("run") {
     doFirst {
         jvmArgs("-javaagent:${agent.singleFile}")
