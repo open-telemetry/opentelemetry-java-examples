@@ -16,7 +16,7 @@ It consists of a spring boot application with:
 - The collector is configured with
   the [OTLP receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
   and export it to standard out with
-  the [logging exporter](https://github.com/open-telemetry/opentelemetry-collector/tree/main/exporter/loggingexporter)
+  the [logging exporter](https://github.com/open-telemetry/opentelemetry-collector/tree/main/exporter/debugexporter)
 
 ## Prerequisites
 
