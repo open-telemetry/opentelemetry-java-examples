@@ -52,7 +52,7 @@ By default, this example uses the [environment variable configuration schema](ht
 To use file configuration instead of the environment variable scheme, add the following before starting the application and collector:
 
 ```shell
-export OTEL_EXPERIMENTAL_CONFIG_FILE=/sdk-config.yaml
+export OTEL_EXPERIMENTAL_CONFIG_FILE=/sdk-migration-config.yaml
 ```
 
 Note that toggling file configuration causes the environment variable configuration scheme to be ignored completely. However, there is support for environment variable substitution within configuration files.
