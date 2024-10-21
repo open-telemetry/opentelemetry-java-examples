@@ -27,7 +27,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
     agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.9.0")
-    extension("io.opentelemetry.contrib:opentelemetry-samplers:1.40.0-alpha")
+    extension("io.opentelemetry.contrib:opentelemetry-samplers:1.40.0-alpha") {
+        isTransitive = false
+    }
 }
 
 val copyAgent = tasks.register<Copy>("copyAgent") {
@@ -37,11 +39,7 @@ val copyAgent = tasks.register<Copy>("copyAgent") {
 }
 
 val copyExtension = tasks.register<Copy>("copyExtension") {
-    from(extension.files) {
-        include("opentelemetry-samplers-*.jar")
-        exclude("*sources.jar")
-        exclude("*javadoc.jar")
-    }
+    from(extension.singleFile)
     into(layout.buildDirectory.dir("agent"))
     rename(".*\\.jar", "opentelemetry-javaagent-extension.jar")
 }
