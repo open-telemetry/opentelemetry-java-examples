@@ -1,6 +1,6 @@
 # Declarative Configuration Example
 
-This example demonstrates how to use the [declarative configuration](https://opentelemetry.io/docs/specs/otel/configuration/#declarative-configuration) interface to configure the OpenTelemetry SDK using a YAML configuration file as defined in [opentelemetry-configuration](https://github.com/open-telemetry/opentelemetry-configuration).
+This example demonstrates how to use [declarative configuration](https://opentelemetry.io/docs/specs/otel/configuration/#declarative-configuration) to configure the OpenTelemetry SDK using a YAML configuration file as defined in [opentelemetry-configuration](https://github.com/open-telemetry/opentelemetry-configuration).
 
 The configuration file is located at [otel-sdk-config.yaml](./otel-sdk-config.yaml).
 
