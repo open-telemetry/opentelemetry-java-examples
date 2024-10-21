@@ -45,14 +45,16 @@ curl http://localhost:8080/ping
 
 Watch for spans, metrics, and logs in the collector log output
 
-## File Configuration
+## Declarative Configuration
 
-By default, this example uses the [environment variable configuration schema](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md) to configure the SDK. However, it also includes [sdk-config.yaml](./sdk-config.yaml) which demonstrates how the file configuration scheme can be used instead. `sdk-config.yaml` extends the [opentelemetry-configuration sdk-config.yaml](https://github.com/open-telemetry/opentelemetry-configuration/blob/v0.3.0/examples/sdk-config.yaml) template, demonstrating:
+By default, this example uses the [environment variable configuration schema](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md) to configure the SDK. However, it also includes [sdk-config.yaml](./sdk-config.yaml) which demonstrates how the [declarative configuration](https://opentelemetry.io/docs/specs/otel/configuration/#declarative-configuration) scheme can be used to configure the SDK based on a YAML configuration file instead. 
+
+`sdk-config.yaml` extends the [opentelemetry-configuration sdk-config.yaml](https://github.com/open-telemetry/opentelemetry-configuration/blob/v0.3.0/examples/sdk-config.yaml) template, demonstrating:
 
 - Configuration of instrumentation (see `.instrumentation.java`) 
 - Configuration of [rule based routing sampler](https://github.com/open-telemetry/opentelemetry-java-contrib/tree/main/samplers) (see `.tracer_provider.sampler.parent_based.root`)
 
-To use file configuration instead of the environment variable scheme, add the following before starting the application and collector:
+To use declarative configuration instead of the environment variable scheme, add the following before starting the application and collector:
 
 ```shell
 export OTEL_EXPERIMENTAL_CONFIG_FILE=/sdk-config.yaml
