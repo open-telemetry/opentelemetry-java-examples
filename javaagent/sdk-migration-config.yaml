@@ -244,7 +244,7 @@ logger_provider:
 
 # Configure instrumentation.
 instrumentation:
-  # Configure OpenTelemetry Java Agent. A standard translation process applied to convert the
+  # Configure OpenTelemetry Java Agent. A standard translation process is applied to convert the
   # flat system properties / env var configuration scheme from https://opentelemetry.io/docs/zero-code/java/agent/
   # to the structured scheme used by declarative configuration:
   #
