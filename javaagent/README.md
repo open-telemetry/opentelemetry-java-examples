@@ -47,15 +47,15 @@ Watch for spans, metrics, and logs in the collector log output
 
 ## File Configuration
 
-By default, this example uses the [environment variable configuration schema](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md) to configure the SDK. However, it also includes [sdk-migration-config.yaml](./sdk-migration-config.yaml) which demonstrates how the file configuration scheme can be used instead. `sdk-migration-config.yaml` extends the [opentelemetry-configuration sdk-migration-config.yaml](https://github.com/open-telemetry/opentelemetry-configuration/blob/v0.3.0/examples/sdk-migration-config.yaml) template, demonstrating:
+By default, this example uses the [environment variable configuration schema](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md) to configure the SDK. However, it also includes [sdk-migration-config.yaml](./sdk-migration-config.yaml) which demonstrates how the file configuration scheme can be used instead. `sdk-migration-config.yaml` extends the [opentelemetry-configuration sdk-migration-config.yaml](https://github.com/open-telemetry/opentelemetry-configuration/blob/v0.3.0/examples/sdk-config.yaml) template, demonstrating:
 
 - Configuration of instrumentation (see `.instrumentation.java`) 
-- Configuration of [rule based routing sampler](https://github.com/open-telemetry/opentelemetry-java-contrib/tree/main/samplers) (see `.tracer_provider.sampler`)
+- Configuration of [rule based routing sampler](https://github.com/open-telemetry/opentelemetry-java-contrib/tree/main/samplers) (see `.tracer_provider.sampler.parent_based.root`)
 
 To use file configuration instead of the environment variable scheme, add the following before starting the application and collector:
 
 ```shell
-export OTEL_EXPERIMENTAL_CONFIG_FILE=/sdk-migration-config.yaml
+export OTEL_EXPERIMENTAL_CONFIG_FILE=/sdk-config.yaml
 ```
 
-Note besides the environment variables referenced in `sdk-migration-config.yaml` using [substitution syntax](https://opentelemetry.io/docs/specs/otel/configuration/data-model/#environment-variable-substitution), environment variables are ignored.
+Note: toggling declarative configuration causes the env var configuration scheme to be ignored completely. However, there is support for [env var substitution](https://opentelemetry.io/docs/specs/otel/configuration/data-model/#environment-variable-substitution) within configuration files.

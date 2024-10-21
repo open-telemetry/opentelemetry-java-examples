@@ -1,0 +1,247 @@
+# Copy of https://github.com/open-telemetry/opentelemetry-configuration/blob/v0.3.0/examples/sdk-config.yaml
+# with the following changes:
+# - OpenTelemetry Java Agent properties added at .instrumentation.java.
+# - OTLP exporter endpoints modified to point to http://collector:4318/v1/{path} to export to collector from docker-compose.yml
+# - .tracer_provider.sampler.parent_based.root set to rule_based_routing sampler to demonstrate turning off sampling for spring boot actuator endpoints.
+
+#
+# sdk-config.yaml is a typical starting point for configuring the SDK, including exporting to
+# localhost via OTLP.
+
+# NOTE: With the exception of env var substitution syntax (i.e. ${MY_ENV}), SDKs ignore
+# environment variables when interpreting config files. This including ignoring all env
+# vars defined in https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/.
+
+# The file format version.
+# TODO: the current support file format is 0.3, but the opentelemetry-java errantly checks that it is 0.1. This will be fixed in 1.44.0.
+file_format: "0.1"
+
+# Configure if the SDK is disabled or not. This is not required to be provided to ensure the SDK isn't disabled, the default value when this is not provided is for the SDK to be enabled.
+disabled: false
+
+# Configure resource for all signals.
+resource:
+  # Configure resource attributes. Entries have higher priority than entries from .resource.attributes_list.
+  # Entries must contain .name nand .value, and may optionally include .type, which defaults ot "string" if not set. The value must match the type. Values for .type include: string, bool, int, double, string_array, bool_array, int_array, double_array.
+  attributes:
+    - name: service.name
+      value: unknown_service
+
+# Configure general attribute limits. See also tracer_provider.limits, logger_provider.limits.
+attribute_limits:
+  # Configure max attribute value size.
+  attribute_value_length_limit:
+  # Configure max attribute count.
+  attribute_count_limit: 128
+
+# Configure text map context propagators.
+propagator:
+  # Configure the set of propagators to include in the composite text map propagator.
+  composite: [ tracecontext, baggage ]
+
+# Configure tracer provider.
+tracer_provider:
+  # Configure span processors.
+  processors:
+    - # Configure a batch span processor.
+      batch:
+        # Configure delay interval (in milliseconds) between two consecutive exports.
+        schedule_delay: 5000
+        # Configure maximum allowed time (in milliseconds) to export data.
+        export_timeout: 30000
+        # Configure maximum queue size.
+        max_queue_size: 2048
+        # Configure maximum batch size.
+        max_export_batch_size: 512
+        # Configure exporter.
+        exporter:
+          # Configure exporter to be OTLP.
+          otlp:
+            # Configure protocol.
+            protocol: http/protobuf
+            # Configure endpoint.
+            endpoint: http://collector:4318/v1/traces
+            # Configure certificate.
+            certificate:
+            # Configure mTLS private client key.
+            client_key:
+            # Configure mTLS client certificate.
+            client_certificate:
+            # Configure compression.
+            compression: gzip
+            # Configure max time (in milliseconds) to wait for each export.
+            timeout: 10000
+            # Configure headers. Entries have higher priority than entries from .headers_list.
+            headers: []
+  # Configure span limits. See also attribute_limits.
+  limits:
+    # Configure max attribute value size. Overrides .attribute_limits.attribute_value_length_limit.
+    attribute_value_length_limit: # Configure max span attribute count. Overrides attribute_limits.attribute_count_limit.
+    # Configure max attribute count. Overrides .attribute_limits.attribute_count_limit.
+    attribute_count_limit: 128
+    # Configure max span event count.
+    event_count_limit: 128
+    # Configure max span link count.
+    link_count_limit: 128
+    # Configure max attributes per span event.
+    event_attribute_count_limit: 128
+    # Configure max attributes per span link.
+    link_attribute_count_limit: 128
+  # Configure the sampler.
+  sampler:
+    # Configure sampler to be parent_based.
+    parent_based:
+      # Configure the parent_based sampler's root sampler to be rule_based_routing sampler from https://github.com/open-telemetry/opentelemetry-java-contrib/tree/main/samplers.
+      root:
+        rule_based_routing:
+          # Fallback to the always_on sampler if the criteria is not met.
+          fallback_sampler:
+            always_on:
+          # Only apply to SERVER spans.
+          span_kind: SERVER
+          rules:
+            # Drop spans where url.path matches the regex /actuator.* (i.e. spring boot actuator endpoints).
+            - action: DROP
+              attribute: url.path
+              pattern: /actuator.*
+      # Configure remote_parent_sampled sampler.
+      remote_parent_sampled:
+        # Configure sampler to be always_on.
+        always_on: {}
+      # Configure remote_parent_not_sampled sampler.
+      remote_parent_not_sampled:
+        # Configure sampler to be always_off.
+        always_off: {}
+      # Configure local_parent_sampled sampler.
+      local_parent_sampled:
+        # Configure sampler to be always_on.
+        always_on: {}
+      # Configure local_parent_not_sampled sampler.
+      local_parent_not_sampled:
+        # Configure sampler to be always_off.
+        always_off: {}
+
+# Configure meter provider.
+meter_provider:
+  # Configure metric readers.
+  readers:
+    - # Configure a periodic metric reader.
+      periodic:
+        # Configure delay interval (in milliseconds) between start of two consecutive exports.
+        interval: 60000
+        # Configure maximum allowed time (in milliseconds) to export data.
+        timeout: 30000
+        # Configure exporter.
+        exporter:
+          # Configure exporter to be OTLP.
+          otlp:
+            # Configure protocol.
+            protocol: http/protobuf
+            # Configure endpoint.
+            endpoint: http://collector:4318/v1/metrics
+            # Configure certificate.
+            certificate:
+            # Configure mTLS private client key.
+            client_key:
+            # Configure mTLS client certificate.
+            client_certificate:
+            # Configure compression.
+            compression: gzip
+            # Configure max time (in milliseconds) to wait for each export.
+            timeout: 10000
+            # Configure headers. Entries have higher priority than entries from .headers_list.
+            headers: []
+            # Configure temporality preference.
+            temporality_preference: cumulative
+            # Configure default histogram aggregation.
+            default_histogram_aggregation: explicit_bucket_histogram
+
+# Configure logger provider.
+logger_provider:
+  # Configure log record processors.
+  processors:
+    - # Configure a batch log record processor.
+      batch:
+        # Configure delay interval (in milliseconds) between two consecutive exports.
+        schedule_delay: 1000
+        # Configure maximum allowed time (in milliseconds) to export data.
+        export_timeout: 30000
+        # Configure maximum queue size.
+        max_queue_size: 2048
+        # Configure maximum batch size.
+        max_export_batch_size: 512
+        # Configure exporter.
+        exporter:
+          # Configure exporter to be OTLP.
+          otlp:
+            # Configure protocol.
+            protocol: http/protobuf
+            # Configure endpoint.
+            endpoint: http://collector:4318/v1/logs
+            # Configure certificate.
+            certificate:
+            # Configure mTLS private client key.
+            client_key:
+            # Configure mTLS client certificate.
+            client_certificate:
+            # Configure compression.
+            compression: gzip
+            # Configure max time (in milliseconds) to wait for each export.
+            timeout: 10000
+            # Configure headers. Entries have higher priority than entries from .headers_list.
+            headers: []
+  # Configure log record limits. See also attribute_limits.
+  limits:
+    # Configure max attribute value size. Overrides .attribute_limits.attribute_value_length_limit.
+    attribute_value_length_limit: # Configure max log record attribute count. Overrides attribute_limits.attribute_count_limit.
+    # Configure max attribute count. Overrides .attribute_limits.attribute_count_limit.
+    attribute_count_limit: 128
+
+
+# Configure instrumentation.
+instrumentation:
+  # Configure OpenTelemetry Java Agent. A standard translation process is applied to convert the
+  # flat system properties / env var configuration scheme from https://opentelemetry.io/docs/zero-code/java/agent/
+  # to the structured scheme used by declarative configuration:
+  #
+  # - Resolve properties starting with "otel.instrumentation."
+  # - Strip the "otel.instrumentation." prefix.
+  # - Split the remaining property string on "." character to break into segments
+  # - Starting at .instrumentation.java, follow N-1 segments to resolve the leaf node to read the property from
+  # - Read segment N from the resolved leaf node
+  #
+  # For example, the property "otel.instrumentation.common.default-enabled" is resolved by
+  # reading: .instrumentation.java.common.default-enabled
+  #
+  # Some system properties / env vars cannot be configured via declarative configuration, normally
+  # because they are resolved in the application lifecycle before declarative configuration is
+  # available. The set of unsupported properties includes:
+  # - otel.javaagent.enabled
+  # - otel.javaagent.configuration-file
+  # - otel.javaagent.extensions
+  # - otel.javaagent.logging
+  # - otel.resource.providers.[provider].enabled
+  #
+  # A sample set of OpenTelemetry Java Agent are shown below, with env var substitution references
+  # reflecting agent defaults. For properties that are not referenced, consult the translation
+  # steps discussed above.
+  java:
+    common:
+      default-enabled: true
+    # Configuration logback-appender instrumentation. Properties adapted from:
+    # https://github.com/open-telemetry/opentelemetry-java-instrumentation/tree/main/instrumentation/java-util-logging/javaagent
+    java-util-logging:
+      enabled: true
+      experimental-log-attributes: false
+    # Configuration logback-appender instrumentation. Properties adapted from:
+    # https://github.com/open-telemetry/opentelemetry-java-instrumentation/tree/main/instrumentation/logback/logback-appender-1.0/javaagent
+    logback-appender:
+      enabled: true
+      experimental-log-attributes: false
+      experimental:
+        capture-code-attributes: false
+        capture-marker-attributes: false
+        capture-key-value-pair-attributes: false
+        capture-logger-context-attributes: false
+        capture-arguments: false
+        capture-mdc-attributes: false
