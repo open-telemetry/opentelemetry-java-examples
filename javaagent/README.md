@@ -47,7 +47,7 @@ Watch for spans, metrics, and logs in the collector log output
 
 ## File Configuration
 
-By default, this example uses the [environment variable configuration schema](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md) to configure the SDK. However, it also includes [sdk-migration-config.yaml](./sdk-migration-config.yaml) which demonstrates how the file configuration scheme can be used instead. `sdk-migration-config.yaml` extends the [opentelemetry-configuration sdk-migration-config.yaml](https://github.com/open-telemetry/opentelemetry-configuration/blob/v0.3.0/examples/sdk-config.yaml) template, demonstrating:
+By default, this example uses the [environment variable configuration schema](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md) to configure the SDK. However, it also includes [sdk-config.yaml](./sdk-config.yaml) which demonstrates how the file configuration scheme can be used instead. `sdk-config.yaml` extends the [opentelemetry-configuration sdk-config.yaml](https://github.com/open-telemetry/opentelemetry-configuration/blob/v0.3.0/examples/sdk-config.yaml) template, demonstrating:
 
 - Configuration of instrumentation (see `.instrumentation.java`) 
 - Configuration of [rule based routing sampler](https://github.com/open-telemetry/opentelemetry-java-contrib/tree/main/samplers) (see `.tracer_provider.sampler.parent_based.root`)
