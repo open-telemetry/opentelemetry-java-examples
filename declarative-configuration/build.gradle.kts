@@ -3,7 +3,7 @@ plugins {
     id("application")
 }
 
-description = "OpenTelemetry Example for File Configuration"
+description = "OpenTelemetry Example for Declarative Configuration"
 val moduleName by extra { "io.opentelemetry.examples.fileconfig" }
 
 dependencies {

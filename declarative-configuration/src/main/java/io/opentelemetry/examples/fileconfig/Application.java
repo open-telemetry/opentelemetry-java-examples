@@ -26,7 +26,8 @@ public final class Application {
 
   public static void main(String[] args) throws InterruptedException, IOException {
     // it is important to initialize your SDK as early as possible in your application's lifecycle
-    InputStream is = Files.newInputStream(Paths.get(System.getenv("OTEL_CONFIG_FILE")));
+    InputStream is =
+        Files.newInputStream(Paths.get(System.getenv("OTEL_EXPERIMENTAL_CONFIG_FILE")));
     OpenTelemetrySdk openTelemetrySdk = FileConfiguration.parseAndCreate(is);
 
     Tracer tracer = openTelemetrySdk.getTracer("io.opentelemetry.example");

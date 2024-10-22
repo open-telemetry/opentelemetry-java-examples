@@ -45,7 +45,7 @@ develocity {
 rootProject.name = "opentelemetry-java-examples"
 include(
     ":opentelemetry-examples-autoconfigure",
-    ":opentelemetry-examples-file-configuration",
+    ":opentelemetry-examples-declarative-configuration",
     ":opentelemetry-examples-http",
     ":opentelemetry-examples-jaeger",
     ":opentelemetry-examples-javaagent",

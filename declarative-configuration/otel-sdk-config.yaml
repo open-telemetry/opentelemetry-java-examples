@@ -1,9 +1,12 @@
 # See https://github.com/open-telemetry/opentelemetry-configuration for details on schema and examples
+
+# TODO: the current support file format is 0.3, but the opentelemetry-java errantly checks that it is 0.1. This will be fixed in 1.44.0.
 file_format: "0.1"
 
 resource:
   attributes:
-    service.name:  "file-configuration-example"
+    - name: service.name
+      value: file-configuration-example
 
 tracer_provider:
   processors:
