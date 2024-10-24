@@ -2,7 +2,7 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
     id("java")
-    id("org.springframework.boot") version "3.3.4"
+    id("org.springframework.boot") version "3.3.5"
 }
 
 val moduleName by extra { "io.opentelemetry.examples.docs.spring-starter" }
