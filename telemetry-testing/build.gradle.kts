@@ -4,17 +4,11 @@ import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
     id("java")
-    id("org.springframework.boot") version "2.7.18"
+    id("org.springframework.boot") version "3.3.5"
 }
 
 description = "OpenTelemetry Example for Telemetry Testing"
 val moduleName by extra { "io.opentelemetry.examples.telemetry-testing" }
-
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(11))
-    }
-}
 
 val bootRun = tasks.named<BootRun>("bootRun") {
     mainClass = "io.opentelemetry.example.javagent.Application"
@@ -37,7 +31,7 @@ dependencies {
     testImplementation(enforcedPlatform("org.junit:junit-bom:5.11.3"))
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testImplementation("org.junit.jupiter:junit-jupiter-engine")
-    testImplementation("org.mock-server:mockserver-netty:5.15.0:shaded")
+    testImplementation("org.mock-server:mockserver-netty:5.15.0")
     testImplementation("org.awaitility:awaitility:4.2.2")
     testImplementation("io.opentelemetry.proto:opentelemetry-proto:1.3.2-alpha")
     testImplementation("org.assertj:assertj-core:3.26.3")

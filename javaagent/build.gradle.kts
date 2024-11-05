@@ -3,17 +3,11 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     id("java")
-    id("org.springframework.boot") version "2.7.18"
+    id("org.springframework.boot") version "3.3.5"
 }
 
 description = "OpenTelemetry Example for Java Agent"
 val moduleName by extra { "io.opentelemetry.examples.javagent" }
-
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
-    }
-}
 
 val agent = configurations.create("agent")
 val extension = configurations.create("extension")
