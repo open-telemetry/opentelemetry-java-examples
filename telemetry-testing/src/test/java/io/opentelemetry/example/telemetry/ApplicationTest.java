@@ -40,8 +40,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
     webEnvironment = RANDOM_PORT)
 class ApplicationTest {
 
-  @LocalServerPort
-  private int port;
+  @LocalServerPort private int port;
 
   @Autowired TestRestTemplate template;
 
