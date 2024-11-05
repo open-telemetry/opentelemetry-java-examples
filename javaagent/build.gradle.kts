@@ -9,12 +9,6 @@ plugins {
 description = "OpenTelemetry Example for Java Agent"
 val moduleName by extra { "io.opentelemetry.examples.javagent" }
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
-    }
-}
-
 val agent = configurations.create("agent")
 val extension = configurations.create("extension")
 

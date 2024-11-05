@@ -9,12 +9,6 @@ plugins {
 description = "OpenTelemetry Example for Micrometer Shim"
 val moduleName by extra { "io.opentelemetry.examples.micrometer-shim" }
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
-    }
-}
-
 val bootRun = tasks.named<BootRun>("bootRun") {
     mainClass = "io.opentelemetry.example.micrometer.Application"
 }

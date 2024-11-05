@@ -10,12 +10,6 @@ plugins {
 description = "OpenTelemetry Example for Telemetry Testing"
 val moduleName by extra { "io.opentelemetry.examples.telemetry-testing" }
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(11))
-    }
-}
-
 val bootRun = tasks.named<BootRun>("bootRun") {
     mainClass = "io.opentelemetry.example.javagent.Application"
 }
