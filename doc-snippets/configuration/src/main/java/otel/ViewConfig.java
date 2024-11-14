@@ -30,4 +30,11 @@ public class ViewConfig {
         InstrumentSelector.builder().setName(metricName).build(),
         View.builder().setAttributeFilter(keysToRetain).build());
   }
+
+  public static SdkMeterProviderBuilder cardinalityLimitsView(
+      SdkMeterProviderBuilder builder, String metricName, int cardinalityLimit) {
+    return builder.registerView(
+        InstrumentSelector.builder().setName(metricName).build(),
+        View.builder().setCardinalityLimit(cardinalityLimit).build());
+  }
 }

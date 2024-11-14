@@ -13,8 +13,7 @@
 # vars defined in https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/.
 
 # The file format version.
-# TODO: the current support file format is 0.3, but the opentelemetry-java errantly checks that it is 0.1. This will be fixed in 1.44.0.
-file_format: "0.1"
+file_format: "0.3"
 
 # Configure if the SDK is disabled or not. This is not required to be provided to ensure the SDK isn't disabled, the default value when this is not provided is for the SDK to be enabled.
 disabled: false
