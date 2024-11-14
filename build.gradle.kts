@@ -14,13 +14,11 @@ subprojects {
 
     repositories {
         mavenCentral()
-        maven("https://oss.sonatype.org/content/repositories/snapshots")
     }
 
     dependencies {
         // using the bom ensures that all of your opentelemetry dependency versions are aligned
-        implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:2.9.0-alpha"))
-        implementation(platform("io.opentelemetry:opentelemetry-bom-alpha:1.44.0-alpha-SNAPSHOT"))
+        implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:2.10.0-alpha"))
     }
 
     spotless {

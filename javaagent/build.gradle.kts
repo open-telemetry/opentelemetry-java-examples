@@ -9,6 +9,12 @@ plugins {
 description = "OpenTelemetry Example for Java Agent"
 val moduleName by extra { "io.opentelemetry.examples.javagent" }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
 val agent = configurations.create("agent")
 val extension = configurations.create("extension")
 
@@ -20,7 +26,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
-    agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.9.0")
+    agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.10.0")
     extension("io.opentelemetry.contrib:opentelemetry-samplers:1.40.0-alpha") {
         isTransitive = false
     }
