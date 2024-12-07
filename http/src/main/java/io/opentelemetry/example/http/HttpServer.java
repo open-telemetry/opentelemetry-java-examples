@@ -49,11 +49,11 @@ public final class HttpServer {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
       ((ExtendedSpanBuilder) tracer.spanBuilder("GET /"))
-                  .setParentFrom(
-                      openTelemetry.getPropagators(),
-                      exchange.getRequestHeaders().entrySet().stream()
-                          .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().get(0))))
-                  .setSpanKind(SpanKind.SERVER)
+          .setParentFrom(
+              openTelemetry.getPropagators(),
+              exchange.getRequestHeaders().entrySet().stream()
+                  .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().get(0))))
+          .setSpanKind(SpanKind.SERVER)
           .startAndRun(
               () -> {
                 // Set the Semantic Convention
