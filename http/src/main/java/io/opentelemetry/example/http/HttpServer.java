@@ -48,15 +48,12 @@ public final class HttpServer {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-      // TODO (trask) clean up chaining after
-      // https://github.com/open-telemetry/opentelemetry-java/pull/6514
-      ((ExtendedSpanBuilder)
-              ((ExtendedSpanBuilder) tracer.spanBuilder("GET /"))
+      ((ExtendedSpanBuilder) tracer.spanBuilder("GET /"))
                   .setParentFrom(
                       openTelemetry.getPropagators(),
                       exchange.getRequestHeaders().entrySet().stream()
                           .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().get(0))))
-                  .setSpanKind(SpanKind.SERVER))
+                  .setSpanKind(SpanKind.SERVER)
           .startAndRun(
               () -> {
                 // Set the Semantic Convention
