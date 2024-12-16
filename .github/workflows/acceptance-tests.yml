@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: grafana/oats
-          ref: 3e842f0277aee2384d7ae5ca542cb3aea8b13511
+          ref: bc2f08c5e55114234cece216290f1580a75a6032
           path: oats
       - name: Set up Go
         uses: actions/setup-go@v5
