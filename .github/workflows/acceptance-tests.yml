@@ -25,9 +25,6 @@ jobs:
         with:
           cache-read-only: ${{ github.event_name == 'pull_request' }}
 
-      - name: Build
-        run: ./gradlew clean check shadowJar
-
       - name: Check out oats
         uses: actions/checkout@v4
         with:
