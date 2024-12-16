@@ -13,6 +13,21 @@ jobs:
     steps:
       - name: Check out
         uses: actions/checkout@v4
+
+      - name: Set up JDK for running Gradle
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Set up gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: ${{ github.event_name == 'pull_request' }}
+
+      - name: Build
+        run: ./gradlew clean check shadowJar
+
       - name: Check out oats
         uses: actions/checkout@v4
         with:
@@ -22,7 +37,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.21'
+          go-version: '1.23'
           cache-dependency-path: oats/go.sum
       - name: Run acceptance tests
         run: .github/scripts/run-acceptance-tests.sh
@@ -30,5 +45,5 @@ jobs:
         uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: log output
+          name: OATS logs
           path: oats/yaml/build/**/*.log
