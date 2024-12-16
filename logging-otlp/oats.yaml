@@ -5,8 +5,6 @@ kubernetes:
   app-docker-file: Dockerfile
   app-docker-tag: dice:1.1-SNAPSHOT
   app-docker-port: 8080
-  import-images:
-    - grafana/otel-lgtm:latest
 input:
   - path: /rolldice
 expected:
