@@ -7,7 +7,7 @@ plugins {
 }
 
 description = "OpenTelemetry Example for Java Agent with Stdout logging"
-val moduleName by extra { "io.opentelemetry.examples.javagent.stdout-logging" }
+val moduleName by extra { "io.opentelemetry.examples.javagent.logging-k8s-stdout-otlp-json" }
 
 java {
     toolchain {
