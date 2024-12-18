@@ -15,16 +15,22 @@ This example contains
   [experimental-otlp/stdout](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md#in-development-exporter-selection) logs exporter
 - a OTel collector configuration that uses the 
   [OTLP/JSON connector](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/otlpjsonconnector) to turn Pod logs into `OTLP`
-
+    
+## Architecture
 
 ![OTLP/JSON Architecture](otlpjson-architecture.png)
+
+The OTel Collector pipeline:
+
+![OTel Collector Pipeline](otel-collector-otlpjson-pipeline.png)
 
 ## Getting Started
 
 The k8s directory contains the Kubernetes manifests to deploy the application and the collector.
 
-Ignore the `lgtm.yaml` file, which is only used for running locally and automated testing
-using [OATs](https://github.com/grafana/oats).
+Ignore the `lgtm.yaml` file, which is only used for running locally with 
+[LGTM](https://github.com/grafana/docker-otel-lgtm/) 
+and automated testing using [OATs](https://github.com/grafana/oats).
 
 ## Running locally
 
