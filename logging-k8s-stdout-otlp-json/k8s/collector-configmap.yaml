@@ -31,6 +31,10 @@ data:
         detectors: [ "env", "system" ]
         override: false
 
+      k8sattributes:
+         # Config details in 
+         # https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/k8sattributesprocessor
+``
     connectors:
       otlpjson:
 
@@ -53,11 +57,11 @@ data:
       pipelines:
         traces:
           receivers: [ otlp ]
-          processors: [ batch ]
+          processors: [k8sattributes, resourcedetection, batch]
           exporters: [ otlphttp/traces ]
         metrics:
           receivers: [ otlp, prometheus/collector ]
-          processors: [ batch ]
+          processors: [k8sattributes, resourcedetection, batch]
           exporters: [ otlphttp/metrics ]
         logs/raw_otlpjson:
           receivers: [ filelog/otlp-json-logs ]
@@ -67,6 +71,6 @@ data:
           exporters: [ otlpjson ]
         logs/otlp:
           receivers: [ otlp, otlpjson ]
-          processors: [ resourcedetection, batch ]
+          processors: [k8sattributes, resourcedetection, batch]
           exporters: [ otlphttp/logs ]
           # exporters: [ otlphttp/logs, debug/logs ]  # Uncomment this line to enable debug logging
