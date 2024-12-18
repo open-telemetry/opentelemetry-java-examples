@@ -6,6 +6,9 @@ on:
       - main
   pull_request:
   workflow_dispatch:
+  paths:
+    - .github/workflows/acceptance-tests.yml
+    - 'logging-k8s-stdout-otlp-json/**'
 
 jobs:
   acceptance-tests:
