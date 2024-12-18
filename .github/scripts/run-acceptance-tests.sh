@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-pushd logging-otlp
+pushd logging-k8s-stdout-otlp-json
 ../gradlew assemble
 popd
 
