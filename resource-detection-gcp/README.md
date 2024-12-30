@@ -35,19 +35,37 @@ SET GOOGLE_APPLICATION_CREDENTIALS=%APPDATA%\gcloud\application_default_credenti
 export GOOGLE_CLOUD_PROJECT="my-awesome-gcp-project-id"
 ```
 
+#### Setup Google Cloud Artifact Registry
+
+> [!NOTE]
+> This step is only required if you want to run the application in GKE
+
+```shell
+export ARTIFACT_REGISTRY="my-container-registry"
+export REGISTRY_LOCATION="us-central1"
+gcloud artifacts repositories create ${ARTIFACT_REGISTRY} --repository-format=docker --location=${REGISTRY_LOCATION} --description="Resource detection sample on GKE"
+```
+
+
 ## Running in Google Kubernetes Engine
+
+> [!NOTE]
+> Make sure that kubectl is installed and configured to access a GKE cluster. Relevant documentation can be found [here](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#run_against_a_specific_cluster).
 
 To spin it up on your own GKE cluster, run the following:
 ```shell
-./gradlew :opentelemetry-examples-resource-detection-gcp:jib --image="gcr.io/$GOOGLE_CLOUD_PROJECT/hello-resource-java"
+./gradlew :opentelemetry-examples-resource-detection-gcp:jib --image="$REGISTRY_LOCATION-docker.pkg.dev/$GOOGLE_CLOUD_PROJECT/$ARTIFACT_REGISTRY/hello-resource-java"
 
-sed s/%GOOGLE_CLOUD_PROJECT%/$GOOGLE_CLOUD_PROJECT/g \
+sed -e s/%GOOGLE_CLOUD_PROJECT%/$GOOGLE_CLOUD_PROJECT/g \
+    -e s/%REGISTRY_LOCATION%/$REGISTRY_LOCATION/g \
+    -e s/%ARTIFACT_REGISTRY%/$ARTIFACT_REGISTRY/g \
  resource-detection-gcp/k8s/job.yaml | kubectl apply -f -
 ```
 
 This will run the application as a GKE workload. You can view it from the `Workloads` tab under the `Resource Management` section on GKE console.
 
 The generated logs can be viewed under the `Logs` tab on the `Job Details` page. These logs will show the detected resource attributes for GKE.
+The detected attributes will contain the attributes detected by the GCP resource detector as well as the attributes attached by the autoconfigure module.
 
 ## Running the application locally
 
@@ -70,4 +88,16 @@ After running the example successfully, you should see the emitted span in JSON 
 
 ```
 INFO: {"resource":{"attributes": ... }}
+```
+
+## Cleanup
+
+Cleanup any Google Cloud Resources created to run this sample.
+
+```shell
+# Delete the Job
+kubectl delete job hello-resource-java
+
+# Delete Artifact Registry
+gcloud artifacts repositories delete $ARTIFACT_REGISTRY --location=$REGISTRY_LOCATION
 ```
