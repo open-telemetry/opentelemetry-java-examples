@@ -41,11 +41,10 @@ public class OtlpAuthenticationConfig {
     // to be periodically refreshed, use a header supplier.
     // Here we implement a simple supplier which adds a header of the form "Authorization: Bearer
     // <token>", where <token> is fetched from refreshBearerToken every 10 minutes.
+    String username = System.getenv("OTLP_USERNAME");
+    String password = System.getenv("OTLP_PASSWORD");
     Supplier<Map<String, String>> supplier =
-        new AuthHeaderSupplier(
-            () ->
-                refreshBearerToken(System.getenv("OTLP_USERNAME"), System.getenv("OTLP_PASSWORD")),
-            Duration.ofMinutes(10));
+        new AuthHeaderSupplier(() -> refreshToken(username, password), Duration.ofMinutes(10));
 
     // Initialize OTLP Span, Metric, and LogRecord exporters using a similar pattern
     OtlpHttpSpanExporter spanExporter =
@@ -82,7 +81,7 @@ public class OtlpAuthenticationConfig {
     }
   }
 
-  private static String refreshBearerToken(String username, String password) {
+  private static String refreshToken(String username, String password) {
     // For a production scenario, this would be replaced with out-of-band request to exchange
     // username / password for bearer token.
     return "abc123";
