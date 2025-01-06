@@ -20,9 +20,9 @@ This example contains
 
 ![OTLP/JSON Architecture](otlpjson-architecture.png)
 
-The OTel Collector pipeline:
+The OpenTelemetry Collector pipeline:
 
-![OTel Collector Pipeline](otel-collector-otlpjson-pipeline.png)
+![OpenTelemetry Collector Pipeline](otel-collector-otlpjson-pipeline.png)
 
 ## Getting Started
 
