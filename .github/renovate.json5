@@ -6,14 +6,15 @@
   "packageRules": [
     {
       "matchPackageNames": [
-        "io.opentelemetry:opentelemetry-bom-alpha",
-        "io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha",
-        "io.opentelemetry.proto:opentelemetry-proto"
+        "io.opentelemetry:**",
+        "io.opentelemetry.instrumentation:**",
+        "io.opentelemetry.contrib:**",
+        "io.opentelemetry.semconv:**",
+        "io.opentelemetry.proto:**"
       ],
       // Renovate's default behavior is only to update from unstable -> unstable if it's for the
       // major.minor.patch, under the assumption that you would want to update to the stable version
       // of that release instead of the unstable version for a future release
-      // (but there's never any stable version of these artifacts so this logic doesn't apply)
       "ignoreUnstable": false
     },
     {
