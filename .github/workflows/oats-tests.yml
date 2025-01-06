@@ -1,11 +1,11 @@
-name: Acceptance Tests
+name: OATS Tests
 
 on:
   pull_request:
     branches:
       - main
     paths:
-      - .github/workflows/acceptance-tests.yml
+      - .github/workflows/oats-tests.yml
       - 'logging-k8s-stdout-otlp-json/**'
   workflow_dispatch:
 
@@ -41,7 +41,7 @@ jobs:
           cache-dependency-path: oats/go.sum
 
       - name: Run acceptance tests
-        run: .github/scripts/run-acceptance-tests.sh
+        run: .github/scripts/run-oats-tests.sh
 
       - name: upload log file
         uses: actions/upload-artifact@v4
