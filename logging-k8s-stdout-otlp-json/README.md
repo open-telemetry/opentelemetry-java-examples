@@ -13,7 +13,7 @@ This example contains
 
 - a Java application that uses the experimental 
   [experimental-otlp/stdout](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md#in-development-exporter-selection) logs exporter
-- a OTel collector configuration that uses the 
+- an OpenTelemetry collector configuration that uses the 
   [OTLP/JSON connector](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/otlpjsonconnector) to turn Pod logs into `OTLP`
     
 ## Architecture
