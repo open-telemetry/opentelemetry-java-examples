@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-./build.sh
+docker build -f Dockerfile -t "dice:1.1-SNAPSHOT" .
 k3d cluster create jsonlogging || k3d cluster start jsonlogging
 k3d image import -c jsonlogging dice:1.1-SNAPSHOT
 
