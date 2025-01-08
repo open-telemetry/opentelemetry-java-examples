@@ -31,6 +31,7 @@ include(
     ":opentelemetry-examples-javaagent",
     ":opentelemetry-examples-log-appender",
     ":opentelemetry-examples-logging",
+    ":opentelemetry-examples-logging-k8s-stdout-otlp-json",
     ":opentelemetry-examples-manual-tracing",
     ":opentelemetry-examples-metrics",
     ":opentelemetry-examples-micrometer-shim",
