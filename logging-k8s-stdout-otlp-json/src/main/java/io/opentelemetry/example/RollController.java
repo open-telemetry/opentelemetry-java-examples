@@ -1,4 +1,4 @@
-package com.grafana.example;
+package io.opentelemetry.example;
 
 import java.util.Optional;
 import java.util.Random;
