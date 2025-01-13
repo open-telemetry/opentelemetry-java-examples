@@ -41,6 +41,9 @@ of them assume you have docker running on your local machine.
 - [Configuring the Logging Exporters](logging)
     - This module contains a fully-functional example of configuring the
       OpenTelemetry SDK to use a logging exporter.
+- [Exporting Application logs using JSON logging in Kubernetes](logging-k8s-stdout-otlp-json)
+    - This module demonstrates how to export application logs using JSON logging
+      in Kubernetes.
 - [Using the OpenTelemetry metrics API](metrics)
     - This module contains examples of using the OpenTelemetry metrics APIs.
 - [Using OpenTelemetry Micrometer shim](micrometer-shim)
