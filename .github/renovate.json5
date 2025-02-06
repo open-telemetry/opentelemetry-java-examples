@@ -1,7 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
+    "config:recommended",
+    "customManagers:dockerfileVersions" // used by logging-k8s-stdout-otlp-json/Dockerfile
   ],
   "packageRules": [
     {
@@ -18,35 +19,10 @@
       "ignoreUnstable": false
     },
     {
-      "matchPackagePrefixes": ["io.opentelemetry"],
-      "groupName": "opentelemetry packages"
-    },
-    {
-      "matchPackagePrefixes": ["ch.qos.logback:"],
-      "groupName": "logback packages"
-    },
-    {
-      "matchPackagePrefixes": ["com.google.protobuf"],
-      "groupName": "protobuf packages"
-    },
-    {
       // intentionally using Java 11 in some examples
       // not using matchUpdateTypes "major", because renovate wants to bump "11-jre" to "11.0.19_7-jre"
       "matchPackageNames": ["eclipse-temurin"],
       "enabled": false
-    }
-  ],
-  "customManagers": [
-    {
-      "customType": "regex",
-      "description": "Update _VERSION variables in Dockerfiles",
-      "fileMatch": [
-        "(^|/|\\.)Dockerfile$",
-        "(^|/)Dockerfile\\.[^/]*$"
-      ],
-      "matchStrings": [
-        "# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?)(?: versioning=(?<versioning>[a-z-]+?))?\\s(?:ENV|ARG) .+?_VERSION=(?<currentValue>.+?)\\s"
-      ]
     }
   ]
 }
