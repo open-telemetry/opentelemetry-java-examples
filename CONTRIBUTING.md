@@ -19,9 +19,8 @@ To build the project, run:
 
 ## Style guide
 
-See
-the [Style guide](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/docs/contributing/style-guideline.md)
-from the opentelemetry-java-instrumentation repository.
+This repository follows the OpenTelemetry Java
+repository's [style guide](https://github.com/open-telemetry/opentelemetry-java/blob/main/CONTRIBUTING.md#style-guideline).
 
 ## Gradle conventions
 
