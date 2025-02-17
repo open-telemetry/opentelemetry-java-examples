@@ -19,6 +19,14 @@
       "ignoreUnstable": false
     },
     {
+      groupName: 'opentelemetry instrumentation packages',
+      matchPackageNames: [
+        'io.opentelemetry.instrumentation:**',
+        'io.opentelemetry.javaagent:**',
+        'open-telemetry/opentelemetry-java-instrumentation' // for logging-k8s-stdout-otlp-json/Dockerfile
+      ],
+    },
+    {
       // intentionally using Java 11 in some examples
       // not using matchUpdateTypes "major", because renovate wants to bump "11-jre" to "11.0.19_7-jre"
       "matchPackageNames": ["eclipse-temurin"],
