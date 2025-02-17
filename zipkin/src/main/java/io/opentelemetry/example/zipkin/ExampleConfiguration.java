@@ -5,6 +5,8 @@
 
 package io.opentelemetry.example.zipkin;
 
+import static io.opentelemetry.semconv.ServiceAttributes.SERVICE_NAME;
+
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.common.Attributes;
 import io.opentelemetry.exporter.zipkin.ZipkinSpanExporter;
@@ -12,7 +14,7 @@ import io.opentelemetry.sdk.OpenTelemetrySdk;
 import io.opentelemetry.sdk.resources.Resource;
 import io.opentelemetry.sdk.trace.SdkTracerProvider;
 import io.opentelemetry.sdk.trace.export.SimpleSpanProcessor;
-import io.opentelemetry.semconv.ResourceAttributes;
+import io.opentelemetry.semconv.ServiceAttributes;
 
 /**
  * All SDK management takes place here, away from the instrumentation code, which should only access
@@ -29,7 +31,7 @@ public final class ExampleConfiguration {
     ZipkinSpanExporter zipkinExporter = ZipkinSpanExporter.builder().setEndpoint(endpoint).build();
 
     Resource serviceNameResource =
-        Resource.create(Attributes.of(ResourceAttributes.SERVICE_NAME, SERVICE_NAME));
+        Resource.create(Attributes.of(ServiceAttributes.SERVICE_NAME, SERVICE_NAME));
 
     // Set to process the spans by the Zipkin Exporter
     SdkTracerProvider tracerProvider =

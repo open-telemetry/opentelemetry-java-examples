@@ -5,6 +5,8 @@
 
 package io.opentelemetry.example.jaeger;
 
+import static io.opentelemetry.semconv.ServiceAttributes.SERVICE_NAME;
+
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.common.Attributes;
 import io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporter;
@@ -12,7 +14,6 @@ import io.opentelemetry.sdk.OpenTelemetrySdk;
 import io.opentelemetry.sdk.resources.Resource;
 import io.opentelemetry.sdk.trace.SdkTracerProvider;
 import io.opentelemetry.sdk.trace.export.BatchSpanProcessor;
-import io.opentelemetry.semconv.ResourceAttributes;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -37,7 +38,7 @@ class ExampleConfiguration {
             .build();
 
     Resource serviceNameResource =
-        Resource.create(Attributes.of(ResourceAttributes.SERVICE_NAME, "otel-jaeger-example"));
+        Resource.create(Attributes.of(SERVICE_NAME, "otel-jaeger-example"));
 
     // Set to process the spans by the Jaeger Exporter
     SdkTracerProvider tracerProvider =
