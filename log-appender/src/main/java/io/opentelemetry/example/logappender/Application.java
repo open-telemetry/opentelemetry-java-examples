@@ -1,5 +1,7 @@
 package io.opentelemetry.example.logappender;
 
+import static io.opentelemetry.semconv.ServiceAttributes.SERVICE_NAME;
+
 import io.opentelemetry.api.GlobalOpenTelemetry;
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.common.AttributeKey;
@@ -13,7 +15,6 @@ import io.opentelemetry.sdk.logs.export.BatchLogRecordProcessor;
 import io.opentelemetry.sdk.resources.Resource;
 import io.opentelemetry.sdk.trace.SdkTracerProvider;
 import io.opentelemetry.sdk.trace.samplers.Sampler;
-import io.opentelemetry.semconv.ResourceAttributes;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -115,7 +116,7 @@ public class Application {
                 SdkLoggerProvider.builder()
                     .setResource(
                         Resource.getDefault().toBuilder()
-                            .put(ResourceAttributes.SERVICE_NAME, "log4j-example")
+                            .put(SERVICE_NAME, "log4j-example")
                             .build())
                     .addLogRecordProcessor(
                         BatchLogRecordProcessor.builder(
