@@ -4,7 +4,7 @@ import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
     id("java")
-    id("org.springframework.boot") version "3.4.2"
+    id("org.springframework.boot") version "3.4.3"
 }
 
 description = "OpenTelemetry Example for Telemetry Testing"
