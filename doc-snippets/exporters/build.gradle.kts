@@ -9,7 +9,7 @@ val moduleName by extra { "io.opentelemetry.examples.docs.exporters" }
 
 dependencies {
     implementation(platform(SpringBootPlugin.BOM_COORDINATES))
-    implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:2.13.1"))
+    implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:2.13.3"))
 
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("io.opentelemetry:opentelemetry-exporter-otlp")
