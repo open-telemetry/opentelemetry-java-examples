@@ -23,7 +23,7 @@ val bootJar = tasks.named<BootJar>("bootJar") {
 dependencies {
     implementation(platform(SpringBootPlugin.BOM_COORDINATES))
     implementation("io.opentelemetry:opentelemetry-api")
-    implementation("io.opentelemetry.instrumentation:opentelemetry-instrumentation-annotations:2.13.3")
+    implementation("io.opentelemetry.instrumentation:opentelemetry-instrumentation-annotations:2.14.0")
     //spring modules
     implementation("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -36,7 +36,7 @@ dependencies {
     testImplementation("io.opentelemetry.proto:opentelemetry-proto:1.5.0-alpha")
     testImplementation("org.assertj:assertj-core:3.27.3")
 
-    agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.13.3")
+    agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.14.0")
 }
 
 tasks.test {

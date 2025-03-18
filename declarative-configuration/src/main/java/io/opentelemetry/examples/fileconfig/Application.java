@@ -14,7 +14,7 @@ import io.opentelemetry.api.trace.Tracer;
 import io.opentelemetry.context.Context;
 import io.opentelemetry.context.Scope;
 import io.opentelemetry.sdk.OpenTelemetrySdk;
-import io.opentelemetry.sdk.extension.incubator.fileconfig.FileConfiguration;
+import io.opentelemetry.sdk.extension.incubator.fileconfig.DeclarativeConfiguration;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -28,7 +28,7 @@ public final class Application {
     // it is important to initialize your SDK as early as possible in your application's lifecycle
     InputStream is =
         Files.newInputStream(Paths.get(System.getenv("OTEL_EXPERIMENTAL_CONFIG_FILE")));
-    OpenTelemetrySdk openTelemetrySdk = FileConfiguration.parseAndCreate(is);
+    OpenTelemetrySdk openTelemetrySdk = DeclarativeConfiguration.parseAndCreate(is);
 
     Tracer tracer = openTelemetrySdk.getTracer("io.opentelemetry.example");
     Meter meter = openTelemetrySdk.getMeter("io.opentelemetry.example");
