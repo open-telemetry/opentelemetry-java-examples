@@ -27,18 +27,10 @@ jobs:
         with:
           cache-read-only: ${{ github.event_name == 'pull_request' }}
 
-      - name: Check out oats
-        uses: actions/checkout@v4
-        with:
-          repository: grafana/oats
-          ref: v0.1.0
-          path: oats
-
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
           go-version: '1.24'
-          cache-dependency-path: oats/go.sum
 
       - name: Run acceptance tests
         run: .github/scripts/run-oats-tests.sh
@@ -47,5 +39,5 @@ jobs:
         uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: OATS logs
-          path: oats/yaml/build/**/*.log
+          name: OATs logs
+          path: build/**/*.log
