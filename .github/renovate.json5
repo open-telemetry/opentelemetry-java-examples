@@ -1,7 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended",
+    "config:best-practices",
+    "helpers:pinGitHubActionDigestsToSemver",
     "customManagers:dockerfileVersions" // used by logging-k8s-stdout-otlp-json/Dockerfile
   ],
   "packageRules": [
