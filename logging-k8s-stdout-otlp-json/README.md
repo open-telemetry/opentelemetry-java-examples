@@ -1,3 +1,5 @@
+this is just a test
+
 # Exporting Application logs using JSON logging in Kubernetes
 
 If you want to get logs from your Java application ingested into an
