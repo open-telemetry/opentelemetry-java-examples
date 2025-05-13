@@ -33,5 +33,15 @@
       "matchPackageNames": ["eclipse-temurin"],
       "enabled": false
     }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["lgtm.yaml"],
+      "matchStrings": ["grafana/otel-lgtm:(?<currentValue>.*?)\\n"],
+      "depNameTemplate": "otel-lgtm",
+      "packageNameTemplate": "grafana/otel-lgtm",
+      "datasourceTemplate": "docker"
+    }
   ]
 }
