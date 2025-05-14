@@ -10,7 +10,7 @@ services:
     depends_on:
       - collector
   collector:
-    image: otel/opentelemetry-collector-contrib:0.123.0@sha256:e39311df1f3d941923c00da79ac7ba6269124a870ee87e3c3ad24d60f8aee4d2
+    image: otel/opentelemetry-collector-contrib:0.126.0@sha256:973747f78266a8ffec428417727e6b704559e9a30e4be8c1cca2899facd68689
     volumes:
       - ./collector-spring-native-config.yaml:/collector-spring-native-config.yaml
     command: ["--config=/collector-spring-native-config.yaml"]
