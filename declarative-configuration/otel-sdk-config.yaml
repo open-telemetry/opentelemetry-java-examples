@@ -25,4 +25,7 @@ meter_provider:
         aggregation:
           drop:
 
-propagators: [tracecontext, baggage]
+propagator:
+  composite:
+    - tracecontext
+    - baggage
