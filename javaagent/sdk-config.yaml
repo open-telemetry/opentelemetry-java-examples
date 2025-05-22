@@ -227,7 +227,7 @@ instrumentation:
   java:
     common:
       default-enabled: true
-    # Configuration logback-appender instrumentation. Properties adapted from:
+    # Configuration java-util-logging instrumentation. Properties adapted from:
     # https://github.com/open-telemetry/opentelemetry-java-instrumentation/tree/main/instrumentation/java-util-logging/javaagent
     java-util-logging:
       enabled: true
