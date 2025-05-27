@@ -11,12 +11,6 @@ data:
             endpoint: 0.0.0.0:4317
           http:
             endpoint: 0.0.0.0:4318
-      prometheus/collector: # needed if you use the docker-lgtm image
-        config:
-          scrape_configs:
-            - job_name: 'opentelemetry-collector'
-              static_configs:
-                - targets: [ 'localhost:8888' ]
       filelog/otlp-json-logs:
         include:
           - /var/log/pods/*/*/*.log
@@ -24,7 +18,13 @@ data:
         operators:
           - id: container-parser
             type: container
-    
+            
+    extensions:
+      # needed if you use the docker-lgtm image
+      health_check:
+        endpoint: 0.0.0.0:13133
+        path: "/ready"
+        
     processors:
       batch:
       resourcedetection:
@@ -53,13 +53,14 @@ data:
       nop:
     
     service:
+      extensions: [health_check]
       pipelines:
         traces:
           receivers: [ otlp ]
           processors: [ k8sattributes, resourcedetection, batch ]
           exporters: [ otlphttp/traces ]
         metrics:
-          receivers: [ otlp, prometheus/collector ]
+          receivers: [ otlp ]
           processors: [ k8sattributes, resourcedetection, batch ]
           exporters: [ otlphttp/metrics ]
         logs/raw_otlpjson:
