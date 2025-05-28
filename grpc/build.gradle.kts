@@ -16,7 +16,7 @@ java {
 }
 
 var grpcVersion = "1.73.0" // CURRENT_GRPC_VERSION
-var protobufVersion = "4.31.0"
+var protobufVersion = "4.31.1"
 var protocVersion = protobufVersion
 
 dependencies {
