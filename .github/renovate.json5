@@ -32,6 +32,13 @@
       // not using matchUpdateTypes "major", because renovate wants to bump "11-jre" to "11.0.19_7-jre"
       "matchPackageNames": ["eclipse-temurin"],
       "enabled": false
+    },
+    {
+      // Skip locally built dice image used in logging-k8s-stdout-otlp-json
+      "matchManagers": ["kubernetes"],
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["dice"],
+      "enabled": false
     }
   ],
   "kubernetes": {
