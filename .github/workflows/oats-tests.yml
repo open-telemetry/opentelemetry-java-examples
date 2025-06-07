@@ -9,6 +9,9 @@ on:
       - 'logging-k8s-stdout-otlp-json/**'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   acceptance-tests:
     runs-on: ubuntu-24.04
