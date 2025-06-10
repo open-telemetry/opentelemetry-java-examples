@@ -8,5 +8,5 @@ dependencies {
     implementation("io.opentelemetry:opentelemetry-api")
 
     implementation("io.opentelemetry.semconv:opentelemetry-semconv")
-    implementation("io.opentelemetry.semconv:opentelemetry-semconv-incubating:1.32.0-alpha")
+    implementation("io.opentelemetry.semconv:opentelemetry-semconv-incubating:1.34.0-alpha")
 }
