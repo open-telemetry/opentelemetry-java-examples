@@ -3,7 +3,7 @@ services:
 
   # Jaeger
   jaeger-all-in-one:
-    image: jaegertracing/all-in-one:latest@sha256:82505210a99b18f587c94f40120c2e13ef3a6ac3095eebdb9e9cba9bf5839efd
+    image: jaegertracing/all-in-one:1.69.0@sha256:82505210a99b18f587c94f40120c2e13ef3a6ac3095eebdb9e9cba9bf5839efd
     ports:
       - "16686:16686"
       - "14268"
@@ -13,7 +13,7 @@ services:
 
   # Zipkin
   zipkin-all-in-one:
-    image: openzipkin/zipkin:latest@sha256:bb570eb45c2994eaf32da783cc098b3d51d1095b73ec92919863d73d0a9eaafb
+    image: openzipkin/zipkin:3.5.1@sha256:bb570eb45c2994eaf32da783cc098b3d51d1095b73ec92919863d73d0a9eaafb
     ports:
       - "9411:9411"
 
@@ -36,7 +36,7 @@ services:
 
   prometheus:
     container_name: prometheus
-    image: prom/prometheus:latest@sha256:9abc6cf6aea7710d163dbb28d8eeb7dc5baef01e38fa4cd146a406dd9f07f70d
+    image: prom/prometheus:3.4.1@sha256:9abc6cf6aea7710d163dbb28d8eeb7dc5baef01e38fa4cd146a406dd9f07f70d
     volumes:
       - ./prometheus.yaml:/etc/prometheus/prometheus.yml
     ports:
