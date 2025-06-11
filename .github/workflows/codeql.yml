@@ -67,7 +67,7 @@ jobs:
       issues: write
     needs:
       - analyze
-    if: always()
+    if: always() && github.event_name == 'schedule'
     uses: ./.github/workflows/reusable-workflow-notification.yml
     with:
       success: ${{ needs.analyze.result == 'success' }}
