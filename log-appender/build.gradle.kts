@@ -23,7 +23,7 @@ dependencies {
     implementation("org.slf4j:jul-to-slf4j:2.0.17")
 
     // Log4j
-    implementation(platform("org.apache.logging.log4j:log4j-bom:2.24.3"))
+    implementation(platform("org.apache.logging.log4j:log4j-bom:2.25.0"))
     implementation("org.apache.logging.log4j:log4j-api")
     implementation("org.apache.logging.log4j:log4j-core")
 
