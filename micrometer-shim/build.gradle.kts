@@ -3,7 +3,7 @@ import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
     id("java")
-    id("org.springframework.boot") version "3.5.0"
+    id("org.springframework.boot") version "3.5.2"
 }
 
 description = "OpenTelemetry Example for Micrometer Shim"
