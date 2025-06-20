@@ -36,7 +36,7 @@ dependencies {
     testImplementation("io.opentelemetry.proto:opentelemetry-proto:1.7.0-alpha")
     testImplementation("org.assertj:assertj-core:3.27.3")
 
-    agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.16.0")
+    agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.17.0")
 }
 
 tasks.test {
