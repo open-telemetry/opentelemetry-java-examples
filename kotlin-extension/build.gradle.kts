@@ -1,5 +1,5 @@
 plugins {
-    id ("org.jetbrains.kotlin.jvm") version "2.1.21"
+    id ("org.jetbrains.kotlin.jvm") version "2.2.0"
 }
 
 description = "OpenTelemetry Example for Kotlin extensions"
