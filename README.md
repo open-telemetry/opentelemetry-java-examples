@@ -72,11 +72,14 @@ of them assume you have docker running on your local machine.
       zipkin backend using the OpenTelemetry API.
     - Note: this example requires having docker installed to run the example.
 
-## Approvers and Maintainers
+## Maintainers
 
-Superset of approvers and maintainers from the
-[opentelemetry-java](https://github.com/open-telemetry/opentelemetry-java#contributing),
-[opentelemetry-java-instrumentation](https://github.com/open-telemetry/opentelemetry-java-instrumentation#contributing),
-and
-[opentelemetry-java-contrib](https://github.com/open-telemetry/opentelemetry-java-contrib#contributing)
-repositories.
+- [OpenTelemetry Java Maintainers](https://github.com/open-telemetry/opentelemetry-java#maintainers)
+- [OpenTelemetry Java Instrumentation Maintainers](https://github.com/open-telemetry/opentelemetry-java-instrumentation#maintainers)
+- [OpenTelemetry Java Contrib Maintainers](https://github.com/open-telemetry/opentelemetry-java-contrib#maintainers)
+
+## Approvers
+
+- [OpenTelemetry Java Approvers](https://github.com/open-telemetry/opentelemetry-java#approvers)
+- [OpenTelemetry Java Instrumentation Approvers](https://github.com/open-telemetry/opentelemetry-java-instrumentation#approvers)
+- [OpenTelemetry Java Contrib Approvers](https://github.com/open-telemetry/opentelemetry-java-contrib#approvers)
