@@ -38,6 +38,9 @@ of them assume you have docker running on your local machine.
 - [Configuring Log Appenders](log-appender)
     - This module demonstrates how to configure the Log4j and Logback appenders to
       bridge logs into the OpenTelemetry Log SDK.
+- [Configuring Log Appenders when using JavaAgent](javaagent-log-appender)
+    - This module demonstrates how to configure the Log4j and Logback appenders to
+      bridge logs into the OpenTelemetry Log SDK when using JavaAgent.
 - [Configuring the Logging Exporters](logging)
     - This module contains a fully-functional example of configuring the
       OpenTelemetry SDK to use a logging exporter.
