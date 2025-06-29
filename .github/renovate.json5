@@ -10,7 +10,7 @@
       "groupName": "all patch versions",
       "matchUpdateTypes": ["patch", "digest"],
       "schedule": ["before 8am every weekday"],
-      "matchPackageNames": [!"io.opentelemetry**"]
+      "matchPackageNames": ["!io.opentelemetry**"]
     },
     {
       "matchPackageNames": [
