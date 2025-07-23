@@ -30,7 +30,7 @@ dependencies {
     implementation("io.opentelemetry:opentelemetry-api")
     implementation("io.opentelemetry:opentelemetry-sdk-extension-autoconfigure")
     implementation("io.opentelemetry:opentelemetry-exporter-logging-otlp")
-    implementation("io.opentelemetry.contrib:opentelemetry-gcp-resources:1.47.0-alpha")
+    implementation("io.opentelemetry.contrib:opentelemetry-gcp-resources:1.48.0-alpha")
 }
 
 jib {
