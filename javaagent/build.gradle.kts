@@ -27,7 +27,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
     agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.18.1")
-    extension("io.opentelemetry.contrib:opentelemetry-samplers:1.47.0-alpha") {
+    extension("io.opentelemetry.contrib:opentelemetry-samplers:1.48.0-alpha") {
         isTransitive = false
     }
 }
