@@ -1,11 +1,16 @@
 # See https://github.com/open-telemetry/opentelemetry-configuration for details on schema and examples
 
-file_format: "0.3"
+file_format: "1.0-rc.1"
 
 resource:
   attributes:
     - name: service.name
       value: file-configuration-example
+
+propagator:
+  composite:
+    - tracecontext:
+    - baggage:
 
 tracer_provider:
   processors:
@@ -24,8 +29,3 @@ meter_provider:
       stream:
         aggregation:
           drop:
-
-propagator:
-  composite:
-    - tracecontext
-    - baggage
