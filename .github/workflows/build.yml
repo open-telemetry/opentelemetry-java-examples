@@ -60,7 +60,9 @@ jobs:
 
       - name: Run declarative-configuration
         working-directory: declarative-configuration
-        run: ../gradlew run
+        run: |
+          export OTEL_EXPERIMENTAL_CONFIG_FILE=$(pwd)/otel-sdk-config.yaml
+          ../gradlew run
 
   # this is not a required check to avoid blocking pull requests if external links break
   markdown-link-check:
