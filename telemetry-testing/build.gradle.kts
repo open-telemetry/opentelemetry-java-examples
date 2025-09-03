@@ -33,7 +33,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-engine")
     testImplementation("org.mock-server:mockserver-netty:5.15.0")
     testImplementation("org.awaitility:awaitility:4.3.0")
-    testImplementation("io.opentelemetry.proto:opentelemetry-proto:1.7.0-alpha")
+    testImplementation("io.opentelemetry.proto:opentelemetry-proto:1.8.0-alpha")
     testImplementation("org.assertj:assertj-core:3.27.4")
 
     agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.19.0")
