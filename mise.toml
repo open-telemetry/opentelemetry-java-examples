@@ -1,0 +1,9 @@
+[tools]
+lychee = "0.18.1"
+
+[tasks.link-check]
+run = 'lychee --verbose --config .github/config/lychee.toml .'
+
+[settings]
+# Only install tools explicitly defined in the [tools] section above
+idiomatic_version_file_enable_tools = []

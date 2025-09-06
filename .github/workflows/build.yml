@@ -65,8 +65,8 @@ jobs:
           ../gradlew run
 
   # this is not a required check to avoid blocking pull requests if external links break
-  markdown-link-check:
-    uses: ./.github/workflows/reusable-markdown-link-check.yml
+  link-check:
+    uses: ./.github/workflows/reusable-link-check.yml
 
   required-status-check:
     needs:
