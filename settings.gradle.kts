@@ -29,6 +29,7 @@ include(
     ":opentelemetry-examples-http",
     ":opentelemetry-examples-jaeger",
     ":opentelemetry-examples-javaagent",
+    ":opentelemetry-examples-javaagent-log-appender",
     ":opentelemetry-examples-log-appender",
     ":opentelemetry-examples-logging",
     ":opentelemetry-examples-logging-k8s-stdout-otlp-json",
