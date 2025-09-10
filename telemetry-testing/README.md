@@ -32,7 +32,7 @@ Gradle build script contains a task to download the OpenTelemetry Java Agent jar
 Additionally, the OpenTelemetry is configured with properties:
  - otel.exporter.otlp.protocol=http/protobuf - set up the telemetry protocol, default is grpc
  - otel.metric.export.interval=5000 - set up the interval, between the start of two export attempts, default is 60s
-More information about the configuration can be found in this [OpenTelemetry doc](https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md#otlp-exporter-span-metric-and-log-exporters).
+More information about the configuration can be found in this [OpenTelemetry doc](https://opentelemetry.io/docs/languages/java/configuration/#properties-exporters).
  
 The MockServer library is used to mock the collector web server. It's configured with port `4318`, because for 
 `http/protobuf` protocol, the otel exporter endpoint is by default set to `http://localhost:4318`.
