@@ -9,6 +9,8 @@ exporters:
     namespace: promexample
     const_labels:
       label1: value1
+    sending_queue:
+      batch:
   debug:
     verbosity: detailed
 
@@ -20,6 +22,8 @@ exporters:
     endpoint: jaeger-all-in-one:4317
     tls:
       insecure: true
+    sending_queue:
+      batch:
 
 # Alternatively, use jaeger_thrift_http with the settings below. In this case
 # update the list of exporters on the traces pipeline.
@@ -27,8 +31,7 @@ exporters:
 #  jaeger_thrift_http:
 #    url: http://jaeger-all-in-one:14268/api/traces
 
-processors:
-  batch:
+
 
 extensions:
   health_check:
@@ -42,9 +45,7 @@ service:
   pipelines:
     traces:
       receivers: [otlp]
-      processors: [batch]
       exporters: [debug, zipkin, otlp/jaeger]
     metrics:
       receivers: [otlp]
-      processors: [batch]
       exporters: [debug, prometheus]
