@@ -1,5 +1,5 @@
 [tools]
-lychee = "0.18.1"
+lychee = "0.20.1"
 
 [tasks.link-check]
 run = 'lychee --verbose --config .github/config/lychee.toml .'
