@@ -4,7 +4,7 @@ import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
     id("java")
-    id("org.springframework.boot") version "3.5.5"
+    id("org.springframework.boot") version "3.5.6"
 }
 
 description = "OpenTelemetry Example for Telemetry Testing"
@@ -34,7 +34,7 @@ dependencies {
     testImplementation("org.mock-server:mockserver-netty:5.15.0")
     testImplementation("org.awaitility:awaitility:4.3.0")
     testImplementation("io.opentelemetry.proto:opentelemetry-proto:1.8.0-alpha")
-    testImplementation("org.assertj:assertj-core:3.27.4")
+    testImplementation("org.assertj:assertj-core:3.27.5")
 
     agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.20.0")
 }
