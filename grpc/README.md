@@ -5,7 +5,7 @@
 
 This is a simple example that demonstrates how to use the OpenTelemetry SDK
 to *manually* instrument a simple GRPC based Client/Server application.
-This example utilizes the [opentelemetry-grpc-1.6](https://github.com/open-telemetry/opentelemetry-java-instrumentation/tree/main/instrumentation/grpc-1.6/library#library-instrumentation-for-grpc-160)
+This example utilizes the [opentelemetry-grpc-1.6](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/instrumentation/grpc-1.6/library/README.md#library-instrumentation-for-grpc-160)
 to instrument both the GRPC client and server. 
 
 # How to run
