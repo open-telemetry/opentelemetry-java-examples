@@ -22,9 +22,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     
-    // OpenTelemetry Instrumentation - use logback appender for logs
-    implementation("io.opentelemetry.instrumentation:opentelemetry-logback-appender-1.0")
-    
     // Micrometer for additional metrics
     implementation("io.micrometer:micrometer-registry-prometheus")
     
