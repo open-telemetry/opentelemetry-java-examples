@@ -138,9 +138,23 @@ All logs include:
 
 ### Testing
 
+The reference application includes comprehensive testing:
+
+#### Unit Tests
 ```shell
 ../gradlew test
 ```
+
+The test suite includes:
+- **Functional tests**: Verify all endpoints return correct responses
+- **Telemetry tests**: Validate OpenTelemetry data export using MockServer
+  - Traces: HTTP spans, custom spans, span attributes, and events
+  - Metrics: Custom counters and timers
+  - Baggage: Cross-cutting concern propagation
+
+The telemetry tests use MockServer to capture OTLP requests and verify that the application correctly generates and exports telemetry data for different scenarios.
+
+For detailed information about telemetry testing, see [TELEMETRY-TESTING.md](TELEMETRY-TESTING.md).
 
 ### End-to-End Testing
 

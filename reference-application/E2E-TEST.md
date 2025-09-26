@@ -60,6 +60,16 @@ The test verifies:
 - Log correlation
 - OTLP export to collector
 
+### Telemetry Testing
+In addition to end-to-end infrastructure testing, the application includes **telemetry testing** that validates actual OpenTelemetry data export:
+
+- **Trace validation**: Verifies spans are created with correct names, attributes, and events
+- **Metric validation**: Confirms custom metrics are exported properly  
+- **Baggage testing**: Validates cross-cutting concern propagation
+- **MockServer integration**: Captures OTLP requests for detailed analysis
+
+These tests run with the OpenTelemetry Java Agent and use the same protobuf parsing as the telemetry-testing example.
+
 ### Infrastructure
 - OpenTelemetry Collector OTLP ingestion
 - Prometheus metrics scraping

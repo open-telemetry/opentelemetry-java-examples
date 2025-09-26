@@ -31,6 +31,13 @@ dependencies {
     // Testing
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.opentelemetry:opentelemetry-sdk-testing")
+    
+    // Telemetry testing dependencies
+    testImplementation(enforcedPlatform("org.junit:junit-bom:5.13.4"))
+    testImplementation("org.mockserver:mockserver-netty:5.15.0")
+    testImplementation("org.awaitility:awaitility:4.3.0")
+    testImplementation("io.opentelemetry.proto:opentelemetry-proto:1.8.0-alpha")
+    testImplementation("org.assertj:assertj-core:3.27.6")
 }
 
 val copyAgent = tasks.register<Copy>("copyAgent") {
@@ -46,6 +53,15 @@ tasks.named<BootJar>("bootJar") {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    
+    // Add OpenTelemetry Java Agent for telemetry testing
+    dependsOn(copyAgent)
+    jvmArgs = listOf(
+        "-javaagent:${layout.buildDirectory.dir("agent").file("opentelemetry-javaagent.jar").get().asFile.absolutePath}",
+        "-Dotel.metric.export.interval=5000",
+        "-Dotel.exporter.otlp.protocol=http/protobuf",
+        "-Dmockserver.logLevel=off"
+    )
 }
 
 task("e2eTest", Exec::class) {
