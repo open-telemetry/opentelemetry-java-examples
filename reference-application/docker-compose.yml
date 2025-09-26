@@ -1,0 +1,37 @@
+services:
+  dice-server:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - OTEL_SERVICE_NAME=dice-server
+      - OTEL_SERVICE_VERSION=1.0.0
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4318
+      - OTEL_TRACES_EXPORTER=otlp
+      - OTEL_METRICS_EXPORTER=otlp
+      - OTEL_LOGS_EXPORTER=otlp
+      - OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
+    depends_on:
+      - otel-collector
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    ports:
+      - "4317:4317"   # OTLP gRPC
+      - "4318:4318"   # OTLP HTTP
+      - "8889:8889"   # Prometheus metrics
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otelcol-contrib/otel-collector-config.yaml
+    command: ["--config=/etc/otelcol-contrib/otel-collector-config.yaml"]
+    
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'

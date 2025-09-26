@@ -37,6 +37,7 @@ include(
     ":opentelemetry-examples-micrometer-shim",
     ":opentelemetry-examples-otlp",
     ":opentelemetry-examples-prometheus",
+    ":opentelemetry-examples-reference-application",
     ":opentelemetry-examples-sdk-usage",
     ":opentelemetry-examples-telemetry-testing",
     ":opentelemetry-examples-zipkin",

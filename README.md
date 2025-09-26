@@ -6,6 +6,10 @@ of them assume you have docker running on your local machine.
 
 ## Example modules:
 
+- [OpenTelemetry Reference Application](reference-application)
+    - A comprehensive reference application demonstrating OpenTelemetry usage following the 
+      [Getting Started Reference Application Specification](https://opentelemetry.io/docs/getting-started/reference-application-specification/).
+    - Includes traces, metrics, logs, manual instrumentation, Docker setup with collector, and multiple configuration approaches.
 - [Using the SDK AutoConfiguration module](autoconfigure)
     - This module contains a fully-functional example of using the autoconfigure
       SDK extension module to configure the SDK using only environment
