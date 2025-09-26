@@ -1,0 +1,39 @@
+file_format: 0.3
+
+# Service configuration
+resource:
+  attributes:
+    service.name: dice-server
+    service.version: 1.0.0
+    deployment.environment: local
+
+# Tracer provider configuration
+tracer_provider:
+  processors:
+    - batch:
+        exporter:
+          console: {}
+  sampler:
+    parent_based:
+      root:
+        always_on: {}
+
+# Meter provider configuration  
+meter_provider:
+  readers:
+    - periodic:
+        exporter:
+          console: {}
+        interval: 30000
+
+# Logger provider configuration
+logger_provider:
+  processors:
+    - batch:
+        exporter:
+          console: {}
+
+# Propagators
+propagators:
+  - tracecontext
+  - baggage

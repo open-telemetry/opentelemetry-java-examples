@@ -1,0 +1,44 @@
+# Application Configuration
+server:
+  port: 8080
+
+spring:
+  application:
+    name: dice-server
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+# Logging configuration
+logging:
+  level:
+    io.opentelemetry.example: INFO
+    io.opentelemetry: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level [%X{traceId:-},%X{spanId:-}] %logger{36} - %msg%n"
+    
+# OpenTelemetry Configuration (can be overridden by environment variables)
+otel:
+  service:
+    name: dice-server
+    version: 1.0.0
+  traces:
+    exporter: console
+  metrics:
+    exporter: console
+  logs:
+    exporter: console
