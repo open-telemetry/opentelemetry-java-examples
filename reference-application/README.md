@@ -15,7 +15,7 @@ This application showcases:
 
 ## Application Overview
 
-The reference application is a dice rolling service that simulates various scenarios to demonstrate OpenTelemetry capabilities:
+The reference application is a dice rolling service that demonstrates OpenTelemetry capabilities using the **OpenTelemetry Java Agent** for automatic instrumentation and manual instrumentation examples:
 
 ### Endpoints
 
@@ -45,8 +45,11 @@ The reference application is a dice rolling service that simulates various scena
 ### Running with Console Output
 
 ```shell
-# Build and run with console logging
-../gradlew bootRun
+# Build the application with the Java agent
+../gradlew bootJar
+
+# Run with the Java agent for automatic instrumentation
+java -javaagent:build/agent/opentelemetry-javaagent.jar -jar build/libs/app.jar
 ```
 
 Then test the endpoints:
@@ -59,6 +62,9 @@ curl http://localhost:8080/fibonacci?n=10
 ### Running with OpenTelemetry Collector
 
 ```shell
+# Build the application
+../gradlew bootJar
+
 # Start the collector and application
 docker-compose up --build
 ```
@@ -84,13 +90,9 @@ export OTEL_METRICS_EXPORTER=otlp
 export OTEL_LOGS_EXPORTER=otlp
 ```
 
-### Programmatic Configuration
+### Java Agent Configuration
 
-See `src/main/java/io/opentelemetry/example/config/` for examples of:
-- Manual SDK initialization
-- Custom span processors and exporters
-- Resource configuration
-- Sampling configuration
+The application uses the OpenTelemetry Java Agent which automatically configures instrumentation based on environment variables and system properties. All standard OpenTelemetry configuration options are supported.
 
 ### Declarative Configuration
 
