@@ -142,6 +142,28 @@ All logs include:
 ../gradlew test
 ```
 
+### End-to-End Testing
+
+Run the comprehensive end-to-end test that verifies the complete OpenTelemetry stack:
+
+```shell
+# Run via Gradle
+../gradlew e2eTest
+
+# Or run directly
+./test-e2e.sh
+```
+
+This test:
+- Builds and starts all services using `docker-compose up --build`
+- Waits for services to be ready (application, collector, Prometheus)
+- Tests all application endpoints
+- Verifies OpenTelemetry data collection and export
+- Validates Prometheus metric scraping
+- Cleans up resources automatically
+
+For detailed information about the end-to-end test, see [E2E-TEST.md](E2E-TEST.md).
+
 ### Running locally
 
 ```shell

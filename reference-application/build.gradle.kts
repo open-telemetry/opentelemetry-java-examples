@@ -48,6 +48,13 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+task("e2eTest", Exec::class) {
+    group = "verification"
+    description = "Run end-to-end test using docker-compose"
+    commandLine("./test-e2e.sh")
+    dependsOn("bootJar")
+}
+
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
