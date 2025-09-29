@@ -1,11 +1,11 @@
 package io.opentelemetry.example;
 
-import io.micrometer.core.instrument.Counter;
-import io.micrometer.core.instrument.Timer;
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.baggage.Baggage;
 import io.opentelemetry.api.baggage.BaggageBuilder;
 import io.opentelemetry.api.common.Attributes;
+import io.opentelemetry.api.metrics.LongCounter;
+import io.opentelemetry.api.metrics.Meter;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.SpanKind;
 import io.opentelemetry.api.trace.StatusCode;
@@ -28,14 +28,17 @@ public class RollController {
 
   @Autowired private OpenTelemetry openTelemetry;
 
-  @Autowired private Counter diceRollCounter;
-
-  @Autowired private Timer diceRollTimer;
-
   private final Tracer tracer;
+  private final LongCounter diceRollCounter;
 
   public RollController(@Autowired OpenTelemetry openTelemetry) {
     this.tracer = openTelemetry.getTracer("dice-server", "1.0.0");
+    Meter meter = openTelemetry.getMeter("dice-server");
+    this.diceRollCounter =
+        meter
+            .counterBuilder("dice_rolls_total")
+            .setDescription("Total number of dice rolls")
+            .build();
   }
 
   @GetMapping("/rolldice")
@@ -43,7 +46,7 @@ public class RollController {
       @RequestParam("player") Optional<String> player,
       @RequestParam("rolls") Optional<Integer> rolls) {
 
-    Timer.Sample sample = Timer.start();
+    long startTime = System.nanoTime();
 
     Span span =
         tracer
@@ -72,8 +75,9 @@ public class RollController {
           results[i] = rollSingleDie();
         }
 
-        diceRollCounter.increment();
-        sample.stop(diceRollTimer);
+        // Record metrics using OpenTelemetry
+        diceRollCounter.add(1);
+        long duration = System.nanoTime() - startTime;
 
         String playerName = player.orElse("Anonymous player");
         if (numRolls == 1) {
@@ -91,6 +95,7 @@ public class RollController {
             Attributes.builder()
                 .put("dice.result", java.util.Arrays.toString(results))
                 .put("dice.sum", java.util.Arrays.stream(results).sum())
+                .put("dice.duration_ms", duration / 1_000_000)
                 .build());
 
         Map<String, Object> response = new HashMap<>();

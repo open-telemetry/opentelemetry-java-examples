@@ -22,9 +22,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     
-    // Micrometer for additional metrics
-    implementation("io.micrometer:micrometer-registry-prometheus")
-    
     // Java agent
     agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.20.1")
     
