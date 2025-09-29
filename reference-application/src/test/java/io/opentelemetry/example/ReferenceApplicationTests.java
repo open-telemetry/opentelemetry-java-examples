@@ -63,18 +63,6 @@ class ReferenceApplicationTests {
   }
 
   @Test
-  void testFibonacci() throws Exception {
-    ResponseEntity<String> response =
-        restTemplate.getForEntity("http://localhost:" + port + "/fibonacci?n=10", String.class);
-
-    assertEquals(200, response.getStatusCode().value());
-
-    JsonNode json = objectMapper.readTree(response.getBody());
-    assertEquals(10, json.get("n").asInt());
-    assertEquals("55", json.get("result").asText());
-  }
-
-  @Test
   void testHealth() throws Exception {
     ResponseEntity<String> response =
         restTemplate.getForEntity("http://localhost:" + port + "/health", String.class);

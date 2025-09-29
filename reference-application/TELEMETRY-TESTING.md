@@ -30,16 +30,15 @@ Uses OpenTelemetry protocol buffers to parse captured requests:
 
 ### Traces
 - **HTTP spans**: Automatic instrumentation spans (e.g., `GET /rolldice`)
-- **Custom spans**: Manual spans created in application code (e.g., `roll-dice`, `fibonacci-calculation`)
+- **Custom spans**: Manual spans created in application code (e.g., `roll-dice`)
 - **Span hierarchy**: Parent-child relationships between spans
-- **Attributes**: Custom attributes like `dice.player`, `fibonacci.n`
-- **Events**: Custom events like `dice-rolled`, `fibonacci-calculated`
+- **Attributes**: Custom attributes like `dice.player`, `dice.rolls`
+- **Events**: Custom events like `dice-rolled`
 - **Error handling**: Exception recording and error status
 
 ### Metrics
-- **Custom counters**: `dice_rolls_total`, `fibonacci_calculations_total`
-- **Custom timers**: `dice_roll_duration_seconds`, `fibonacci_duration_seconds`
-- **Micrometer integration**: Metrics created via Micrometer and exported via OpenTelemetry
+- **Custom counters**: `dice_rolls_total`
+- **OpenTelemetry metrics**: Metrics created via OpenTelemetry API and exported by the Java Agent
 
 ### Baggage
 - **Cross-cutting data**: Player names, request types
@@ -59,7 +58,7 @@ public void testDiceRollTelemetry() {
         var spans = extractSpansFromRequests(requests);
         assertThat(spans)
             .extracting(Span::getName)
-            .contains("GET /rolldice", "roll-dice", "roll-single-die");
+            .contains("GET /rolldice", "roll-dice");
     });
 }
 ```

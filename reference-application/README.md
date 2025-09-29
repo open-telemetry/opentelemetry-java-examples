@@ -22,9 +22,7 @@ The reference application is a dice rolling service that demonstrates OpenTeleme
 - `GET /rolldice` - Basic dice roll (returns random 1-6)
 - `GET /rolldice?player=<name>` - Dice roll for a specific player
 - `GET /rolldice?rolls=<n>` - Roll multiple dice
-- `GET /fibonacci?n=<number>` - Calculate fibonacci (demonstrates computation tracing)
 - `GET /health` - Health check endpoint
-- `GET /metrics` - Prometheus metrics endpoint (when enabled)
 
 ### Scenarios Demonstrated
 
@@ -56,7 +54,7 @@ Then test the endpoints:
 ```shell
 curl http://localhost:8080/rolldice
 curl http://localhost:8080/rolldice?player=alice
-curl http://localhost:8080/fibonacci?n=10
+curl http://localhost:8080/rolldice?rolls=3
 ```
 
 ### Running with OpenTelemetry Collector

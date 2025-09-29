@@ -77,16 +77,6 @@ test_endpoints() {
         return 1
     fi
     
-    # Test fibonacci endpoint
-    print_status "Testing /fibonacci?n=10 endpoint..."
-    response=$(curl -sf "http://localhost:8080/fibonacci?n=10")
-    if echo "$response" | jq -r '.result' | grep -q "55"; then
-        print_status "✓ /fibonacci endpoint working"
-    else
-        print_error "✗ /fibonacci endpoint failed"
-        return 1
-    fi
-    
     # Test health endpoint
     print_status "Testing /health endpoint..."
     response=$(curl -sf http://localhost:8080/health)
@@ -125,7 +115,7 @@ test_collector() {
     
     # Generate some telemetry data
     curl -sf http://localhost:8080/rolldice > /dev/null
-    curl -sf http://localhost:8080/fibonacci?n=5 > /dev/null
+    curl -sf http://localhost:8080/rolldice?rolls=3 > /dev/null
     
     # Wait a bit for data to be processed
     sleep 5

@@ -49,9 +49,7 @@ The test verifies:
 - `GET /rolldice` - Basic dice rolling
 - `GET /rolldice?player=testuser` - Parameterized requests
 - `GET /rolldice?rolls=3` - Multiple dice rolls
-- `GET /fibonacci?n=10` - Computational example
 - `GET /health` - Health check
-- `GET /actuator/prometheus` - Metrics export
 
 ### OpenTelemetry Integration
 - Java Agent instrumentation
