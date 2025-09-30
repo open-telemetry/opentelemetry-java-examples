@@ -20,7 +20,7 @@ It consists of a spring boot application with:
 
 ## Prerequisites
 
-* Java 1.8
+* Java 17 or higher is required to build and run this example
 * Docker compose
 
 # How to run

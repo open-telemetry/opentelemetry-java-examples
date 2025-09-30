@@ -12,6 +12,12 @@ It consists of a spring boot application with:
 
 # How to run
 
+## Prerequisites
+
+* Java 17 or higher is required to build and run this example
+
+## Run
+
 Run the application
 
 ```shell

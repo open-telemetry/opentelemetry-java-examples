@@ -25,7 +25,8 @@ We have included the [OpenTelemetry Spring starter](https://opentelemetry.io/doc
 
 ## Prerequisites
 
-* GraalVM for Java 17
+* Java 17 or higher is required to build and run this example
+* GraalVM for Java 17 (required for native image compilation)
 * Docker compose
 
 # How to run

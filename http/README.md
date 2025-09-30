@@ -11,8 +11,9 @@ and create a **Child Span** with attached a **Span Event**.
 # How to run
 
 ## Prerequisites
-* Java 1.8.231
-* Be on the project root folder
+
+* Java 17 or higher is required to build this example (to run Gradle)
+* Java 8 or higher is required to run the compiled example
 
 ## 1 - Compile 
 ```shell script

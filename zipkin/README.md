@@ -6,7 +6,9 @@ to instrument a simple application using Zipkin as trace exporter.
 # How to run
 
 ## Prerequisites
-* Java 1.8.231
+
+* Java 17 or higher is required to build this example (to run Gradle)
+* Java 8 or higher is required to run the compiled example
 * Docker 19.03
 
 ## 1 - Compile 

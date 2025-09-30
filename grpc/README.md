@@ -11,7 +11,12 @@ to instrument both the GRPC client and server.
 # How to run
 
 ## Prerequisites
-* Be on the grpc project root folder 
+
+* Java 17 or higher is required to build this example (to run Gradle)
+* Java 8 or higher is required to run the compiled example
+
+Be on the grpc project root folder:
+
 ```shell script
 cd grpc/
 ```

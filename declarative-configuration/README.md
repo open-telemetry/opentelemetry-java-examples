@@ -8,7 +8,8 @@ The configuration file is located at [otel-sdk-config.yaml](./otel-sdk-config.ya
 
 ## Prerequisites
 
-* Java 1.8
+* Java 17 or higher is required to build this example (to run Gradle)
+* Java 8 or higher is required to run the compiled example
 
 ## Run
 

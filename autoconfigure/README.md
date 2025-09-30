@@ -6,7 +6,8 @@ module.
 
 ## Prerequisites
 
-* Java 1.8
+* Java 17 or higher is required to build this example (to run Gradle)
+* Java 8 or higher is required to run the compiled example
 
 ## How to run
 

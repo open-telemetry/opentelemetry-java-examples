@@ -4,6 +4,23 @@ This module contains a set of fully-functional, working examples of using the
 OpenTelemetry Java APIs and SDK that should all be able to be run locally. Some
 of them assume you have docker running on your local machine.
 
+## Requirements
+
+Java 17 or higher is required to build the examples in this repository.
+To check your Java version, run:
+
+```bash
+java -version
+```
+
+To build the examples, run:
+
+```bash
+./gradlew assemble
+```
+
+Note: Individual examples may run on lower Java versions (see each module's README for runtime requirements).
+
 ## Example modules:
 
 - [Using the SDK AutoConfiguration module](autoconfigure)

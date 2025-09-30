@@ -3,11 +3,14 @@
 This is a simple example that demonstrates how to use and configure the OpenTelemetry SDK. 
 
 ## Prerequisites
-* Java 1.8 or higher
 
+* Java 17 or higher is required to build this example (to run Gradle)
+* Java 8 or higher is required to run the compiled example
 
 ## Compile
-Compile with 
+
+Compile with:
+
 ```shell script
 ../gradlew shadowJar
 ```
