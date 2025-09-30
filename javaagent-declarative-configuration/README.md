@@ -13,16 +13,19 @@ This Spring Boot application includes two endpoints:
 ### Prerequisites
 * Java 17 or higher
 * OpenTelemetry Java Agent JAR file (see next step)
-* OpenTelemetry contrib extension JAR file for rule-based sampling (see next step)
 
-Download the OpenTelemetry Java Agent and contrib extension:
+Download the OpenTelemetry Java Agent:
 ```bash
 # Download the latest OpenTelemetry Java Agent
 curl -L -o opentelemetry-javaagent.jar https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/latest/download/opentelemetry-javaagent.jar
-
-# Download the OpenTelemetry contrib extension for rule-based sampling
-curl -L -o opentelemetry-javaagent-extension.jar https://repo1.maven.org/maven2/io/opentelemetry/contrib/opentelemetry-samplers/1.50.0-alpha/opentelemetry-samplers-1.50.0-alpha.jar
 ```
+
+The OpenTelemetry contrib extension will be automatically downloaded during the build process.
+
+**Note:** If you prefer to download the extension manually or need a different version, you can:
+1. Find the latest version at [Maven Central](https://mvnrepository.com/artifact/io.opentelemetry.contrib/opentelemetry-samplers)
+2. Download it with: `curl -L -o opentelemetry-javaagent-extension.jar https://repo1.maven.org/maven2/io/opentelemetry/contrib/opentelemetry-samplers/[VERSION]/opentelemetry-samplers-[VERSION].jar`
+3. Reference it in the run command: `-Dotel.javaagent.extensions=opentelemetry-javaagent-extension.jar`
 
 ### Step 1: Build the Application
 
@@ -38,7 +41,7 @@ curl -L -o opentelemetry-javaagent-extension.jar https://repo1.maven.org/maven2/
 
 # Run with the OpenTelemetry Java Agent and contrib extension
 java -javaagent:opentelemetry-javaagent.jar \
-     -Dotel.javaagent.extensions=opentelemetry-javaagent-extension.jar \
+     -Dotel.javaagent.extensions=build/agent/opentelemetry-javaagent-extension.jar \
      -Dotel.experimental.config.file=$(pwd)/otel-agent-config.yaml \
      -jar build/libs/javaagent-declarative-configuration.jar
 ```
