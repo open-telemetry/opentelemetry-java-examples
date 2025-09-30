@@ -4,8 +4,8 @@ This is a simple example that demonstrates how to use and configure the OpenTele
 
 ## Prerequisites
 
-* Java 17 or higher is required to build this example (to run Gradle)
-* Java 8 or higher is required to run the compiled example
+* Java 17 or higher is required to run Gradle and build this example
+* Java 8 or higher may be used to run the example once it has been built
 
 ## Compile
 

@@ -23,7 +23,7 @@ Details about the example:
 
 ## Prerequisites
 
-* Java 17 or higher is required to build this example (to run Gradle)
+* Java 17 or higher is required to run Gradle and build this example
 * Java 11 or higher is required to run the compiled example
 * Docker Compose
 

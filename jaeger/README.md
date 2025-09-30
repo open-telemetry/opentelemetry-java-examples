@@ -7,8 +7,8 @@ to instrument a simple application and export to a Jaeger backend.
 
 ## Prerequisites
 
-* Java 17 or higher is required to build this example (to run Gradle)
-* Java 8 or higher is required to run the compiled example
+* Java 17 or higher is required to run Gradle and build this example
+* Java 8 or higher may be used to run the example once it has been built
 * Docker 19.03
 * Jaeger 1.16 or higher
 

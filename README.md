@@ -13,13 +13,11 @@ To check your Java version, run:
 java -version
 ```
 
-To build the examples, run:
+To build the all of examples, run:
 
 ```bash
 ./gradlew assemble
 ```
-
-Note: Individual examples may run on lower Java versions (see each module's README for runtime requirements).
 
 ## Example Modules
 
