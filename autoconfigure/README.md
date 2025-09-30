@@ -1,4 +1,4 @@
-# SDK autoconfiguration example
+# SDK Autoconfiguration Example
 
 This is a simple example that demonstrates the usage of
 the [OpenTelemetry SDK Autoconfigure](https://github.com/open-telemetry/opentelemetry-java/tree/main/sdk-extensions/autoconfigure)
@@ -6,11 +6,12 @@ module.
 
 ## Prerequisites
 
-* Java 1.8
+* Java 17 or higher is required to run Gradle and build this example
+* Java 8 or higher may be used to run the example once it has been built
 
-## How to run
+## How to Run
 
-First build this example application:
+First, build this example application:
 
 ```shell
 ../gradlew shadowJar

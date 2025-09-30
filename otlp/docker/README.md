@@ -2,12 +2,12 @@
 
 *IMPORTANT:* This uses a pre-released version of the OpenTelemetry Collector.
 
-This demo uses `docker-compose` and by default runs against the
+This demo uses `docker compose` and by default runs against the
 `otel/opentelemetry-collector-dev:latest` image. To run the demo, switch
 to this directory and run:
 
 ```shell
-docker-compose up -d
+docker compose up -d
 ```
 
 The demo exposes the following backends:
@@ -21,5 +21,5 @@ Notes:
 - It may take some time for the application metrics to appear on the Prometheus
  dashboard;
 
-To clean up any docker container from the demo run `docker-compose down` from 
+To clean up any docker container from the demo run `docker compose down` from 
 this directory.

@@ -1,12 +1,14 @@
 # Zipkin Example
 
-This is a simple example that demonstrates how to use the OpenTelemetry SDK 
-to instrument a simple application using Zipkin as trace exporter. 
+This is a simple example that demonstrates how to use the OpenTelemetry SDK
+to instrument a simple application using Zipkin as the trace exporter.
 
-# How to run
+# How to Run
 
 ## Prerequisites
-* Java 1.8.231
+
+* Java 17 or higher is required to run Gradle and build this example
+* Java 8 or higher may be used to run the example once it has been built
 * Docker 19.03
 
 ## 1 - Compile 

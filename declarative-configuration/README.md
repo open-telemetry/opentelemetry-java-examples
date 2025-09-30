@@ -4,11 +4,12 @@ This example demonstrates how to use [declarative configuration](https://opentel
 
 The configuration file is located at [otel-sdk-config.yaml](./otel-sdk-config.yaml).
 
-# How to run
+# How to Run
 
 ## Prerequisites
 
-* Java 1.8
+* Java 17 or higher is required to run Gradle and build this example
+* Java 8 or higher may be used to run the example once it has been built
 
 ## Run
 
@@ -19,4 +20,4 @@ export OTEL_EXPERIMENTAL_CONFIG_FILE=$(pwd)/otel-sdk-config.yaml
 
 Observe how data is printed to the console as configured in [otel-sdk-config.yaml](./otel-sdk-config.yaml).
 
-For use with the OpenTelemetry Java, see [Java Agent declarative configuration](../javaagent/README.md#declarative-configuration).
+For use with the OpenTelemetry Java Agent, see [Java Agent declarative configuration](../javaagent/README.md#declarative-configuration).
