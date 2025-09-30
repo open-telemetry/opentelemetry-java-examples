@@ -1,9 +1,9 @@
 # Zipkin Example
 
-This is a simple example that demonstrates how to use the OpenTelemetry SDK 
-to instrument a simple application using Zipkin as trace exporter. 
+This is a simple example that demonstrates how to use the OpenTelemetry SDK
+to instrument a simple application using Zipkin as the trace exporter.
 
-# How to run
+# How to Run
 
 ## Prerequisites
 

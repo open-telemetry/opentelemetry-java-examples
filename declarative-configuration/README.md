@@ -4,7 +4,7 @@ This example demonstrates how to use [declarative configuration](https://opentel
 
 The configuration file is located at [otel-sdk-config.yaml](./otel-sdk-config.yaml).
 
-# How to run
+# How to Run
 
 ## Prerequisites
 
@@ -20,4 +20,4 @@ export OTEL_EXPERIMENTAL_CONFIG_FILE=$(pwd)/otel-sdk-config.yaml
 
 Observe how data is printed to the console as configured in [otel-sdk-config.yaml](./otel-sdk-config.yaml).
 
-For use with the OpenTelemetry Java, see [Java Agent declarative configuration](../javaagent/README.md#declarative-configuration).
+For use with the OpenTelemetry Java Agent, see [Java Agent declarative configuration](../javaagent/README.md#declarative-configuration).

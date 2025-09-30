@@ -4,18 +4,18 @@ This example demonstrates usage of the [OpenTelemetry Spring starter](https://op
 
 The example uses the following elements:
 
-- A web API available at `GET http://localhost:8080/ping`.
+- A web API available at `GET http://localhost:8080/ping`
 - A Docker Compose setup configured to run the application and export to
-  the [collector](https://opentelemetry.io/docs/collector/) via OTLP.
-- A collector configured with
+  the [Collector](https://opentelemetry.io/docs/collector/) via OTLP
+- A Collector configured with
   the [OTLP receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
-  and exporting to the standard output with
-  the [logging exporter](https://github.com/open-telemetry/opentelemetry-collector/tree/main/exporter/debugexporter).
-- A spring configuration to suppress spans for the `/actuator` endpoint
-- A spring configuration to set OTLP headers dynamically 
+  and exporting to standard output with
+  the [logging exporter](https://github.com/open-telemetry/opentelemetry-collector/tree/main/exporter/debugexporter)
+- A Spring configuration to suppress spans for the `/actuator` endpoint
+- A Spring configuration to set OTLP headers dynamically
   (not needed for the example - it shows how to configure exporters programmatically)
 
-# Description of the instrumentation set-up
+# Description of the Instrumentation Setup
 
 We have included the [OpenTelemetry Spring starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/) to instrument the HTTP calls, the logs, the SQL queries, and send the OpenTelemetry data via OTLP:
 
@@ -29,25 +29,28 @@ We have included the [OpenTelemetry Spring starter](https://opentelemetry.io/doc
 * GraalVM for Java 17 (required for native image compilation)
 * Docker Compose
 
-# How to run
+# How to Run
 
-Build the GraalVM native image
+Build the GraalVM native image:
+
 ```shell
 cd spring-native
 ../gradlew bootBuildImage --imageName=otel-native-graalvm
 ```
 
-Run the application and the collector with Docker Compose
+Run the application and the Collector with Docker Compose:
+
 ```shell
 docker compose up
 ```
 
-In a separate shell, exercise the application by calling its endpoint
+In a separate shell, exercise the application by calling its endpoint:
+
 ```shell
 curl http://localhost:8080/ping
 ```
 
-Watch for spans, metrics, and logs in the collector log output.
+Watch for spans, metrics, and logs in the Collector log output.
 
 Example of the beginning of the collector log after the ping:
 ```

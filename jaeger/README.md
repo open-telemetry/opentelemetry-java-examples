@@ -1,16 +1,16 @@
 # Jaeger Example
 
-This is a simple example that demonstrates how to use the OpenTelemetry SDK 
+This is a simple example that demonstrates how to use the OpenTelemetry SDK
 to instrument a simple application and export to a Jaeger backend.
 
-# How to run
+# How to Run
 
 ## Prerequisites
 
 * Java 17 or higher is required to build this example (to run Gradle)
 * Java 8 or higher is required to run the compiled example
 * Docker 19.03
-* Jaeger 1.16 - [Link][jaeger]
+* Jaeger 1.16 or higher
 
 ## 1 - Compile 
 ```shell script
