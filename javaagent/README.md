@@ -25,7 +25,7 @@ It consists of a Spring Boot application with:
 
 # How to Run
 
-Build the application JAR:
+Build the application jar:
 
 ```shell
 ../gradlew bootJar
