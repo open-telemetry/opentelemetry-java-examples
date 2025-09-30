@@ -26,6 +26,7 @@ rootProject.name = "opentelemetry-java-examples"
 include(
     ":opentelemetry-examples-autoconfigure",
     ":opentelemetry-examples-declarative-configuration",
+    ":opentelemetry-examples-javaagent-declarative-configuration",
     ":opentelemetry-examples-http",
     ":opentelemetry-examples-jaeger",
     ":opentelemetry-examples-javaagent",

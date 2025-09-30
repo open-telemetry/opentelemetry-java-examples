@@ -36,3 +36,7 @@ bin
 
 # Polyglot runtime manager (asdf rust clone)
 .rtx.toml
+
+
+javaagent-declarative-configuration/opentelemetry-javaagent.jar
+javaagent-declarative-configuration/opentelemetry-javaagent-extension.jar
