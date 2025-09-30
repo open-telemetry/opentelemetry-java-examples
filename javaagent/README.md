@@ -11,7 +11,7 @@ It consists of a spring boot application with:
   metrics. Additionally, there is manual trace and metric instrumentation, as
   well as application logging performed in the context of traces using the log4j
   API.
-- A docker compose setup configured to run the application and export to
+- A Docker Compose setup configured to run the application and export to
   the [collector](https://opentelemetry.io/docs/collector/) via OTLP.
 - The collector is configured with
   the [OTLP receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
@@ -21,7 +21,7 @@ It consists of a spring boot application with:
 ## Prerequisites
 
 * Java 17 or higher is required to build and run this example
-* Docker compose
+* Docker Compose
 
 # How to run
 
@@ -31,10 +31,10 @@ Build the application jar
 ../gradlew bootJar
 ```
 
-Run the application and the collector with docker compose
+Run the application and the collector with Docker Compose
 
 ```shell
-docker-compose up --build
+docker compose up --build
 ```
 
 In a separate shell, exercise the application by calling its endpoint

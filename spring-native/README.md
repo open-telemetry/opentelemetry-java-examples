@@ -5,7 +5,7 @@ This example demonstrates usage of the [OpenTelemetry Spring starter](https://op
 The example uses the following elements:
 
 - A web API available at `GET http://localhost:8080/ping`.
-- A docker compose setup configured to run the application and export to
+- A Docker Compose setup configured to run the application and export to
   the [collector](https://opentelemetry.io/docs/collector/) via OTLP.
 - A collector configured with
   the [OTLP receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
@@ -27,7 +27,7 @@ We have included the [OpenTelemetry Spring starter](https://opentelemetry.io/doc
 
 * Java 17 or higher is required to build and run this example
 * GraalVM for Java 17 (required for native image compilation)
-* Docker compose
+* Docker Compose
 
 # How to run
 
@@ -37,9 +37,9 @@ cd spring-native
 ../gradlew bootBuildImage --imageName=otel-native-graalvm
 ```
 
-Run the application and the collector with docker compose
+Run the application and the collector with Docker Compose
 ```shell
-docker-compose up
+docker compose up
 ```
 
 In a separate shell, exercise the application by calling its endpoint

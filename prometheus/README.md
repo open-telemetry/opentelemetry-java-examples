@@ -14,7 +14,7 @@ metrics via HTTP.
 * Java 17 or higher is required to build this example (to run Gradle)
 * Java 8 or higher is required to run the compiled example
 * Docker 19.03
-* Docker compose
+* Docker Compose
 
 ## 1 - Compile
 
@@ -24,10 +24,10 @@ metrics via HTTP.
 
 ## 2 - Run
 
-Start the application and prometheus via docker compose
+Start the application and prometheus via Docker Compose
 
 ```shell
-docker-compose up
+docker compose up
 ```
 
 ## 3 - View metrics

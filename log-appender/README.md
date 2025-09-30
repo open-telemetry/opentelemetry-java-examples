@@ -25,16 +25,14 @@ Details about the example:
 
 * Java 17 or higher is required to build this example (to run Gradle)
 * Java 11 or higher is required to run the compiled example
-* Docker compose
+* Docker Compose
 
 # How to run
-
-```
 
 Run the collector via docker
 
 ```shell
-docker-compose up
+docker compose up
 ```
 
 In a separate shell, run the application
