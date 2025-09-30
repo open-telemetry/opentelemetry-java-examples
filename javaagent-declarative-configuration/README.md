@@ -23,7 +23,7 @@ curl -L -o opentelemetry-javaagent.jar https://github.com/open-telemetry/opentel
 The OpenTelemetry contrib extension will be automatically downloaded during the build process.
 
 **Note:** If you prefer to download the extension manually or need a different version, you can:
-1. Find the latest version at [Maven Central](https://mvnrepository.com/artifact/io.opentelemetry.contrib/opentelemetry-samplers)
+1. Find the latest version at [Sonatype](https://central.sonatype.com/artifact/io.opentelemetry.contrib/opentelemetry-samplers)
 2. Download it with: `curl -L -o opentelemetry-javaagent-extension.jar https://repo1.maven.org/maven2/io/opentelemetry/contrib/opentelemetry-samplers/[VERSION]/opentelemetry-samplers-[VERSION].jar`
 3. Reference it in the run command: `-Dotel.javaagent.extensions=opentelemetry-javaagent-extension.jar`
 
