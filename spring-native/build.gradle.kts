@@ -7,6 +7,12 @@ plugins {
 }
 
 description = "OpenTelemetry Example for Spring native images"
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
 val moduleName by extra { "io.opentelemetry.examples.native" }
 
 dependencies {
