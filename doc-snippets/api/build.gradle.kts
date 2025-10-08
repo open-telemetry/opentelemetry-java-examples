@@ -6,7 +6,7 @@ val moduleName by extra { "io.opentelemetry.examples.docs.configuration" }
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
+        languageVersion.set(JavaLanguageVersion.of(11))
     }
 }
 
