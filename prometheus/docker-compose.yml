@@ -5,7 +5,7 @@ services:
     ports:
       - '19090:19090'
   prometheus:
-    image: prom/prometheus@sha256:29c1e0b48ad816750245dea3d65ac3ce57dda30547e67b1e9a5176e2953cc4dc
+    image: prom/prometheus@sha256:ff7e389acbe064a4823212a500393d40a28a8f362e4b05cbf6742a9a3ef736b2
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     depends_on:
