@@ -15,7 +15,7 @@ java {
 
 dependencies {
     implementation(platform(SpringBootPlugin.BOM_COORDINATES))
-    implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:2.20.1"))
+    implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:2.21.0"))
 
     implementation("org.springframework.boot:spring-boot-starter-web")
 }
