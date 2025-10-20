@@ -3,10 +3,16 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 plugins {
     id("java")
     id("org.springframework.boot") version "3.5.6"
-    id("org.graalvm.buildtools.native") version "0.11.1"
+    id("org.graalvm.buildtools.native") version "0.11.2"
 }
 
 description = "OpenTelemetry Example for Spring native images"
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
 val moduleName by extra { "io.opentelemetry.examples.native" }
 
 dependencies {

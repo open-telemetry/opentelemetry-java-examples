@@ -3,7 +3,7 @@ services:
 
   # Jaeger
   jaeger-all-in-one:
-    image: jaegertracing/all-in-one:1.73.0@sha256:fe884668a2bf8d586b6fb7697d48a6a19a02f9e78a1eddf09c5b0f08c27d63b9
+    image: jaegertracing/all-in-one:1.74.0@sha256:c87fc1d9b22766284168abb2ac57ac2160dfc26484e4f965ff2dcc6b849b263a
     ports:
       - "16686:16686"
       - "14268"
@@ -36,7 +36,7 @@ services:
 
   prometheus:
     container_name: prometheus
-    image: prom/prometheus:v3.6.0@sha256:76947e7ef22f8a698fc638f706685909be425dbe09bd7a2cd7aca849f79b5f64
+    image: prom/prometheus:v3.7.0@sha256:29c1e0b48ad816750245dea3d65ac3ce57dda30547e67b1e9a5176e2953cc4dc
     volumes:
       - ./prometheus.yaml:/etc/prometheus/prometheus.yml
     ports:

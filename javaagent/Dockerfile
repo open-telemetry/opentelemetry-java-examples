@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17.0.16_8-jre@sha256:e63288cbcc5de259866761281980afe4ac8de8e208d389bc858b049d6d240ebd
+FROM eclipse-temurin:17.0.16_8-jre@sha256:db1c787e2cd41943a90b025191e4e66cbecfc0695e4ff619353eef92e460378f
 
 ADD build/libs/app.jar /app.jar
 ADD build/agent/opentelemetry-javaagent.jar /opentelemetry-javaagent.jar

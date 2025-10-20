@@ -10,6 +10,12 @@ plugins {
 description = "OpenTelemetry Example for Telemetry Testing"
 val moduleName by extra { "io.opentelemetry.examples.telemetry-testing" }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
 val bootRun = tasks.named<BootRun>("bootRun") {
     mainClass = "io.opentelemetry.example.javagent.Application"
 }
@@ -28,7 +34,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-    testImplementation(enforcedPlatform("org.junit:junit-bom:5.13.4"))
+    testImplementation(enforcedPlatform("org.junit:junit-bom:6.0.0"))
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testImplementation("org.junit.jupiter:junit-jupiter-engine")
     testImplementation("org.mock-server:mockserver-netty:5.15.0")
