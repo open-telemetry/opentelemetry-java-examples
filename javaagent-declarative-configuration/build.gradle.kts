@@ -15,12 +15,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 }
 
-val copyExtension = tasks.register<Copy>("copyExtension") {
-    into(layout.buildDirectory.dir("agent"))
-    rename(".*\\.jar", "opentelemetry-javaagent-extension.jar")
-}
-
 tasks.named<BootJar>("bootJar") {
-    dependsOn(copyExtension)
     archiveFileName = "javaagent-declarative-configuration.jar"
 }
