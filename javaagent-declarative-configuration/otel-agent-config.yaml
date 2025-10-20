@@ -16,7 +16,14 @@ tracer_provider:
   processors:
     - batch:
         exporter:
+          otlp_http:
+            endpoint: ${OTEL_EXPORTER_OTLP_TRACES_ENDPOINT:-http://localhost:4318}/v1/traces
+
+    # Configure a console exporter for exploring without a collector/backend
+    - batch:
+        exporter:
           console:
+
   # Configure sampling to exclude health check endpoints
   sampler:
     rule_based_routing:
@@ -37,4 +44,12 @@ meter_provider:
   readers:
     - periodic:
         exporter:
-          console:
+          otlp_http:
+            endpoint: ${OTEL_EXPORTER_OTLP_METRICS_ENDPOINT:-http://localhost:4318}/v1/metrics
+
+logger_provider:
+  processors:
+    - batch:
+        exporter:
+          otlp_http:
+            endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://localhost:4318}/v1/logs
