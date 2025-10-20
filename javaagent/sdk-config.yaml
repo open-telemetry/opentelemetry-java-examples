@@ -1,4 +1,4 @@
-# Copy of https://github.com/open-telemetry/opentelemetry-configuration/blob/v0.3.0/examples/sdk-config.yaml
+# Copy of https://github.com/open-telemetry/opentelemetry-configuration/blob/v1.0.0-rc.2/examples/sdk-config.yaml
 # with the following changes:
 # - OpenTelemetry Java Agent properties added at .instrumentation.java.
 # - OTLP exporter endpoints modified to point to http://collector:4318/v1/{path} to export to collector from docker-compose.yml
@@ -13,7 +13,7 @@
 # vars defined in https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/.
 
 # The file format version.
-file_format: "0.3"
+file_format: "1.0-rc.2"
 
 # Configure if the SDK is disabled or not. This is not required to be provided to ensure the SDK isn't disabled, the default value when this is not provided is for the SDK to be enabled.
 disabled: false
@@ -36,7 +36,9 @@ attribute_limits:
 # Configure text map context propagators.
 propagator:
   # Configure the set of propagators to include in the composite text map propagator.
-  composite: [ tracecontext, baggage ]
+  composite:
+    - tracecontext:
+    - baggage:
 
 # Configure tracer provider.
 tracer_provider:
