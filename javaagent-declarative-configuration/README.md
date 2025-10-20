@@ -20,13 +20,6 @@ Download the OpenTelemetry Java Agent:
 curl -L -o opentelemetry-javaagent.jar https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/latest/download/opentelemetry-javaagent.jar
 ```
 
-The OpenTelemetry contrib extension will be automatically downloaded during the build process.
-
-**Note:** If you prefer to download the extension manually or need a different version, you can:
-1. Find the latest version at [Sonatype](https://central.sonatype.com/artifact/io.opentelemetry.contrib/opentelemetry-samplers)
-2. Download it with: `curl -L -o opentelemetry-javaagent-extension.jar https://repo1.maven.org/maven2/io/opentelemetry/contrib/opentelemetry-samplers/[VERSION]/opentelemetry-samplers-[VERSION].jar`
-3. Reference it in the run command: `-Dotel.javaagent.extensions=opentelemetry-javaagent-extension.jar`
-
 ### Step 1: Build the Application
 
 ```bash
@@ -41,7 +34,6 @@ The OpenTelemetry contrib extension will be automatically downloaded during the 
 
 # Run with the OpenTelemetry Java Agent and contrib extension
 java -javaagent:opentelemetry-javaagent.jar \
-     -Dotel.javaagent.extensions=build/agent/opentelemetry-javaagent-extension.jar \
      -Dotel.experimental.config.file=$(pwd)/otel-agent-config.yaml \
      -jar build/libs/javaagent-declarative-configuration.jar
 ```
@@ -86,4 +78,3 @@ This configuration:
 - Excludes health check endpoints (`/actuator.*`) from tracing using the `DROP` action
 - Samples all other requests using the `always_on` fallback sampler
 - Only applies to `SERVER` span kinds
-- Requires the OpenTelemetry contrib extension JAR to be loaded
