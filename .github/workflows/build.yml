@@ -39,6 +39,8 @@ jobs:
 
       - name: Build
         run: ./gradlew clean check shadowJar
+        env:
+          DEVELOCITY_ACCESS_KEY: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
 
       - run: java -cp sdk-usage/build/libs/opentelemetry-examples-sdk-usage-0.1.0-SNAPSHOT-all.jar io.opentelemetry.sdk.example.ConfigureSpanProcessorExample
 
@@ -63,6 +65,8 @@ jobs:
         run: |
           export OTEL_EXPERIMENTAL_CONFIG_FILE=$(pwd)/otel-sdk-config.yaml
           ../gradlew run
+        env:
+          DEVELOCITY_ACCESS_KEY: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
 
   # this is not a required check to avoid blocking pull requests if external links break
   link-check:
