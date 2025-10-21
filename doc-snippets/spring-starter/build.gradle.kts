@@ -20,7 +20,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
-    implementation("io.opentelemetry.contrib:opentelemetry-samplers:1.50.0-alpha")
+    implementation("io.opentelemetry.contrib:opentelemetry-samplers:1.51.0-alpha")
 }
 
 springBoot {
