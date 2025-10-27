@@ -1,4 +1,4 @@
-FROM eclipse-temurin:11.0.28_6-jre@sha256:12e6611e8bdd47af0a12574f69c178745b09998459ccbac2ec2b08e837bce1a7
+FROM eclipse-temurin:11.0.28_6-jre@sha256:f73475871fe677beeeeb19b31ab628f05a63d2a24a97a298eb7f55767d25e0f5
 
 ADD build/libs/opentelemetry-examples-prometheus-*-SNAPSHOT-all.jar /app.jar
 
