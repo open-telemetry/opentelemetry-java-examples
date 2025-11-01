@@ -25,7 +25,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          number=$(gh issue list --search "Workflow failed: $GITHUB_WORKFLOW" --limit 1 --json number -q .[].number)
+          number=$(gh issue list --search "in:title Workflow failed: $GITHUB_WORKFLOW" --limit 1 --json number -q .[].number)
 
           echo $number
           echo ${{ inputs.success }}

@@ -1,4 +1,4 @@
-name: FOSSA scanning
+name: FOSSA
 
 on:
   push:
