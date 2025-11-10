@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21.0.8_9-jre@sha256:66bb900643426ad01996d25bada7d56751913f9cec3b827fcb715d2ec9a0fbfc
+FROM eclipse-temurin:21.0.9_10-jre@sha256:bbcd43c7120c41cc5c9fc844b4403e6865a6f911fec1624ff5dda6f9118cc115
 
 WORKDIR /usr/src/app/
 
