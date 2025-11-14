@@ -79,16 +79,14 @@ include(
     ":doc-snippets:getting-started",
     ":doc-snippets:exporters",
     ":doc-snippets:spring-starter",
+    "doc-snippets:extensions-minimal",
+    "doc-snippets:extensions-testapp",
 )
 
 rootProject.children.forEach {
     if (it.name != "doc-snippets") {
         it.projectDir = file(
-            "$rootDir/${it.name}".replace("opentelemetry-examples-", "")
+          "$rootDir/${it.name}".replace("opentelemetry-examples-", "")
         )
     }
 }
-
-include("doc-snippets:extensions-minimal")
-include("doc-snippets:extensions-testapp")
-include("doc-snippets:extensions-full")

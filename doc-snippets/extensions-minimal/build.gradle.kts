@@ -9,7 +9,7 @@ repositories {
 
 dependencies {
     // Use BOM to manage OpenTelemetry dependency versions
-    compileOnly(platform("io.opentelemetry:opentelemetry-bom:1.44.1"))
+    compileOnly(platform("io.opentelemetry:opentelemetry-bom:1.56.0"))
 
     // OpenTelemetry SDK autoconfiguration SPI (provided by agent)
     compileOnly("io.opentelemetry:opentelemetry-sdk-extension-autoconfigure-spi")

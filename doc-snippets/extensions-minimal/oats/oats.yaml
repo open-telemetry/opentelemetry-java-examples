@@ -10,27 +10,14 @@ docker-compose:
 input:
   - path: /hello
     interval: 5000ms
-  - path: /greet?name=OpenTelemetry
-    interval: 5000ms
 
 expected:
   traces:
-    # Verify that /hello creates a trace with the custom attribute from our extension
     - traceql: '{ span.http.route = "/hello" }'
       spans:
         - name: "GET /hello"
           attributes:
             http.request.method: "GET"
             http.route: "/hello"
-            # This custom attribute is added by MySpanProcessor in extensions-minimal
-            custom.processor: "active"
-
-    # Verify that /greet also has the custom attribute
-    - traceql: '{ span.http.route = "/greet" }'
-      spans:
-        - name: "GET /greet"
-          attributes:
-            http.request.method: "GET"
-            http.route: "/greet"
-            # This custom attribute is added by MySpanProcessor in extensions-minimal
+            # This custom attribute is added by MySpanProcessor
             custom.processor: "active"

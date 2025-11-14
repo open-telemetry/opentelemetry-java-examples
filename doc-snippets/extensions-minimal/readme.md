@@ -4,6 +4,9 @@ This code is used on the documentation site to demonstrate a "quick start" minim
 as a starting point when writing a new extension. The functionality is that it configures a SpanProcessor to add
 a custom attribute "custom.processor:active" to the spans.
 
+**NOTE:** This code is used for populating code examples on opentelemetry.io, so please ensure that any changes
+maintain the clarity and simplicity of the example and are synced correctly with the documentation site.
+
 ## Building
 
 To build the extension JAR:

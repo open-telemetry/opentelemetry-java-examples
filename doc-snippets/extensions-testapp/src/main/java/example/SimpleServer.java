@@ -6,51 +6,37 @@ import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.nio.charset.StandardCharsets;
+import java.util.logging.Logger;
 
-/**
- * Simple HTTP server for testing OpenTelemetry Java agent extensions.
- */
+/** Simple HTTP server for testing OpenTelemetry Java agent extensions. */
 public class SimpleServer {
 
-    public static void main(String[] args) throws Exception {
-        int port = 8080;
-        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
+  private static final Logger logger = Logger.getLogger(SimpleServer.class.getName());
 
-        server.createContext("/hello", new HelloHandler());
-        server.createContext("/greet", new GreetHandler());
-        server.setExecutor(null);
+  public static void main(String[] args) throws Exception {
+    int port = 8080;
+    HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
 
-        System.out.println("Starting server on port " + port);
-        server.start();
-        System.out.println("Server started. Try: http://localhost:8080/hello");
-        System.out.println("Press Ctrl+C to stop");
+    server.createContext("/hello", new HelloHandler());
+    server.setExecutor(null);
+
+    logger.info("Starting server on port " + port);
+    server.start();
+  }
+
+  static class HelloHandler implements HttpHandler {
+    @Override
+    public void handle(HttpExchange exchange) throws IOException {
+      String response = "Hello from OpenTelemetry test app!";
+      byte[] responseBytes = response.getBytes(StandardCharsets.UTF_8);
+
+      exchange.sendResponseHeaders(200, responseBytes.length);
+      try (OutputStream os = exchange.getResponseBody()) {
+        os.write(responseBytes);
+      }
+
+      logger.info("Handled request to /hello");
     }
-
-    static class HelloHandler implements HttpHandler {
-        @Override
-        public void handle(HttpExchange exchange) throws IOException {
-            String response = "Hello from OpenTelemetry test app!";
-            exchange.sendResponseHeaders(200, response.length());
-            OutputStream os = exchange.getResponseBody();
-            os.write(response.getBytes());
-            os.close();
-
-            System.out.println("Handled request to /hello");
-        }
-    }
-
-    static class GreetHandler implements HttpHandler {
-        @Override
-        public void handle(HttpExchange exchange) throws IOException {
-            String name = exchange.getRequestURI().getQuery();
-            String response = "Greetings " + (name != null ? name.replace("name=", "") : "stranger") + "!";
-
-            exchange.sendResponseHeaders(200, response.length());
-            OutputStream os = exchange.getResponseBody();
-            os.write(response.getBytes());
-            os.close();
-
-            System.out.println("Handled request to /greet with query: " + name);
-        }
-    }
+  }
 }

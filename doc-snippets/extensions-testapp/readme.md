@@ -1,9 +1,8 @@
 # Extensions - Test Application
 
-This is a simple HTTP server application used for testing OpenTelemetry Java agent extensions. It provides two endpoints:
+This is a simple HTTP server application used for testing OpenTelemetry Java agent extensions. It provides one endpoint:
 
 - `GET /hello` - Returns a simple greeting
-- `GET /greet?name=<name>` - Returns a personalized greeting
 
 ## Building
 
@@ -30,9 +29,9 @@ The server will start on port 8080. You can test it with:
 
 ```bash
 curl http://localhost:8080/hello
-curl http://localhost:8080/greet?name=World
 ```
 
 ## Usage with Extensions
 
-This application is designed to be used with the extensions-minimal module to test custom OpenTelemetry extensions. See the extensions-minimal readme for details on running OATS tests.
+This application is designed to be used with the extensions-minimal module to test custom OpenTelemetry extensions.
+See the extensions-minimal readme for details on running OATS tests.

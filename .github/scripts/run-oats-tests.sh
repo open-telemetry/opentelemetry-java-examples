@@ -11,7 +11,6 @@ pushd javaagent-declarative-configuration
 popd
 
 ./gradlew :doc-snippets:extensions-testapp:jar :doc-snippets:extensions-minimal:shadowJar
-./gradlew :doc-snippets:extensions-testapp:jar
 
 wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
 
