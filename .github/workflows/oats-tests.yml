@@ -8,6 +8,7 @@ on:
       - .github/workflows/oats-tests.yml
       - 'logging-k8s-stdout-otlp-json/**'
       - 'javaagent-declarative-configuration/oats/**'
+      - 'doc-snippets/extensions-minimal/oats/**'
   workflow_dispatch:
 
 permissions:
