@@ -3,7 +3,7 @@
   "extends": [
     "config:best-practices",
     "helpers:pinGitHubActionDigestsToSemver",
-    "customManagers:dockerfileVersions" // used by logging-k8s-stdout-otlp-json/Dockerfile
+    "customManagers:dockerfileVersions"
   ],
   "packageRules": [
     {
@@ -48,6 +48,8 @@
     }
   ],
   "kubernetes": {
-    "managerFilePatterns": ["/^logging-k8s-stdout-otlp-json/k8s/.+\\.yaml$/"]
+    "managerFilePatterns": [
+      "logging-k8s-stdout-otlp-json/k8s/**"
+    ]
   }
 }
