@@ -3,7 +3,7 @@
   "extends": [
     "config:best-practices",
     "helpers:pinGitHubActionDigestsToSemver",
-    "customManagers:dockerfileVersions" // used by logging-k8s-stdout-otlp-json/Dockerfile
+    "customManagers:dockerfileVersions"
   ],
   "packageRules": [
     {
@@ -48,6 +48,19 @@
     }
   ],
   "kubernetes": {
-    "managerFilePatterns": ["/^logging-k8s-stdout-otlp-json/k8s/.+\\.yaml$/"]
-  }
+    "managerFilePatterns": [
+      "logging-k8s-stdout-otlp-json/k8s/**"
+    ]
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "**/*.sh"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-zA-Z0-9-._]+?) depName=(?<depName>[^\\s]+?)\\s+[A-Za-z0-9_]+?_VERSION\\s*=\\s*[\"']?(?<currentValue>.+?)[\"']?\\s"
+      ]
+    }
+  ]
 }

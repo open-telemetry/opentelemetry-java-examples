@@ -1,8 +1,8 @@
-FROM eclipse-temurin:21.0.9_10-jre@sha256:bbcd43c7120c41cc5c9fc844b4403e6865a6f911fec1624ff5dda6f9118cc115
+FROM eclipse-temurin:21.0.9_10-jre@sha256:4332b7939ba5b7fabde48f4da21ebe45a4f8943d5b3319720c321ac577e65fb1
 
 WORKDIR /usr/src/app/
 
-# renovate: datasource=github-releases depName=opentelemetry-java-instrumentation packageName=open-telemetry/opentelemetry-java-instrumentation
+# renovate: datasource=github-releases depName=opentelemetry-java-instrumentation
 ENV OPENTELEMETRY_JAVA_INSTRUMENTATION_VERSION=v2.21.0
 
 ADD ./build/libs/javaagent-declarative-configuration.jar ./app.jar
