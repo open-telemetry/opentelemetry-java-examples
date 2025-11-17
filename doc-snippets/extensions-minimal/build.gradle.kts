@@ -3,10 +3,6 @@ plugins {
     id("com.gradleup.shadow")
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     // Use BOM to manage OpenTelemetry dependency versions
     compileOnly(platform("io.opentelemetry:opentelemetry-bom:1.56.0"))
