@@ -12,7 +12,6 @@ popd
 
 ./gradlew :doc-snippets:extensions-testapp:jar :doc-snippets:extensions-minimal:shadowJar
 
-wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
 # renovate: datasource=github-releases depName=k3d-io/k3d
 K3D_VERSION=v5.8.3
 wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/${K3D_VERSION}/install.sh | TAG=${K3D_VERSION} bash
