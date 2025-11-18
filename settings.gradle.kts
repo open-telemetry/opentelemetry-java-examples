@@ -79,6 +79,8 @@ include(
     ":doc-snippets:getting-started",
     ":doc-snippets:exporters",
     ":doc-snippets:spring-starter",
+    ":doc-snippets:extensions-minimal",
+    ":doc-snippets:extensions-testapp",
 )
 
 rootProject.children.forEach {
