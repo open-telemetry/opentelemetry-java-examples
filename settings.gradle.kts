@@ -4,7 +4,7 @@ pluginManagement {
         id("com.gradleup.shadow") version "9.2.2"
         id("com.google.protobuf") version "0.9.5"
         id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
-        id("com.google.cloud.tools.jib") version "3.5.0"
+        id("com.google.cloud.tools.jib") version "3.5.1"
         id("com.gradle.develocity") version "4.2.2"
     }
 }
