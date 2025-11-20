@@ -24,6 +24,7 @@
       // major.minor.patch, under the assumption that you would want to update to the stable version
       // of that release instead of the unstable version for a future release
       "ignoreUnstable": false
+      allowedVersions: '!/\\-SNAPSHOT$/',
     },
     {
       groupName: 'opentelemetry instrumentation packages',
