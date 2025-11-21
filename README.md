@@ -91,6 +91,11 @@ To build the all of examples, run:
       OpenTelemetry Java Agent to configure tracing behavior, including
       excluding specific endpoints from tracing.
   - Note: This example requires Java 17 or higher.
+- [Declarative Configuration with the OpenTelemetry Spring Boot Starter](spring-declarative-configuration)
+    - This module demonstrates how to use declarative configuration with the
+      OpenTelemetry Spring Boot Starter to configure tracing behavior,
+      including excluding specific endpoints from tracing.
+    - Note: This example requires Java 17 or higher.
 
 ## Contributing
 
