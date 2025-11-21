@@ -23,7 +23,4 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
     implementation("com.h2database:h2")
     implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
-
-    // for otelCustomizer in Application.java
-    implementation("io.opentelemetry.contrib:opentelemetry-samplers:1.51.0-alpha")
 }
