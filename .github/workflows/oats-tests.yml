@@ -10,6 +10,7 @@ on:
       - .mise/tasks/oats-tests.sh
       - 'logging-k8s-stdout-otlp-json/**'
       - 'javaagent-declarative-configuration/**'
+      - 'spring-declarative-configuration/**'
       - 'doc-snippets/extensions-minimal/**'
   workflow_dispatch:
 
