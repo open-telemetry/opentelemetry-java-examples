@@ -5,7 +5,9 @@ services:
       context: ../
       dockerfile: oats/Dockerfile
     environment:
-      SPRING_OTEL_EXPORTER_OTLP_ENDPOINT: http://lgtm:4318
+      OTEL_TRACER_PROVIDER_PROCESSORS_0_BATCH_EXPORTER_OTLP_HTTP_ENDPOINT: http://lgtm:4318/v1/traces
+      OTEL_METER_PROVIDER_READERS_0_PERIODIC_EXPORTER_OTLP_HTTP_ENDPOINT: http://lgtm:4318/v1/metrics
+      OTEL_LOGGER_PROVIDER_PROCESSORS_0_BATCH_EXPORTER_OTLP_HTTP_ENDPOINT: http://lgtm:4318/v1/logs
     ports:
       - "8080:8080"
     healthcheck:
