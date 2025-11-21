@@ -11,5 +11,10 @@ pushd javaagent-declarative-configuration
 ../gradlew clean bootJar
 popd
 
+pushd spring-declarative-configuration
+../gradlew clean bootJar
+popd
+
 oats -timeout 5m logging-k8s-stdout-otlp-json/
 oats -timeout 5m javaagent-declarative-configuration/oats/
+oats -timeout 5m spring-declarative-configuration/oats/
