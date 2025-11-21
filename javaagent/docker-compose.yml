@@ -4,18 +4,9 @@ services:
     build: ./
     environment:
       OTEL_SERVICE_NAME: "agent-example-app"
-      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: "http://collector:4318/v1/traces"
-      OTEL_EXPORTER_OTLP_METRICS_ENDPOINT: "http://collector:4318/v1/metrics"
-      OTEL_EXPORTER_OTLP_LOGS_ENDPOINT: "http://collector:4318/v1/logs"
-      # Logs are disabled by default
-      OTEL_LOGS_EXPORTER: "otlp"
-      # Optional specify file configuration instead of using environment variable scheme
-      # To use, call "export OTEL_EXPERIMENTAL_CONFIG_FILE=/sdk-config.yaml" before calling docker compose up
-      OTEL_EXPERIMENTAL_CONFIG_FILE:
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://collector:4318"
     ports:
       - "8080:8080"
-    volumes:
-      - ./sdk-config.yaml:/sdk-config.yaml
     depends_on:
       - collector
   collector:
