@@ -35,12 +35,6 @@
       ],
     },
     {
-      // intentionally using Java 11 in some examples
-      "matchPackageNames": ["eclipse-temurin"],
-      "matchUpdateTypes": ["major"],
-      "enabled": false
-    },
-    {
       // Skip locally built dice image used in logging-k8s-stdout-otlp-json
       "matchManagers": ["kubernetes"],
       "matchDatasources": ["docker"],
