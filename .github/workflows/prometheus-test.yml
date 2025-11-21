@@ -1,0 +1,27 @@
+name: OATS Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/prometheus-test.yml
+      - mise.toml
+      - .mise/tasks/prometheus-test.sh
+      - 'prometheus/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  acceptance-tests:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+
+      - uses: jdx/mise-action@9dc7d5dd454262207dea3ab5a06a3df6afc8ff26 # v3.4.1
+
+      - name: Run Prometheus test
+        run: mise run prometheus-test
