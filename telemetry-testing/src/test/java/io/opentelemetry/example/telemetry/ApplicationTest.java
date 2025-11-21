@@ -27,6 +27,7 @@ import org.mockserver.model.Body;
 import org.mockserver.model.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.resttestclient.TestRestTemplate;
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureTestRestTemplate;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
@@ -38,6 +39,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 @SpringBootTest(
     classes = {Application.class},
     webEnvironment = RANDOM_PORT)
+@AutoConfigureTestRestTemplate
 class ApplicationTest {
 
   @LocalServerPort private int port;
