@@ -1,4 +1,4 @@
-name: OATS Tests
+name: Prometheus Test
 
 on:
   pull_request:
