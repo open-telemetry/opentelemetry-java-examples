@@ -71,6 +71,7 @@ include(
     ":opentelemetry-examples-telemetry-testing",
     ":opentelemetry-examples-zipkin",
     ":opentelemetry-examples-spring-native",
+    ":opentelemetry-examples-spring-declarative-configuration",
     ":opentelemetry-examples-kotlin-extension",
     ":opentelemetry-examples-grpc",
     ":opentelemetry-examples-resource-detection-gcp",
