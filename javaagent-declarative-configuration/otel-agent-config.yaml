@@ -1,4 +1,5 @@
-# See https://github.com/open-telemetry/opentelemetry-configuration for details on schema and examples
+# For schema documentation, including required properties, semantics, default behavior, etc,
+# see: https://github.com/open-telemetry/opentelemetry-configuration/blob/main/schema-docs.md
 
 file_format: "1.0-rc.2"
 
@@ -6,18 +7,30 @@ resource:
   attributes:
     - name: service.name
       value: spring-boot-declarative-config-example
+  # Read resource attributes from the OTEL_RESOURCE_ATTRIBUTES environment variable.
+  # This aligns well with the OpenTelemetry Operator and other deployment methods.
+  attributes_list: ${OTEL_RESOURCE_ATTRIBUTES}
+  detection/development: # /development properties may not be supported in all SDKs
+    detectors:
+      - service: # will add "service.instance.id" and "service.name" from the OTEL_SERVICE_NAME env var
+      - host:
+      - process:
+      - container:
 
 propagator:
   composite:
     - tracecontext:
     - baggage:
 
+# Read backend endpoint from the OTEL_EXPORTER_OTLP_ENDPOINT environment variable.
+# This aligns well with the OpenTelemetry Operator and other deployment methods.
+
 tracer_provider:
   processors:
     - batch:
         exporter:
           otlp_http:
-            endpoint: ${OTEL_EXPORTER_OTLP_TRACES_ENDPOINT:-http://localhost:4318/v1/traces}
+            endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://localhost:4318}/v1/traces
 
     # Configure a console exporter for exploring without a collector/backend
     - batch:
@@ -45,11 +58,11 @@ meter_provider:
     - periodic:
         exporter:
           otlp_http:
-            endpoint: ${OTEL_EXPORTER_OTLP_METRICS_ENDPOINT:-http://localhost:4318/v1/metrics}
+            endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://localhost:4318}/v1/metrics
 
 logger_provider:
   processors:
     - batch:
         exporter:
           otlp_http:
-            endpoint: ${OTEL_EXPORTER_OTLP_LOGS_ENDPOINT:-http://localhost:4318/v1/logs}
+            endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://localhost:4318}/v1/logs

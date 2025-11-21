@@ -86,6 +86,11 @@ To build the all of examples, run:
       OpenTelemetry SDK to use a Zipkin exporter and send spans to a
       Zipkin backend using the OpenTelemetry API.
     - Note: This example requires Docker to be installed.
+- [Declarative Configuration with the OpenTelemetry Java Agent](javaagent-declarative-configuration)
+    - This module demonstrates how to use declarative configuration with the
+      OpenTelemetry Java Agent to configure tracing behavior, including
+      excluding specific endpoints from tracing.
+    - Note: This example requires Java 17 or higher.
 
 ## Contributing
 

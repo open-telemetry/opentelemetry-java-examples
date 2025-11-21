@@ -9,6 +9,12 @@ plugins {
 description = "OpenTelemetry Java Agent Declarative Configuration Example"
 val moduleName by extra { "io.opentelemetry.examples.javaagent.declarative" }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
 dependencies {
     implementation(platform(SpringBootPlugin.BOM_COORDINATES))
     implementation("org.springframework.boot:spring-boot-starter-web")
