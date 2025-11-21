@@ -5,9 +5,7 @@ set -euo pipefail
 
 cd prometheus
 ../gradlew shadowJar
-# start docker compose in background
-docker compose create
-docker compose start
+docker compose up -d
 
 function ready() {
   # check that 200 is returned from the metrics endpoint
