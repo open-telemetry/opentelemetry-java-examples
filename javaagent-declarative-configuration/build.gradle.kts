@@ -6,6 +6,12 @@ plugins {
     id("org.springframework.boot") version "3.5.7"
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
 description = "OpenTelemetry Java Agent Declarative Configuration Example"
 val moduleName by extra { "io.opentelemetry.examples.javaagent.declarative" }
 
