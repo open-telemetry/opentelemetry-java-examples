@@ -9,10 +9,6 @@ Instead of using the OpenTelemetry Java Agent, this module uses the
 [OpenTelemetry Spring Boot Starter](https://github.com/open-telemetry/opentelemetry-java-instrumentation/tree/main/instrumentation/spring/spring-boot-autoconfigure)
 and configures declarative behavior via standard Spring Boot configuration in `application.yaml`.
 
-> **Requirement:** Declarative configuration via the Spring Boot Starter requires version **2.22.0
-or newer** of the
-> OpenTelemetry Spring Boot Starter.
-
 The main configuration file for this example is:
 
 - [`src/main/resources/application.yaml`](./src/main/resources/application.yaml)
@@ -21,8 +17,7 @@ For the underlying declarative configuration schema and additional examples, see
 [opentelemetry-configuration](https://github.com/open-telemetry/opentelemetry-configuration)
 repository.
 Remember that when you copy examples from that repository into a Spring Boot app, you must nest them
-under the
-`otel:` root node (two-space indentation for all keys shown below).
+under the `otel:` root node (two-space indentation for all keys shown below).
 
 This Spring Boot application includes two endpoints:
 
@@ -36,12 +31,11 @@ This Spring Boot application includes two endpoints:
 
 - Java 17 or higher
 - OpenTelemetry Spring Boot Starter **2.22.0+** on the classpath of this application (already
-  configured in this
-  example’s build files)
+  configured in this example’s [build file](./build.gradle.kts))
 
 ### Step 1: Build the Application
 
-From the `spring-declarative-configuration` directory:
+From this `spring-declarative-configuration` directory:
 
 ```bash
 ../gradlew bootJar
@@ -96,8 +90,7 @@ listening on
 
 ## Declarative Configuration with Spring Boot
 
-The declarative configuration used by this example lives in [
-`application.yaml`](./src/main/resources/application.yaml)
+The declarative configuration used by this example lives in [`application.yaml`](./src/main/resources/application.yaml)
 under the `otel:` root key.
 
 ```yaml
@@ -107,20 +100,17 @@ otel:
 
 This layout follows the declarative configuration schema defined in the
 [opentelemetry-configuration](https://github.com/open-telemetry/opentelemetry-configuration)
-repository, but adapted
-for Spring Boot:
+repository, but adapted for Spring Boot:
 
 - All OpenTelemetry configuration keys live under the `otel:` root
 - Configuration blocks from the reference repo (such as `tracer_provider`, `meter_provider`,
-  `logger_provider`, etc.)
-  are indented by **two spaces** beneath `otel:`
+  `logger_provider`, etc.) are indented by **two spaces** beneath `otel:`
 - The configuration is loaded via the OpenTelemetry Spring Boot Starter instead of the Java Agent
 
 ### Opting In with `file_format`
 
 Declarative configuration is **opt-in**. In this Spring Boot example, you enable declarative
-configuration by setting
-`file_format` under `otel:` in `application.yaml`:
+configuration by setting `file_format` under `otel:` in `application.yaml`:
 
 ```yaml
 otel:
@@ -135,36 +125,14 @@ If `file_format` is missing, declarative configuration is not applied.
 ### Example: Exporters and Sampler Rules (Spring Style)
 
 Below is a simplified view of the configuration used in this module. All keys are indented under
-`otel:` as required by
-Spring Boot declarative configuration. Refer to the actual
+`otel:` as required by Spring Boot declarative configuration. Refer to the actual
 [`application.yaml`](./src/main/resources/application.yaml) for the complete version.
 
 ```yaml
 otel:
   file_format: "1.0-rc.2"
 
-  resource:
-    attributes:
-      - name: service.name
-        value: spring-boot-declarative-config-example
-
-  propagator:
-    composite:
-      - tracecontext:
-      - baggage:
-
   tracer_provider:
-    processors:
-      - batch:
-          exporter:
-            otlp_http:
-              # Note: Spring uses : instead of :- as separator for the default value
-              endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/traces
-
-      - batch:
-          exporter:
-            console:
-
     sampler:
       rule_based_routing:
         fallback_sampler:
@@ -174,30 +142,13 @@ otel:
           - action: DROP
             attribute: url.path
             pattern: /actuator.*
-
-  meter_provider:
-    readers:
-      - periodic:
-          exporter:
-            otlp_http:
-              endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/metrics
-
-  logger_provider:
-    processors:
-      - batch:
-          exporter:
-            otlp_http:
-              endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/logs
 ```
 
-This configuration is conceptually equivalent to the Java Agent example’s `rule_based_routing`
-sampler (from
-`javaagent-declarative-configuration/otel-agent-config.yaml`):
-
-- It uses the `rule_based_routing` sampler contribution
-- It restricts evaluation to `SERVER` spans
-- It drops (`DROP`) spans whose `url.path` matches `/actuator.*` (e.g., `/actuator/health`)
-- All other server requests are sampled by the `always_on` fallback sampler
+This configuration:
+- Uses the `rule_based_routing` sampler from the OpenTelemetry contrib extension
+- Excludes health check endpoints (`/actuator.*`) from tracing using the `DROP` action
+- Samples all other requests using the `always_on` fallback sampler
+- Only applies to `SERVER` span kinds
 
 ## Spring Boot Starter–Specific Notes
 
@@ -206,14 +157,13 @@ sampler (from
 - Declarative configuration is supported by the OpenTelemetry Spring Boot Starter starting with
   version **2.22.0**
 - Ensure your dependencies use at least this version; otherwise, `file_format` and other declarative
-  config features
-  may be ignored
+  config features may be ignored
 
 ### Property Metadata and IDE Auto-Completion
 
 Most IDEs derive auto-completion for Spring properties from Spring Boot configuration metadata. At
-the time of this
-example, that metadata is primarily based on the **non-declarative** configuration schema.
+the time of this example, that metadata is primarily based on the **non-declarative** configuration 
+schema.
 
 As a result:
 
@@ -247,15 +197,15 @@ otel:
               endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/traces
 ```
 
-Here, `http://localhost:4318` is used as the default if `OTEL_EXPORTER_OTLP_ENDPOINT` is not set.
+Here, `http://localhost:4318` is used as the default if the `OTEL_EXPORTER_OTLP_ENDPOINT` 
+environment variable is not set.
 
 When copying configuration from non-Spring examples, always convert `:-` to `:` in placeholders.
 
 ## Declarative vs Programmatic Configuration
 
 Declarative configuration, as used in this example, allows you to express routing and sampling rules
-entirely in
-configuration files. This is ideal for:
+entirely in configuration files. This is ideal for:
 
 - Operational teams that need to adjust sampling or filtering without changing code
 - Environments where configuration is managed externally (Kubernetes ConfigMaps, Spring Cloud
@@ -266,15 +216,12 @@ For more advanced or dynamic scenarios, you can still use **programmatic** confi
 this repository contains an example of this:
 
 - See `configureSampler` in
-  [
-  `OpenTelemetryConfig`](../spring-native/src/main/java/io/opentelemetry/example/graal/OpenTelemetryConfig.java)
-- It uses `RuleBasedRoutingSampler` programmatically to drop spans for actuator endpoints (
-  `/actuator*`), replicating
-  the behavior we achieve declaratively via YAML in this module
+  [`OpenTelemetryConfig`](../spring-native/src/main/java/io/opentelemetry/example/graal/OpenTelemetryConfig.java)
+- It uses `RuleBasedRoutingSampler` programmatically to drop spans for actuator endpoints 
+  (`/actuator*`), replicating the behavior we achieve declaratively via YAML in this module
 
 In many cases, you can start with declarative configuration (as in this module) and only fall back
-to programmatic
-customization for highly dynamic or application-specific logic.
+to programmatic customization for highly dynamic or application-specific logic.
 
 ## Troubleshooting and Tips
 
@@ -300,7 +247,6 @@ If the behavior is not what you expect, here are a few things to check:
 If issues persist, compare your configuration to:
 
 - This module’s [`application.yaml`](./src/main/resources/application.yaml)
-- The Java Agent example in [
-  `javaagent-declarative-configuration`](../javaagent-declarative-configuration)
+- The Java Agent example in [`javaagent-declarative-configuration`](../javaagent-declarative-configuration)
 - The reference schemas and examples in
   [opentelemetry-configuration](https://github.com/open-telemetry/opentelemetry-configuration)
