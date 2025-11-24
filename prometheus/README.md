@@ -32,7 +32,7 @@ docker compose up
 
 ## 3 - View Metrics
 
-To view metrics in Prometheus (e.g. 90% percentile), navigate to:
+To view metrics in Prometheus (e.g. 90th percentile), navigate to:
 
 http://localhost:9090/query?g0.expr=histogram_quantile%28.90%2C+sum+by%28le%29+%28rate%28super_timer_milliseconds_bucket%5B5m%5D%29%29%29&g0.show_tree=0&g0.tab=graph&g0.range_input=15m&g0.res_type=auto&g0.res_density=medium&g0.display_mode=lines&g0.show_exemplars=0
 
