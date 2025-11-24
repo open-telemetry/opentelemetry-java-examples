@@ -11,7 +11,7 @@ This Spring Boot application includes two endpoints:
 ## End-to-End Instructions
 
 ### Prerequisites
-* Java 17 or higher
+* Java 17 or higher (due to Spring Boot 3 requirement, not because of declarative config support)
 * OpenTelemetry Java Agent JAR file (see next step)
 
 Download the OpenTelemetry Java Agent:
