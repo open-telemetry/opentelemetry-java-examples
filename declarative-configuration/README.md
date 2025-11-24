@@ -20,4 +20,4 @@ export OTEL_EXPERIMENTAL_CONFIG_FILE=$(pwd)/otel-sdk-config.yaml
 
 Observe how data is printed to the console as configured in [otel-sdk-config.yaml](./otel-sdk-config.yaml).
 
-For use with the OpenTelemetry Java Agent, see [Java Agent declarative configuration](../javaagent/README.md#declarative-configuration).
+For use with the OpenTelemetry Java Agent, see [Java Agent declarative configuration](../javaagent-declarative-configuration).
