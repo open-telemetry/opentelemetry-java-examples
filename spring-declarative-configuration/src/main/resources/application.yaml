@@ -4,7 +4,7 @@ otel:
   # 2. Use https://github.com/open-telemetry/opentelemetry-configuration for details on schema and examples, but
   #    indent all examples by two spaces to fit under the "otel:" root node (for Spring Boot declarative config).
 
-  file_format: "1.0-rc.2"
+  file_format: "1.0-rc.2" # "file_format" serves as opt-in to declarative config
 
   resource:
     attributes:
