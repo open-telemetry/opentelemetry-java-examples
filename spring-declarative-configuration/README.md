@@ -251,27 +251,3 @@ If issues persist, compare your configuration to:
 - The reference schemas and examples in
   [opentelemetry-configuration](https://github.com/open-telemetry/opentelemetry-configuration)
 
-## Follow-up: applying the same pattern to Spring Native
-
-As a follow-up, you can reuse the ideas from this module to extend the `spring-native` example
-with declarative configuration and a Collector running via Docker Compose:
-
-- Start from the `spring-native` module in this repository.
-- delete the `application.properties` file in `spring-native/src/main/resources/`
-- copy `application.yaml` from this module to `spring-native/src/main/resources/`
-- add the settings from `application.properties` back into that `application.yaml`
-- follow the instructions in [spring-native/README.md](../spring-native/README.md) to run with 
-  Docker Compose
-
-```shell
-rm ../spring-native/src/main/resources/application.properties
-cp src/main/resources/application.yaml ../spring-native/src/main/resources/
-echo "spring:
-  datasource:
-    url: jdbc:h2:mem:db
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'" >> ../spring-native/src/main/resources/application.yaml
-```
