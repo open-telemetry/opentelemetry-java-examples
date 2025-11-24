@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - .github/workflows/prometheus-test.yml
-      - mise.toml
       - .mise/tasks/prometheus-test.sh
       - 'prometheus/**'
   workflow_dispatch:
