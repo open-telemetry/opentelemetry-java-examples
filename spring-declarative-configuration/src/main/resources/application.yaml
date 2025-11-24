@@ -21,6 +21,7 @@ otel:
       - batch:
           exporter:
             otlp_http:
+              # Note: Spring uses : instead of :- as separator for the default value
               endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/traces
 
       # Configure a console exporter for exploring without a collector/backend
@@ -49,6 +50,7 @@ otel:
       - periodic:
           exporter:
             otlp_http:
+              # Note: Spring uses : instead of :- as separator for the default value
               endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/metrics
 
   logger_provider:
@@ -56,4 +58,5 @@ otel:
       - batch:
           exporter:
             otlp_http:
+              # Note: Spring uses : instead of :- as separator for the default value
               endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/logs
