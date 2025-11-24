@@ -16,5 +16,6 @@ pushd spring-declarative-configuration
 ../gradlew clean bootJar
 popd
 
-# timeout for each test suite is 5 minutes
-oats -timeout 5m .
+oats -timeout 5m logging-k8s-stdout-otlp-json/
+oats -timeout 5m javaagent-declarative-configuration/oats/
+oats -timeout 5m spring-declarative-configuration/oats/
