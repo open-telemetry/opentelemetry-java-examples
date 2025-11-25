@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-#MISE description="Run Prometheus example build"
 
 set -euo pipefail
 

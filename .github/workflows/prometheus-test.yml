@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - .github/workflows/prometheus-test.yml
-      - .mise/tasks/prometheus-test.sh
+      - .github/scripts/prometheus-test.sh
       - 'prometheus/**'
   workflow_dispatch:
 
@@ -32,4 +32,4 @@ jobs:
           cache-read-only: ${{ github.event_name == 'pull_request' }}
 
       - name: Run Prometheus test
-        run: .mise/tasks/prometheus-test.sh
+        run: .github/scripts/prometheus-test.sh
