@@ -41,6 +41,16 @@
       "enabled": false
     },
     {
+      // Spring starter doesn't support Spring Boot 4 yet
+      "matchPackageNames": ["org.springframework.boot"],
+      "matchFilePatterns": [
+        "doc-snippets/spring-starter/build.gradle.kts",
+        "spring-native/build.gradle.kts"
+      ],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
       // Skip locally built dice image used in logging-k8s-stdout-otlp-json
       "matchManagers": ["kubernetes"],
       "matchDatasources": ["docker"],
