@@ -4,9 +4,9 @@ This example demonstrates how to use [declarative configuration](https://opentel
 
 The configuration file is located at [otel-sdk-config.yaml](./otel-sdk-config.yaml).
 
-# How to Run
+## How to Run
 
-## Prerequisites
+### Prerequisites
 
 * Java 17 or higher is required to run Gradle and build this example
 * Java 8 or higher may be used to run the example once it has been built

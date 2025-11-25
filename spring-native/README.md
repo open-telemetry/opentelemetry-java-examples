@@ -15,7 +15,7 @@ The example uses the following elements:
 - A Spring configuration to set OTLP headers dynamically
   (not needed for the example - it shows how to configure exporters programmatically)
 
-# Description of the Instrumentation Setup
+## Description of the Instrumentation Setup
 
 We have included the [OpenTelemetry Spring starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/) to instrument the HTTP calls, the logs, the SQL queries, and send the OpenTelemetry data via OTLP:
 
@@ -29,7 +29,7 @@ We have included the [OpenTelemetry Spring starter](https://opentelemetry.io/doc
 * GraalVM for Java 17 (required for native image compilation)
 * Docker Compose
 
-# How to Run
+## How to Run
 
 Build the GraalVM native image:
 
@@ -53,6 +53,7 @@ curl http://localhost:8080/ping
 Watch for spans, metrics, and logs in the Collector log output.
 
 Example of the beginning of the collector log after the ping:
+
 ```
 graal-native-collector-1  | Span #0
 graal-native-collector-1  |     Trace ID       : 668c936f4f0580bac9db40162e8159fa
@@ -79,9 +80,9 @@ graal-native-collector-1  |      -> net.protocol.version: Str(1.1)
 graal-native-collector-1  |      -> net.host.port: Int(8080)
 graal-native-collector-1  |      -> net.protocol.name: Str(http)
 graal-native-collector-1  |      -> http.response_content_length: Int(4)
-graal-native-collector-1  | 	{"kind": "exporter", "data_type": "traces", "name": "logging"}
-graal-native-collector-1  | 2023-06-09T13:50:07.529Z	info	MetricsExporter	{"kind": "exporter", "data_type": "metrics", "name": "logging", "resource metrics": 1, "metrics": 3, "data points": 3}
-graal-native-collector-1  | 2023-06-09T13:50:07.529Z	info	ResourceMetrics #0
+graal-native-collector-1  | {"kind": "exporter", "data_type": "traces", "name": "logging"}
+graal-native-collector-1  | 2023-06-09T13:50:07.529Z info MetricsExporter {"kind": "exporter", "data_type": "metrics", "name": "logging", "resource metrics": 1, "metrics": 3, "data points": 3}
+graal-native-collector-1  | 2023-06-09T13:50:07.529Z info ResourceMetrics #0
 graal-native-collector-1  | Resource SchemaURL: 
 graal-native-collector-1  | Resource attributes:
 graal-native-collector-1  |      -> service.name: Str(unknown_service:java)

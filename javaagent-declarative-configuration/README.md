@@ -5,16 +5,19 @@ This example demonstrates how to use [declarative configuration](https://opentel
 The configuration file is located at [otel-agent-config.yaml](./otel-agent-config.yaml).
 
 This Spring Boot application includes two endpoints:
+
 - `/actuator/health` - A health check endpoint (from Spring Boot Actuator) that is configured to be excluded from tracing
 - `/api/example` - A simple API endpoint that will be traced normally
 
 ## End-to-End Instructions
 
 ### Prerequisites
+
 * Java 17 or higher (due to Spring Boot 3 requirement, not because of declarative config support)
 * OpenTelemetry Java Agent JAR file (see next step)
 
 Download the OpenTelemetry Java Agent:
+
 ```bash
 # Download the latest OpenTelemetry Java Agent
 curl -L -o opentelemetry-javaagent.jar https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/latest/download/opentelemetry-javaagent.jar
@@ -53,6 +56,7 @@ curl http://localhost:8080/api/example
 ### Step 4: Verify Tracing Behavior
 
 Check the application logs to see:
+
 - Health check requests (`/actuator/health`) should NOT generate traces (excluded by configuration)
 - API requests (`/api/example`) should generate traces with console output
 
@@ -74,6 +78,7 @@ tracer_provider:
 ```
 
 This configuration:
+
 - Uses the `rule_based_routing` sampler from the OpenTelemetry contrib extension
 - Excludes health check endpoints (`/actuator.*`) from tracing using the `DROP` action
 - Samples all other requests using the `always_on` fallback sampler

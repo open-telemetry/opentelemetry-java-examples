@@ -4,14 +4,16 @@ An example application that shows what resource attributes will be detected by t
 
 *For users looking to use the GCP Resource Detector with OpenTelemetry Java Agent for automatic instrumentation, refer to the instructions [here](https://opentelemetry.io/docs/languages/java/automatic/configuration/#enable-resource-providers-that-are-disabled-by-default).*
 
-### Prerequisites
+## Prerequisites
 
-##### Get Google Cloud Credentials on your machine
+### Get Google Cloud Credentials on your machine
 
 ```shell
 gcloud auth application-default login
 ```
+
 Executing this command will save your application credentials to default path which will depend on the type of machine -
+
 - Linux, macOS: `$HOME/.config/gcloud/application_default_credentials.json`
 - Windows: `%APPDATA%\gcloud\application_default_credentials.json`
 
@@ -20,22 +22,24 @@ Executing this command will save your application credentials to default path wh
 Next, export the credentials to `GOOGLE_APPLICATION_CREDENTIALS` environment variable -
 
 For Linux & MacOS:
+
 ```shell
 export GOOGLE_APPLICATION_CREDENTIALS=$HOME/.config/gcloud/application_default_credentials.json
 ```
 
 For Windows:
+
 ```shell
 SET GOOGLE_APPLICATION_CREDENTIALS=%APPDATA%\gcloud\application_default_credentials.json
 ```
 
-##### Export the Google Cloud Project ID to `GOOGLE_CLOUD_PROJECT` environment variable:
+#### Export the Google Cloud Project ID to `GOOGLE_CLOUD_PROJECT` environment variable
 
 ```shell
 export GOOGLE_CLOUD_PROJECT="my-awesome-gcp-project-id"
 ```
 
-#### Setup Google Cloud Artifact Registry
+### Setup Google Cloud Artifact Registry
 
 > [!NOTE]
 > This step is only required if you want to run the application in GKE
@@ -46,13 +50,13 @@ export REGISTRY_LOCATION="us-central1"
 gcloud artifacts repositories create ${ARTIFACT_REGISTRY} --repository-format=docker --location=${REGISTRY_LOCATION} --description="Resource detection sample on GKE"
 ```
 
-
 ## Running in Google Kubernetes Engine
 
 > [!NOTE]
 > Make sure that kubectl is installed and configured to access a GKE cluster. Relevant documentation can be found [here](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#run_against_a_specific_cluster).
 
 To spin it up on your own GKE cluster, run the following:
+
 ```shell
 ./gradlew :opentelemetry-examples-resource-detection-gcp:jib --image="$REGISTRY_LOCATION-docker.pkg.dev/$GOOGLE_CLOUD_PROJECT/$ARTIFACT_REGISTRY/hello-resource-java"
 
@@ -75,6 +79,7 @@ The detected attributes will contain the attributes detected by the GCP resource
 You can run the application locally as well:
 
 From the root of the repository,
+
 ```shell
 cd resource-detection-gcp && gradle run
 ```
