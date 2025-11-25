@@ -27,7 +27,7 @@ Details about the example:
 * Java 11 or higher is required to run the compiled example
 * Docker Compose
 
-# How to Run
+## How to Run
 
 Run the Collector via Docker:
 

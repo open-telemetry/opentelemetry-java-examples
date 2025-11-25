@@ -17,6 +17,22 @@ To build the project, run:
 ./gradlew assemble
 ```
 
+## Markdown linting
+
+This repository uses [markdownlint](https://github.com/DavidAnson/markdownlint) via `markdownlint-cli2` managed by [mise](https://github.com/jdx/mise).
+
+To check all Markdown files:
+
+```bash
+mise run lint:markdown
+```
+
+To automatically fix fixable issues:
+
+```bash
+mise run lint:markdown --fix
+```
+
 ## Style guide
 
 This repository follows the OpenTelemetry Java

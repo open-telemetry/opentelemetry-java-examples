@@ -25,11 +25,13 @@ This module includes OATS (OpenTelemetry Acceptance Tests) to verify the extensi
 ### Prerequisites
 
 Install OATS:
+
 ```bash
 go install github.com/grafana/oats@latest
 ```
 
 Build both the extension and the test application:
+
 ```bash
 cd /path/to/opentelemetry-java-examples
 ./gradlew :doc-snippets:extensions-testapp:jar :doc-snippets:extensions-minimal:shadowJar

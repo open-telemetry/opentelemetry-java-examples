@@ -3,7 +3,7 @@
 If you want to get logs from your Java application ingested into an
 OpenTelemetry-compatible logs backend, the easiest and recommended way is using
 an OpenTelemetry protocol (OTLP) exporter,
-which is explained in the [logging](../logging) example. 
+which is explained in the [logging](../logging) example.
 
 However, some scenarios require logs
 to be output to files or stdout due to organizational or reliability needs.
@@ -11,11 +11,11 @@ Refer to [Collecting OpenTelemetry-compliant Java logs from files](https://opent
 
 This example contains
 
-- a Java application that uses the experimental 
+- a Java application that uses the experimental
   [experimental-otlp/stdout](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md#in-development-exporter-selection) logs exporter
-- an OpenTelemetry collector configuration that uses the 
+- an OpenTelemetry collector configuration that uses the
   [OTLP/JSON connector](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/otlpjsonconnector) to turn Pod logs into `OTLP`
-    
+
 ## Architecture
 
 ![OTLP/JSON Architecture](otlpjson-architecture.png)
@@ -28,8 +28,8 @@ The OpenTelemetry Collector pipeline:
 
 The k8s directory contains the Kubernetes manifests to deploy the application and the collector.
 
-Ignore the `lgtm.yaml` file, which is only used for running locally with 
-[LGTM](https://github.com/grafana/docker-otel-lgtm/) 
+Ignore the `lgtm.yaml` file, which is only used for running locally with
+[LGTM](https://github.com/grafana/docker-otel-lgtm/)
 and automated testing using [OATs](https://github.com/grafana/oats).
 
 ## Running locally

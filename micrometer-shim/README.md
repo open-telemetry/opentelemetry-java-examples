@@ -10,9 +10,9 @@ It consists of a Spring Boot application with:
 - Micrometer metrics bridged to OpenTelemetry using the Micrometer shim
 - OpenTelemetry metrics exported with Prometheus
 
-# How to Run
+## How to Run
 
-## Prerequisites
+### Prerequisites
 
 * Java 17 or higher is required to build and run this example
 
@@ -32,4 +32,4 @@ curl http://localhost:8080/ping
 
 View micrometer metrics in prometheus format by navigating to:
 
-http://localhost:9464
+<http://localhost:9464>

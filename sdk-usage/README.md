@@ -18,9 +18,11 @@ Compile with:
 ## Run
 
 Use the following commands to run the examples:
+
 ```shell script
 java -cp build/libs/opentelemetry-examples-sdk-usage-0.1.0-SNAPSHOT-all.jar io.opentelemetry.sdk.example.ConfigureTraceExample
 ```
+
 ```shell script
 java -cp build/libs/opentelemetry-examples-sdk-usage-0.1.0-SNAPSHOT-all.jar io.opentelemetry.sdk.example.ConfigureSpanProcessorExample
 ```
