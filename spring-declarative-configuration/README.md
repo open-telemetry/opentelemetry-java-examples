@@ -263,6 +263,10 @@ with declarative configuration and a Collector running via Docker Compose:
 - follow the instructions in [spring-native/README.md](../spring-native/README.md) to run with 
   Docker Compose
 
+Note that `OpenTelemetryConfig.otelCustomizer` is being ignored in this case, since we are using
+declarative configuration now, which uses `DeclarativeConfigurationCustomizerProvider` instead of
+`AutoConfigurationCustomizerProvider`.
+
 ```shell
 rm ../spring-native/src/main/resources/application.properties
 cp src/main/resources/application.yaml ../spring-native/src/main/resources/
