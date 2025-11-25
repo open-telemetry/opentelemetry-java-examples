@@ -8,6 +8,7 @@ plugins {
 
 java {
     toolchain {
+        // due to Spring Boot 3 requirement, not because of declarative config support
         languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
