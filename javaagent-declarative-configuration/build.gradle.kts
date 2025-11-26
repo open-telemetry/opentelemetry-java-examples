@@ -6,6 +6,13 @@ plugins {
     id("org.springframework.boot") version "3.5.8"
 }
 
+java {
+    toolchain {
+        // due to Spring Boot 3 requirement, not because of declarative config support
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
 description = "OpenTelemetry Java Agent Declarative Configuration Example"
 val moduleName by extra { "io.opentelemetry.examples.javaagent.declarative" }
 
