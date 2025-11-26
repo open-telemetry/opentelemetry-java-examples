@@ -25,6 +25,3 @@ file = "https://raw.githubusercontent.com/open-telemetry/opentelemetry-java-cont
 
 [tasks."lint:links-in-modified-files"]
 file = "https://raw.githubusercontent.com/open-telemetry/opentelemetry-java-contrib/refs/heads/main/.mise/tasks/lint/links-in-modified-files.sh"
-
-[tasks."lint:markdown"]
-file = ".mise/tasks/lint/markdown.sh"
