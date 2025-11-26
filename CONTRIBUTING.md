@@ -27,6 +27,8 @@ To check all Markdown files:
 mise run lint:markdown
 ```
 
+(note: Windows users may need to run `mise install` first)
+
 To automatically fix fixable issues:
 
 ```bash
