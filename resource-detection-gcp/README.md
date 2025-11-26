@@ -2,7 +2,7 @@
 
 An example application that shows what resource attributes will be detected by the [GCP Resource Detector](https://github.com/open-telemetry/opentelemetry-java-contrib/tree/main/gcp-resources) and how the [Autoconfigure Resource Provider SPI](https://opentelemetry.io/docs/languages/java/configuration/#spi-service-provider-interface) automatically *attaches* the detected resource attributes to the generated telemetry.
 
-*For users looking to use the GCP Resource Detector with OpenTelemetry Java Agent for automatic instrumentation, refer to the instructions [here](https://opentelemetry.io/docs/languages/java/automatic/configuration/#enable-resource-providers-that-are-disabled-by-default).*
+*For users looking to use the GCP Resource Detector with OpenTelemetry Java Agent for automatic instrumentation, refer to the [instructions for enabling resource providers that are disabled by default](https://opentelemetry.io/docs/languages/java/automatic/configuration/#enable-resource-providers-that-are-disabled-by-default).*
 
 ## Prerequisites
 
@@ -53,7 +53,7 @@ gcloud artifacts repositories create ${ARTIFACT_REGISTRY} --repository-format=do
 ## Running in Google Kubernetes Engine
 
 > [!NOTE]
-> Make sure that kubectl is installed and configured to access a GKE cluster. Relevant documentation can be found [here](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#run_against_a_specific_cluster).
+> Make sure that kubectl is installed and configured to access a GKE cluster. Relevant documentation can be found in the [GKE cluster access guide](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#run_against_a_specific_cluster).
 
 To spin it up on your own GKE cluster, run the following:
 
@@ -74,7 +74,7 @@ The detected attributes will contain the attributes detected by the GCP resource
 ## Running the application locally
 
 > [!NOTE]
-> Resource attributes won't be detected in unsupported environments. You can find a list of environments supported by the GCP detector [here](https://github.com/open-telemetry/opentelemetry-java-contrib/tree/main/gcp-resources).
+> Resource attributes won't be detected in unsupported environments. You can find a [list of supported environments in the GCP detector documentation](https://github.com/open-telemetry/opentelemetry-java-contrib/tree/main/gcp-resources).
 
 You can run the application locally as well:
 
