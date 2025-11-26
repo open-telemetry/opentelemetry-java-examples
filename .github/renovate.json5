@@ -23,7 +23,7 @@
       // Renovate's default behavior is only to update from unstable -> unstable if it's for the
       // major.minor.patch, under the assumption that you would want to update to the stable version
       // of that release instead of the unstable version for a future release
-      "ignoreUnstable": false
+      "ignoreUnstable": false,
       allowedVersions: '!/\\-SNAPSHOT$/',
     },
     {
