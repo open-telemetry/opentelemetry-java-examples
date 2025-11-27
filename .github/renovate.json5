@@ -35,12 +35,6 @@
       ],
     },
     {
-      // intentionally using Java 11 in some examples
-      "matchPackageNames": ["eclipse-temurin"],
-      "matchUpdateTypes": ["major"],
-      "enabled": false
-    },
-    {
       // Spring starter doesn't support Spring Boot 4 yet
       "matchPackageNames": ["org.springframework.boot:**"],
       "matchFileNames": [
