@@ -4,7 +4,7 @@ import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
     id("java")
-    id("org.springframework.boot") version "3.5.8"
+    id("org.springframework.boot") version "4.0.0"
 }
 
 description = "OpenTelemetry Example for Telemetry Testing"
@@ -32,7 +32,9 @@ dependencies {
     implementation("io.opentelemetry.instrumentation:opentelemetry-instrumentation-annotations:2.22.0")
     //spring modules
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-restclient")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-resttestclient")
 
     testImplementation(enforcedPlatform("org.junit:junit-bom:6.0.1"))
     testImplementation("org.junit.jupiter:junit-jupiter-api")
