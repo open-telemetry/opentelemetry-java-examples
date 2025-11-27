@@ -145,6 +145,7 @@ otel:
 ```
 
 This configuration:
+
 - Uses the `rule_based_routing` sampler from the OpenTelemetry contrib extension
 - Excludes health check endpoints (`/actuator.*`) from tracing using the `DROP` action
 - Samples all other requests using the `always_on` fallback sampler
@@ -162,7 +163,7 @@ This configuration:
 ### Property Metadata and IDE Auto-Completion
 
 Most IDEs derive auto-completion for Spring properties from Spring Boot configuration metadata. At
-the time of this example, that metadata is primarily based on the **non-declarative** configuration 
+the time of this example, that metadata is primarily based on the **non-declarative** configuration
 schema.
 
 As a result:
@@ -197,7 +198,7 @@ otel:
               endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/traces
 ```
 
-Here, `http://localhost:4318` is used as the default if the `OTEL_EXPORTER_OTLP_ENDPOINT` 
+Here, `http://localhost:4318` is used as the default if the `OTEL_EXPORTER_OTLP_ENDPOINT`
 environment variable is not set.
 
 When copying configuration from non-Spring examples, always convert `:-` to `:` in placeholders.
@@ -217,7 +218,7 @@ this repository contains an example of this:
 
 - See `configureSampler` in
   [`OpenTelemetryConfig`](../spring-native/src/main/java/io/opentelemetry/example/graal/OpenTelemetryConfig.java)
-- It uses `RuleBasedRoutingSampler` programmatically to drop spans for actuator endpoints 
+- It uses `RuleBasedRoutingSampler` programmatically to drop spans for actuator endpoints
   (`/actuator*`), replicating the behavior we achieve declaratively via YAML in this module
 
 In many cases, you can start with declarative configuration (as in this module) and only fall back
@@ -228,20 +229,20 @@ to programmatic customization for highly dynamic or application-specific logic.
 If the behavior is not what you expect, here are a few things to check:
 
 - **Health checks are still traced**
-    - Verify the `rules` section under `otel.tracer_provider.sampler.rule_based_routing` in
+  - Verify the `rules` section under `otel.tracer_provider.sampler.rule_based_routing` in
       `application.yaml`
-    - Ensure the `pattern` matches your actual actuator paths (e.g., `/actuator.*`)
-    - Confirm that `span_kind` is set to `SERVER` (or another correct span kind for your traffic)
+  - Ensure the `pattern` matches your actual actuator paths (e.g., `/actuator.*`)
+  - Confirm that `span_kind` is set to `SERVER` (or another correct span kind for your traffic)
 
 - **No spans are exported**
-    - Confirm that `otel.file_format` is set correctly (for example, `"1.0-rc.2"`)
-    - Check that at least one exporter is configured (e.g., `otlp_http` or `console`)
-    - Look for startup warnings or errors related to OpenTelemetry configuration
+  - Confirm that `otel.file_format` is set correctly (for example, `"1.0-rc.2"`)
+  - Check that at least one exporter is configured (e.g., `otlp_http` or `console`)
+  - Look for startup warnings or errors related to OpenTelemetry configuration
 
 - **Properties seem to be ignored**
-    - Make sure you are modifying the correct `application.yaml` for the active Spring profile
-    - Verify that all configuration keys are indented correctly under the `otel:` root
-    - Double-check that any placeholders use `:` for defaults (e.g.,
+  - Make sure you are modifying the correct `application.yaml` for the active Spring profile
+  - Verify that all configuration keys are indented correctly under the `otel:` root
+  - Double-check that any placeholders use `:` for defaults (e.g.,
       `${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}`)
 
 If issues persist, compare your configuration to:
@@ -250,4 +251,3 @@ If issues persist, compare your configuration to:
 - The Java Agent example in [`javaagent-declarative-configuration`](../javaagent-declarative-configuration)
 - The reference schemas and examples in
   [opentelemetry-configuration](https://github.com/open-telemetry/opentelemetry-configuration)
-
