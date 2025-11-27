@@ -42,7 +42,7 @@
     },
     {
       // Spring starter doesn't support Spring Boot 4 yet
-      "matchPackageNames": ["org.springframework.boot"],
+      "matchPackageNames": ["org.springframework.boot:**"],
       "matchFileNames": [
         "doc-snippets/spring-starter/build.gradle.kts",
         "spring-native/build.gradle.kts"
