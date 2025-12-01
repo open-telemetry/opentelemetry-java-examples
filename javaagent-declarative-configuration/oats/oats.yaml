@@ -4,9 +4,6 @@ oats-schema-version: 2
 docker-compose:
   files:
     - ./docker-compose.yml
-  app-service: app
-  app-docker-tag: javaagent-declarative-config:latest
-  app-docker-port: 8080
 
 input:
   # This endpoint should be traced normally
