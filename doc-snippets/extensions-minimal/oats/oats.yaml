@@ -7,7 +7,8 @@ docker-compose:
 
 input:
   - path: /hello
-    interval: 5000ms
+
+interval: 5000ms
 
 expected:
   traces:
