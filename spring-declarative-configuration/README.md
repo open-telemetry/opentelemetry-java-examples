@@ -6,7 +6,7 @@ with the OpenTelemetry Spring Boot Starter to configure tracing, metrics, and lo
 Boot application.
 
 Instead of using the OpenTelemetry Java Agent, this module uses the
-[OpenTelemetry Spring Boot Starter](https://github.com/open-telemetry/opentelemetry-java-instrumentation/tree/main/instrumentation/spring/spring-boot-autoconfigure)
+[OpenTelemetry Spring Boot Starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/)
 and configures declarative behavior via standard Spring Boot configuration in `application.yaml`.
 
 The main configuration file for this example is:
