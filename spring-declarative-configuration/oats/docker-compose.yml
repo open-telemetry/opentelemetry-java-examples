@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: oats/Dockerfile
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://lgtm:4318
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
