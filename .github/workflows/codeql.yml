@@ -42,7 +42,7 @@ jobs:
         uses: gradle/actions/setup-gradle@4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2 # v5.0.0
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@fe4161a26a8629af62121b670040955b330f9af2 # v4.31.6
+        uses: github/codeql-action/init@cf1bb45a277cb3c205638b2cd5c984db1c46a412 # v4.31.7
         with:
           languages: ${{ matrix.language }}
           # using "linked" helps to keep up with the latest Kotlin support
@@ -59,7 +59,7 @@ jobs:
           DEVELOCITY_ACCESS_KEY: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
 
       - name: Perform CodeQL analysis
-        uses: github/codeql-action/analyze@fe4161a26a8629af62121b670040955b330f9af2 # v4.31.6
+        uses: github/codeql-action/analyze@cf1bb45a277cb3c205638b2cd5c984db1c46a412 # v4.31.7
         with:
           category: "/language:${{matrix.language}}"
 
