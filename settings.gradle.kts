@@ -60,6 +60,8 @@ include(
     ":opentelemetry-examples-jaeger",
     ":opentelemetry-examples-javaagent",
     ":opentelemetry-examples-log-appender",
+    ":opentelemetry-examples-log-appender-log4j2",
+    ":opentelemetry-examples-log-appender-logback",
     ":opentelemetry-examples-logging",
     ":opentelemetry-examples-logging-k8s-stdout-otlp-json",
     ":opentelemetry-examples-manual-tracing",
