@@ -11,6 +11,9 @@ java {
 }
 
 dependencies {
+    // TODO: delete after 2.23.0 instrumentation release
+    implementation("io.opentelemetry:opentelemetry-api:1.57.0")
+
     implementation("io.opentelemetry:opentelemetry-sdk")
     implementation("io.opentelemetry:opentelemetry-sdk-extension-autoconfigure")
 
