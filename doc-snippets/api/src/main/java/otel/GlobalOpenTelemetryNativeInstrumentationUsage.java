@@ -6,7 +6,7 @@ import io.opentelemetry.api.OpenTelemetry;
 public class GlobalOpenTelemetryNativeInstrumentationUsage {
 
   public static void globalOpenTelemetryUsage(OpenTelemetry openTelemetry) {
-    // Initialized with OpenTelemetry from java agent if present, otherwise noop implementation.
+    // Initialized with OpenTelemetry from java agent if present, otherwise no-op implementation.
     MyClient client1 = new MyClientBuilder().build();
 
     // Initialized with an explicit OpenTelemetry instance, overriding the java agent instance.
@@ -30,7 +30,7 @@ public class GlobalOpenTelemetryNativeInstrumentationUsage {
   /** Builder for {@link MyClient}. */
   public static class MyClientBuilder {
     // OpenTelemetry defaults to the GlobalOpenTelemetry instance if set, e.g. by the java agent or
-    // by the application, else to a noop.
+    // by the application, else to a no-op implementation.
     private OpenTelemetry openTelemetry = GlobalOpenTelemetry.getOrNoop();
 
     /** Explicitly set the OpenTelemetry instance to use. */

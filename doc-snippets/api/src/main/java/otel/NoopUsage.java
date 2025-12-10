@@ -20,10 +20,10 @@ public class NoopUsage {
   private static final String SCOPE_NAME = "fully.qualified.name";
 
   public static void noopUsage() {
-    // Access the noop OpenTelemetry instance
+    // Access the no-op OpenTelemetry instance
     OpenTelemetry noopOpenTelemetry = OpenTelemetry.noop();
 
-    // Noop tracing
+    // No-op tracing
     Tracer noopTracer = OpenTelemetry.noop().getTracer(SCOPE_NAME);
     noopTracer
         .spanBuilder("span name")
@@ -33,7 +33,7 @@ public class NoopUsage {
         .addEvent("event-name", Attributes.builder().put(WIDGET_COLOR, "red").build())
         .end();
 
-    // Noop metrics
+    // No-op metrics
     Attributes attributes = WIDGET_RED_CIRCLE;
     Meter noopMeter = OpenTelemetry.noop().getMeter(SCOPE_NAME);
     DoubleHistogram histogram = noopMeter.histogramBuilder("fully.qualified.histogram").build();
@@ -61,7 +61,7 @@ public class NoopUsage {
         .gaugeBuilder("fully.qualified.gauge")
         .buildWithCallback(observable -> observable.record(10, attributes));
 
-    // Noop logs
+    // No-op logs
     Logger noopLogger = OpenTelemetry.noop().getLogsBridge().get(SCOPE_NAME);
     noopLogger
         .logRecordBuilder()
