@@ -3,7 +3,7 @@ FROM eclipse-temurin:25.0.1_8-jre@sha256:f6b092537e68d9836e86f676344e94102f2be32
 WORKDIR /usr/src/app/
 
 # renovate: datasource=github-releases depName=open-telemetry/opentelemetry-java-instrumentation
-ENV OPENTELEMETRY_JAVA_INSTRUMENTATION_VERSION=v2.22.0
+ENV OPENTELEMETRY_JAVA_INSTRUMENTATION_VERSION=v2.23.0
 
 # Add the test application JAR
 ADD ./extensions-testapp/build/libs/extensions-testapp-1.0-SNAPSHOT.jar ./app.jar
