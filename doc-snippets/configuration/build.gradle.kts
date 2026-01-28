@@ -22,5 +22,5 @@ dependencies {
     implementation("io.opentelemetry:opentelemetry-sdk-extension-jaeger-remote-sampler")
 
     implementation("io.opentelemetry.semconv:opentelemetry-semconv")
-    implementation("io.opentelemetry.semconv:opentelemetry-semconv-incubating:1.37.0-alpha")
+    implementation("io.opentelemetry.semconv:opentelemetry-semconv-incubating:1.38.0-alpha")
 }
