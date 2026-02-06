@@ -47,7 +47,7 @@ spec:
     spec:
       containers:
         - name: lgtm
-          image: grafana/otel-lgtm:0.17.0@sha256:64aa6aed2b94317475019a2cde883ac4f6d67e4b5fbdf9bea5ff229cc9583f5a
+          image: grafana/otel-lgtm:0.17.1@sha256:557ddac3121c7b470b59dfb4f69a4d24d9f6a3c9d63b330152498a3650f720bf
           ports:
             - containerPort: 3000
             - containerPort: 4317
