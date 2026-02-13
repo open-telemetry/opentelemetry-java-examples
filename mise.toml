@@ -1,5 +1,5 @@
 [tools]
-lychee = "0.22.0"
+lychee = "0.23.0"
 k3d = "5.8.2"
 "go:github.com/grafana/oats" = "0.6.1"
 kubectl = "1.35.1"
