@@ -3,7 +3,7 @@ lychee = "0.23.0"
 k3d = "5.8.2"
 "go:github.com/grafana/oats" = "0.6.1"
 kubectl = "1.35.1"
-markdownlint-cli2 = "0.20.0"
+markdownlint-cli2 = "0.21.0"
 
 [settings]
 # Only install tools explicitly defined in the [tools] section above
