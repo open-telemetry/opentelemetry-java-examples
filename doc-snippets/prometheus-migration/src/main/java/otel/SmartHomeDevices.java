@@ -9,4 +9,14 @@ class SmartHomeDevices {
   static double totalEnergyJoules() {
     return 0.0; // In production, this would query the device API.
   }
+
+  /** Returns the current temperature in Celsius from the living room sensor. */
+  static double livingRoomTemperatureCelsius() {
+    return 0.0; // In production, this would query the device API.
+  }
+
+  /** Returns the current temperature in Celsius from the bedroom sensor. */
+  static double bedroomTemperatureCelsius() {
+    return 0.0; // In production, this would query the device API.
+  }
 }
