@@ -4,12 +4,17 @@ import io.prometheus.metrics.core.metrics.GaugeWithCallback;
 
 public class PrometheusUpDownCounterCallback {
   public static void upDownCounterCallbackUsage() {
-    // The command queue maintains its own depth counter.
+    // The device manager maintains the count of connected devices.
     // Use a callback gauge to report that value at scrape time.
     GaugeWithCallback.builder()
-        .name("command_queue_depth")
-        .help("Number of device commands waiting to be processed")
-        .callback(callback -> callback.call(SmartHomeDevices.pendingCommandCount()))
+        .name("devices_connected")
+        .help("Number of smart home devices currently connected")
+        .labelNames("device_type")
+        .callback(
+            callback -> {
+              callback.call(SmartHomeDevices.connectedDeviceCount("thermostat"), "thermostat");
+              callback.call(SmartHomeDevices.connectedDeviceCount("lock"), "lock");
+            })
         .register();
   }
 }
