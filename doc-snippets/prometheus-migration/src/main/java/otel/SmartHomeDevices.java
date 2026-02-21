@@ -19,4 +19,9 @@ class SmartHomeDevices {
   static double bedroomTemperatureCelsius() {
     return 0.0; // In production, this would query the device API.
   }
+
+  /** Returns the number of device commands currently waiting to be processed. */
+  static long pendingCommandCount() {
+    return 0L; // In production, this would query the command queue.
+  }
 }
