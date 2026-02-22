@@ -3,6 +3,7 @@ package otel;
 import io.opentelemetry.exporter.otlp.http.metrics.OtlpHttpMetricExporter;
 import io.opentelemetry.sdk.metrics.Aggregation;
 import io.opentelemetry.sdk.metrics.InstrumentType;
+import io.opentelemetry.sdk.metrics.export.DefaultAggregationSelector;
 
 public class OtelHistogramExponentialExporter {
   static OtlpHttpMetricExporter createExporter() {
@@ -11,10 +12,8 @@ public class OtelHistogramExponentialExporter {
     return OtlpHttpMetricExporter.builder()
         .setEndpoint("http://localhost:4318")
         .setDefaultAggregationSelector(
-            type ->
-                type == InstrumentType.HISTOGRAM
-                    ? Aggregation.base2ExponentialBucketHistogram()
-                    : Aggregation.defaultAggregation())
+            DefaultAggregationSelector.getDefault()
+                .with(InstrumentType.HISTOGRAM, Aggregation.base2ExponentialBucketHistogram()))
         .build();
   }
 }
