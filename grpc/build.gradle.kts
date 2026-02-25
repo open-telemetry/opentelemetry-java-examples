@@ -30,7 +30,7 @@ dependencies {
 
     implementation("io.opentelemetry:opentelemetry-api")
     implementation("io.opentelemetry:opentelemetry-sdk")
-    implementation("io.opentelemetry:opentelemetry-exporter-zipkin")
+    implementation("io.opentelemetry:opentelemetry-exporter-otlp")
     implementation("io.opentelemetry.instrumentation:opentelemetry-grpc-1.6")
 
     //alpha modules
