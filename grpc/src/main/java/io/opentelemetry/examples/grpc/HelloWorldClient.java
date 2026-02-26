@@ -20,7 +20,7 @@ public class HelloWorldClient {
 
   private static final Logger logger = Logger.getLogger(HelloWorldClient.class.getName());
   private static final OpenTelemetry openTelemetry =
-      ExampleConfiguration.initializeOpenTelemetry("localhost", 9411);
+      ExampleConfiguration.initializeOpenTelemetry("localhost", 4318);
   private final ManagedChannel channel;
   private final GreeterGrpc.GreeterBlockingStub blockingStub;
 
@@ -33,7 +33,7 @@ public class HelloWorldClient {
     this.channel =
         ManagedChannelBuilder.forAddress("localhost", 50051)
             .usePlaintext()
-            .intercept(grpcTelemetry.newClientInterceptor())
+            .intercept(grpcTelemetry.createClientInterceptor())
             .build();
     this.blockingStub = GreeterGrpc.newBlockingStub(this.channel);
   }

@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 public class HelloWorldServer {
   private static final Logger logger = Logger.getLogger(HelloWorldServer.class.getName());
   private static final OpenTelemetry openTelemetry =
-      ExampleConfiguration.initializeOpenTelemetry("localhost", 9411);
+      ExampleConfiguration.initializeOpenTelemetry("localhost", 4318);
   private Server server;
 
   private void start() throws IOException {
@@ -56,7 +56,7 @@ public class HelloWorldServer {
   ServerServiceDefinition configureServerInterceptor(
       OpenTelemetry openTelemetry, BindableService bindableService) {
     GrpcTelemetry grpcTelemetry = GrpcTelemetry.create(openTelemetry);
-    return ServerInterceptors.intercept(bindableService, grpcTelemetry.newServerInterceptor());
+    return ServerInterceptors.intercept(bindableService, grpcTelemetry.createServerInterceptor());
   }
 
   private void stop() throws InterruptedException {
