@@ -37,6 +37,7 @@ expected:
         host_name: ".*"
         os_description: ".*"
         os_type: ".*"
+        os_version: ".*"
         process_command_args: ".*"
         process_executable_path: ".*"
         process_pid: ".*"
