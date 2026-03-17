@@ -6,12 +6,25 @@
     "customManagers:dockerfileVersions"
   ],
   "packageRules": [
+
+    // ── Scheduling & grouping ──────────────────────────────────────────
+
     {
       "groupName": "all patch versions",
       "matchUpdateTypes": ["patch", "digest"],
-      "schedule": ["before 8am every weekday"],
+      "schedule": ["before 8am on Tuesday"],
       "matchPackageNames": ["!io.opentelemetry**"]
     },
+    {
+      // group all GitHub Actions updates into a single weekly PR
+      // (must be after patch rule so that it wins for GH Action patches)
+      "matchManagers": ["github-actions"],
+      "extends": ["schedule:weekly"],
+      "groupName": "github actions"
+    },
+
+    // ── Version constraints ────────────────────────────────────────────
+
     {
       "matchPackageNames": [
         "io.opentelemetry:**",
@@ -26,6 +39,9 @@
       "ignoreUnstable": false,
       allowedVersions: '!/\\-SNAPSHOT$/',
     },
+
+    // ── Package family groups ──────────────────────────────────────────
+
     {
       groupName: 'opentelemetry instrumentation packages',
       matchPackageNames: [
@@ -34,6 +50,9 @@
         'open-telemetry/opentelemetry-java-instrumentation' // for logging-k8s-stdout-otlp-json/Dockerfile
       ],
     },
+
+    // ── Disabled updates ───────────────────────────────────────────────
+
     {
       // Spring starter doesn't support Spring Boot 4 yet
       "matchPackageNames": ["org.springframework.boot:**"],
