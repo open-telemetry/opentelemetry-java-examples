@@ -82,7 +82,7 @@ include(
     ":doc-snippets:spring-starter",
     ":doc-snippets:extensions-minimal",
     ":doc-snippets:extensions-testapp",
-    ":doc-snippets:prometheus-migration",
+    ":doc-snippets:prometheus-compatibility",
 )
 
 rootProject.children.forEach {
