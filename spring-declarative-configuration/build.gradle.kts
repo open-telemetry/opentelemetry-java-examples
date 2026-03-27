@@ -4,7 +4,7 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     id("java")
-    id("org.springframework.boot") version "3.5.12"
+    id("org.springframework.boot") version "3.5.13"
 }
 
 description = "OpenTelemetry Example for Spring Boot with Declarative Configuration"
