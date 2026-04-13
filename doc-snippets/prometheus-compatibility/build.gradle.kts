@@ -14,5 +14,5 @@ dependencies {
 
     implementation("io.prometheus:prometheus-metrics-core:1.3.1")
     implementation("io.prometheus:prometheus-metrics-exporter-httpserver:1.3.1")
-    implementation("io.prometheus:prometheus-metrics-exporter-opentelemetry:1.3.1")
+    implementation("io.prometheus:prometheus-metrics-exporter-opentelemetry:1.5.1")
 }
