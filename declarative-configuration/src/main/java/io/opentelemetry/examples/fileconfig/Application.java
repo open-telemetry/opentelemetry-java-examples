@@ -28,7 +28,7 @@ public final class Application {
     // it is important to initialize your SDK as early as possible in your application's lifecycle
     InputStream is =
         Files.newInputStream(Paths.get(System.getenv("OTEL_EXPERIMENTAL_CONFIG_FILE")));
-    OpenTelemetrySdk openTelemetrySdk = DeclarativeConfiguration.parseAndCreate(is);
+    OpenTelemetrySdk openTelemetrySdk = DeclarativeConfiguration.parseAndCreate(is).getSdk();
 
     Tracer tracer = openTelemetrySdk.getTracer("io.opentelemetry.example");
     Meter meter = openTelemetrySdk.getMeter("io.opentelemetry.example");
