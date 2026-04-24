@@ -38,7 +38,7 @@ mise run lint:markdown --fix
 ## Style guide
 
 This repository follows the OpenTelemetry Java
-repository's [style guide](https://github.com/open-telemetry/opentelemetry-java/blob/main/CONTRIBUTING.md#style-guideline).
+repository's [patterns](https://github.com/open-telemetry/opentelemetry-java/blob/main/docs/knowledge/general-patterns.md).
 
 ## Gradle conventions
 
