@@ -25,5 +25,5 @@ dependencies {
     implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
 
     // for otelCustomizer in Application.java
-    implementation("io.opentelemetry.contrib:opentelemetry-samplers:1.55.0-alpha")
+    implementation("io.opentelemetry.contrib:opentelemetry-samplers:1.56.0-alpha")
 }
