@@ -1,9 +1,12 @@
 [tools]
-lychee = "0.24.2"
-k3d = "5.8.3"
 "go:github.com/grafana/oats" = "0.6.1"
+k3d = "5.8.3"
 kubectl = "1.36.1"
-markdownlint-cli2 = "0.22.1"
+
+# Linters
+"aqua:grafana/flint" = "0.22.2"
+lychee = "0.24.2"
+rumdl = "0.1.91"
 
 [settings]
 # Only install tools explicitly defined in the [tools] section above
@@ -16,7 +19,13 @@ windows_default_file_shell_args = "bash"
 unix_default_file_shell_args = "bash"
 use_file_shell_for_executable_tasks = true
 
-# Pick the tasks you need from flint (https://github.com/grafana/flint)
-[tasks."lint:links"]
-description = "Check for broken links in changed files + all local links"
-file = "https://raw.githubusercontent.com/grafana/flint/8b7082196051b576d0b8dde43e26d620e7c277b3/tasks/lint/links.sh" # v0.22.2
+[env]
+FLINT_CONFIG_DIR = ".github/config"
+
+[tasks.lint]
+description = "Run all lints"
+run = "flint run"
+
+[tasks."lint:fix"]
+description = "Auto-fix lint issues"
+run = "flint run --fix"

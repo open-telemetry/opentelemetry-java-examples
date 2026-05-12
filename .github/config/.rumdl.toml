@@ -1,0 +1,11 @@
+[global]
+disable = ["line-length", "ul-style", "no-inline-html", "fenced-code-language"]
+
+[no-duplicate-heading]
+siblings-only = true
+
+[no-trailing-punctuation]
+punctuation = ".,;:"
+
+[ol-prefix]
+style = "ordered"
