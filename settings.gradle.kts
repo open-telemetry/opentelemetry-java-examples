@@ -1,6 +1,6 @@
 pluginManagement {
     plugins {
-        id("com.diffplug.spotless") version "8.4.0"
+        id("com.diffplug.spotless") version "8.5.0"
         id("com.gradleup.shadow") version "9.4.1"
         id("com.google.protobuf") version "0.10.0"
         id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
