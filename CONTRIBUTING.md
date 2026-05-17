@@ -17,14 +17,14 @@ To build the project, run:
 ./gradlew assemble
 ```
 
-## Markdown linting
+## Linting
 
-This repository uses [markdownlint](https://github.com/DavidAnson/markdownlint) via `markdownlint-cli2` managed by [mise](https://github.com/jdx/mise).
+This repository uses [flint](https://github.com/grafana/flint) managed by [mise](https://github.com/jdx/mise) to run the configured lint checks, including Markdown and link validation.
 
-To check all Markdown files:
+To run all lint checks:
 
 ```bash
-mise run lint:markdown
+mise run lint
 ```
 
 (note: Windows users may need to run `mise install` first)
@@ -32,7 +32,7 @@ mise run lint:markdown
 To automatically fix fixable issues:
 
 ```bash
-mise run lint:markdown --fix
+mise run lint:fix
 ```
 
 ## Style guide
