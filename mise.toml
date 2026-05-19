@@ -2,7 +2,7 @@
 lychee = "0.24.2"
 k3d = "5.8.3"
 "go:github.com/grafana/oats" = "0.6.1"
-kubectl = "1.36.0"
+kubectl = "1.36.1"
 markdownlint-cli2 = "0.22.1"
 
 [settings]
