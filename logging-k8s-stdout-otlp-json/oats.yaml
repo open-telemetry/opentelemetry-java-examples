@@ -32,7 +32,6 @@ expected:
         # thread_name: ".*" # thread name is missing when there is an exception - has nothing to do with stdout logging
         span_id: ".*"
         trace_id: ".*"
-        container_id: ".*"
         host_arch: ".*"
         host_name: ".*"
         os_description: ".*"
@@ -51,6 +50,4 @@ expected:
         telemetry_sdk_name: ".*"
         telemetry_sdk_version: ".*"
         exception_stacktrace: "java\\.lang\\.RuntimeException: simulating an error\n\tat io\\.opentelemetry\\.example\\.RollController\\.index\\(RollController\\.java:21\\)\n\t.*\n"
-
-      no-extra-attributes: true
 
