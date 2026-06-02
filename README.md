@@ -112,3 +112,5 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 - [OpenTelemetry Java Approvers](https://github.com/open-telemetry/opentelemetry-java#approvers)
 - [OpenTelemetry Java Instrumentation Approvers](https://github.com/open-telemetry/opentelemetry-java-instrumentation#approvers)
 - [OpenTelemetry Java Contrib Approvers](https://github.com/open-telemetry/opentelemetry-java-contrib#approvers)
+
+<!-- EasyCLA test edit, please ignore -->
