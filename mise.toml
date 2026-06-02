@@ -6,7 +6,7 @@ kubectl = "1.36.1"
 # Linters
 "aqua:grafana/flint" = "0.22.4"
 lychee = "0.24.2"
-rumdl = "0.1.91"
+rumdl = "0.2.5"
 
 [env]
 FLINT_CONFIG_DIR = ".github/config"
