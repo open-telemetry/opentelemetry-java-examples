@@ -114,7 +114,7 @@ configuration by setting `file_format` under `otel:` in `application.yaml`:
 
 ```yaml
 otel:
-  file_format: "1.0-rc.2"
+  file_format: "1.0"
   # ... other configuration
 ```
 
@@ -130,7 +130,7 @@ Below is a simplified view of the configuration used in this module. All keys ar
 
 ```yaml
 otel:
-  file_format: "1.0-rc.2"
+  file_format: "1.0"
 
   tracer_provider:
     sampler:
@@ -235,7 +235,7 @@ If the behavior is not what you expect, here are a few things to check:
   - Confirm that `span_kind` is set to `SERVER` (or another correct span kind for your traffic)
 
 - **No spans are exported**
-  - Confirm that `otel.file_format` is set correctly (for example, `"1.0-rc.2"`)
+  - Confirm that `otel.file_format` is set correctly (for example, `"1.0"`)
   - Check that at least one exporter is configured (e.g., `otlp_http` or `console`)
   - Look for startup warnings or errors related to OpenTelemetry configuration
 
