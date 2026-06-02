@@ -22,6 +22,33 @@ propagator:
     - tracecontext:
     - baggage:
 
+instrumentation/development: # /development properties may not be supported in all SDKs
+  java:
+    common:
+      # Map peer addresses (host names or IP addresses) of outgoing client calls
+      # to a logical service name. Matching client spans get a "peer.service"
+      # attribute set to the configured service_name (port is optional; omitting
+      # it matches any port). Was the otel.instrumentation.common.peer-service-mapping property.
+      service_peer_mapping:
+        - peer: localhost
+          service_name: example-backend
+  general:
+    http:
+      client:
+        request_captured_headers: # was otel.instrumentation.http.client.capture-request-headers
+          - Content-Type
+          - Accept
+        response_captured_headers: # was otel.instrumentation.http.client.capture-response-headers
+          - Content-Type
+          - Content-Encoding
+      server:
+        request_captured_headers: # was otel.instrumentation.http.server.capture-request-headers
+          - Content-Type
+          - Accept
+        response_captured_headers: # was otel.instrumentation.http.server.capture-response-headers
+          - Content-Type
+          - Content-Encoding
+
 # Read backend endpoint from the OTEL_EXPORTER_OTLP_ENDPOINT environment variable.
 # This aligns well with the OpenTelemetry Operator and other deployment methods.
 

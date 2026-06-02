@@ -10,6 +10,8 @@ input:
   - path: /api/example
   # This endpoint should NOT be traced (excluded by declarative config)
   - path: /actuator/health
+  # This endpoint makes an outgoing client call, exercising the peer service mapping
+  - path: /api/remote
 
 expected:
   traces:
@@ -22,3 +24,8 @@ expected:
     - traceql: '{ span.http.route = "/actuator/health" }'
       count:
         max: 0
+    # Verify the outgoing client span is tagged with peer.service via the
+    # instrumentation.general.peer.service_mapping declarative config
+    - traceql: '{ span.peer.service = "example-backend" }'
+      count:
+        min: 1
