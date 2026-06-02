@@ -230,7 +230,7 @@ If the behavior is not what you expect, here are a few things to check:
 
 - **Health checks are still traced**
   - Verify the `rules` section under `otel.tracer_provider.sampler.rule_based_routing` in
-      `application.yaml`
+    `application.yaml`
   - Ensure the `pattern` matches your actual actuator paths (e.g., `/actuator.*`)
   - Confirm that `span_kind` is set to `SERVER` (or another correct span kind for your traffic)
 
@@ -243,7 +243,7 @@ If the behavior is not what you expect, here are a few things to check:
   - Make sure you are modifying the correct `application.yaml` for the active Spring profile
   - Verify that all configuration keys are indented correctly under the `otel:` root
   - Double-check that any placeholders use `:` for defaults (e.g.,
-      `${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}`)
+    `${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}`)
 
 If issues persist, compare your configuration to:
 
