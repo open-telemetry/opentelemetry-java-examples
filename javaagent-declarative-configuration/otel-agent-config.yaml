@@ -10,7 +10,7 @@ resource:
   # Read resource attributes from the OTEL_RESOURCE_ATTRIBUTES environment variable.
   # This aligns well with the OpenTelemetry Operator and other deployment methods.
   attributes_list: ${OTEL_RESOURCE_ATTRIBUTES}
-  detection/development: # /development properties may not be supported in all SDKs
+  detection/development:
     detectors:
       - service: # will add "service.instance.id" and "service.name" from the OTEL_SERVICE_NAME env var
       - host:
@@ -21,6 +21,34 @@ propagator:
   composite:
     - tracecontext:
     - baggage:
+
+instrumentation/development:
+  java:
+    common:
+      # Map peer addresses (host names or IP addresses) of outgoing client calls
+      # to a logical service name. Matching client spans get a "peer.service"
+      # attribute set to the configured service_name (port is optional; omitting
+      # it matches any port). Previously configured via the
+      # otel.instrumentation.common.peer-service-mapping property.
+      service_peer_mapping:
+        - peer: localhost
+          service_name: example-backend
+  general:
+    http:
+      client:
+        request_captured_headers: # was otel.instrumentation.http.client.capture-request-headers
+          - Content-Type
+          - Accept
+        response_captured_headers: # was otel.instrumentation.http.client.capture-response-headers
+          - Content-Type
+          - Content-Encoding
+      server:
+        request_captured_headers: # was otel.instrumentation.http.server.capture-request-headers
+          - Content-Type
+          - Accept
+        response_captured_headers: # was otel.instrumentation.http.server.capture-response-headers
+          - Content-Type
+          - Content-Encoding
 
 # Read backend endpoint from the OTEL_EXPORTER_OTLP_ENDPOINT environment variable.
 # This aligns well with the OpenTelemetry Operator and other deployment methods.

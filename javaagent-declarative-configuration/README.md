@@ -4,10 +4,11 @@ This example demonstrates how to use [declarative configuration](https://opentel
 
 The configuration file is located at [otel-agent-config.yaml](./otel-agent-config.yaml).
 
-This Spring Boot application includes two endpoints:
+This Spring Boot application includes three endpoints:
 
 - `/actuator/health` - A health check endpoint (from Spring Boot Actuator) that is configured to be excluded from tracing
 - `/api/example` - A simple API endpoint that will be traced normally
+- `/api/remote` - An endpoint that makes an outgoing HTTP (client) call, used to demonstrate peer service mapping
 
 ## End-to-End Instructions
 
@@ -37,7 +38,7 @@ curl -L -o opentelemetry-javaagent.jar https://github.com/open-telemetry/opentel
 
 # Run with the OpenTelemetry Java Agent and contrib extension
 java -javaagent:opentelemetry-javaagent.jar \
-     -Dotel.experimental.config.file=$(pwd)/otel-agent-config.yaml \
+     -Dotel.config.file=$(pwd)/otel-agent-config.yaml \
      -jar build/libs/javaagent-declarative-configuration.jar
 ```
 
@@ -51,6 +52,9 @@ curl http://localhost:8080/actuator/health
 
 # This endpoint WILL be traced normally
 curl http://localhost:8080/api/example
+
+# This endpoint makes an outgoing client call; its client span is tagged with peer.service
+curl http://localhost:8080/api/remote
 ```
 
 ### Step 4: Verify Tracing Behavior
@@ -83,3 +87,25 @@ This configuration:
 - Excludes health check endpoints (`/actuator.*`) from tracing using the `DROP` action
 - Samples all other requests using the `always_on` fallback sampler
 - Only applies to `SERVER` span kinds
+
+### Peer service mapping
+
+The `otel-agent-config.yaml` file also demonstrates peer service mapping, which maps the peer address (host name or IP)
+of an outgoing client call to a logical service name:
+
+```yaml
+instrumentation/development:
+  java:
+    common:
+      service_peer_mapping:
+        - peer: localhost
+          service_name: example-backend
+```
+
+This configuration:
+
+- Replaces the `otel.instrumentation.common.peer-service-mapping` system property
+- Adds a `peer.service` attribute to client spans whose peer address (`server.address`) matches a configured `peer`.
+  The port is optional — omitting it matches any port.
+- In this example, the `/api/remote` endpoint calls back into the application over `localhost`, so its client span is
+  tagged with `peer.service=example-backend`

@@ -7,6 +7,7 @@ services:
     environment:
       OTEL_SERVICE_NAME: "declarative-config-example-app"
       OTEL_EXPORTER_OTLP_ENDPOINT: http://lgtm:4318
+      OTEL_CONFIG_FILE: /usr/src/app/otel-agent-config.yaml
     ports:
       - "8080:8080"
     healthcheck:
