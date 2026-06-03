@@ -104,7 +104,7 @@ instrumentation/development:
 
 This configuration:
 
-- Replaces the legacy `otel.instrumentation.common.peer-service-mapping` property
+- Replaces the `otel.instrumentation.common.peer-service-mapping` system property
 - Adds a `peer.service` attribute to client spans whose peer address (`server.address`) matches a configured `peer`.
   The port is optional — omitting it matches any port.
 - In this example, the `/api/remote` endpoint calls back into the application over `localhost`, so its client span is
