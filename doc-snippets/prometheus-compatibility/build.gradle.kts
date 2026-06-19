@@ -2,10 +2,10 @@ plugins {
     id("java")
 }
 
-val moduleName by extra { "io.opentelemetry.examples.docs.prometheus.migration" }
+extra.set("moduleName", "io.opentelemetry.examples.docs.prometheus.migration")
 
 dependencies {
-    implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:2.28.1"))
+    implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:2.29.0"))
 
     implementation("io.opentelemetry:opentelemetry-api")
     implementation("io.opentelemetry:opentelemetry-sdk")

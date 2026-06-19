@@ -4,7 +4,7 @@ plugins {
 }
 
 description = "OpenTelemetry Example for Declarative Configuration"
-val moduleName by extra { "io.opentelemetry.examples.fileconfig" }
+extra.set("moduleName", "io.opentelemetry.examples.fileconfig")
 
 java {
     toolchain {
@@ -17,6 +17,7 @@ dependencies {
     implementation("io.opentelemetry:opentelemetry-sdk")
     implementation("io.opentelemetry:opentelemetry-exporter-logging")
     implementation("io.opentelemetry:opentelemetry-sdk-extension-declarative-config")
+    implementation("io.opentelemetry:opentelemetry-sdk-extension-autoconfigure-spi")
 }
 
 application {

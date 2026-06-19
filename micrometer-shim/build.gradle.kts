@@ -13,7 +13,7 @@ java {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
-val moduleName by extra { "io.opentelemetry.examples.micrometer-shim" }
+extra.set("moduleName", "io.opentelemetry.examples.micrometer-shim")
 
 val bootRun = tasks.named<BootRun>("bootRun") {
     mainClass = "io.opentelemetry.example.micrometer.Application"

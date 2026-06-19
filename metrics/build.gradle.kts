@@ -3,7 +3,7 @@ plugins {
 }
 
 description = "OpenTelemetry Examples for metrics"
-val moduleName by extra { "io.opentelemetry.examples.metrics" }
+extra.set("moduleName", "io.opentelemetry.examples.metrics")
 
 java {
     toolchain {

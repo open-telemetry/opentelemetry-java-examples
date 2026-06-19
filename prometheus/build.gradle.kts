@@ -3,7 +3,7 @@ plugins {
 }
 
 description = "OpenTelemetry Example for Prometheus Exporter"
-val moduleName by extra { "io.opentelemetry.examples.prometheus" }
+extra.set("moduleName", "io.opentelemetry.examples.prometheus")
 
 java {
     toolchain {

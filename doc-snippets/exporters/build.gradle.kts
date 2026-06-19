@@ -5,7 +5,7 @@ plugins {
     id("org.springframework.boot") version "4.1.0"
 }
 
-val moduleName by extra { "io.opentelemetry.examples.docs.exporters" }
+extra.set("moduleName", "io.opentelemetry.examples.docs.exporters")
 
 java {
     toolchain {
@@ -15,7 +15,7 @@ java {
 
 dependencies {
     implementation(platform(SpringBootPlugin.BOM_COORDINATES))
-    implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:2.28.1"))
+    implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:2.29.0"))
 
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("io.opentelemetry:opentelemetry-exporter-otlp")

@@ -5,7 +5,7 @@ plugins {
 }
 
 description = "OpenTelemetry Example for Google Cloud Resource Detection"
-val moduleName by extra { "io.opentelemetry.examples.resource-detection.gcp" }
+extra.set("moduleName", "io.opentelemetry.examples.resource-detection.gcp")
 
 val autoconfConfig = listOf(
     "-Dotel.traces.exporter=logging-otlp",

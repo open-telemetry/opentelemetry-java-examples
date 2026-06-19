@@ -14,7 +14,7 @@ java {
 }
 
 description = "OpenTelemetry Java Agent Declarative Configuration Example"
-val moduleName by extra { "io.opentelemetry.examples.javaagent.declarative" }
+extra.set("moduleName", "io.opentelemetry.examples.javaagent.declarative")
 
 java {
     toolchain {

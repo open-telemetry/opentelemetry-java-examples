@@ -3,7 +3,7 @@ plugins {
 }
 
 description = "OpenTelemetry Examples for HTTP"
-val moduleName by extra { "io.opentelemetry.examples.http" }
+extra.set("moduleName", "io.opentelemetry.examples.http")
 
 java {
     toolchain {

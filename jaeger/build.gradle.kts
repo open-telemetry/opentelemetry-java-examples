@@ -3,7 +3,7 @@ plugins {
 }
 
 description = "OpenTelemetry Examples for Jaeger Backend"
-val moduleName by extra { "io.opentelemetry.examples.jaeger" }
+extra.set("moduleName", "io.opentelemetry.examples.jaeger")
 
 java {
     toolchain {

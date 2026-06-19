@@ -7,7 +7,7 @@ plugins {
 }
 
 description = "OpenTelemetry Example for Java Agent"
-val moduleName by extra { "io.opentelemetry.examples.javagent" }
+extra.set("moduleName", "io.opentelemetry.examples.javaagent")
 
 java {
     toolchain {
@@ -25,7 +25,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
-    agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.28.1")
+    agent("io.opentelemetry.javaagent:opentelemetry-javaagent:2.29.0")
 }
 
 val copyAgent = tasks.register<Copy>("copyAgent") {

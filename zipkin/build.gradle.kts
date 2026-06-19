@@ -3,7 +3,7 @@ plugins {
 }
 
 description = "OpenTelemetry Examples for Zipkin Exporter"
-val moduleName by extra { "io.opentelemetry.examples.zipkin" }
+extra.set("moduleName", "io.opentelemetry.examples.zipkin")
 
 java {
     toolchain {

@@ -2,7 +2,7 @@ plugins {
     id("java")
 }
 
-val moduleName by extra { "io.opentelemetry.examples.docs.configuration" }
+extra.set("moduleName", "io.opentelemetry.examples.docs.configuration")
 
 java {
     toolchain {

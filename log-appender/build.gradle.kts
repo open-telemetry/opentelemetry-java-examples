@@ -4,7 +4,7 @@ plugins {
 }
 
 description = "OpenTelemetry Log Appender Example"
-val moduleName by extra { "io.opentelemetry.examples.log-appender" }
+extra.set("moduleName", "io.opentelemetry.examples.log-appender")
 
 java {
     toolchain {
