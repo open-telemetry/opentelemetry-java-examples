@@ -13,7 +13,7 @@ java {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
-val moduleName by extra { "io.opentelemetry.examples.native" }
+extra.set("moduleName", "io.opentelemetry.examples.native")
 
 dependencies {
     implementation(platform(SpringBootPlugin.BOM_COORDINATES))

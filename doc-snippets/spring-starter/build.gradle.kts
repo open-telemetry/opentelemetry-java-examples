@@ -5,7 +5,7 @@ plugins {
     id("org.springframework.boot") version "3.5.15"
 }
 
-val moduleName by extra { "io.opentelemetry.examples.docs.spring-starter" }
+extra.set("moduleName", "io.opentelemetry.examples.docs.spring-starter")
 
 java {
     toolchain {

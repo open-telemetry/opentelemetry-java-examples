@@ -8,7 +8,7 @@ plugins {
 }
 
 description = "OpenTelemetry Example for Telemetry Testing"
-val moduleName by extra { "io.opentelemetry.examples.telemetry-testing" }
+extra.set("moduleName", "io.opentelemetry.examples.telemetry-testing")
 
 java {
     toolchain {

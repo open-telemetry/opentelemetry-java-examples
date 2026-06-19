@@ -7,7 +7,7 @@ plugins {
 }
 
 description = "OpenTelemetry Examples for GRPC"
-val moduleName by extra { "io.opentelemetry.examples.grpc" }
+extra.set("moduleName", "io.opentelemetry.examples.grpc")
 
 java {
     toolchain {

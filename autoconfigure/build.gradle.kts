@@ -3,7 +3,7 @@ plugins {
 }
 
 description = "OpenTelemetry Examples for SDK autoconfiguration"
-val moduleName by extra { "io.opentelemetry.examples.autoconfigure" }
+extra.set("moduleName", "io.opentelemetry.examples.autoconfigure")
 
 java {
     toolchain {

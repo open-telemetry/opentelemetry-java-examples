@@ -4,7 +4,7 @@ plugins {
 }
 
 description = "OpenTelemetry Example for OTLP Exporters"
-val moduleName by extra { "io.opentelemetry.examples.otlp" }
+extra.set("moduleName", "io.opentelemetry.examples.otlp")
 
 java {
     toolchain {

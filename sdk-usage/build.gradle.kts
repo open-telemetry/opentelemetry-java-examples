@@ -3,7 +3,7 @@ plugins {
 }
 
 description = "OpenTelemetry Examples for SDK Usage"
-val moduleName by extra { "io.opentelemetry.examples.sdk.usage" }
+extra.set("moduleName", "io.opentelemetry.examples.sdk.usage")
 
 java {
     toolchain {

@@ -7,7 +7,7 @@ plugins {
 }
 
 description = "OpenTelemetry Example for Java Agent"
-val moduleName by extra { "io.opentelemetry.examples.javagent" }
+extra.set("moduleName", "io.opentelemetry.examples.javaagent")
 
 java {
     toolchain {
