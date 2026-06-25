@@ -1,53 +1,70 @@
-# OATS is an acceptance testing framework for OpenTelemetry - https://github.com/grafana/oats
-oats-schema-version: 2
-
-kubernetes:
-  dir: k8s
-  app-service: dice
-  app-docker-file: Dockerfile
-  app-docker-tag: dice:1.1-SNAPSHOT
-  app-docker-port: 8080
+oats: 2
+name: logging k8s stdout otlp json emits structured logs
+fixture:
+  type: k3d
+  k8s_dir: k8s
+  app_service: dice
+  app_docker_file: Dockerfile
+  app_docker_tag: dice:1.1-SNAPSHOT
+  app_port: 8080
+seed:
+  type: app
 input:
   - path: /rolldice
 expected:
   logs:
     - logql: '{service_name="dice"} |~ `.*Anonymous player is rolling the dice:.*`'
-      regexp: 'Anonymous player is rolling the dice: \d+' # uses formatted message
+      match:
+        - match_type: regexp
+          name: 'Anonymous player is rolling the dice: \d+'
     - logql: '{service_name="dice"} |~ `.*simulating an error.*`'
-      equals: 'Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException: simulating an error] with root cause'
-      attributes:
-        deployment_environment: staging
-        exception_message: "simulating an error"
-        exception_type: "java.lang.RuntimeException"
-        scope_name: "org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet]"
-        service_name: dice
-        service_namespace: shop
-        service_version: 1.1
-        severity_number: 17
-        severity_text: SEVERE
-      attribute-regexp:
-        flags: ".*" # from loki
-        detected_level: ".*" # from loki
-        observed_timestamp: ".*" # from loki
-        # thread_name: ".*" # thread name is missing when there is an exception - has nothing to do with stdout logging
-        span_id: ".*"
-        trace_id: ".*"
-        host_arch: ".*"
-        host_name: ".*"
-        os_description: ".*"
-        os_type: ".*"
-        os_version: ".*"
-        process_command_args: ".*"
-        process_executable_path: ".*"
-        process_pid: ".*"
-        process_runtime_description: ".*"
-        process_runtime_name: ".*"
-        process_runtime_version: ".*"
-        service_instance_id: ".*"
-        telemetry_distro_name: ".*"
-        telemetry_distro_version: ".*"
-        telemetry_sdk_language: ".*"
-        telemetry_sdk_name: ".*"
-        telemetry_sdk_version: ".*"
-        exception_stacktrace: "java\\.lang\\.RuntimeException: simulating an error\n\tat io\\.opentelemetry\\.example\\.RollController\\.index\\(RollController\\.java:21\\)\n\t.*\n"
-
+      match:
+        - name: 'Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException: simulating an error] with root cause'
+          attributes:
+            - key: deployment_environment
+              value: staging
+            - key: exception_message
+              value: simulating an error
+            - key: exception_type
+              value: java.lang.RuntimeException
+            - key: scope_name
+              value: org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet]
+            - key: service_name
+              value: dice
+            - key: service_namespace
+              value: shop
+            - key: service_version
+              value: '1.1'
+            - key: severity_number
+              value: '17'
+            - key: severity_text
+              value: SEVERE
+        - match_type: regexp
+          attributes:
+            - key: flags
+            - key: detected_level
+            - key: observed_timestamp
+            - key: span_id
+            - key: trace_id
+            - key: host_arch
+            - key: host_name
+            - key: os_description
+            - key: os_type
+            - key: os_version
+            - key: process_command_args
+            - key: process_executable_path
+            - key: process_pid
+            - key: process_runtime_description
+            - key: process_runtime_name
+            - key: process_runtime_version
+            - key: service_instance_id
+            - key: telemetry_distro_name
+            - key: telemetry_distro_version
+            - key: telemetry_sdk_language
+            - key: telemetry_sdk_name
+            - key: telemetry_sdk_version
+            - key: exception_stacktrace
+              value: |
+                java\.lang\.RuntimeException: simulating an error
+                \tat io\.opentelemetry\.example\.RollController\.index\(RollController\.java:21\)
+                \t.*
