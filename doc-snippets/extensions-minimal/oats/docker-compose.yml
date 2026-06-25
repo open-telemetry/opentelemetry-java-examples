@@ -2,7 +2,7 @@ version: '3'
 services:
   app:
     build:
-      context: ../../
+      context: ../../doc-snippets
       dockerfile: extensions-minimal/oats/Dockerfile
     environment:
       OTEL_SERVICE_NAME: "extensions-minimal-test-app"
