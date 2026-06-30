@@ -2,8 +2,8 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
     id("java")
-    id("org.springframework.boot") version "3.5.15"
-    id("org.graalvm.buildtools.native") version "1.1.2"
+    id("org.springframework.boot") version "3.5.16"
+    id("org.graalvm.buildtools.native") version "1.1.3"
 }
 
 description = "OpenTelemetry Example for Spring native images"
