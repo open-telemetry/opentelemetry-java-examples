@@ -1,6 +1,6 @@
 [tools]
 "aqua:grafana/oats" = "0.7.0"
-k3d = "5.8.3"
+k3d = "5.9.0"
 kubectl = "1.36.2"
 
 # Linters
