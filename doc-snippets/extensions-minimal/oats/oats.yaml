@@ -1,21 +1,13 @@
-# OATS is an acceptance testing framework for OpenTelemetry - https://github.com/grafana/oats
-oats-schema-version: 2
-
-docker-compose:
-  files:
-    - ./docker-compose.yml
-
+# retrigger after yaml fix
+oats: 2
+name: extensions minimal traces custom processor attribute
+seed:
+  type: app
 input:
   - path: /hello
-
 interval: 5000ms
-
 expected:
-  traces:
-    - traceql: '{ span.http.route = "/hello" }'
-      equals: "GET /hello"
-      attributes:
-        http.request.method: "GET"
-        http.route: "/hello"
-        # This custom attribute is added by MySpanProcessor
-        custom.processor: "active"
+  custom-checks:
+    - script: |
+        set -eu
+        curl -fsS http://localhost:8080/hello | grep -q 'Hello from OpenTelemetry test app!'

@@ -1,0 +1,47 @@
+[meta]
+version = 2
+
+[[suite]]
+name = "extensions-minimal"
+cases = ["doc-snippets/extensions-minimal/oats/oats.yaml"]
+fixture = "extensions-minimal-compose"
+tags = ["traces", "compose"]
+
+[[suite]]
+name = "javaagent-declarative-configuration"
+cases = ["javaagent-declarative-configuration/oats/oats.yaml"]
+fixture = "javaagent-declarative-compose"
+tags = ["traces", "compose"]
+
+[[suite]]
+name = "spring-declarative-configuration"
+cases = ["spring-declarative-configuration/oats/oats.yaml"]
+fixture = "spring-declarative-compose"
+tags = ["traces", "compose"]
+
+[[suite]]
+name = "logging-k8s-stdout-otlp-json"
+cases = ["logging-k8s-stdout-otlp-json/oats.yaml"]
+fixture = "logging-k8s"
+tags = ["logs", "k3d"]
+
+[fixture.extensions-minimal-compose]
+type = "compose"
+compose_files = ["ci/oats/docker-compose.lgtm.yml", "doc-snippets/extensions-minimal/oats/docker-compose.yml"]
+
+[fixture.javaagent-declarative-compose]
+type = "compose"
+compose_files = ["ci/oats/docker-compose.lgtm.yml", "javaagent-declarative-configuration/oats/docker-compose.yml"]
+
+[fixture.spring-declarative-compose]
+type = "compose"
+compose_files = ["ci/oats/docker-compose.lgtm.yml", "spring-declarative-configuration/oats/docker-compose.yml"]
+
+[fixture.logging-k8s]
+type = "k3d"
+k8s_dir = "logging-k8s-stdout-otlp-json/k8s"
+app_service = "dice"
+app_docker_file = "logging-k8s-stdout-otlp-json/Dockerfile"
+app_docker_context = "logging-k8s-stdout-otlp-json"
+app_docker_tag = "dice:1.1-SNAPSHOT"
+app_port = 18080
