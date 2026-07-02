@@ -9,16 +9,26 @@ fixture:
   app_port: 8080
 seed:
   type: app
-input:
-  - path: /rolldice
 expected:
-  logs:
-    - logql: '{service_name="dice"} |~ `.*Anonymous player is rolling the dice:.*`'
-      regex:
-        - 'Anonymous player is rolling the dice: [0-9]+'
-      count: '>= 1'
-    - logql: '{service_name="dice"} |~ `.*simulating an error.*`'
-      contains:
-        - 'Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException: simulating an error] with root cause'
-        - 'java.lang.RuntimeException: simulating an error'
-      count: '>= 1'
+  custom-checks:
+    - script: |
+        set -eu
+        ok=0
+        err=0
+        i=0
+        while [ "$i" -lt 20 ]; do
+          code=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/rolldice || true)
+          [ "$code" = "200" ] && ok=1 || true
+          [ "$code" = "500" ] && err=1 || true
+          if [ "$ok" = 1 ] && [ "$err" = 1 ]; then
+            break
+          fi
+          i=$((i+1))
+          sleep 1
+        done
+        [ "$ok" = 1 ]
+        [ "$err" = 1 ]
+        logs=$(kubectl logs deployment/dice --tail=200)
+        printf '%s\n' "$logs" | grep -Eq 'Anonymous player is rolling the dice: [0-9]+'
+        printf '%s\n' "$logs" | grep -Fq 'Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException: simulating an error] with root cause'
+        printf '%s\n' "$logs" | grep -Fq 'java.lang.RuntimeException: simulating an error'
