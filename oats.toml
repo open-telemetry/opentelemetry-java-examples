@@ -1,0 +1,18 @@
+[meta]
+version = 2
+
+[[suite]]
+name = "extensions-minimal"
+cases = ["doc-snippets/extensions-minimal/oats/oats.yaml"]
+
+[[suite]]
+name = "javaagent-declarative-configuration"
+cases = ["javaagent-declarative-configuration/oats/oats.yaml"]
+
+[[suite]]
+name = "spring-declarative-configuration"
+cases = ["spring-declarative-configuration/oats/oats.yaml"]
+
+[[suite]]
+name = "logging-k8s-stdout-otlp-json"
+cases = ["logging-k8s-stdout-otlp-json/oats.yaml"]

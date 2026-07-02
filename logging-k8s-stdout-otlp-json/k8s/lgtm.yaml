@@ -30,6 +30,10 @@ spec:
       protocol: TCP
       port: 3200
       targetPort: 3200
+    - name: pyroscope # needed for automated tests
+      protocol: TCP
+      port: 4040
+      targetPort: 4040
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -55,6 +59,7 @@ spec:
             - containerPort: 9090 # needed for automated tests
             - containerPort: 3100 # needed for automated tests
             - containerPort: 3200 # needed for automated tests
+            - containerPort: 4040 # needed for automated tests
           readinessProbe:
             exec:
               command:
