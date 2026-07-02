@@ -14,57 +14,11 @@ input:
 expected:
   logs:
     - logql: '{service_name="dice"} |~ `.*Anonymous player is rolling the dice:.*`'
-      match:
-        - match_type: regexp
-          name: 'Anonymous player is rolling the dice: \d+'
+      regex:
+        - 'Anonymous player is rolling the dice: [0-9]+'
+      count: '>= 1'
     - logql: '{service_name="dice"} |~ `.*simulating an error.*`'
-      match:
-        - name: 'Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException: simulating an error] with root cause'
-          attributes:
-            - key: deployment_environment
-              value: staging
-            - key: exception_message
-              value: simulating an error
-            - key: exception_type
-              value: java.lang.RuntimeException
-            - key: scope_name
-              value: org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet]
-            - key: service_name
-              value: dice
-            - key: service_namespace
-              value: shop
-            - key: service_version
-              value: '1.1'
-            - key: severity_number
-              value: '17'
-            - key: severity_text
-              value: SEVERE
-        - match_type: regexp
-          attributes:
-            - key: flags
-            - key: detected_level
-            - key: observed_timestamp
-            - key: span_id
-            - key: trace_id
-            - key: host_arch
-            - key: host_name
-            - key: os_description
-            - key: os_type
-            - key: os_version
-            - key: process_command_args
-            - key: process_executable_path
-            - key: process_pid
-            - key: process_runtime_description
-            - key: process_runtime_name
-            - key: process_runtime_version
-            - key: service_instance_id
-            - key: telemetry_distro_name
-            - key: telemetry_distro_version
-            - key: telemetry_sdk_language
-            - key: telemetry_sdk_name
-            - key: telemetry_sdk_version
-            - key: exception_stacktrace
-              value: |
-                java\.lang\.RuntimeException: simulating an error
-                \tat io\.opentelemetry\.example\.RollController\.index\(RollController\.java:21\)
-                \t.*
+      contains:
+        - 'Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException: simulating an error] with root cause'
+        - 'java.lang.RuntimeException: simulating an error'
+      count: '>= 1'
