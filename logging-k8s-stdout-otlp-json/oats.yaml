@@ -1,4 +1,4 @@
-oats: 2
+oats-schema-version: 3
 name: logging k8s stdout otlp json emits structured logs
 seed:
   type: app

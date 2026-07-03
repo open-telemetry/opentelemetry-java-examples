@@ -1,4 +1,4 @@
-oats: 2
+oats-schema-version: 3
 name: javaagent declarative config excludes actuator health traces
 seed:
   type: app

@@ -1,5 +1,5 @@
 # retrigger after yaml fix
-oats: 2
+oats-schema-version: 3
 name: extensions minimal traces custom processor attribute
 seed:
   type: app
