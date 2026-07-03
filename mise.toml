@@ -1,7 +1,7 @@
 [tools]
 go = "1.26.4"
-"go:github.com/grafana/oats" = { version = "v0.7.1-0.20260703092802-96201f1b8136", install_env = { GOPROXY = "direct", GONOSUMDB = "github.com/grafana/oats" } }
 "go:github.com/grafana/gcx/cmd/gcx" = "v0.4.0"
+"go:github.com/grafana/oats" = { version = "v0.7.1-0.20260703092802-96201f1b8136", install_env = { GOPROXY = "direct", GONOSUMDB = "github.com/grafana/oats" } }
 k3d = "5.8.3"
 kubectl = "1.36.2"
 
