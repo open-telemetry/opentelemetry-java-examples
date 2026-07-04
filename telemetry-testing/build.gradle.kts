@@ -39,7 +39,7 @@ dependencies {
     testImplementation(enforcedPlatform("org.junit:junit-bom:6.1.1"))
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testImplementation("org.junit.jupiter:junit-jupiter-engine")
-    testImplementation("org.mock-server:mockserver-netty:7.3.0")
+    testImplementation("org.mock-server:mockserver-netty:7.4.0")
     testImplementation("org.awaitility:awaitility:4.3.0")
     testImplementation("io.opentelemetry.proto:opentelemetry-proto:1.10.0-alpha")
     testImplementation("org.assertj:assertj-core:3.27.7")
