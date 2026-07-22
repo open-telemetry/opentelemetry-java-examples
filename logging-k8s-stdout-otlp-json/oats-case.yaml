@@ -1,5 +1,11 @@
-oats-schema-version: 3
 name: logging k8s stdout otlp json emits structured logs
+fixture:
+  k3d:
+    k8s_dir: k8s
+    app_service: dice
+    app_docker_file: Dockerfile
+    app_docker_tag: dice:1.1-SNAPSHOT
+    app_port: 18080
 seed:
   type: app
 expected:

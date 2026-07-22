@@ -12,7 +12,7 @@ set -euo pipefail
 
 REAL_GCX_BIN="$(command -v gcx)" \
   oats \
-  --config oats.toml \
+  --config oats-config.yaml \
   --gcx ./ci/oats/gcx-wrapper.sh \
   --no-cache \
   --timeout=10m

@@ -1,4 +1,7 @@
-oats-schema-version: 3
+fixture:
+  compose:
+    file: docker-compose.yml
+
 name: spring declarative config excludes actuator health traces
 seed:
   type: app

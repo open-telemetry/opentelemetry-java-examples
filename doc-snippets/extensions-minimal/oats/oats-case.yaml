@@ -1,5 +1,8 @@
 # retrigger after yaml fix
-oats-schema-version: 3
+fixture:
+  compose:
+    file: docker-compose.yml
+
 name: extensions minimal traces custom processor attribute
 seed:
   type: app

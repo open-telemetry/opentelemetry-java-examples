@@ -1,4 +1,7 @@
-oats-schema-version: 3
+fixture:
+  compose:
+    file: docker-compose.yml
+
 name: javaagent declarative config excludes actuator health traces
 seed:
   type: app
