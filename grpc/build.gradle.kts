@@ -15,7 +15,7 @@ java {
     }
 }
 
-var grpcVersion = "1.82.2"
+var grpcVersion = "1.83.0"
 var protobufVersion = "4.35.1"
 var protocVersion = protobufVersion
 
