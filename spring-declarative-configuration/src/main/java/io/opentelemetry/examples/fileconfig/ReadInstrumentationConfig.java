@@ -23,10 +23,10 @@ public class ReadInstrumentationConfig {
     DeclarativeConfigProperties dbConfig =
         configProvider
             .getInstrumentationConfig()
-            .getStructured("java")
-            .getStructured("common")
-            .getStructured("db")
-            .getStructured("query_sanitization");
+            .get("java")
+            .get("common")
+            .get("db")
+            .get("query_sanitization");
     return dbConfig.getBoolean("enabled", true);
   }
 }

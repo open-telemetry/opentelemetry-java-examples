@@ -30,7 +30,7 @@ This Spring Boot application includes two endpoints:
 ### Prerequisites
 
 - Java 17 or higher
-- OpenTelemetry Spring Boot Starter **2.22.0+** on the classpath of this application (already
+- OpenTelemetry Spring Boot Starter **2.30.0+** on the classpath of this application (already
   configured in this example’s [build file](./build.gradle.kts))
 
 ### Step 1: Build the Application
@@ -202,6 +202,18 @@ Here, `http://localhost:4318` is used as the default if the `OTEL_EXPORTER_OTLP_
 environment variable is not set.
 
 When copying configuration from non-Spring examples, always convert `:-` to `:` in placeholders.
+
+## Read instrumentation configuration programmatically
+
+Starting with version 2.30.0, the OpenTelemetry Spring Boot Starter exposes a `ConfigProvider`
+Spring bean. The [`ReadInstrumentationConfig`](./src/main/java/io/opentelemetry/examples/fileconfig/ReadInstrumentationConfig.java)
+component demonstrates how application code can inject this bean and read instrumentation
+configuration.
+
+`ConfigProvider#getInstrumentationConfig()` returns the `instrumentation/development` configuration
+tree. This example walks through `java.common.db.query_sanitization` and reads the `enabled` value,
+defaulting to `true` when it is not configured. The same tree is used whether the setting comes from
+an `otel.instrumentation.*` property or the equivalent declarative YAML configuration.
 
 ## Declarative vs Programmatic Configuration
 
