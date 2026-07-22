@@ -1,5 +1,5 @@
 [tools]
-"aqua:grafana/gcx" = "v0.4.0"
+"aqua:grafana/gcx" = "v0.5.0"
 go = "1.26.4"
 "go:github.com/grafana/oats" = { version = "v0.7.1-0.20260722080634-db417e9ee743", install_env = { GOPROXY = "direct", GONOSUMDB = "github.com/grafana/oats" } }
 k3d = "5.8.3"
