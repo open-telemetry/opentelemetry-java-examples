@@ -10,7 +10,7 @@ set -euo pipefail
   :opentelemetry-examples-logging-k8s-stdout-otlp-json:assemble \
   :opentelemetry-examples-spring-declarative-configuration:bootJar
 
-oats -timeout 5m doc-snippets/extensions-minimal/oats/
-oats -timeout 5m javaagent-declarative-configuration/oats/
-oats -timeout 5m logging-k8s-stdout-otlp-json/
-oats -timeout 5m spring-declarative-configuration/oats/
+oats \
+	--config oats-config.yaml \
+  --no-cache \
+  --timeout=10m
