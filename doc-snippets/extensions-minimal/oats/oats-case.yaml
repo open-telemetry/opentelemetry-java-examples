@@ -1,0 +1,22 @@
+name: extensions minimal traces custom processor attribute
+fixture:
+  compose:
+    template: lgtm
+    file: ./docker-compose.yml
+interval: 5s
+seed:
+  type: app
+input:
+  - path: /hello
+expected:
+  traces:
+    - traceql: '{ span.http.route = "/hello" }'
+      match_spans:
+        - name: GET /hello
+          attributes:
+            - key: http.request.method
+              value: GET
+            - key: http.route
+              value: /hello
+            - key: custom.processor
+              value: active

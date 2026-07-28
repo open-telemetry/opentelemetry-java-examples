@@ -1,0 +1,25 @@
+name: javaagent declarative config excludes actuator health traces
+fixture:
+  compose:
+    template: lgtm
+    file: ./docker-compose.yml
+seed:
+  type: app
+input:
+  - path: /api/example
+  - path: /actuator/health
+  - path: /api/remote
+expected:
+  traces:
+    - traceql: '{ span.http.route = "/api/example" }'
+      match_spans:
+        - name: GET /api/example
+          attributes:
+            - key: http.request.method
+              value: GET
+            - key: http.route
+              value: /api/example
+    - traceql: '{ span.http.route = "/actuator/health" }'
+      absent: true
+    - traceql: '{ span.peer.service = "example-backend" }'
+      count: '>= 1'

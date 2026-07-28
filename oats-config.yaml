@@ -1,0 +1,8 @@
+meta:
+  version: 3
+
+cases:
+  - doc-snippets/extensions-minimal/oats/oats-case.yaml
+  - javaagent-declarative-configuration/oats/oats-case.yaml
+  - spring-declarative-configuration/oats/oats-case.yaml
+  - logging-k8s-stdout-otlp-json/oats-case.yaml
