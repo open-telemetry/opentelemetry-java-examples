@@ -1,12 +1,12 @@
 [tools]
 "aqua:grafana/oats" = "0.7.0"
 k3d = "5.8.3"
-kubectl = "1.36.2"
+kubectl = "1.36.3"
 
 # Linters
-"aqua:grafana/flint" = "0.22.9"
+"aqua:grafana/flint" = "0.22.10"
 lychee = "0.24.2"
-rumdl = "0.2.38"
+rumdl = "0.2.43"
 
 [env]
 FLINT_CONFIG_DIR = ".github/config"
