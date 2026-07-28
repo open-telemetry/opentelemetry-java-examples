@@ -3,7 +3,7 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 plugins {
     id("java")
     id("org.springframework.boot") version "3.5.16"
-    id("org.graalvm.buildtools.native") version "1.1.5"
+    id("org.graalvm.buildtools.native") version "1.1.6"
 }
 
 description = "OpenTelemetry Example for Spring native images"
@@ -25,5 +25,5 @@ dependencies {
     implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
 
     // for otelCustomizer in Application.java
-    implementation("io.opentelemetry.contrib:opentelemetry-samplers:1.58.0-alpha")
+    implementation("io.opentelemetry.contrib:opentelemetry-samplers:1.59.0-alpha")
 }
