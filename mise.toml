@@ -1,5 +1,5 @@
 [tools]
-"aqua:grafana/gcx" = "v0.5.0"
+"aqua:grafana/gcx" = "v0.6.0"
 "aqua:grafana/oats" = "0.8.0"
 k3d = "5.8.3"
 kubectl = "1.36.3"
