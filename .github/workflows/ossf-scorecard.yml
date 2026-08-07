@@ -11,7 +11,68 @@ on:
 permissions: {}
 
 jobs:
+  wait-for-gradle-wrapper-validation:
+    permissions:
+      actions: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Wait for Gradle wrapper validation at the exact commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          while true; do
+            if ! response="$(gh api -X GET \
+              "repos/${GITHUB_REPOSITORY}/actions/workflows/gradle-wrapper-validation.yml/runs" \
+              -f event=push \
+              -f head_sha="${TARGET_SHA}" \
+              -f per_page=100)"; then
+              echo "Unable to query Gradle wrapper validation runs; retrying in 10 seconds"
+              sleep 10
+              continue
+            fi
+
+            matching_runs="$(jq -c --arg target_sha "${TARGET_SHA}" '
+              [.workflow_runs[]
+                | select(
+                    .path == ".github/workflows/gradle-wrapper-validation.yml"
+                    and .event == "push"
+                    and .head_sha == $target_sha
+                  )]
+            ' <<<"${response}")"
+
+            if jq -e 'any(.[]; .status == "completed" and .conclusion == "success")' \
+              <<<"${matching_runs}" >/dev/null; then
+              jq -r '.[]
+                | select(.status == "completed" and .conclusion == "success")
+                | "Gradle wrapper validation succeeded: run=\(.id) attempt=\(.run_attempt) url=\(.html_url)"' \
+                <<<"${matching_runs}"
+              exit 0
+            fi
+
+            if jq -e 'length > 0 and any(.[]; .status != "completed")' \
+              <<<"${matching_runs}" >/dev/null; then
+              jq -r '.[]
+                | "Waiting for Gradle wrapper validation: run=\(.id) attempt=\(.run_attempt) status=\(.status) url=\(.html_url)"' \
+                <<<"${matching_runs}"
+            elif jq -e 'length > 0' <<<"${matching_runs}" >/dev/null; then
+              jq -r '.[]
+                | "Gradle wrapper validation did not succeed: run=\(.id) attempt=\(.run_attempt) conclusion=\(.conclusion) url=\(.html_url)"' \
+                <<<"${matching_runs}"
+              exit 1
+            else
+              echo "No Gradle wrapper validation push run found for ${TARGET_SHA}; retrying in 10 seconds"
+            fi
+
+            sleep 10
+          done
+
   analysis:
+    needs:
+      - wait-for-gradle-wrapper-validation
     permissions:
       contents: read # for actions/checkout
       id-token: write # for Scorecard to publish results
