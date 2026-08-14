@@ -17,6 +17,9 @@ plugins {
 val develocityServer = "https://develocity.opentelemetry.io"
 val isCI = System.getenv("CI") != null
 val develocityAccessKey = System.getenv("DEVELOCITY_ACCESS_KEY") ?: ""
+val isRemoteBuildCachePushEnabled = isCI && develocityAccessKey.isNotEmpty()
+val shouldDisableLocalBuildCache =
+    isRemoteBuildCachePushEnabled && System.getenv("GITHUB_REF_NAME") == "main"
 
 develocity {
     if (develocityAccessKey.isNotEmpty()) {
@@ -45,9 +48,15 @@ develocity {
 }
 
 buildCache {
-    remote(HttpBuildCache::class) {
-        url = uri("$develocityServer/cache/")
-        isPush = isCI && develocityAccessKey.isNotEmpty()
+    // Tasks restored from the local cache are never pushed to the remote cache. Disable the local
+    // cache on the authenticated main build so the remote cache converges on complete.
+    local {
+        isEnabled = !shouldDisableLocalBuildCache
+    }
+
+    remote(develocity.buildCache) {
+        server = develocityServer
+        isPush = isRemoteBuildCachePushEnabled
     }
 }
 
