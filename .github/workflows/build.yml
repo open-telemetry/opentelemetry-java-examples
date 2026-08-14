@@ -37,12 +37,15 @@ jobs:
       - name: Set up gradle
         uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
         with:
-          cache-read-only: ${{ github.event_name == 'pull_request' }}
+          cache-read-only: ${{ github.event_name != 'push' || github.ref_name != github.event.repository.default_branch }}
+          gradle-home-cache-excludes: >-
+            ${{ matrix.os == 'ubuntu-latest' && secrets.DEVELOCITY_ACCESS_KEY != '' && github.ref_name == github.event.repository.default_branch && 'caches/build-cache-1' || '' }}
 
       - name: Build
         run: ./gradlew clean check shadowJar
         env:
-          DEVELOCITY_ACCESS_KEY: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
+          DEVELOCITY_ACCESS_KEY: >-
+            ${{ matrix.os == 'ubuntu-latest' && github.ref_name == github.event.repository.default_branch && secrets.DEVELOCITY_ACCESS_KEY || '' }}
 
       - run: java -cp sdk-usage/build/libs/opentelemetry-examples-sdk-usage-0.1.0-SNAPSHOT-all.jar io.opentelemetry.sdk.example.ConfigureSpanProcessorExample
 
@@ -62,15 +65,13 @@ jobs:
       - name: Set up gradle
         uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
         with:
-          cache-read-only: ${{ github.event_name == 'pull_request' }}
+          cache-read-only: true
 
       - name: Run declarative-configuration
         working-directory: declarative-configuration
         run: |
           export OTEL_EXPERIMENTAL_CONFIG_FILE=$(pwd)/otel-sdk-config.yaml
           ../gradlew run
-        env:
-          DEVELOCITY_ACCESS_KEY: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
 
   lint:
     uses: ./.github/workflows/reusable-lint-check.yml
