@@ -13,13 +13,13 @@
       "groupName": "all patch and minor versions",
       "matchUpdateTypes": ["patch", "digest", "minor"],
       "schedule": ["* 0-7 * * 2"], // weekly, before 8am on Tuesday
-      "matchPackageNames": ["!io.opentelemetry**"]
+      "matchPackageNames": ["!io.opentelemetry**", "!open-telemetry/**"]
     },
     {
       // majors stay individual, but arrive on the weekly schedule
       "matchUpdateTypes": ["major"],
       "schedule": ["* 0-7 * * 2"], // weekly, before 8am on Tuesday
-      "matchPackageNames": ["!io.opentelemetry**"]
+      "matchPackageNames": ["!io.opentelemetry**", "!open-telemetry/**"]
     },
     {
       // group all GitHub Actions updates into a single weekly PR
