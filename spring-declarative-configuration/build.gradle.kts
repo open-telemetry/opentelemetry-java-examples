@@ -20,10 +20,10 @@ dependencies {
     implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:2.31.0"))
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("io.opentelemetry:opentelemetry-api-incubator")
     implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
 }
 
 tasks.named<BootJar>("bootJar") {
     archiveFileName = "spring-declarative-configuration.jar"
 }
-

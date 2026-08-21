@@ -21,6 +21,6 @@ dependencies {
     implementation("io.opentelemetry:opentelemetry-exporter-otlp")
     implementation("io.opentelemetry:opentelemetry-sdk")
     implementation("io.opentelemetry:opentelemetry-exporter-prometheus")
-    implementation("io.opentelemetry:opentelemetry-exporter-zipkin")
+    implementation("io.opentelemetry:opentelemetry-exporter-zipkin:1.64.0")
     implementation("io.opentelemetry.semconv:opentelemetry-semconv")
 }
