@@ -1,7 +1,14 @@
 # Zipkin Example
 
 This is a simple example that demonstrates how to use the OpenTelemetry SDK
-to instrument a simple application using Zipkin as the trace exporter.
+to instrument a simple application and send spans over OTLP to a Zipkin backend.
+
+Note: the OpenTelemetry Java SDK no longer ships a Zipkin exporter
+(`opentelemetry-exporter-zipkin` stopped being published in 1.65.0), so this
+example exports OTLP and relies on Zipkin's own OTLP ingestion. Upstream
+`openzipkin/zipkin` does not include an OTLP collector, so the
+[zipkin-otel](https://github.com/openzipkin-contrib/zipkin-otel) distribution is
+used below. It binds OTLP/HTTP endpoints to Zipkin's regular server port, 9411.
 
 ## How to Run
 
@@ -20,10 +27,18 @@ to instrument a simple application using Zipkin as the trace exporter.
 ## 2 - Run Zipkin
 
 ```shell script
-docker run --rm -it --name zipkin \
+docker run --rm -it --name zipkin-otel \
   -p 9411:9411 \
-  openzipkin/zipkin:latest
+  ghcr.io/openzipkin-contrib/zipkin-otel:0.3.0
 ```
+
+Verify that the OTLP collector is running:
+
+```shell script
+curl -s localhost:9411/health
+```
+
+The response should include `"OpenTelemetryHttpCollector{}": {"status": "UP"}`.
 
 ## 3 - Start the Application
 

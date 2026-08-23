@@ -2,7 +2,7 @@ plugins {
     id("java")
 }
 
-description = "OpenTelemetry Examples for Zipkin Exporter"
+description = "OpenTelemetry Example exporting OTLP to a Zipkin backend"
 extra.set("moduleName", "io.opentelemetry.examples.zipkin")
 
 java {
@@ -14,7 +14,7 @@ java {
 dependencies {
     implementation("io.opentelemetry:opentelemetry-api")
     implementation("io.opentelemetry:opentelemetry-sdk")
-    implementation("io.opentelemetry:opentelemetry-exporter-zipkin")
+    implementation("io.opentelemetry:opentelemetry-exporter-otlp")
 
     //alpha module
     implementation("io.opentelemetry.semconv:opentelemetry-semconv")

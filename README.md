@@ -81,9 +81,9 @@ To build the all of examples, run:
 - [Telemetry Testing](telemetry-testing)
   - This module demonstrates how to test OpenTelemetry instrumentation with
     MockServer.
-- [Setting up the Zipkin exporter](zipkin)
+- [Exporting to a Zipkin backend with OTLP](zipkin)
   - This module contains a fully functional example of configuring the
-    OpenTelemetry SDK to use a Zipkin exporter and send spans to a
+    OpenTelemetry SDK to use an OTLP exporter and send spans to a
     Zipkin backend using the OpenTelemetry API.
   - Note: This example requires Docker to be installed.
 - [Declarative Configuration with the OpenTelemetry Java Agent](javaagent-declarative-configuration)
