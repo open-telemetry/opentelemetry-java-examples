@@ -29,7 +29,7 @@ used below. It binds OTLP/HTTP endpoints to Zipkin's regular server port, 9411.
 ```shell script
 docker run --rm -it --name zipkin-otel \
   -p 9411:9411 \
-  ghcr.io/openzipkin-contrib/zipkin-otel:0.3.0
+  ghcr.io/openzipkin-contrib/zipkin-otel:latest
 ```
 
 Verify that the OTLP collector is running:
