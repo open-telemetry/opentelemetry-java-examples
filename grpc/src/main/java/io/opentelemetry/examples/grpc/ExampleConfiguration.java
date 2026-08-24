@@ -28,7 +28,7 @@ public final class ExampleConfiguration {
     Resource serviceNameResource =
         Resource.create(Attributes.of(ServiceAttributes.SERVICE_NAME, SERVICE_NAME));
 
-    // Set to process the spans by the Zipkin Exporter
+    // Set to process the spans by the OTLP exporter
     SdkTracerProvider tracerProvider =
         SdkTracerProvider.builder()
             .addSpanProcessor(SimpleSpanProcessor.create(spanExporter))
