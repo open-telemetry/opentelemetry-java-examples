@@ -3,7 +3,7 @@ FROM eclipse-temurin:25.0.4_7-jre@sha256:f9e65324a37f28209ce7dd0e5149a7aa954520e
 WORKDIR /usr/src/app/
 
 # renovate: datasource=github-releases depName=open-telemetry/opentelemetry-java-instrumentation
-ENV OPENTELEMETRY_JAVA_INSTRUMENTATION_VERSION=v2.30.0
+ENV OPENTELEMETRY_JAVA_INSTRUMENTATION_VERSION=v2.31.1
 
 ADD ./build/libs/javaagent-declarative-configuration.jar ./app.jar
 ADD --chmod=644 https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/$OPENTELEMETRY_JAVA_INSTRUMENTATION_VERSION/opentelemetry-javaagent.jar ./opentelemetry-javaagent.jar
