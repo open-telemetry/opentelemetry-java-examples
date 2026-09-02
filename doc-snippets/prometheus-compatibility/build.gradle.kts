@@ -5,7 +5,7 @@ plugins {
 extra.set("moduleName", "io.opentelemetry.examples.docs.prometheus.migration")
 
 dependencies {
-    implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:2.30.0"))
+    implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:2.31.1"))
 
     implementation("io.opentelemetry:opentelemetry-api")
     implementation("io.opentelemetry:opentelemetry-sdk")
