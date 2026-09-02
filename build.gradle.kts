@@ -1,3 +1,5 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     id("com.diffplug.spotless")
     id("com.gradleup.shadow") apply false
@@ -25,6 +27,15 @@ subprojects {
         java {
             targetExclude("**/generated/**")
             googleJavaFormat()
+        }
+    }
+
+    pluginManager.withPlugin("com.gradleup.shadow") {
+        tasks.withType<ShadowJar>().configureEach {
+            // avoid warning about duplicate kotlin module files being silently dropped
+            filesMatching("META-INF/*.kotlin_module") {
+                duplicatesStrategy = DuplicatesStrategy.INCLUDE
+            }
         }
     }
 }

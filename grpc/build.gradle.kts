@@ -58,4 +58,8 @@ protobuf {
 
 tasks.shadowJar {
     mergeServiceFiles()
+    // mergeServiceFiles requires that duplicate strategy is set to include
+    filesMatching("META-INF/services/**") {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    }
 }
