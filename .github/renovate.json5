@@ -86,7 +86,7 @@
     },
     {
       // Tests fails with oats 0.10.0
-      "matchPackageNames": ["aqua:grafana/oats"],
+      "matchPackageNames": ["grafana/oats"],
       "matchUpdateTypes": ["minor"],
       "enabled": false
     }
