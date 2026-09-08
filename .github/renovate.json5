@@ -83,12 +83,6 @@
       "matchDatasources": ["docker"],
       "matchPackageNames": ["dice"],
       "enabled": false
-    },
-    {
-      // Tests fails with oats 0.10.0
-      "matchPackageNames": ["grafana/oats"],
-      "matchUpdateTypes": ["minor"],
-      "enabled": false
     }
   ],
   "kubernetes": {

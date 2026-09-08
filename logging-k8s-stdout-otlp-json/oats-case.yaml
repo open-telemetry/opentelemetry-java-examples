@@ -7,6 +7,10 @@ fixture:
     app_docker_tag: dice:1.1-SNAPSHOT
     app_port: 8080
 input:
+  # RollController seeds its Random with a fixed 0, so call 1 always succeeds
+  # and call 2 always throws. Two calls are needed since oats now drives each
+  # input exactly once instead of retrying it on every assertion poll.
+  - path: /rolldice
   - path: /rolldice
 expected:
   logs:

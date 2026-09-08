@@ -6,9 +6,14 @@ fixture:
 seed:
   type: app
 input:
+  # retry: the compose fixture reports "running" before Spring finishes booting,
+  # so the first request(s) can hit a closed port; retry until the app is ready.
   - path: /api/example
+    retry: {}
   - path: /actuator/health
+    retry: {}
   - path: /api/remote
+    retry: {}
 expected:
   traces:
     - traceql: '{ span.http.route = "/api/example" }'
