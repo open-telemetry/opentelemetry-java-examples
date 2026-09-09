@@ -15,12 +15,12 @@ java {
 
 dependencies {
     // Slf4J / logback
-    implementation("org.slf4j:slf4j-api:2.0.18")
+    implementation("org.slf4j:slf4j-api:2.0.19")
     implementation("ch.qos.logback:logback-core:1.6.3")
     implementation("ch.qos.logback:logback-classic:1.6.3")
 
     // JUL to SLF4J bridge
-    implementation("org.slf4j:jul-to-slf4j:2.0.18")
+    implementation("org.slf4j:jul-to-slf4j:2.0.19")
 
     // Log4j
     implementation(platform("org.apache.logging.log4j:log4j-bom:2.26.1"))
