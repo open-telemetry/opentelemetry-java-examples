@@ -12,6 +12,7 @@ input:
   # input exactly once instead of retrying it on every assertion poll.
   - path: /rolldice
   - path: /rolldice
+    status: "500"
 expected:
   logs:
     - logql: '{service_name="dice"} |~ `.*Anonymous player is rolling the dice:.*`'
