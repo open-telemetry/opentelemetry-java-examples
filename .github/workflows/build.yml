@@ -74,7 +74,7 @@ jobs:
           ../gradlew run
 
   lint:
-    uses: ./.github/workflows/reusable-lint-check.yml
+    uses: $/.github/workflows/reusable-lint-check.yml
 
   required-status-check:
     needs:
