@@ -12,7 +12,7 @@ dependencies {
     implementation("io.opentelemetry:opentelemetry-exporter-prometheus")
     implementation("io.opentelemetry:opentelemetry-exporter-otlp")
 
-    implementation("io.prometheus:prometheus-metrics-core:1.8.0")
-    implementation("io.prometheus:prometheus-metrics-exporter-httpserver:1.8.0")
-    implementation("io.prometheus:prometheus-metrics-exporter-opentelemetry:1.8.0")
+    implementation("io.prometheus:prometheus-metrics-core:1.9.0")
+    implementation("io.prometheus:prometheus-metrics-exporter-httpserver:1.9.0")
+    implementation("io.prometheus:prometheus-metrics-exporter-opentelemetry:1.9.0")
 }
