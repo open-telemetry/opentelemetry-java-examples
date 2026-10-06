@@ -1,5 +1,5 @@
 [tools]
-"aqua:grafana/gcx" = "v1.3.1"
+"aqua:grafana/gcx" = "v1.5.0"
 "aqua:grafana/oats" = "0.10.0"
 k3d = "5.9.0"
 kubectl = "1.37.1"
@@ -8,7 +8,7 @@ kubectl = "1.37.1"
 "aqua:grafana/flint" = "0.22.14"
 dotenv-linter = "4.0.0"
 lychee = "0.24.2"
-rumdl = "0.2.77"
+rumdl = "0.2.78"
 
 [env]
 FLINT_CONFIG_DIR = ".github/config"
