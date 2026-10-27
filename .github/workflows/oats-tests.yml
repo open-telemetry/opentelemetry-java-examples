@@ -27,7 +27,7 @@ jobs:
           persist-credentials: false
 
       - name: Set up JDK for running Gradle
-        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
         with:
           distribution: temurin
           java-version: 25
@@ -37,7 +37,7 @@ jobs:
         with:
           cache-read-only: true
 
-      - uses: jdx/mise-action@08ae2a091c038e1e05ec6f5115dc5c69d5a2a6b8 # v5.1.2
+      - uses: jdx/mise-action@82a612c5ab8bcda7cc5db6b7e81a8e7584c3dc6e # v5.2.3
 
       - name: Run OATS tests
         run: mise run oats-tests
