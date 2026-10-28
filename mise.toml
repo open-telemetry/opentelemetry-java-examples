@@ -5,7 +5,7 @@ k3d = "5.9.0"
 kubectl = "1.37.1"
 
 # Linters
-"aqua:grafana/flint" = "0.22.14"
+"aqua:grafana/flint" = "0.22.15"
 dotenv-linter = "4.0.0"
 lychee = "0.24.2"
 rumdl = "0.3.0"
