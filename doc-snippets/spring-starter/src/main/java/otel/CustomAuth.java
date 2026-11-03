@@ -12,14 +12,12 @@ public class CustomAuth {
   @Bean
   public AutoConfigurationCustomizerProvider otelCustomizer() {
     return p ->
-        p.addSpanExporterCustomizer(
-            (exporter, config) -> {
-              if (exporter instanceof OtlpHttpSpanExporter) {
-                return ((OtlpHttpSpanExporter) exporter)
-                    .toBuilder().setHeaders(this::headers).build();
-              }
-              return exporter;
-            });
+        p.addSpanExporterCustomizer((exporter, config) -> {
+          if (exporter instanceof OtlpHttpSpanExporter) {
+            return ((OtlpHttpSpanExporter) exporter).toBuilder().setHeaders(this::headers).build();
+          }
+          return exporter;
+        });
   }
 
   private Map<String, String> headers() {

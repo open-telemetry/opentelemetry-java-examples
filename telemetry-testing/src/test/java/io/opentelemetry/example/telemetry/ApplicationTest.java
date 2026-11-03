@@ -74,20 +74,19 @@ class ApplicationTest {
     // Assert
     await()
         .atMost(30, SECONDS)
-        .untilAsserted(
-            () -> {
-              var requests = collectorServer.retrieveRecordedRequests(request());
+        .untilAsserted(() -> {
+          var requests = collectorServer.retrieveRecordedRequests(request());
 
-              // verify traces
-              var spans = extractSpansFromRequests(requests);
-              assertThat(spans)
-                  .extracting(Span::getName)
-                  .contains("Controller.doWork", "GET", "GET /ping");
+          // verify traces
+          var spans = extractSpansFromRequests(requests);
+          assertThat(spans)
+              .extracting(Span::getName)
+              .contains("Controller.doWork", "GET", "GET /ping");
 
-              // verify metrics
-              var metrics = extractMetricsFromRequests(requests);
-              assertThat(metrics).extracting(Metric::getName).contains("apiCounter");
-            });
+          // verify metrics
+          var metrics = extractMetricsFromRequests(requests);
+          assertThat(metrics).extracting(Metric::getName).contains("apiCounter");
+        });
   }
 
   /**

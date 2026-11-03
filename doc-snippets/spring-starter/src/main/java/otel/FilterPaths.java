@@ -13,10 +13,9 @@ public class FilterPaths {
   @Bean
   public AutoConfigurationCustomizerProvider otelCustomizer() {
     return p ->
-        p.addSamplerCustomizer(
-            (fallback, config) ->
-                RuleBasedRoutingSampler.builder(SpanKind.SERVER, fallback)
-                    .drop(UrlAttributes.URL_PATH, "^/actuator")
-                    .build());
+        p.addSamplerCustomizer((fallback, config) ->
+            RuleBasedRoutingSampler.builder(SpanKind.SERVER, fallback)
+                .drop(UrlAttributes.URL_PATH, "^/actuator")
+                .build());
   }
 }

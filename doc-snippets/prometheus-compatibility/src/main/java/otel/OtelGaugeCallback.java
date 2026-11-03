@@ -19,10 +19,9 @@ public class OtelGaugeCallback {
         .gaugeBuilder("room.temperature")
         .setDescription("Current temperature in the room")
         .setUnit("Cel")
-        .buildWithCallback(
-            measurement -> {
-              measurement.record(SmartHomeDevices.livingRoomTemperatureCelsius(), LIVING_ROOM);
-              measurement.record(SmartHomeDevices.bedroomTemperatureCelsius(), BEDROOM);
-            });
+        .buildWithCallback(measurement -> {
+          measurement.record(SmartHomeDevices.livingRoomTemperatureCelsius(), LIVING_ROOM);
+          measurement.record(SmartHomeDevices.bedroomTemperatureCelsius(), BEDROOM);
+        });
   }
 }

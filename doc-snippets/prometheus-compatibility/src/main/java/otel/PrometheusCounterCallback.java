@@ -11,11 +11,10 @@ public class PrometheusCounterCallback {
         .name("energy_consumed_joules_total")
         .help("Total energy consumed in joules")
         .labelNames("zone")
-        .callback(
-            callback -> {
-              callback.call(SmartHomeDevices.totalEnergyJoules("upstairs"), "upstairs");
-              callback.call(SmartHomeDevices.totalEnergyJoules("downstairs"), "downstairs");
-            })
+        .callback(callback -> {
+          callback.call(SmartHomeDevices.totalEnergyJoules("upstairs"), "upstairs");
+          callback.call(SmartHomeDevices.totalEnergyJoules("downstairs"), "downstairs");
+        })
         .register();
   }
 }
