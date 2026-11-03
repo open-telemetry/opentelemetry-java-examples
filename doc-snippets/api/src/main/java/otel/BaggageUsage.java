@@ -62,13 +62,12 @@ public class BaggageUsage {
 
   private static String asString(Baggage baggage) {
     return baggage.asMap().entrySet().stream()
-        .map(
-            entry ->
-                String.format(
-                    "%s=%s(%s)",
-                    entry.getKey(),
-                    entry.getValue().getValue(),
-                    entry.getValue().getMetadata().getValue()))
+        .map(entry ->
+            String.format(
+                "%s=%s(%s)",
+                entry.getKey(),
+                entry.getValue().getValue(),
+                entry.getValue().getMetadata().getValue()))
         .collect(Collectors.joining(", ", "{", "}"));
   }
 }

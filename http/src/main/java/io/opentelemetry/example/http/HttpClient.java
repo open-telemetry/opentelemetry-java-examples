@@ -105,17 +105,16 @@ public final class HttpClient {
 
     // Perform request every 5s
     Thread t =
-        new Thread(
-            () -> {
-              while (true) {
-                try {
-                  httpClient.makeRequest();
-                  Thread.sleep(5000);
-                } catch (Exception e) {
-                  System.out.println(e.getMessage());
-                }
-              }
-            });
+        new Thread(() -> {
+          while (true) {
+            try {
+              httpClient.makeRequest();
+              Thread.sleep(5000);
+            } catch (Exception e) {
+              System.out.println(e.getMessage());
+            }
+          }
+        });
     t.start();
   }
 }

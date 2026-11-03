@@ -37,10 +37,9 @@ public final class ManualTracingExample {
           .put("foo", "bar")
           .build()
           .storeInContext(Context.current())
-          .wrap(
-              () ->
-                  ((ExtendedSpanBuilder) tracer.spanBuilder("span with baggage"))
-                      .startAndCall(this::calculateLlvm))
+          .wrap(() ->
+              ((ExtendedSpanBuilder) tracer.spanBuilder("span with baggage"))
+                  .startAndCall(this::calculateLlvm))
           .call();
     } catch (Exception e) {
       throw new RuntimeException(e);

@@ -11,11 +11,10 @@ public class PrometheusGaugeCallback {
         .name("room_temperature_celsius")
         .help("Current temperature in the room")
         .labelNames("room")
-        .callback(
-            callback -> {
-              callback.call(SmartHomeDevices.livingRoomTemperatureCelsius(), "living_room");
-              callback.call(SmartHomeDevices.bedroomTemperatureCelsius(), "bedroom");
-            })
+        .callback(callback -> {
+          callback.call(SmartHomeDevices.livingRoomTemperatureCelsius(), "living_room");
+          callback.call(SmartHomeDevices.bedroomTemperatureCelsius(), "bedroom");
+        })
         .register();
   }
 }

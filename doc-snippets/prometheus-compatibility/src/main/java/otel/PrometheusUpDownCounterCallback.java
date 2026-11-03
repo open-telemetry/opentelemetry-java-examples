@@ -10,11 +10,10 @@ public class PrometheusUpDownCounterCallback {
         .name("devices_connected")
         .help("Number of smart home devices currently connected")
         .labelNames("device_type")
-        .callback(
-            callback -> {
-              callback.call(SmartHomeDevices.connectedDeviceCount("thermostat"), "thermostat");
-              callback.call(SmartHomeDevices.connectedDeviceCount("lock"), "lock");
-            })
+        .callback(callback -> {
+          callback.call(SmartHomeDevices.connectedDeviceCount("thermostat"), "thermostat");
+          callback.call(SmartHomeDevices.connectedDeviceCount("lock"), "lock");
+        })
         .register();
   }
 }

@@ -18,10 +18,9 @@ public class OtelUpDownCounterCallback {
     meter
         .upDownCounterBuilder("devices.connected")
         .setDescription("Number of smart home devices currently connected")
-        .buildWithCallback(
-            measurement -> {
-              measurement.record(SmartHomeDevices.connectedDeviceCount("thermostat"), THERMOSTAT);
-              measurement.record(SmartHomeDevices.connectedDeviceCount("lock"), LOCK);
-            });
+        .buildWithCallback(measurement -> {
+          measurement.record(SmartHomeDevices.connectedDeviceCount("thermostat"), THERMOSTAT);
+          measurement.record(SmartHomeDevices.connectedDeviceCount("lock"), LOCK);
+        });
   }
 }

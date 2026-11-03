@@ -65,10 +65,8 @@ public class AttributesUsage {
     // Convert to a map representation:
     Map<AttributeKey<?>, Object> map = attributes.asMap();
     // Iterate through entries, printing each to the template: <key> (<type>): <value>\n
-    attributes.forEach(
-        (attributeKey, value) ->
-            System.out.printf(
-                "%s (%s): %s%n", attributeKey.getKey(), attributeKey.getType(), value));
+    attributes.forEach((attributeKey, value) ->
+        System.out.printf("%s (%s): %s%n", attributeKey.getKey(), attributeKey.getType(), value));
     // Convert to a builder, remove the com.acme.customer.id and any entry whose key starts with
     // com.acme.shop, and build a new instance:
     AttributesBuilder builder = attributes.toBuilder();

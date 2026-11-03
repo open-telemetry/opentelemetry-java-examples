@@ -54,25 +54,24 @@ public final class HttpServer {
               exchange.getRequestHeaders().entrySet().stream()
                   .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().get(0))))
           .setSpanKind(SpanKind.SERVER)
-          .startAndRun(
-              () -> {
-                // Set the Semantic Convention
-                Span span = Span.current();
-                span.setAttribute("component", "http");
-                span.setAttribute("http.method", "GET");
-                /*
-                 One of the following is required:
-                 - http.scheme, http.host, http.target
-                 - http.scheme, http.server_name, net.host.port, http.target
-                 - http.scheme, net.host.name, net.host.port, http.target
-                 - http.url
-                */
-                span.setAttribute("http.scheme", "http");
-                span.setAttribute("http.host", "localhost:" + HttpServer.port);
-                span.setAttribute("http.target", "/");
-                // Process the request
-                answer(exchange, span);
-              });
+          .startAndRun(() -> {
+            // Set the Semantic Convention
+            Span span = Span.current();
+            span.setAttribute("component", "http");
+            span.setAttribute("http.method", "GET");
+            /*
+             One of the following is required:
+             - http.scheme, http.host, http.target
+             - http.scheme, http.server_name, net.host.port, http.target
+             - http.scheme, net.host.name, net.host.port, http.target
+             - http.url
+            */
+            span.setAttribute("http.scheme", "http");
+            span.setAttribute("http.host", "localhost:" + HttpServer.port);
+            span.setAttribute("http.target", "/");
+            // Process the request
+            answer(exchange, span);
+          });
     }
 
     private void answer(HttpExchange exchange, Span span) throws IOException {

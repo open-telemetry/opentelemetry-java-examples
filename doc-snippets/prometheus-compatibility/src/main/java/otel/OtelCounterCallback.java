@@ -20,10 +20,9 @@ public class OtelCounterCallback {
         .setDescription("Total energy consumed")
         .setUnit("J")
         .ofDoubles()
-        .buildWithCallback(
-            measurement -> {
-              measurement.record(SmartHomeDevices.totalEnergyJoules("upstairs"), UPSTAIRS);
-              measurement.record(SmartHomeDevices.totalEnergyJoules("downstairs"), DOWNSTAIRS);
-            });
+        .buildWithCallback(measurement -> {
+          measurement.record(SmartHomeDevices.totalEnergyJoules("upstairs"), UPSTAIRS);
+          measurement.record(SmartHomeDevices.totalEnergyJoules("downstairs"), DOWNSTAIRS);
+        });
   }
 }
